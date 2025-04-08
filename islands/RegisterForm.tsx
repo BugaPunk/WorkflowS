@@ -25,7 +25,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
     confirmPassword: "",
     firstName: "",
     lastName: "",
-    role: UserRole.TEAM_DEVELOPER,
+    role: UserRole.ADMIN,
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
@@ -127,7 +127,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
         confirmPassword: "",
         firstName: "",
         lastName: "",
-        role: UserRole.TEAM_DEVELOPER,
+        role: UserRole.ADMIN,
       });
 
       // Call onSuccess callback if provided

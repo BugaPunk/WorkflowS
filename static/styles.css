@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles */
+
+/* Apply Ubuntu Sans to specific elements if needed */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Ubuntu Sans", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+}
+
+/* Custom font weights for Ubuntu Sans */
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Smooth scrolling and better text rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
