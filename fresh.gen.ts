@@ -16,12 +16,15 @@ import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
+import * as $modal_example from "./routes/modal-example.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $welcome from "./routes/welcome.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
+import * as $Modal from "./islands/Modal.tsx";
+import * as $ModalExample from "./islands/ModalExample.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -41,6 +44,7 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
+    "./routes/modal-example.tsx": $modal_example,
     "./routes/register.tsx": $register,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/welcome.tsx": $welcome,
@@ -49,6 +53,8 @@ const manifest = {
     "./islands/Counter.tsx": $Counter,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
+    "./islands/Modal.tsx": $Modal,
+    "./islands/ModalExample.tsx": $ModalExample,
     "./islands/RegisterForm.tsx": $RegisterForm,
   },
   baseUrl: import.meta.url,

@@ -20,6 +20,7 @@ export function Header(): JSX.Element {
             <li><a href="/" class="hover:underline">Inicio</a></li>
             <li><a href="/about" class="hover:underline">Acerca de</a></li>
             <li><a href="/contact" class="hover:underline">Contacto</a></li>
+            <li><a href="/modal-example" class="hover:underline">Modal</a></li>
           </ul>
         </nav>
         <HeaderNav />
