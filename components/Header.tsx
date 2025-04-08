@@ -1,4 +1,5 @@
 import { JSX } from "preact";
+import HeaderNav from "../islands/HeaderNav.tsx";
 
 export function Header(): JSX.Element {
   return (
@@ -16,11 +17,12 @@ export function Header(): JSX.Element {
         </div>
         <nav>
           <ul class="flex space-x-6">
-            <li><a href="/" class="hover:underline">Home</a></li>
-            <li><a href="/about" class="hover:underline">About</a></li>
-            <li><a href="/contact" class="hover:underline">Contact</a></li>
+            <li><a href="/" class="hover:underline">Inicio</a></li>
+            <li><a href="/about" class="hover:underline">Acerca de</a></li>
+            <li><a href="/contact" class="hover:underline">Contacto</a></li>
           </ul>
         </nav>
+        <HeaderNav />
       </div>
     </header>
   );

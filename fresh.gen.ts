@@ -5,11 +5,24 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $about from "./routes/about.tsx";
+import * as $admin_index from "./routes/admin/index.tsx";
+import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $api_login from "./routes/api/login.ts";
+import * as $api_register from "./routes/api/register.ts";
+import * as $api_session from "./routes/api/session.ts";
 import * as $contact from "./routes/contact.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $login from "./routes/login.tsx";
+import * as $logout from "./routes/logout.ts";
+import * as $register from "./routes/register.tsx";
+import * as $unauthorized from "./routes/unauthorized.tsx";
+import * as $welcome from "./routes/welcome.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $HeaderNav from "./islands/HeaderNav.tsx";
+import * as $LoginForm from "./islands/LoginForm.tsx";
+import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -17,13 +30,26 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/about.tsx": $about,
+    "./routes/admin/index.tsx": $admin_index,
+    "./routes/admin/users.tsx": $admin_users,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/api/login.ts": $api_login,
+    "./routes/api/register.ts": $api_register,
+    "./routes/api/session.ts": $api_session,
     "./routes/contact.tsx": $contact,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/login.tsx": $login,
+    "./routes/logout.ts": $logout,
+    "./routes/register.tsx": $register,
+    "./routes/unauthorized.tsx": $unauthorized,
+    "./routes/welcome.tsx": $welcome,
   },
   islands: {
     "./islands/Counter.tsx": $Counter,
+    "./islands/HeaderNav.tsx": $HeaderNav,
+    "./islands/LoginForm.tsx": $LoginForm,
+    "./islands/RegisterForm.tsx": $RegisterForm,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
