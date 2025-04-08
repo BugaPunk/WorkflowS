@@ -199,9 +199,6 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
               onChange={handleChange}
               required
             >
-              <option value={UserRole.TEAM_DEVELOPER}>Desarrollador de Equipo</option>
-              <option value={UserRole.SCRUM_MASTER}>Scrum Master</option>
-              <option value={UserRole.PRODUCT_OWNER}>Product Owner</option>
               <option value={UserRole.ADMIN}>Administrador</option>
             </select>
           </div>

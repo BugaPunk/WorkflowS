@@ -7,6 +7,7 @@ import * as $_app from "./routes/_app.tsx";
 import * as $about from "./routes/about.tsx";
 import * as $admin_index from "./routes/admin/index.tsx";
 import * as $admin_users from "./routes/admin/users.tsx";
+import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_register from "./routes/api/register.ts";
@@ -20,6 +21,8 @@ import * as $modal_example from "./routes/modal-example.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $welcome from "./routes/welcome.tsx";
+import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
+import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
@@ -35,6 +38,7 @@ const manifest = {
     "./routes/about.tsx": $about,
     "./routes/admin/index.tsx": $admin_index,
     "./routes/admin/users.tsx": $admin_users,
+    "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/login.ts": $api_login,
     "./routes/api/register.ts": $api_register,
@@ -50,6 +54,8 @@ const manifest = {
     "./routes/welcome.tsx": $welcome,
   },
   islands: {
+    "./islands/AdminCreateUserForm.tsx": $AdminCreateUserForm,
+    "./islands/AdminUsersList.tsx": $AdminUsersList,
     "./islands/Counter.tsx": $Counter,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
