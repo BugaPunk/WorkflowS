@@ -30,13 +30,18 @@ import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
 import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
+import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
 import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
+import * as $EmptyProjectsMessage from "./islands/EmptyProjectsMessage.tsx";
 import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $ModalExample from "./islands/ModalExample.tsx";
+import * as $ProjectCard from "./islands/ProjectCard.tsx";
+import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
+import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -72,13 +77,18 @@ const manifest = {
     "./islands/AssignProjectForm.tsx": $AssignProjectForm,
     "./islands/Counter.tsx": $Counter,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
+    "./islands/DeleteProjectModal.tsx": $DeleteProjectModal,
     "./islands/EditProjectForm.tsx": $EditProjectForm,
+    "./islands/EmptyProjectsMessage.tsx": $EmptyProjectsMessage,
     "./islands/HeaderMenu.tsx": $HeaderMenu,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/Modal.tsx": $Modal,
     "./islands/ModalExample.tsx": $ModalExample,
+    "./islands/ProjectCard.tsx": $ProjectCard,
+    "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
+    "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
     "./islands/RegisterForm.tsx": $RegisterForm,
   },
   baseUrl: import.meta.url,
