@@ -1,11 +1,21 @@
 import { type PageProps } from "$fresh/server.ts";
-export default function App({ Component }: PageProps) {
+
+export default function App({ Component, url }: PageProps) {
+  // Get the page title based on the current route
+  const getPageTitle = () => {
+    const path = url.pathname;
+    if (path === "/") return "Home - WorkflowS";
+    // Convert path to title case (e.g., /about -> About)
+    const title = path.split("/").pop() || "";
+    return title.charAt(0).toUpperCase() + title.slice(1) + " - WorkflowS";
+  };
+
   return (
     <html>
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>WorkflowS</title>
+        <title>{getPageTitle()}</title>
         <link rel="stylesheet" href="/styles.css" />
       </head>
       <body>
