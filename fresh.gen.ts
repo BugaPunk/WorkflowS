@@ -15,6 +15,7 @@ import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
 import * as $contact from "./routes/contact.tsx";
+import * as $dropdown_examples from "./routes/dropdown-examples.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
@@ -29,6 +30,8 @@ import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $CommonWelcomeOptions from "./islands/CommonWelcomeOptions.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
 import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
+import * as $DropdownMenu from "./islands/DropdownMenu.tsx";
+import * as $DropdownMenuExamples from "./islands/DropdownMenuExamples.tsx";
 import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
 import * as $EmptyProjectsMessage from "./islands/EmptyProjectsMessage.tsx";
 import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
@@ -64,6 +67,7 @@ const manifest = {
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
     "./routes/contact.tsx": $contact,
+    "./routes/dropdown-examples.tsx": $dropdown_examples,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
@@ -80,6 +84,8 @@ const manifest = {
     "./islands/CommonWelcomeOptions.tsx": $CommonWelcomeOptions,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
     "./islands/DeleteProjectModal.tsx": $DeleteProjectModal,
+    "./islands/DropdownMenu.tsx": $DropdownMenu,
+    "./islands/DropdownMenuExamples.tsx": $DropdownMenuExamples,
     "./islands/EditProjectForm.tsx": $EditProjectForm,
     "./islands/EmptyProjectsMessage.tsx": $EmptyProjectsMessage,
     "./islands/HeaderMenu.tsx": $HeaderMenu,
