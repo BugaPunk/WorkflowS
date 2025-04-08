@@ -127,6 +127,55 @@ export async function getAllUsers(): Promise<User[]> {
   return users;
 }
 
+// Update user role
+export async function updateUserRole(userId: string, newRole: UserRole): Promise<User | null> {
+  try {
+    const kv = getKv();
+
+    // Get the user first
+    const user = await getUserById(userId);
+
+    if (!user) {
+      return null;
+    }
+
+    // Only update if the role is different
+    if (user.role === newRole) {
+      return user;
+    }
+
+    // Update the user with the new role
+    const updatedUser = {
+      ...user,
+      role: newRole,
+      updatedAt: new Date().getTime(),
+    };
+
+    // Save the updated user
+    const key = [...COLLECTIONS.USERS, userId];
+    await kv.set(key, updatedUser);
+
+    // Update all active sessions for this user
+    const sessionsIterator = kv.list({ prefix: [...COLLECTIONS.USERS, "sessions"] });
+    for await (const entry of sessionsIterator) {
+      const sessionData = entry.value as { userId: string, role: UserRole };
+      if (sessionData && sessionData.userId === userId) {
+        // Update the role in the session
+        const updatedSession = {
+          ...sessionData,
+          role: newRole,
+        };
+        await kv.set(entry.key, updatedSession);
+      }
+    }
+
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating user role:", error);
+    return null;
+  }
+}
+
 // Delete a user
 export async function deleteUser(userId: string): Promise<boolean> {
   try {

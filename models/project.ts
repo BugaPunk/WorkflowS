@@ -1,6 +1,7 @@
 /// <reference lib="deno.unstable" />
 import { z } from "zod";
 import { getKv, Model, createModel } from "@/utils/db.ts";
+import { UserRole, updateUserRole, getUserById } from "@/models/user.ts";
 
 // Actualizar las colecciones para incluir proyectos
 export const PROJECT_COLLECTIONS = {
@@ -138,6 +139,24 @@ export async function addProjectMember(memberData: ProjectMemberData): Promise<P
 
     const projectKey = [...PROJECT_COLLECTIONS.PROJECTS, project.id];
     await kv.set(projectKey, updatedProject);
+  }
+
+  // Actualizar el rol del usuario en el sistema según su rol en el proyecto
+  const user = await getUserById(memberData.userId);
+  if (user) {
+    let newUserRole = user.role; // Mantener el rol actual por defecto
+
+    // Asignar el rol correspondiente según el rol en el proyecto
+    if (memberData.role === ProjectRole.SCRUM_MASTER && user.role !== UserRole.ADMIN) {
+      newUserRole = UserRole.SCRUM_MASTER;
+    } else if (memberData.role === ProjectRole.PRODUCT_OWNER && user.role !== UserRole.ADMIN) {
+      newUserRole = UserRole.PRODUCT_OWNER;
+    }
+
+    // Actualizar el rol del usuario si es diferente al actual
+    if (newUserRole !== user.role) {
+      await updateUserRole(user.id, newUserRole);
+    }
   }
 
   return member;

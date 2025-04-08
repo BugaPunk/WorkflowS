@@ -42,7 +42,7 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
       password: "",
       firstName: "",
       lastName: "",
-      role: UserRole.TEAM_DEVELOPER,
+      role: UserRole.TEAM_DEVELOPER, // Siempre establecer el rol como TEAM_DEVELOPER
     });
     setErrors({});
     setSubmitError(null);
@@ -52,11 +52,13 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
-    const value = target.name === 'role' ? target.value as UserRole : target.value;
+
+    // Ignorar cambios en el campo de rol (ahora es de solo lectura)
+    if (target.name === 'role') return;
 
     setFormData({
       ...formData,
-      [target.name]: value,
+      [target.name]: target.value,
     });
 
     // Limpiar error cuando se edita el campo
@@ -110,12 +112,18 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
     setIsSubmitting(true);
 
     try {
+      // Asegurarse de que el rol siempre sea TEAM_DEVELOPER
+      const dataToSubmit = {
+        ...formData,
+        role: UserRole.TEAM_DEVELOPER
+      };
+
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSubmit),
       });
 
       if (!response.ok) {
@@ -269,21 +277,14 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
 
               <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
-                  Rol*
+                  Rol
                 </label>
-                <select
-                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="role"
-                  name="role"
-                  value={formData.role}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value={UserRole.TEAM_DEVELOPER}>Desarrollador de Equipo</option>
-                  <option value={UserRole.SCRUM_MASTER}>Scrum Master</option>
-                  <option value={UserRole.PRODUCT_OWNER}>Product Owner</option>
-                  <option value={UserRole.ADMIN}>Administrador</option>
-                </select>
+                <div class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight bg-gray-100">
+                  Desarrollador de Equipo
+                </div>
+                <p class="text-sm text-gray-600 mt-1">
+                  Los roles se asignarán al crear proyectos. Todos los usuarios se crean inicialmente como Desarrolladores de Equipo.
+                </p>
               </div>
 
               <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
