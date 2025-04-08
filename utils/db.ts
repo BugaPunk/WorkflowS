@@ -21,6 +21,8 @@ export function getKv(): Deno.Kv {
 export const COLLECTIONS = {
   USERS: ["users"],
   SESSIONS: ["sessions"],
+  PROJECTS: ["projects"],
+  PROJECT_MEMBERS: ["project_members"],
 } as const;
 
 // Helper function to generate a unique ID

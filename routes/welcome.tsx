@@ -68,11 +68,19 @@ export default function Welcome({ data }: { data: WelcomeProps }) {
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {session.role === UserRole.ADMIN && (
-                  <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                    <h3 class="font-bold text-lg mb-2">Administrar Usuarios</h3>
-                    <p class="text-gray-600 mb-3">Visualiza y gestiona todos los usuarios registrados en el sistema.</p>
-                    <a href="/admin/users" class="text-purple-600 hover:underline">Ir a administración →</a>
-                  </div>
+                  <>
+                    <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                      <h3 class="font-bold text-lg mb-2">Administrar Usuarios</h3>
+                      <p class="text-gray-600 mb-3">Visualiza y gestiona todos los usuarios registrados en el sistema.</p>
+                      <a href="/admin/users" class="text-purple-600 hover:underline">Ir a administración →</a>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                      <h3 class="font-bold text-lg mb-2">Gestionar Proyectos</h3>
+                      <p class="text-gray-600 mb-3">Crea y asigna proyectos a los miembros del equipo.</p>
+                      <a href="/projects" class="text-blue-600 hover:underline">Ir a proyectos →</a>
+                    </div>
+                  </>
                 )}
 
                 <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">

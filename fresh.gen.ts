@@ -10,6 +10,8 @@ import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_login from "./routes/api/login.ts";
+import * as $api_projects_index from "./routes/api/projects/index.ts";
+import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
 import * as $contact from "./routes/contact.tsx";
@@ -18,16 +20,21 @@ import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
 import * as $modal_example from "./routes/modal-example.tsx";
+import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $welcome from "./routes/welcome.tsx";
 import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
 import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
+import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $Counter from "./islands/Counter.tsx";
+import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
+import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $ModalExample from "./islands/ModalExample.tsx";
+import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -41,6 +48,8 @@ const manifest = {
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/login.ts": $api_login,
+    "./routes/api/projects/index.ts": $api_projects_index,
+    "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
     "./routes/contact.tsx": $contact,
@@ -49,6 +58,7 @@ const manifest = {
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
     "./routes/modal-example.tsx": $modal_example,
+    "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/welcome.tsx": $welcome,
@@ -56,11 +66,15 @@ const manifest = {
   islands: {
     "./islands/AdminCreateUserForm.tsx": $AdminCreateUserForm,
     "./islands/AdminUsersList.tsx": $AdminUsersList,
+    "./islands/AssignProjectForm.tsx": $AssignProjectForm,
     "./islands/Counter.tsx": $Counter,
+    "./islands/CreateProjectForm.tsx": $CreateProjectForm,
+    "./islands/EditProjectForm.tsx": $EditProjectForm,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/Modal.tsx": $Modal,
     "./islands/ModalExample.tsx": $ModalExample,
+    "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/RegisterForm.tsx": $RegisterForm,
   },
   baseUrl: import.meta.url,

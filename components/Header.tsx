@@ -18,6 +18,7 @@ export function Header(): JSX.Element {
         <nav>
           <ul class="flex space-x-6">
             <li><a href="/" class="hover:underline">Inicio</a></li>
+            <li><a href="/projects" class="hover:underline">Proyectos</a></li>
             <li><a href="/about" class="hover:underline">Acerca de</a></li>
             <li><a href="/contact" class="hover:underline">Contacto</a></li>
             <li><a href="/modal-example" class="hover:underline">Modal</a></li>
