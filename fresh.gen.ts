@@ -8,6 +8,7 @@ import * as $about from "./routes/about.tsx";
 import * as $admin_index from "./routes/admin/index.tsx";
 import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
+import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
 import * as $api_joke from "./routes/api/joke.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_projects_index from "./routes/api/projects/index.ts";
@@ -30,6 +31,7 @@ import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
 import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
+import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $Modal from "./islands/Modal.tsx";
@@ -46,6 +48,7 @@ const manifest = {
     "./routes/admin/index.tsx": $admin_index,
     "./routes/admin/users.tsx": $admin_users,
     "./routes/api/admin/users.ts": $api_admin_users,
+    "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
     "./routes/api/joke.ts": $api_joke,
     "./routes/api/login.ts": $api_login,
     "./routes/api/projects/index.ts": $api_projects_index,
@@ -70,6 +73,7 @@ const manifest = {
     "./islands/Counter.tsx": $Counter,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
     "./islands/EditProjectForm.tsx": $EditProjectForm,
+    "./islands/HeaderMenu.tsx": $HeaderMenu,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/Modal.tsx": $Modal,

@@ -126,3 +126,40 @@ export async function getAllUsers(): Promise<User[]> {
 
   return users;
 }
+
+// Delete a user
+export async function deleteUser(userId: string): Promise<boolean> {
+  try {
+    const kv = getKv();
+
+    // Get the user first to access their email and username
+    const user = await getUserById(userId);
+
+    if (!user) {
+      return false;
+    }
+
+    // Delete the main user entry
+    await kv.delete([...COLLECTIONS.USERS, userId]);
+
+    // Delete the email index
+    await kv.delete([...COLLECTIONS.USERS, "by_email", user.email]);
+
+    // Delete the username index
+    await kv.delete([...COLLECTIONS.USERS, "by_username", user.username]);
+
+    // Delete any session associated with this user
+    const sessionsIterator = kv.list({ prefix: [...COLLECTIONS.USERS, "sessions"] });
+    for await (const entry of sessionsIterator) {
+      const sessionData = entry.value as { userId: string };
+      if (sessionData && sessionData.userId === userId) {
+        await kv.delete(entry.key);
+      }
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    return false;
+  }
+}
