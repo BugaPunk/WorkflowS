@@ -14,6 +14,12 @@ import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
+import * as $api_sprints_id_ from "./routes/api/sprints/[id].ts";
+import * as $api_sprints_id_user_stories from "./routes/api/sprints/[id]/user-stories.ts";
+import * as $api_sprints_id_user_stories_userStoryId_ from "./routes/api/sprints/[id]/user-stories/[userStoryId].ts";
+import * as $api_sprints_index from "./routes/api/sprints/index.ts";
+import * as $api_tasks_id_ from "./routes/api/tasks/[id].ts";
+import * as $api_tasks_index from "./routes/api/tasks/index.ts";
 import * as $api_user_stories from "./routes/api/user-stories.ts";
 import * as $api_user_stories_id_ from "./routes/api/user-stories/[id].ts";
 import * as $backlog_index from "./routes/backlog/index.tsx";
@@ -21,10 +27,13 @@ import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
+import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
+import * as $sprints_id_ from "./routes/sprints/[id].tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
+import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
 import * as $user_stories_index from "./routes/user-stories/index.tsx";
 import * as $welcome from "./routes/welcome.tsx";
 import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
@@ -57,6 +66,14 @@ import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
+import * as $Sprints_CreateSprintForm from "./islands/Sprints/CreateSprintForm.tsx";
+import * as $Sprints_EditSprintForm from "./islands/Sprints/EditSprintForm.tsx";
+import * as $Sprints_SprintCard from "./islands/Sprints/SprintCard.tsx";
+import * as $Sprints_SprintsList from "./islands/Sprints/SprintsList.tsx";
+import * as $Tasks_CreateTaskForm from "./islands/Tasks/CreateTaskForm.tsx";
+import * as $Tasks_EditTaskForm from "./islands/Tasks/EditTaskForm.tsx";
+import * as $Tasks_TaskCard from "./islands/Tasks/TaskCard.tsx";
+import * as $Tasks_TasksList from "./islands/Tasks/TasksList.tsx";
 import * as $TeamDeveloperWelcomeOptions from "./islands/TeamDeveloperWelcomeOptions.tsx";
 import * as $UserInfoCard from "./islands/UserInfoCard.tsx";
 import * as $UserStories_CreateUserStoryForm from "./islands/UserStories/CreateUserStoryForm.tsx";
@@ -81,6 +98,13 @@ const manifest = {
     "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
+    "./routes/api/sprints/[id].ts": $api_sprints_id_,
+    "./routes/api/sprints/[id]/user-stories.ts": $api_sprints_id_user_stories,
+    "./routes/api/sprints/[id]/user-stories/[userStoryId].ts":
+      $api_sprints_id_user_stories_userStoryId_,
+    "./routes/api/sprints/index.ts": $api_sprints_index,
+    "./routes/api/tasks/[id].ts": $api_tasks_id_,
+    "./routes/api/tasks/index.ts": $api_tasks_index,
     "./routes/api/user-stories.ts": $api_user_stories,
     "./routes/api/user-stories/[id].ts": $api_user_stories_id_,
     "./routes/backlog/index.tsx": $backlog_index,
@@ -88,10 +112,13 @@ const manifest = {
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
     "./routes/projects/[id].tsx": $projects_id_,
+    "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
+    "./routes/sprints/[id].tsx": $sprints_id_,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
+    "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
     "./routes/user-stories/index.tsx": $user_stories_index,
     "./routes/welcome.tsx": $welcome,
   },
@@ -129,6 +156,14 @@ const manifest = {
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
     "./islands/RegisterForm.tsx": $RegisterForm,
     "./islands/ScrumMasterWelcomeOptions.tsx": $ScrumMasterWelcomeOptions,
+    "./islands/Sprints/CreateSprintForm.tsx": $Sprints_CreateSprintForm,
+    "./islands/Sprints/EditSprintForm.tsx": $Sprints_EditSprintForm,
+    "./islands/Sprints/SprintCard.tsx": $Sprints_SprintCard,
+    "./islands/Sprints/SprintsList.tsx": $Sprints_SprintsList,
+    "./islands/Tasks/CreateTaskForm.tsx": $Tasks_CreateTaskForm,
+    "./islands/Tasks/EditTaskForm.tsx": $Tasks_EditTaskForm,
+    "./islands/Tasks/TaskCard.tsx": $Tasks_TaskCard,
+    "./islands/Tasks/TasksList.tsx": $Tasks_TasksList,
     "./islands/TeamDeveloperWelcomeOptions.tsx": $TeamDeveloperWelcomeOptions,
     "./islands/UserInfoCard.tsx": $UserInfoCard,
     "./islands/UserStories/CreateUserStoryForm.tsx":

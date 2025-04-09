@@ -23,10 +23,10 @@ export const handler = {
 
     // Obtener la instancia de KV
     const kv = getKv();
-    
+
     // Obtener el proyecto
     const projectEntry = await kv.get<Project>(["projects", id]);
-    
+
     if (!projectEntry.value) {
       return new Response(null, {
         status: 302,
@@ -57,7 +57,7 @@ export const handler = {
 
     // Verificar si el usuario actual es miembro del proyecto
     const isMember = project.members.some(member => member.userId === session.userId);
-    
+
     // Verificar si el usuario actual es Product Owner o Scrum Master del proyecto
     const isProductOwner = project.members.some(
       member => member.userId === session.userId && member.role === ProjectRole.PRODUCT_OWNER
@@ -81,12 +81,12 @@ export const handler = {
       });
     }
 
-    return ctx.render({ 
-      session, 
+    return ctx.render({
+      session,
       project: {
         ...project,
         members,
-      }, 
+      },
       creator,
       isAdmin,
       isProductOwner,
@@ -207,6 +207,14 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                   Ver Historias de Usuario
                 </a>
               )}
+              {(isAdmin || isScrumMaster) && (
+                <a
+                  href={`/projects/${project.id}/sprints`}
+                  class="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                >
+                  Gestionar Sprints
+                </a>
+              )}
               {isAdmin && (
                 <a
                   href={`/projects/edit/${project.id}`}
@@ -241,6 +249,47 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Descripción</h3>
                 <div class="bg-gray-50 p-4 rounded-lg text-gray-700">
                   {project.description || "Sin descripción"}
+                </div>
+              </div>
+
+              {/* Sección de Sprints y Tareas */}
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Sprints y Tareas</h3>
+                <div class="bg-gray-50 p-4 rounded-lg">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                      <h4 class="text-md font-semibold text-gray-700 mb-2 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5z" />
+                          <path d="M11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                        </svg>
+                        Sprints
+                      </h4>
+                      <p class="text-sm text-gray-600 mb-3">Organiza el trabajo en iteraciones para un desarrollo incremental.</p>
+                      <a
+                        href={`/projects/${project.id}/sprints`}
+                        class="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+                      >
+                        Ver Sprints
+                      </a>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                      <h4 class="text-md font-semibold text-gray-700 mb-2 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                        </svg>
+                        Historias de Usuario
+                      </h4>
+                      <p class="text-sm text-gray-600 mb-3">Gestiona los requisitos del proyecto desde la perspectiva del usuario.</p>
+                      <a
+                        href={`/user-stories?projectId=${project.id}`}
+                        class="inline-block w-full text-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm"
+                      >
+                        Ver Historias
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
 
