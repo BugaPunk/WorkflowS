@@ -15,11 +15,11 @@ import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
 import * as $api_user_stories from "./routes/api/user-stories.ts";
-import * as $contact from "./routes/contact.tsx";
-import * as $dropdown_examples from "./routes/dropdown-examples.tsx";
+import * as $backlog_index from "./routes/backlog/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
+import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
@@ -30,19 +30,24 @@ import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
 import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
 import * as $AdminWelcomeOptions from "./islands/AdminWelcomeOptions.tsx";
 import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
+import * as $BacklogFilters from "./islands/BacklogFilters.tsx";
+import * as $BacklogHeader from "./islands/BacklogHeader.tsx";
+import * as $BacklogItemCard from "./islands/BacklogItemCard.tsx";
+import * as $BacklogMetrics from "./islands/BacklogMetrics.tsx";
 import * as $CommonWelcomeOptions from "./islands/CommonWelcomeOptions.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
 import * as $CreateUserStoryForm from "./islands/CreateUserStoryForm.tsx";
 import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
 import * as $DropdownMenu from "./islands/DropdownMenu.tsx";
-import * as $DropdownMenuExamples from "./islands/DropdownMenuExamples.tsx";
 import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
+import * as $EditUserStoryForm from "./islands/EditUserStoryForm.tsx";
 import * as $EmptyProjectsMessage from "./islands/EmptyProjectsMessage.tsx";
 import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $LogoutButton from "./islands/LogoutButton.tsx";
 import * as $Modal from "./islands/Modal.tsx";
+import * as $ProductBacklog from "./islands/ProductBacklog.tsx";
 import * as $ProductOwnerWelcomeOptions from "./islands/ProductOwnerWelcomeOptions.tsx";
 import * as $ProjectCard from "./islands/ProjectCard.tsx";
 import * as $ProjectModals_AssignProjectModal from "./islands/ProjectModals/AssignProjectModal.tsx";
@@ -76,11 +81,11 @@ const manifest = {
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
     "./routes/api/user-stories.ts": $api_user_stories,
-    "./routes/contact.tsx": $contact,
-    "./routes/dropdown-examples.tsx": $dropdown_examples,
+    "./routes/backlog/index.tsx": $backlog_index,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
+    "./routes/projects/[id].tsx": $projects_id_,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
     "./routes/unauthorized.tsx": $unauthorized,
@@ -93,19 +98,24 @@ const manifest = {
     "./islands/AdminUsersList.tsx": $AdminUsersList,
     "./islands/AdminWelcomeOptions.tsx": $AdminWelcomeOptions,
     "./islands/AssignProjectForm.tsx": $AssignProjectForm,
+    "./islands/BacklogFilters.tsx": $BacklogFilters,
+    "./islands/BacklogHeader.tsx": $BacklogHeader,
+    "./islands/BacklogItemCard.tsx": $BacklogItemCard,
+    "./islands/BacklogMetrics.tsx": $BacklogMetrics,
     "./islands/CommonWelcomeOptions.tsx": $CommonWelcomeOptions,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
     "./islands/CreateUserStoryForm.tsx": $CreateUserStoryForm,
     "./islands/DeleteProjectModal.tsx": $DeleteProjectModal,
     "./islands/DropdownMenu.tsx": $DropdownMenu,
-    "./islands/DropdownMenuExamples.tsx": $DropdownMenuExamples,
     "./islands/EditProjectForm.tsx": $EditProjectForm,
+    "./islands/EditUserStoryForm.tsx": $EditUserStoryForm,
     "./islands/EmptyProjectsMessage.tsx": $EmptyProjectsMessage,
     "./islands/HeaderMenu.tsx": $HeaderMenu,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/LogoutButton.tsx": $LogoutButton,
     "./islands/Modal.tsx": $Modal,
+    "./islands/ProductBacklog.tsx": $ProductBacklog,
     "./islands/ProductOwnerWelcomeOptions.tsx": $ProductOwnerWelcomeOptions,
     "./islands/ProjectCard.tsx": $ProjectCard,
     "./islands/ProjectModals/AssignProjectModal.tsx":

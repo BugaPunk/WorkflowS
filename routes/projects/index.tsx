@@ -2,13 +2,13 @@ import { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
 import { UserRole } from "../../models/user.ts";
-import { getAllProjects, Project, ProjectStatus } from "../../models/project.ts";
+import { getAllProjects, getUserProjects, Project } from "../../models/project.ts";
 import ProjectsList from "../../islands/ProjectsList.tsx";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
-    
+
     // Verificar si el usuario está autenticado
     if (!session) {
       return new Response(null, {
@@ -18,11 +18,18 @@ export const handler = {
         },
       });
     }
-    
+
     try {
-      // Obtener todos los proyectos
-      const projects = await getAllProjects();
-      
+      let projects;
+
+      // Los administradores pueden ver todos los proyectos
+      if (session.role === UserRole.ADMIN) {
+        projects = await getAllProjects();
+      } else {
+        // Los usuarios no administradores solo pueden ver sus proyectos
+        projects = await getUserProjects(session.userId);
+      }
+
       return ctx.render({ session, projects });
     } catch (error) {
       console.error("Error al obtener proyectos:", error);
@@ -43,16 +50,16 @@ interface ProjectsPageProps {
 }
 
 export default function ProjectsPage({ data }: { data: ProjectsPageProps }) {
-  const { session, projects, error } = data;
+  const { session, projects } = data;
   const isAdmin = session.role === UserRole.ADMIN;
-  
+
   return (
     <MainLayout title="Proyectos - WorkflowS">
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
-          <ProjectsList 
-            initialProjects={projects} 
-            isAdmin={isAdmin} 
+          <ProjectsList
+            initialProjects={projects}
+            isAdmin={isAdmin}
             currentUserId={session.userId}
           />
         </div>

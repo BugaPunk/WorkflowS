@@ -5,6 +5,7 @@ import { Button } from "../components/Button.tsx";
 import Modal from "./Modal.tsx";
 import UserStoryCard from "./UserStoryCard.tsx";
 import CreateUserStoryForm from "./CreateUserStoryForm.tsx";
+import EditUserStoryForm from "./EditUserStoryForm.tsx";
 import { Project } from "../models/project.ts";
 
 interface UserStoriesListProps {
@@ -43,15 +44,15 @@ export default function UserStoriesList({
     try {
       let url = "/api/user-stories";
       const params = new URLSearchParams();
-      
+
       if (projectId) {
         params.append("projectId", projectId);
       }
-      
+
       if (statusFilter !== "all") {
         params.append("status", statusFilter);
       }
-      
+
       if (params.toString()) {
         url += `?${params.toString()}`;
       }
@@ -192,7 +193,7 @@ export default function UserStoriesList({
             ))}
           </select>
         </div>
-        
+
         <div class="flex items-center">
           {isLoading ? (
             <div class="flex items-center text-blue-600">
@@ -245,7 +246,7 @@ export default function UserStoriesList({
       >
         <div class="p-6">
           <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Crear Nueva Historia de Usuario
+            {projectId ? "Crear Historia de Usuario para el Proyecto Actual" : "Crear Nueva Historia de Usuario"}
           </h2>
           <CreateUserStoryForm
             projectId={projectId}
@@ -293,6 +294,26 @@ export default function UserStoriesList({
               {isDeleting ? "Eliminando..." : "Eliminar"}
             </Button>
           </div>
+        </div>
+      </Modal>
+
+      {/* Modal para editar historia de usuario */}
+      <Modal
+        show={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        maxWidth="md"
+      >
+        <div class="p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">
+            Editar Historia de Usuario
+          </h2>
+          {selectedUserStory && (
+            <EditUserStoryForm
+              userStory={selectedUserStory}
+              onSuccess={handleUserStoryEdited}
+              onCancel={() => setShowEditModal(false)}
+            />
+          )}
         </div>
       </Modal>
     </div>

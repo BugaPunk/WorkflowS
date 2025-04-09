@@ -35,8 +35,6 @@ export default function ProductOwnerWelcomeOptions() {
     {
       items: [
         { label: "Ver backlog", href: "/backlog" },
-        { label: "Priorizar elementos", href: "/backlog/prioritize" },
-        { label: "Planificar sprint", href: "/backlog/plan-sprint" },
       ],
     },
   ];

@@ -196,7 +196,10 @@ export async function getUserProjects(userId: string): Promise<Project[]> {
   });
 
   for await (const entry of projectsIterator) {
-    const projectId = String(entry.key[entry.key.length - 2]); // El ID del proyecto está en la penúltima posición
+    // El ID del proyecto está en la penúltima posición de la clave
+    const projectId = String(entry.key[entry.key.length - 1]);
+
+    // Obtener el proyecto
     const project = await getProjectById(projectId);
 
     if (project) {
