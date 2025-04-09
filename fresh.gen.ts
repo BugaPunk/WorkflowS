@@ -41,6 +41,9 @@ import * as $LogoutButton from "./islands/LogoutButton.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $ProductOwnerWelcomeOptions from "./islands/ProductOwnerWelcomeOptions.tsx";
 import * as $ProjectCard from "./islands/ProjectCard.tsx";
+import * as $ProjectModals_AssignProjectModal from "./islands/ProjectModals/AssignProjectModal.tsx";
+import * as $ProjectModals_CreateProjectModal from "./islands/ProjectModals/CreateProjectModal.tsx";
+import * as $ProjectModals_EditProjectModal from "./islands/ProjectModals/EditProjectModal.tsx";
 import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
@@ -95,6 +98,12 @@ const manifest = {
     "./islands/Modal.tsx": $Modal,
     "./islands/ProductOwnerWelcomeOptions.tsx": $ProductOwnerWelcomeOptions,
     "./islands/ProjectCard.tsx": $ProjectCard,
+    "./islands/ProjectModals/AssignProjectModal.tsx":
+      $ProjectModals_AssignProjectModal,
+    "./islands/ProjectModals/CreateProjectModal.tsx":
+      $ProjectModals_CreateProjectModal,
+    "./islands/ProjectModals/EditProjectModal.tsx":
+      $ProjectModals_EditProjectModal,
     "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
