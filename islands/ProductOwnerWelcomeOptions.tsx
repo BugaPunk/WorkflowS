@@ -16,15 +16,16 @@ export default function ProductOwnerWelcomeOptions() {
   const userStoriesSections: DropdownMenuSection[] = [
     {
       items: [
-        { label: "Crear historia de usuario", href: "/user-stories/create" },
-        { label: "Mis historias de usuario", href: "/user-stories" },
-        { label: "Historias pendientes", href: "/user-stories?filter=pending" },
+        { label: "Ver todas las historias", href: "/user-stories" },
+        { label: "Historias en backlog", href: "/user-stories?status=backlog" },
+        { label: "Historias planificadas", href: "/user-stories?status=planned" },
+        { label: "Historias en progreso", href: "/user-stories?status=in_progress" },
       ],
     },
     {
       items: [
-        { label: "Importar historias", onClick: () => console.log("Importar historias") },
-        { label: "Exportar historias", onClick: () => console.log("Exportar historias") },
+        { label: "Historias en pruebas", href: "/user-stories?status=testing" },
+        { label: "Historias completadas", href: "/user-stories?status=done" },
       ],
     },
   ];
@@ -99,7 +100,7 @@ export default function ProductOwnerWelcomeOptions() {
               </svg>
             </div>
             <div class="flex justify-between items-center">
-              <a href="/user-stories" class="text-green-600 hover:underline">Gestionar historias →</a>
+              <a href="/user-stories" class="text-green-600 hover:underline">Ver historias →</a>
               <DropdownMenu
                 buttonText="Opciones"
                 sections={userStoriesSections}
@@ -156,11 +157,11 @@ export default function ProductOwnerWelcomeOptions() {
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Acciones Rápidas</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <a href="/user-stories/create" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors">
+          <a href="/user-stories" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-            <span class="text-sm font-medium text-gray-700">Nueva Historia</span>
+            <span class="text-sm font-medium text-gray-700">Historias de Usuario</span>
           </a>
           <a href="/backlog/prioritize" class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">

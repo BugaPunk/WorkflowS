@@ -14,6 +14,7 @@ import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
+import * as $api_user_stories from "./routes/api/user-stories.ts";
 import * as $contact from "./routes/contact.tsx";
 import * as $dropdown_examples from "./routes/dropdown-examples.tsx";
 import * as $index from "./routes/index.tsx";
@@ -22,6 +23,8 @@ import * as $logout from "./routes/logout.ts";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
+import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
+import * as $user_stories_index from "./routes/user-stories/index.tsx";
 import * as $welcome from "./routes/welcome.tsx";
 import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
 import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
@@ -29,6 +32,7 @@ import * as $AdminWelcomeOptions from "./islands/AdminWelcomeOptions.tsx";
 import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $CommonWelcomeOptions from "./islands/CommonWelcomeOptions.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
+import * as $CreateUserStoryForm from "./islands/CreateUserStoryForm.tsx";
 import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
 import * as $DropdownMenu from "./islands/DropdownMenu.tsx";
 import * as $DropdownMenuExamples from "./islands/DropdownMenuExamples.tsx";
@@ -51,6 +55,8 @@ import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
 import * as $TeamDeveloperWelcomeOptions from "./islands/TeamDeveloperWelcomeOptions.tsx";
 import * as $UserInfoCard from "./islands/UserInfoCard.tsx";
+import * as $UserStoriesList from "./islands/UserStoriesList.tsx";
+import * as $UserStoryCard from "./islands/UserStoryCard.tsx";
 import * as $WelcomeHeader from "./islands/WelcomeHeader.tsx";
 import * as $WelcomeScreen from "./islands/WelcomeScreen.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -69,6 +75,7 @@ const manifest = {
     "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
+    "./routes/api/user-stories.ts": $api_user_stories,
     "./routes/contact.tsx": $contact,
     "./routes/dropdown-examples.tsx": $dropdown_examples,
     "./routes/index.tsx": $index,
@@ -77,6 +84,8 @@ const manifest = {
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
     "./routes/unauthorized.tsx": $unauthorized,
+    "./routes/user-stories/[id].tsx": $user_stories_id_,
+    "./routes/user-stories/index.tsx": $user_stories_index,
     "./routes/welcome.tsx": $welcome,
   },
   islands: {
@@ -86,6 +95,7 @@ const manifest = {
     "./islands/AssignProjectForm.tsx": $AssignProjectForm,
     "./islands/CommonWelcomeOptions.tsx": $CommonWelcomeOptions,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
+    "./islands/CreateUserStoryForm.tsx": $CreateUserStoryForm,
     "./islands/DeleteProjectModal.tsx": $DeleteProjectModal,
     "./islands/DropdownMenu.tsx": $DropdownMenu,
     "./islands/DropdownMenuExamples.tsx": $DropdownMenuExamples,
@@ -111,6 +121,8 @@ const manifest = {
     "./islands/ScrumMasterWelcomeOptions.tsx": $ScrumMasterWelcomeOptions,
     "./islands/TeamDeveloperWelcomeOptions.tsx": $TeamDeveloperWelcomeOptions,
     "./islands/UserInfoCard.tsx": $UserInfoCard,
+    "./islands/UserStoriesList.tsx": $UserStoriesList,
+    "./islands/UserStoryCard.tsx": $UserStoryCard,
     "./islands/WelcomeHeader.tsx": $WelcomeHeader,
     "./islands/WelcomeScreen.tsx": $WelcomeScreen,
   },
