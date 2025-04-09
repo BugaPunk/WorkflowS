@@ -1,6 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
-import { Project, ProjectRole } from "../models/project.ts";
+import { type Project, ProjectRole } from "../models/project.ts";
 import { UserRole } from "../models/user.ts";
 
 interface User {

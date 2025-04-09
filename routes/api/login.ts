@@ -1,4 +1,4 @@
-import { FreshContext } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { getUserByEmail, getUserByUsername, verifyPassword } from "@/models/user.ts";
 import { getKv, COLLECTIONS } from "@/utils/db.ts";
 

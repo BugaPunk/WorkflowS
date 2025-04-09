@@ -1,4 +1,4 @@
-import { Project } from "../models/project.ts";
+import type { Project } from "../models/project.ts";
 import Modal from "./Modal.tsx";
 import { Button } from "../components/Button.tsx";
 

@@ -1,4 +1,4 @@
-import { ComponentChildren } from "preact";
+import type { ComponentChildren } from "preact";
 import { Header } from "../components/Header.tsx";
 
 interface MainLayoutProps {
@@ -15,7 +15,7 @@ export function MainLayout({ children, title = "WorkflowS" }: MainLayoutProps) {
       </main>
       <footer class="bg-gray-100 py-4 text-center text-gray-600">
         <div class="container mx-auto">
-          <p>&copy; {new Date().getFullYear()} WorkflowS. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} WorkflowS.</p>
         </div>
       </footer>
     </div>

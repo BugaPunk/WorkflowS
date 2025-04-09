@@ -1,11 +1,11 @@
-import { FreshContext } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
-import { UserRole } from "../../models/user.ts";
+import type { UserRole } from "../../models/user.ts";
 import { getKv } from "../../utils/db.ts";
-import { UserStory } from "../../models/userStory.ts";
-import { Project } from "../../models/project.ts";
-import UserStoriesList from "../../islands/UserStoriesList.tsx";
+import type { UserStory } from "../../models/userStory.ts";
+import type { Project } from "../../models/project.ts";
+import UserStoriesList from "../../islands/UserStories/UserStoriesList.tsx";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { Project } from "../models/project.ts";
+import type { Project } from "../models/project.ts";
 import Modal from "./Modal.tsx";
 import CreateProjectForm from "./CreateProjectForm.tsx";
 import EditProjectForm from "./EditProjectForm.tsx";

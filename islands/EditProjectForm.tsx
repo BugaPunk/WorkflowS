@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
-import { Project, ProjectStatus } from "../models/project.ts";
+import { type Project, ProjectStatus } from "../models/project.ts";
 
 interface EditProjectFormProps {
   project: Project;

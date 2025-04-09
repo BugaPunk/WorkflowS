@@ -1,5 +1,5 @@
-import { Button } from "../components/Button.tsx";
-import { Project } from "../models/project.ts";
+import { Button } from "../../components/Button.tsx";
+import type { Project } from "../../models/project.ts";
 
 interface BacklogHeaderProps {
   projectId?: string;

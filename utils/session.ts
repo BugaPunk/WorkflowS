@@ -1,6 +1,6 @@
 /// <reference lib="deno.unstable" />
 import { getKv, COLLECTIONS } from "./db.ts";
-import { UserRole } from "../models/user.ts";
+import type { UserRole } from "../models/user.ts";
 
 export interface Session {
   userId: string;

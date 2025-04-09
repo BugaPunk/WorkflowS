@@ -1,4 +1,4 @@
-import DropdownMenu, { DropdownMenuSection } from "./DropdownMenu.tsx";
+import DropdownMenu, { type DropdownMenuSection } from "./DropdownMenu.tsx";
 
 export default function TeamDeveloperWelcomeOptions() {
   // Menú de proyectos

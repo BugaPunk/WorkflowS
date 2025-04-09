@@ -1,6 +1,6 @@
 import Modal from "../Modal.tsx";
 import AssignProjectForm from "../AssignProjectForm.tsx";
-import { Project } from "../../models/project.ts";
+import type { Project } from "../../models/project.ts";
 
 interface AssignProjectModalProps {
   show: boolean;

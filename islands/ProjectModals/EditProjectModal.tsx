@@ -1,6 +1,6 @@
 import Modal from "../Modal.tsx";
 import EditProjectForm from "../EditProjectForm.tsx";
-import { Project } from "../../models/project.ts";
+import type { Project } from "../../models/project.ts";
 
 interface EditProjectModalProps {
   show: boolean;

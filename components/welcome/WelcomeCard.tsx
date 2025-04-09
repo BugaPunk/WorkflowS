@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import DropdownMenu, { DropdownMenuSection } from "../../islands/DropdownMenu.tsx";
+import type { JSX } from "preact";
+import DropdownMenu, { type DropdownMenuSection } from "../../islands/DropdownMenu.tsx";
 
 interface WelcomeCardProps {
   title: string;

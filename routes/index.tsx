@@ -1,4 +1,4 @@
-import { FreshContext } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
 import { getSession } from "../utils/session.ts";
 

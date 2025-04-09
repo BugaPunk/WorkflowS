@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import HeaderNav from "../islands/HeaderNav.tsx";
 import HeaderMenu from "../islands/HeaderMenu.tsx";
 

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "preact/hooks";
-import { UserStory, UserStoryPriority, UserStoryStatus } from "../models/userStory.ts";
-import { Project } from "../models/project.ts";
-import { Button } from "../components/Button.tsx";
-import Modal from "./Modal.tsx";
-import CreateUserStoryForm from "./CreateUserStoryForm.tsx";
-import EditUserStoryForm from "./EditUserStoryForm.tsx";
+import { type UserStory, UserStoryPriority, UserStoryStatus } from "../../models/userStory.ts";
+import type { Project } from "../../models/project.ts";
+import { Button } from "../../components/Button.tsx";
+import Modal from "../Modal.tsx";
+import CreateUserStoryForm from "../UserStories/CreateUserStoryForm.tsx";
+import EditUserStoryForm from "../UserStories/EditUserStoryForm.tsx";
 import BacklogItemCard from "./BacklogItemCard.tsx";
 import BacklogHeader from "./BacklogHeader.tsx";
 import BacklogFilters from "./BacklogFilters.tsx";
@@ -17,7 +17,7 @@ interface ProductBacklogProps {
   currentProject: Project | null;
   isProductOwner: boolean;
   isAdmin: boolean;
-  userId?: string;
+  _userId?: string;
 }
 
 export default function ProductBacklog({
@@ -27,8 +27,7 @@ export default function ProductBacklog({
   currentProject,
   isProductOwner,
   isAdmin,
-  // eslint-disable-next-line no-unused-vars
-  userId
+  _userId
 }: ProductBacklogProps) {
   // Estado para las historias de usuario
   const [backlogItems, setBacklogItems] = useState<UserStory[]>(initialBacklogItems);
@@ -47,8 +46,7 @@ export default function ProductBacklog({
 
   // Estado para drag and drop
   const [draggedItem, setDraggedItem] = useState<UserStory | null>(null);
-  // eslint-disable-next-line no-unused-vars
-  const [isDragging, setIsDragging] = useState(false);
+  const [_isDragging, setIsDragging] = useState(false);
 
   // Cargar historias de usuario
   const loadBacklogItems = async () => {
@@ -150,7 +148,7 @@ export default function ProductBacklog({
 
     try {
       // Actualizar la prioridad en el servidor
-      const response = await fetch(`/api/user-stories?id=${draggedItem.id}`, {
+      const response = await fetch(`/api/user-stories/${draggedItem.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -179,7 +177,7 @@ export default function ProductBacklog({
     }
 
     try {
-      const response = await fetch(`/api/user-stories?id=${userStory.id}`, {
+      const response = await fetch(`/api/user-stories/${userStory.id}`, {
         method: "DELETE",
       });
 

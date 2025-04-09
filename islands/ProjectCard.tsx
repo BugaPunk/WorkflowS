@@ -1,4 +1,4 @@
-import { Project, ProjectStatus } from "../models/project.ts";
+import { type Project, ProjectStatus } from "../models/project.ts";
 
 interface ProjectCardProps {
   project: Project;

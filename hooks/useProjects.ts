@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { Project } from "../models/project.ts";
+import type { Project } from "../models/project.ts";
 
 export function useProjects(initialProjects: Project[] = []) {
   const [projects, setProjects] = useState<Project[]>(initialProjects);

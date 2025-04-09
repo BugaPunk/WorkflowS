@@ -1,4 +1,4 @@
-import { type PageProps } from "$fresh/server.ts";
+import type { PageProps } from "$fresh/server.ts";
 
 export default function App({ Component, url }: PageProps) {
   // Get the page title based on the current route

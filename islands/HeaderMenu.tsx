@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { Session } from "../utils/session.ts";
+import type { Session } from "../utils/session.ts";
 import { UserRole } from "../models/user.ts";
 
 export default function HeaderMenu() {

@@ -1,4 +1,4 @@
-import { UserStory, UserStoryPriority } from "../models/userStory.ts";
+import { type UserStory, UserStoryPriority } from "../../models/userStory.ts";
 
 interface BacklogMetricsProps {
   backlogItems: UserStory[];

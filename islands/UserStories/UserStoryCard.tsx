@@ -1,5 +1,5 @@
-import { UserStory, UserStoryPriority, UserStoryStatus } from "../models/userStory.ts";
-import DropdownMenu, { DropdownMenuSection } from "./DropdownMenu.tsx";
+import { type UserStory, UserStoryPriority, UserStoryStatus } from "../../models/userStory.ts";
+import DropdownMenu, { type DropdownMenuSection } from "../DropdownMenu.tsx";
 
 interface UserStoryCardProps {
   userStory: UserStory;

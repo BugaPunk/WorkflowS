@@ -1,10 +1,10 @@
 import { useState } from "preact/hooks";
-import { UserStory, UserStoryPriority, UserStoryStatus } from "../models/userStory.ts";
-import FormField from "../components/form/FormField.tsx";
-import FormSelect from "../components/form/FormSelect.tsx";
-import FormTextarea from "../components/form/FormTextarea.tsx";
-import FormError from "../components/form/FormError.tsx";
-import FormActions from "../components/form/FormActions.tsx";
+import { type UserStory, UserStoryPriority, UserStoryStatus } from "../../models/userStory.ts";
+import FormField from "../../components/form/FormField.tsx";
+import FormSelect from "../../components/form/FormSelect.tsx";
+import FormTextarea from "../../components/form/FormTextarea.tsx";
+import FormError from "../../components/form/FormError.tsx";
+import FormActions from "../../components/form/FormActions.tsx";
 
 interface EditUserStoryFormProps {
   userStory: UserStory;
@@ -104,7 +104,7 @@ export default function EditUserStoryForm({
       };
 
       // Enviar solicitud
-      const response = await fetch(`/api/user-stories?id=${userStory.id}`, {
+      const response = await fetch(`/api/user-stories/${userStory.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -114,7 +114,7 @@ export default function EditUserStoryForm({
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || "Error al actualizar la historia de usuario");
+        throw new Error(data.message || "Error al actualizar la historia de usuario");
       }
 
       // Notificar éxito

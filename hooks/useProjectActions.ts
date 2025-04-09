@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { Project } from "../models/project.ts";
+import type { Project } from "../models/project.ts";
 
 export function useProjectActions(loadProjects: () => Promise<void>) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import { JSX } from "preact";
+import type { JSX } from "preact";
 
 interface ModalProps {
   show: boolean;

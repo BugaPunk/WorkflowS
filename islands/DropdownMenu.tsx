@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "preact/hooks";
-import { JSX } from "preact";
+import type { JSX } from "preact";
 
 export interface DropdownMenuItem {
   label: string;

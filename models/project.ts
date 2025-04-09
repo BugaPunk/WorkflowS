@@ -1,6 +1,6 @@
 /// <reference lib="deno.unstable" />
 import { z } from "zod";
-import { getKv, Model, createModel } from "@/utils/db.ts";
+import { getKv, type Model, createModel } from "@/utils/db.ts";
 import { UserRole, updateUserRole, getUserById } from "@/models/user.ts";
 
 // Actualizar las colecciones para incluir proyectos

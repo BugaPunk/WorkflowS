@@ -1,9 +1,9 @@
-import { FreshContext } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
 import { getKv } from "../../utils/db.ts";
-import { Project, ProjectStatus, ProjectRole } from "../../models/project.ts";
-import { User, UserRole } from "../../models/user.ts";
+import { type Project, ProjectStatus, ProjectRole } from "../../models/project.ts";
+import { type User, UserRole } from "../../models/user.ts";
 import { Button } from "../../components/Button.tsx";
 
 export const handler = {

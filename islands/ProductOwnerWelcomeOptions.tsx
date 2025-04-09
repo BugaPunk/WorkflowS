@@ -1,4 +1,4 @@
-import DropdownMenu, { DropdownMenuSection } from "./DropdownMenu.tsx";
+import DropdownMenu, { type DropdownMenuSection } from "./DropdownMenu.tsx";
 
 export default function ProductOwnerWelcomeOptions() {
   // Menú de proyectos

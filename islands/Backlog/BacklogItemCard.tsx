@@ -1,5 +1,5 @@
-import { UserStory, UserStoryPriority } from "../models/userStory.ts";
-import DropdownMenu, { DropdownMenuSection } from "./DropdownMenu.tsx";
+import type { UserStory } from "../../models/userStory.ts";
+import DropdownMenu from "../DropdownMenu.tsx";
 
 interface BacklogItemCardProps {
   userStory: UserStory;
@@ -30,39 +30,39 @@ export default function BacklogItemCard({
       day: 'numeric'
     });
   };
-  
+
   // Configurar opciones del menú desplegable
   const menuItems = [];
-  
+
   // Opción para ver detalles
-  menuItems.push({ 
-    label: "Ver detalles", 
-    href: `/user-stories/${userStory.id}` 
+  menuItems.push({
+    label: "Ver detalles",
+    href: `/user-stories/${userStory.id}`
   });
-  
+
   // Opciones para Product Owner y Admin
   if (isProductOwner || isAdmin) {
-    menuItems.push({ 
-      label: "Editar", 
-      onClick: () => onEdit(userStory) 
+    menuItems.push({
+      label: "Editar",
+      onClick: () => onEdit(userStory)
     });
-    
-    menuItems.push({ 
-      label: "Mover a Sprint", 
-      onClick: () => onMoveToSprint(userStory) 
+
+    menuItems.push({
+      label: "Mover a Sprint",
+      onClick: () => onMoveToSprint(userStory)
     });
-    
-    menuItems.push({ 
-      label: "Eliminar", 
-      isDanger: true, 
-      onClick: () => onDelete(userStory) 
+
+    menuItems.push({
+      label: "Eliminar",
+      isDanger: true,
+      onClick: () => onDelete(userStory)
     });
   }
-  
+
   const menuSections = [{ items: menuItems }];
-  
+
   return (
-    <div 
+    <div
       class="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200"
       draggable={isProductOwner || isAdmin}
       onDragStart={() => onDragStart(userStory)}
@@ -83,11 +83,11 @@ export default function BacklogItemCard({
             className="ml-2"
           />
         </div>
-        
+
         <p class="text-sm text-gray-600 line-clamp-2 mb-2">
           {userStory.description}
         </p>
-        
+
         <div class="flex justify-between items-center text-xs text-gray-500">
           <div>
             {userStory.points !== undefined && (
@@ -97,7 +97,7 @@ export default function BacklogItemCard({
             )}
             <span>Creado: {formatDate(userStory.createdAt)}</span>
           </div>
-          
+
           {(isProductOwner || isAdmin) && (
             <div class="text-gray-400 text-xs italic">
               Arrastra para cambiar prioridad

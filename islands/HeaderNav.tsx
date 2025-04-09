@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { Session } from "../utils/session.ts";
+import type { Session } from "../utils/session.ts";
 
 export default function HeaderNav() {
   const [session, setSession] = useState<Session | null>(null);

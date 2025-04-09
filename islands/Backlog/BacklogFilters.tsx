@@ -1,4 +1,4 @@
-import { UserStoryPriority } from "../models/userStory.ts";
+import { UserStoryPriority } from "../../models/userStory.ts";
 
 interface BacklogFiltersProps {
   priorityFilter: string;
