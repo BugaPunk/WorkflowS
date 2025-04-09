@@ -2,17 +2,20 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 // import { Head } from "$fresh/runtime.ts";
 import { getSession } from "../../utils/session.ts";
 import { getSprintById } from "../../models/sprint.ts";
-import { getUserStoryById } from "../../services/userStoryService.ts";
+import { getUserStoryById } from "../../models/userStory.ts";
 import { getProjectById } from "../../models/project.ts";
 import { UserRole } from "../../models/user.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 // import TasksList from "../../islands/Tasks/TasksList.tsx";
 import { getUserStoryTasks } from "../../models/task.ts";
 
+// Definir un tipo para UserStory que no sea nulo
+type UserStory = NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>;
+
 interface SprintDetailPageData {
   sprint: Awaited<ReturnType<typeof getSprintById>>;
   project: Awaited<ReturnType<typeof getProjectById>>;
-  userStories: Awaited<ReturnType<typeof getUserStoryById>>[];
+  userStories: UserStory[];
   tasks: Record<string, Awaited<ReturnType<typeof getUserStoryTasks>>>;
   canManageSprints: boolean;
   canManageTasks: boolean;
@@ -41,7 +44,7 @@ export const handler: Handlers<SprintDetailPageData | null> = {
     }
 
     // Obtener todas las historias de usuario del sprint
-    const userStories = [];
+    const userStories: NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>[] = [];
     const tasks: Record<string, Awaited<ReturnType<typeof getUserStoryTasks>>> = {};
 
     for (const userStoryId of sprint.userStoryIds) {
@@ -52,6 +55,8 @@ export const handler: Handlers<SprintDetailPageData | null> = {
         tasks[userStoryId] = await getUserStoryTasks(userStoryId);
       }
     }
+
+
 
     // Determinar permisos
     const isAdmin = session.role === UserRole.ADMIN;
@@ -64,10 +69,11 @@ export const handler: Handlers<SprintDetailPageData | null> = {
     // Admin, Scrum Master y Product Owner pueden gestionar tareas
     const canManageTasks = isAdmin || isScrumMaster || isProductOwner;
 
+
     return ctx.render({
       sprint,
       project,
-      userStories,
+      userStories: userStories as UserStory[],
       tasks,
       canManageSprints,
       canManageTasks,
@@ -169,7 +175,7 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
               </div>
             ) : (
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {userStories.map(userStory => (
+                {userStories.map((userStory) => (
                   <div key={userStory.id} class="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
                     <div class="p-4">
                       <div class="flex justify-between items-start">

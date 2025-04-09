@@ -48,3 +48,12 @@ export interface UpdateUserStoryData {
   assignedTo?: string;
   sprintId?: string;
 }
+
+import { getKv } from "../utils/db.ts";
+
+// Obtener una historia de usuario por su ID
+export async function getUserStoryById(id: string): Promise<UserStory | null> {
+  const kv = getKv();
+  const userStoryEntry = await kv.get<UserStory>(["userStories", id]);
+  return userStoryEntry.value || null;
+}

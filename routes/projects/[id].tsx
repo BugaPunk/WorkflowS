@@ -4,7 +4,7 @@ import { getSession } from "../../utils/session.ts";
 import { getKv } from "../../utils/db.ts";
 import { type Project, ProjectStatus, ProjectRole } from "../../models/project.ts";
 import { type User, UserRole } from "../../models/user.ts";
-import { Button } from "../../components/Button.tsx";
+// import { Button } from "../../components/Button.tsx";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {
@@ -118,7 +118,7 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }) {
-  const { session, project, creator, isAdmin, isProductOwner, isScrumMaster } = data;
+  const { project, creator, isAdmin, isProductOwner, isScrumMaster } = data;
 
   // Obtener el nombre de visualización del estado del proyecto
   const getStatusDisplay = (status: ProjectStatus) => {
@@ -153,20 +153,6 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
         return "bg-red-100 text-red-800";
       default:
         return "bg-gray-100 text-gray-800";
-    }
-  };
-
-  // Obtener el nombre de visualización del rol en el proyecto
-  const getRoleDisplay = (role: ProjectRole) => {
-    switch (role) {
-      case ProjectRole.PRODUCT_OWNER:
-        return "Product Owner";
-      case ProjectRole.SCRUM_MASTER:
-        return "Scrum Master";
-      case ProjectRole.TEAM_MEMBER:
-        return "Miembro del Equipo";
-      default:
-        return role;
     }
   };
 
