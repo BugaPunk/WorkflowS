@@ -31,6 +31,7 @@ import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $sprints_id_ from "./routes/sprints/[id].tsx";
+import * as $sprints_id_add_user_stories from "./routes/sprints/[id]/add-user-stories.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
 import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
@@ -66,6 +67,7 @@ import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
+import * as $Sprints_AddUserStoriesToSprint from "./islands/Sprints/AddUserStoriesToSprint.tsx";
 import * as $Sprints_CreateSprintForm from "./islands/Sprints/CreateSprintForm.tsx";
 import * as $Sprints_EditSprintForm from "./islands/Sprints/EditSprintForm.tsx";
 import * as $Sprints_SprintCard from "./islands/Sprints/SprintCard.tsx";
@@ -117,6 +119,7 @@ const manifest = {
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
     "./routes/sprints/[id].tsx": $sprints_id_,
+    "./routes/sprints/[id]/add-user-stories.tsx": $sprints_id_add_user_stories,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
     "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
@@ -157,6 +160,8 @@ const manifest = {
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
     "./islands/RegisterForm.tsx": $RegisterForm,
     "./islands/ScrumMasterWelcomeOptions.tsx": $ScrumMasterWelcomeOptions,
+    "./islands/Sprints/AddUserStoriesToSprint.tsx":
+      $Sprints_AddUserStoriesToSprint,
     "./islands/Sprints/CreateSprintForm.tsx": $Sprints_CreateSprintForm,
     "./islands/Sprints/EditSprintForm.tsx": $Sprints_EditSprintForm,
     "./islands/Sprints/SprintCard.tsx": $Sprints_SprintCard,
