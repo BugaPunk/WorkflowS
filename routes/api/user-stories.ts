@@ -3,11 +3,9 @@ import { getSession } from "../../utils/session.ts";
 import { UserRole } from "../../models/user.ts";
 import { getKv } from "../../utils/db.ts";
 import {
-  type UserStory,
   CreateUserStorySchema,
-  USER_STORY_COLLECTIONS,
   createUserStory,
-  getProjectUserStories
+  getUserStoriesWithFilters
 } from "../../models/userStory.ts";
 import { Status } from "../../utils/api.ts";
 
@@ -28,29 +26,12 @@ export const handler = {
     const sprintId = url.searchParams.get("sprintId");
 
     try {
-      let userStories: UserStory[] = [];
-
-      if (projectId) {
-        // Usar la función del modelo para obtener historias de usuario por proyecto
-        userStories = await getProjectUserStories(projectId);
-      } else {
-        // Si no hay projectId, obtener todas las historias de usuario
-        const kv = getKv();
-        const userStoriesIterator = kv.list<UserStory>({ prefix: USER_STORY_COLLECTIONS.USER_STORIES });
-
-        for await (const entry of userStoriesIterator) {
-          userStories.push(entry.value);
-        }
-      }
-
-      // Aplicar filtros adicionales
-      if (statusFilter) {
-        userStories = userStories.filter(story => story.status === statusFilter);
-      }
-
-      if (sprintId) {
-        userStories = userStories.filter(story => story.sprintId === sprintId);
-      }
+      // Usar la función optimizada para obtener historias de usuario con filtros
+      const userStories = await getUserStoriesWithFilters({
+        projectId: projectId || undefined,
+        status: statusFilter || undefined,
+        sprintId: sprintId || undefined
+      });
 
       // Ordenar por prioridad y fecha de creación
       userStories.sort((a, b) => {

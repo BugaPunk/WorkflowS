@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useMemo, useCallback } from "preact/hooks";
 import { type UserStory, UserStoryPriority, UserStoryStatus } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
 import { Button } from "../../components/Button.tsx";
@@ -31,7 +31,6 @@ export default function ProductBacklog({
 }: ProductBacklogProps) {
   // Estado para las historias de usuario
   const [backlogItems, setBacklogItems] = useState<UserStory[]>(initialBacklogItems);
-  const [filteredItems, setFilteredItems] = useState<UserStory[]>(initialBacklogItems);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -48,8 +47,8 @@ export default function ProductBacklog({
   const [draggedItem, setDraggedItem] = useState<UserStory | null>(null);
   const [_isDragging, setIsDragging] = useState(false);
 
-  // Cargar historias de usuario
-  const loadBacklogItems = async () => {
+  // Cargar historias de usuario (memoizado para evitar recreaciones innecesarias)
+  const loadBacklogItems = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -68,18 +67,17 @@ export default function ProductBacklog({
 
       const data = await response.json();
       setBacklogItems(data.userStories);
-      applyFilters(data.userStories);
     } catch (err) {
       setError("Error al cargar el backlog. Por favor, intenta de nuevo.");
       console.error("Error cargando backlog:", err);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [projectId]);
 
-  // Aplicar filtros a las historias de usuario
-  const applyFilters = (items: UserStory[]) => {
-    let result = [...items];
+  // Memorizar los items filtrados para evitar recalculos innecesarios
+  const filteredItems = useMemo(() => {
+    let result = [...backlogItems];
 
     // Filtrar por prioridad
     if (priorityFilter !== "all") {
@@ -96,13 +94,8 @@ export default function ProductBacklog({
       );
     }
 
-    setFilteredItems(result);
-  };
-
-  // Efecto para aplicar filtros cuando cambian
-  useEffect(() => {
-    applyFilters(backlogItems);
-  }, [priorityFilter, searchQuery, backlogItems]);
+    return result;
+  }, [backlogItems, priorityFilter, searchQuery]);
 
   // Efecto para cargar historias cuando cambia el proyecto
   useEffect(() => {

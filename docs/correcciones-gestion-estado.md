@@ -1,4 +1,4 @@
-# Correcciones de Inconsistencias en la Gestión de Estado
+ # Correcciones de Inconsistencias en la Gestión de Estado
 
 Este documento detalla las correcciones realizadas para abordar las inconsistencias en la gestión de estado del proyecto WorkflowS.
 

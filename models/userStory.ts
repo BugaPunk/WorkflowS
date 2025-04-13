@@ -106,6 +106,75 @@ export async function getProjectUserStories(projectId: string): Promise<UserStor
   return userStories;
 }
 
+/**
+ * Obtener historias de usuario con filtros
+ * @param filters Filtros para las historias de usuario
+ * @returns Lista de historias de usuario filtradas
+ */
+export async function getUserStoriesWithFilters(filters: {
+  projectId?: string;
+  status?: string | string[];
+  sprintId?: string;
+  priority?: string | string[];
+  search?: string;
+} = {}): Promise<UserStory[]> {
+  const kv = getKv();
+  const userStories: UserStory[] = [];
+
+  // Listar todas las historias de usuario
+  const userStoriesIterator = kv.list<UserStory>({ prefix: USER_STORY_COLLECTIONS.USER_STORIES });
+
+  // Convertir arrays de filtros a conjuntos para búsqueda más eficiente
+  const statusSet = filters.status ?
+    new Set(Array.isArray(filters.status) ? filters.status : [filters.status]) :
+    null;
+
+  const prioritySet = filters.priority ?
+    new Set(Array.isArray(filters.priority) ? filters.priority : [filters.priority]) :
+    null;
+
+  // Convertir búsqueda a minúsculas para comparación insensible a mayúsculas/minúsculas
+  const searchLower = filters.search ? filters.search.toLowerCase() : null;
+
+  for await (const entry of userStoriesIterator) {
+    const userStory = entry.value;
+    let include = true;
+
+    // Filtrar por proyecto
+    if (filters.projectId && userStory.projectId !== filters.projectId) {
+      include = false;
+    }
+
+    // Filtrar por estado
+    if (include && statusSet && !statusSet.has(userStory.status)) {
+      include = false;
+    }
+
+    // Filtrar por sprint
+    if (include && filters.sprintId && userStory.sprintId !== filters.sprintId) {
+      include = false;
+    }
+
+    // Filtrar por prioridad
+    if (include && prioritySet && !prioritySet.has(userStory.priority)) {
+      include = false;
+    }
+
+    // Filtrar por búsqueda en título o descripción
+    if (include && searchLower &&
+        !userStory.title.toLowerCase().includes(searchLower) &&
+        !userStory.description.toLowerCase().includes(searchLower)) {
+      include = false;
+    }
+
+    if (include) {
+      userStories.push(userStory);
+    }
+  }
+
+  return userStories;
+}
+
 // Actualizar una historia de usuario
 export async function updateUserStory(id: string, updateData: UpdateUserStoryData): Promise<UserStory | null> {
   const kv = getKv();

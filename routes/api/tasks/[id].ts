@@ -1,8 +1,8 @@
 import { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
-import { UserRole } from "../../../models/user.ts";
 import { getTaskById, updateTask, deleteTask } from "../../../models/task.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
+import { canUpdateTask, canDeleteTask } from "../../../utils/permissions.ts";
 
 export const handler = {
   // Obtener una tarea específica
@@ -44,12 +44,7 @@ export const handler = {
       }
 
       // Verificar permisos
-      const isAdmin = session.role === UserRole.ADMIN;
-      const isScrumMaster = session.role === UserRole.SCRUM_MASTER;
-      const isAssignedToUser = task.assignedTo === session.userId;
-      const isCreator = task.createdBy === session.userId;
-
-      if (!isAdmin && !isScrumMaster && !isAssignedToUser && !isCreator) {
+      if (!canUpdateTask(session, task)) {
         return errorResponse("No tienes permisos para actualizar esta tarea", Status.Forbidden);
       }
 
@@ -80,11 +75,7 @@ export const handler = {
       }
 
       // Verificar permisos
-      const isAdmin = session.role === UserRole.ADMIN;
-      const isScrumMaster = session.role === UserRole.SCRUM_MASTER;
-      const isCreator = task.createdBy === session.userId;
-
-      if (!isAdmin && !isScrumMaster && !isCreator) {
+      if (!canDeleteTask(session, task)) {
         return errorResponse("No tienes permisos para eliminar esta tarea", Status.Forbidden);
       }
 
