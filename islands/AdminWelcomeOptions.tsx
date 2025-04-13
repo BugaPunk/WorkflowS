@@ -1,4 +1,5 @@
 import DropdownMenu, { type DropdownMenuSection } from "./DropdownMenu.tsx";
+import InteractiveWelcomeCard from "./welcome/InteractiveWelcomeCard.tsx";
 
 export default function AdminWelcomeOptions() {
   // Menú de gestión de usuarios
@@ -82,25 +83,22 @@ export default function AdminWelcomeOptions() {
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Tarjeta de Gestión de Usuarios */}
-          <div class="bg-purple-50 p-5 rounded-lg border border-purple-200">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-bold text-lg text-purple-800">Administrar Usuarios</h3>
-                <p class="text-gray-600 mt-1">Gestiona los usuarios del sistema y sus roles.</p>
-              </div>
+          <InteractiveWelcomeCard
+            title="Administrar Usuarios"
+            description="Gestiona los usuarios del sistema y sus roles."
+            icon={
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
-            </div>
-            <div class="flex justify-between items-center">
-              <a href="/admin/users" class="text-purple-600 hover:underline">Ir a usuarios →</a>
-              <DropdownMenu
-                buttonText="Opciones"
-                sections={userManagementSections}
-                className="ml-2"
-              />
-            </div>
-          </div>
+            }
+            linkText="Ir a usuarios"
+            linkHref="/admin/users"
+            bgColor="bg-purple-50"
+            borderColor="border-purple-200"
+            textColor="text-purple-800"
+            dropdownSections={userManagementSections}
+            dropdownButtonText="Opciones"
+          />
 
           {/* Tarjeta de Gestión de Proyectos */}
           <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">

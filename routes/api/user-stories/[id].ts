@@ -1,8 +1,10 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
-// import { UserRole } from "../../../models/user.ts";
 import { getKv } from "../../../utils/db.ts";
-import type { UpdateUserStoryData, UserStory } from "../../../models/userStory.ts";
+import {
+  type UpdateUserStoryData,
+  type UserStory,
+} from "../../../models/userStory.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
 
 export const handler = {

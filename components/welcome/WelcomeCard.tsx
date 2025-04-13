@@ -1,7 +1,9 @@
 import type { JSX } from "preact";
-import DropdownMenu, { type DropdownMenuSection } from "../../islands/DropdownMenu.tsx";
 
-interface WelcomeCardProps {
+/**
+ * Props para el componente WelcomeCard estático
+ */
+export interface WelcomeCardProps {
   title: string;
   description: string;
   icon: JSX.Element;
@@ -10,10 +12,14 @@ interface WelcomeCardProps {
   bgColor: string;
   borderColor: string;
   textColor: string;
-  dropdownSections?: DropdownMenuSection[];
-  dropdownButtonIcon?: JSX.Element;
+  /** Elemento opcional para renderizar en la esquina inferior derecha */
+  rightElement?: JSX.Element;
 }
 
+/**
+ * Componente estático para mostrar una tarjeta de bienvenida
+ * Este componente no contiene lógica interactiva y puede ser usado en la carpeta components
+ */
 export default function WelcomeCard({
   title,
   description,
@@ -23,8 +29,7 @@ export default function WelcomeCard({
   bgColor,
   borderColor,
   textColor,
-  dropdownSections,
-  dropdownButtonIcon,
+  rightElement,
 }: WelcomeCardProps) {
   return (
     <div class={`${bgColor} p-5 rounded-lg border ${borderColor}`}>
@@ -39,14 +44,7 @@ export default function WelcomeCard({
         <a href={linkHref} class={`${textColor} hover:underline`}>
           {linkText} →
         </a>
-        {dropdownSections && (
-          <DropdownMenu 
-            buttonText="Opciones" 
-            sections={dropdownSections} 
-            buttonIcon={dropdownButtonIcon}
-            className="ml-2"
-          />
-        )}
+        {rightElement}
       </div>
     </div>
   );

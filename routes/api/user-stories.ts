@@ -1,21 +1,15 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../utils/session.ts";
 import { UserRole } from "../../models/user.ts";
-import { getKv, generateId } from "../../utils/db.ts";
-import { type CreateUserStoryData, type UserStory, UserStoryStatus } from "../../models/userStory.ts";
-
-// HTTP status codes
-const Status = {
-  OK: 200,
-  Created: 201,
-  BadRequest: 400,
-  Unauthorized: 401,
-  Forbidden: 403,
-  NotFound: 404,
-  MethodNotAllowed: 405,
-  InternalServerError: 500,
-  ServiceUnavailable: 503
-};
+import { getKv } from "../../utils/db.ts";
+import {
+  type UserStory,
+  CreateUserStorySchema,
+  USER_STORY_COLLECTIONS,
+  createUserStory,
+  getProjectUserStories
+} from "../../models/userStory.ts";
+import { Status } from "../../utils/api.ts";
 
 export const handler = {
   // Obtener historias de usuario
@@ -30,43 +24,57 @@ export const handler = {
 
     const url = new URL(req.url);
     const projectId = url.searchParams.get("projectId");
-    const status = url.searchParams.get("status");
+    const statusFilter = url.searchParams.get("status");
     const sprintId = url.searchParams.get("sprintId");
 
-    // Obtener la instancia de KV
-    const kv = getKv();
+    try {
+      let userStories: UserStory[] = [];
 
-    // Obtener todas las historias de usuario según los filtros
-    const userStoriesIterator = kv.list<UserStory>({ prefix: ["userStories"] });
-    const userStories: UserStory[] = [];
+      if (projectId) {
+        // Usar la función del modelo para obtener historias de usuario por proyecto
+        userStories = await getProjectUserStories(projectId);
+      } else {
+        // Si no hay projectId, obtener todas las historias de usuario
+        const kv = getKv();
+        const userStoriesIterator = kv.list<UserStory>({ prefix: USER_STORY_COLLECTIONS.USER_STORIES });
 
-    for await (const entry of userStoriesIterator) {
-      const userStory = entry.value;
+        for await (const entry of userStoriesIterator) {
+          userStories.push(entry.value);
+        }
+      }
 
-      // Aplicar filtros
-      if (projectId && userStory.projectId !== projectId) continue;
-      if (status && userStory.status !== status) continue;
-      if (sprintId && userStory.sprintId !== sprintId) continue;
+      // Aplicar filtros adicionales
+      if (statusFilter) {
+        userStories = userStories.filter(story => story.status === statusFilter);
+      }
 
-      userStories.push(userStory);
+      if (sprintId) {
+        userStories = userStories.filter(story => story.sprintId === sprintId);
+      }
+
+      // Ordenar por prioridad y fecha de creación
+      userStories.sort((a, b) => {
+        // Primero por prioridad (critical > high > medium > low)
+        const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
+        const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority];
+
+        if (priorityDiff !== 0) return priorityDiff;
+
+        // Luego por fecha de creación (más reciente primero)
+        return b.createdAt - a.createdAt;
+      });
+
+      return new Response(JSON.stringify({ userStories }), {
+        status: Status.OK,
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch (error) {
+      console.error("Error al obtener historias de usuario:", error);
+      return new Response(JSON.stringify({ message: "Error al obtener historias de usuario" }), {
+        status: Status.InternalServerError,
+        headers: { "Content-Type": "application/json" },
+      });
     }
-
-    // Ordenar por prioridad y fecha de creación
-    userStories.sort((a, b) => {
-      // Primero por prioridad (critical > high > medium > low)
-      const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
-      const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority];
-
-      if (priorityDiff !== 0) return priorityDiff;
-
-      // Luego por fecha de creación (más reciente primero)
-      return b.createdAt - a.createdAt;
-    });
-
-    return new Response(JSON.stringify({ userStories }), {
-      status: Status.OK,
-      headers: { "Content-Type": "application/json" },
-    });
   },
 
   // Crear una nueva historia de usuario
@@ -88,11 +96,15 @@ export const handler = {
     }
 
     try {
-      const data: CreateUserStoryData = await req.json();
+      const requestData = await req.json();
 
-      // Validar datos requeridos
-      if (!data.title || !data.description || !data.acceptanceCriteria || !data.priority || !data.projectId) {
-        return new Response(JSON.stringify({ message: "Faltan campos requeridos" }), {
+      // Validar datos con Zod
+      const result = CreateUserStorySchema.safeParse(requestData);
+      if (!result.success) {
+        return new Response(JSON.stringify({
+          message: "Datos inválidos",
+          errors: result.error.format()
+        }), {
           status: Status.BadRequest,
           headers: { "Content-Type": "application/json" },
         });
@@ -102,7 +114,7 @@ export const handler = {
       const kv = getKv();
 
       // Verificar que el proyecto existe
-      const projectEntry = await kv.get(["projects", data.projectId]);
+      const projectEntry = await kv.get(["projects", result.data.projectId]);
       if (!projectEntry.value) {
         return new Response(JSON.stringify({ message: "El proyecto no existe" }), {
           status: Status.NotFound,
@@ -110,24 +122,8 @@ export const handler = {
         });
       }
 
-      const now = Date.now();
-      const id = generateId();
-
-      const userStory: UserStory = {
-        id,
-        title: data.title,
-        description: data.description,
-        acceptanceCriteria: data.acceptanceCriteria,
-        priority: data.priority,
-        status: UserStoryStatus.BACKLOG,
-        points: data.points,
-        projectId: data.projectId,
-        createdBy: session.userId,
-        createdAt: now,
-        updatedAt: now,
-      };
-
-      await kv.set(["userStories", id], userStory);
+      // Crear la historia de usuario usando la función del modelo
+      const userStory = await createUserStory(result.data, session.userId);
 
       return new Response(JSON.stringify({ userStory }), {
         status: Status.Created,

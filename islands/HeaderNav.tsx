@@ -1,40 +1,8 @@
-import { useEffect, useState } from "preact/hooks";
-import type { Session } from "../utils/session.ts";
+import { useSession } from "../hooks/useSession.ts";
 
 export default function HeaderNav() {
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    // Check if user is logged in by making a request to the server
-    const checkSession = async () => {
-      try {
-        const response = await fetch("/api/session");
-        if (response.ok) {
-          const data = await response.json();
-          setSession(data.session);
-        }
-      } catch (error) {
-        console.error("Error checking session:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    checkSession();
-  }, []);
-  
-  // Check if we have a session cookie (client-side only)
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const hasCookie = document.cookie.includes("sessionId=");
-      if (hasCookie && !session) {
-        // We have a cookie but no session data yet
-        setLoading(true);
-      }
-    }
-  }, [session]);
-  
+  const { session, loading } = useSession();
+
   return (
     <div class="flex items-center space-x-4">
       {loading ? (

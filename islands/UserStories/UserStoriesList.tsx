@@ -67,7 +67,7 @@ export default function UserStoriesList({
   // Cargar historias de usuario al montar el componente o cuando cambia el filtro
   useEffect(() => {
     loadUserStories();
-  }, [projectId, statusFilter]);
+  }, [projectId, statusFilter]); // No es necesario incluir loadUserStories como dependencia ya que es una función definida en el componente
 
   // Función para manejar la creación exitosa de una historia de usuario
   const handleUserStoryCreated = () => {

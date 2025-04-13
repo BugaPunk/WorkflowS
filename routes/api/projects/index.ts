@@ -3,19 +3,14 @@ import { getSession } from "../../../utils/session.ts";
 import { UserRole } from "../../../models/user.ts";
 import { getKv } from "../../../utils/db.ts";
 import { ProjectSchema, createProject, getAllProjects, getUserProjects, getProjectById, deleteProject, PROJECT_COLLECTIONS } from "../../../models/project.ts";
+import { Status, errorResponse, successResponse, handleApiError } from "../../../utils/api.ts";
 
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   // Verificar si el usuario está autenticado
   const session = await getSession(req);
 
   if (!session) {
-    return new Response(
-      JSON.stringify({ message: "No autenticado" }),
-      {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return errorResponse("No autenticado", Status.Unauthorized);
   }
 
   // Manejar solicitudes GET
@@ -31,23 +26,10 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
         projects = await getUserProjects(session.userId);
       }
 
-      return new Response(
-        JSON.stringify({ projects }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return successResponse({ projects });
     } catch (error) {
       console.error("Error al obtener proyectos:", error);
-
-      return new Response(
-        JSON.stringify({ message: "Error interno del servidor" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return handleApiError(error);
     }
   }
 
@@ -55,13 +37,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
   if (req.method === "POST") {
     // Solo los administradores pueden crear proyectos
     if (session.role !== UserRole.ADMIN) {
-      return new Response(
-        JSON.stringify({ message: "No autorizado" }),
-        {
-          status: 403,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return errorResponse("No autorizado", Status.Forbidden);
     }
 
     try {
@@ -72,41 +48,20 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       const result = ProjectSchema.safeParse(body);
 
       if (!result.success) {
-        return new Response(
-          JSON.stringify({
-            message: "Datos inválidos",
-            errors: result.error.errors
-          }),
-          {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Datos inválidos", Status.BadRequest);
       }
 
       // Crear el proyecto
       const project = await createProject(result.data);
 
-      return new Response(
-        JSON.stringify({
-          message: "Proyecto creado exitosamente",
-          project
-        }),
-        {
-          status: 201,
-          headers: { "Content-Type": "application/json" },
-        }
+      return successResponse(
+        { project },
+        "Proyecto creado exitosamente",
+        Status.Created
       );
     } catch (error) {
       console.error("Error al crear proyecto:", error);
-
-      return new Response(
-        JSON.stringify({ message: "Error interno del servidor" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return handleApiError(error);
     }
   }
 
@@ -114,13 +69,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
   if (req.method === "PUT") {
     // Solo los administradores pueden actualizar proyectos
     if (session.role !== UserRole.ADMIN) {
-      return new Response(
-        JSON.stringify({ message: "No autorizado" }),
-        {
-          status: 403,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return errorResponse("No autorizado", Status.Forbidden);
     }
 
     try {
@@ -129,42 +78,21 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
 
       // Verificar que se proporcionó un ID de proyecto
       if (!body.id) {
-        return new Response(
-          JSON.stringify({ message: "Se requiere el ID del proyecto" }),
-          {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Se requiere el ID del proyecto", Status.BadRequest);
       }
 
       // Verificar que el proyecto existe
       const project = await getProjectById(body.id);
 
       if (!project) {
-        return new Response(
-          JSON.stringify({ message: "Proyecto no encontrado" }),
-          {
-            status: 404,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Proyecto no encontrado", Status.NotFound);
       }
 
       // Validar los datos del proyecto
       const result = ProjectSchema.partial().safeParse(body);
 
       if (!result.success) {
-        return new Response(
-          JSON.stringify({
-            message: "Datos inválidos",
-            errors: result.error.errors
-          }),
-          {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Datos inválidos", Status.BadRequest);
       }
 
       // Actualizar el proyecto
@@ -178,26 +106,13 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       const key = [...PROJECT_COLLECTIONS.PROJECTS, project.id];
       await kv.set(key, updatedProject);
 
-      return new Response(
-        JSON.stringify({
-          message: "Proyecto actualizado exitosamente",
-          project: updatedProject
-        }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }
+      return successResponse(
+        { project: updatedProject },
+        "Proyecto actualizado exitosamente"
       );
     } catch (error) {
       console.error("Error al actualizar proyecto:", error);
-
-      return new Response(
-        JSON.stringify({ message: "Error interno del servidor" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return handleApiError(error);
     }
   }
 
@@ -205,13 +120,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
   if (req.method === "DELETE") {
     // Solo los administradores pueden eliminar proyectos
     if (session.role !== UserRole.ADMIN) {
-      return new Response(
-        JSON.stringify({ message: "No autorizado" }),
-        {
-          status: 403,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return errorResponse("No autorizado", Status.Forbidden);
     }
 
     try {
@@ -220,57 +129,26 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       const projectId = url.searchParams.get("id");
 
       if (!projectId) {
-        return new Response(
-          JSON.stringify({ message: "Se requiere el ID del proyecto" }),
-          {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Se requiere el ID del proyecto", Status.BadRequest);
       }
 
       // Verificar que el proyecto existe
       const project = await getProjectById(projectId);
 
       if (!project) {
-        return new Response(
-          JSON.stringify({ message: "Proyecto no encontrado" }),
-          {
-            status: 404,
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        return errorResponse("Proyecto no encontrado", Status.NotFound);
       }
 
       // Eliminar el proyecto
       await deleteProject(projectId);
 
-      return new Response(
-        JSON.stringify({ message: "Proyecto eliminado exitosamente" }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return successResponse({}, "Proyecto eliminado exitosamente");
     } catch (error) {
       console.error("Error al eliminar proyecto:", error);
-
-      return new Response(
-        JSON.stringify({ message: "Error interno del servidor" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return handleApiError(error);
     }
   }
 
   // Método no permitido
-  return new Response(
-    JSON.stringify({ message: "Método no permitido" }),
-    {
-      status: 405,
-      headers: { "Content-Type": "application/json" },
-    }
-  );
+  return errorResponse("Método no permitido", Status.MethodNotAllowed);
 };

@@ -82,6 +82,7 @@ import * as $UserStories_UserStoriesList from "./islands/UserStories/UserStories
 import * as $UserStories_UserStoryCard from "./islands/UserStories/UserStoryCard.tsx";
 import * as $WelcomeHeader from "./islands/WelcomeHeader.tsx";
 import * as $WelcomeScreen from "./islands/WelcomeScreen.tsx";
+import * as $welcome_InteractiveWelcomeCard from "./islands/welcome/InteractiveWelcomeCard.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -174,6 +175,8 @@ const manifest = {
     "./islands/UserStories/UserStoryCard.tsx": $UserStories_UserStoryCard,
     "./islands/WelcomeHeader.tsx": $WelcomeHeader,
     "./islands/WelcomeScreen.tsx": $WelcomeScreen,
+    "./islands/welcome/InteractiveWelcomeCard.tsx":
+      $welcome_InteractiveWelcomeCard,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

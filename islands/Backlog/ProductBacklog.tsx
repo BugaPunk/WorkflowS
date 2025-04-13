@@ -102,7 +102,7 @@ export default function ProductBacklog({
   // Efecto para aplicar filtros cuando cambian
   useEffect(() => {
     applyFilters(backlogItems);
-  }, [priorityFilter, searchQuery]);
+  }, [priorityFilter, searchQuery, backlogItems]);
 
   // Efecto para cargar historias cuando cambia el proyecto
   useEffect(() => {
