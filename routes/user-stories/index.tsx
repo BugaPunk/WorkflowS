@@ -2,9 +2,10 @@ import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
 import type { UserRole } from "../../models/user.ts";
-import { getKv } from "../../utils/db.ts";
 import type { UserStory } from "../../models/userStory.ts";
+import { getUserStoriesWithFilters } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
+import { getAllProjects } from "../../models/project.ts";
 import UserStoriesList from "../../islands/UserStories/UserStoriesList.tsx";
 
 export const handler = {
@@ -24,21 +25,10 @@ export const handler = {
     const url = new URL(req.url);
     const projectId = url.searchParams.get("projectId");
 
-    // Obtener la instancia de KV
-    const kv = getKv();
-
-    // Obtener todas las historias de usuario
-    const userStoriesIterator = kv.list<UserStory>({ prefix: ["userStories"] });
-    const userStories: UserStory[] = [];
-
-    for await (const entry of userStoriesIterator) {
-      const userStory = entry.value;
-
-      // Filtrar por proyecto si se proporciona un ID
-      if (projectId && userStory.projectId !== projectId) continue;
-
-      userStories.push(userStory);
-    }
+    // Obtener historias de usuario con filtros usando la función del modelo
+    const userStories = await getUserStoriesWithFilters({
+      projectId: projectId || undefined
+    });
 
     // Ordenar por prioridad y fecha de creación
     userStories.sort((a, b) => {
@@ -52,13 +42,8 @@ export const handler = {
       return b.createdAt - a.createdAt;
     });
 
-    // Obtener todos los proyectos para el formulario de creación
-    const projectsIterator = kv.list<Project>({ prefix: ["projects"] });
-    const projects: Project[] = [];
-
-    for await (const entry of projectsIterator) {
-      projects.push(entry.value);
-    }
+    // Obtener todos los proyectos para el formulario de creación usando la función del modelo
+    const projects = await getAllProjects();
 
     return ctx.render({ session, userStories, projects, projectId });
   },

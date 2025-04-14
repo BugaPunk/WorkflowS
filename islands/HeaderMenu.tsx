@@ -1,11 +1,10 @@
-import { UserRole } from "../models/user.ts";
 import { useSession } from "../hooks/useSession.ts";
 
 export default function HeaderMenu() {
-  const { session, loading } = useSession();
+  const { loading, isAuthenticated, permissions } = useSession();
 
   // Determinar la URL de inicio según si el usuario está autenticado
-  const homeUrl = session ? "/welcome" : "/";
+  const homeUrl = isAuthenticated ? "/welcome" : "/";
 
   // Mostrar un indicador de carga mientras se verifica la sesión
   if (loading) {
@@ -23,10 +22,10 @@ export default function HeaderMenu() {
       <ul class="flex space-x-6">
         <li><a href={homeUrl} class="hover:underline">Inicio</a></li>
         <li><a href="/projects" class="hover:underline">Proyectos</a></li>
-        {session && (session.role === UserRole.PRODUCT_OWNER || session.role === UserRole.ADMIN || session.role === UserRole.SCRUM_MASTER) && (
+        {permissions.canViewBacklog && (
           <li><a href="/backlog" class="hover:underline">Backlog</a></li>
         )}
-        {session && session.role === UserRole.ADMIN && (
+        {permissions.canManageUsers && (
           <li><a href="/admin/users" class="hover:underline">Usuarios</a></li>
         )}
         <li><a href="/about" class="hover:underline">Acerca de</a></li>

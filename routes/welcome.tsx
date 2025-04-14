@@ -2,7 +2,7 @@ import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
 import { getSession } from "../utils/session.ts";
 import type { UserRole } from "../models/user.ts";
-import WelcomeScreen from "../islands/WelcomeScreen.tsx";
+import WelcomeScreen from "../islands/welcome/WelcomeScreen.tsx";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

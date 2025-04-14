@@ -1,9 +1,10 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
-import { getKv } from "../../../utils/db.ts";
 import {
-  type UpdateUserStoryData,
-  type UserStory,
+  getUserStoryById,
+  updateUserStory,
+  deleteUserStory,
+  UpdateUserStorySchema
 } from "../../../models/userStory.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
 
@@ -17,17 +18,14 @@ export const handler = {
 
     const { id } = ctx.params;
 
-    // Obtener la instancia de KV
-    const kv = getKv();
+    // Obtener la historia de usuario usando la función del modelo
+    const userStory = await getUserStoryById(id);
 
-    // Obtener la historia de usuario
-    const userStoryEntry = await kv.get<UserStory>(["userStories", id]);
-
-    if (!userStoryEntry.value) {
+    if (!userStory) {
       return errorResponse("Historia de usuario no encontrada", Status.NotFound);
     }
 
-    return successResponse({ userStory: userStoryEntry.value });
+    return successResponse({ userStory });
   },
 
   // Actualizar una historia de usuario
@@ -39,32 +37,22 @@ export const handler = {
 
     const { id } = ctx.params;
 
-    // Obtener la instancia de KV
-    const kv = getKv();
-
-    // Verificar que la historia de usuario existe
-    const userStoryEntry = await kv.get<UserStory>(["userStories", id]);
-    if (!userStoryEntry.value) {
-      return errorResponse("Historia de usuario no encontrada", Status.NotFound);
-    }
-
     try {
-      const data: UpdateUserStoryData = await req.json();
-      const userStory = userStoryEntry.value;
+      // Obtener los datos de actualización
+      const data = await req.json();
 
-      // Actualizar los campos
-      const updatedUserStory: UserStory = {
-        ...userStory,
-        title: data.title ?? userStory.title,
-        description: data.description ?? userStory.description,
-        acceptanceCriteria: data.acceptanceCriteria ?? userStory.acceptanceCriteria,
-        priority: data.priority ?? userStory.priority,
-        status: data.status ?? userStory.status,
-        points: data.points ?? userStory.points,
-        updatedAt: Date.now(),
-      };
+      // Validar los datos con el esquema Zod
+      const result = UpdateUserStorySchema.safeParse(data);
+      if (!result.success) {
+        return errorResponse("Datos inválidos", Status.BadRequest);
+      }
 
-      await kv.set(["userStories", id], updatedUserStory);
+      // Actualizar la historia de usuario usando la función del modelo
+      const updatedUserStory = await updateUserStory(id, result.data);
+
+      if (!updatedUserStory) {
+        return errorResponse("Historia de usuario no encontrada", Status.NotFound);
+      }
 
       return successResponse({ userStory: updatedUserStory });
     } catch (error) {
@@ -82,16 +70,12 @@ export const handler = {
 
     const { id } = ctx.params;
 
-    // Obtener la instancia de KV
-    const kv = getKv();
+    // Eliminar la historia de usuario usando la función del modelo
+    const success = await deleteUserStory(id);
 
-    // Verificar que la historia de usuario existe
-    const userStoryEntry = await kv.get(["userStories", id]);
-    if (!userStoryEntry.value) {
+    if (!success) {
       return errorResponse("Historia de usuario no encontrada", Status.NotFound);
     }
-
-    await kv.delete(["userStories", id]);
 
     return successResponse({}, "Historia de usuario eliminada correctamente");
   },

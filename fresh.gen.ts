@@ -10,8 +10,10 @@ import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
 import * as $api_login from "./routes/api/login.ts";
+import * as $api_logout from "./routes/api/logout.ts";
 import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
+import * as $api_projects_members_id_ from "./routes/api/projects/members/[id].ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $api_session from "./routes/api/session.ts";
 import * as $api_sprints_id_ from "./routes/api/sprints/[id].ts";
@@ -27,6 +29,7 @@ import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
+import * as $projects_id_members from "./routes/projects/[id]/members.tsx";
 import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
@@ -65,6 +68,7 @@ import * as $ProjectModals_EditProjectModal from "./islands/ProjectModals/EditPr
 import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
+import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
 import * as $Sprints_AddUserStoriesToSprint from "./islands/Sprints/AddUserStoriesToSprint.tsx";
@@ -77,6 +81,7 @@ import * as $Tasks_EditTaskForm from "./islands/Tasks/EditTaskForm.tsx";
 import * as $Tasks_TaskCard from "./islands/Tasks/TaskCard.tsx";
 import * as $Tasks_TasksList from "./islands/Tasks/TasksList.tsx";
 import * as $TeamDeveloperWelcomeOptions from "./islands/TeamDeveloperWelcomeOptions.tsx";
+import * as $UnauthorizedLogoutButton from "./islands/UnauthorizedLogoutButton.tsx";
 import * as $UserInfoCard from "./islands/UserInfoCard.tsx";
 import * as $UserStories_CreateUserStoryForm from "./islands/UserStories/CreateUserStoryForm.tsx";
 import * as $UserStories_EditUserStoryForm from "./islands/UserStories/EditUserStoryForm.tsx";
@@ -84,7 +89,11 @@ import * as $UserStories_UserStoriesList from "./islands/UserStories/UserStories
 import * as $UserStories_UserStoryCard from "./islands/UserStories/UserStoryCard.tsx";
 import * as $WelcomeHeader from "./islands/WelcomeHeader.tsx";
 import * as $WelcomeScreen from "./islands/WelcomeScreen.tsx";
+import * as $welcome_AdminWelcomeOptions from "./islands/welcome/AdminWelcomeOptions.tsx";
+import * as $welcome_CommonWelcomeOptions from "./islands/welcome/CommonWelcomeOptions.tsx";
 import * as $welcome_InteractiveWelcomeCard from "./islands/welcome/InteractiveWelcomeCard.tsx";
+import * as $welcome_WelcomeHeader from "./islands/welcome/WelcomeHeader.tsx";
+import * as $welcome_WelcomeScreen from "./islands/welcome/WelcomeScreen.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -97,8 +106,10 @@ const manifest = {
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
     "./routes/api/login.ts": $api_login,
+    "./routes/api/logout.ts": $api_logout,
     "./routes/api/projects/index.ts": $api_projects_index,
     "./routes/api/projects/members.ts": $api_projects_members,
+    "./routes/api/projects/members/[id].ts": $api_projects_members_id_,
     "./routes/api/register.ts": $api_register,
     "./routes/api/session.ts": $api_session,
     "./routes/api/sprints/[id].ts": $api_sprints_id_,
@@ -115,6 +126,7 @@ const manifest = {
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
     "./routes/projects/[id].tsx": $projects_id_,
+    "./routes/projects/[id]/members.tsx": $projects_id_members,
     "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
@@ -158,6 +170,7 @@ const manifest = {
     "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
+    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/RegisterForm.tsx": $RegisterForm,
     "./islands/ScrumMasterWelcomeOptions.tsx": $ScrumMasterWelcomeOptions,
     "./islands/Sprints/AddUserStoriesToSprint.tsx":
@@ -171,6 +184,7 @@ const manifest = {
     "./islands/Tasks/TaskCard.tsx": $Tasks_TaskCard,
     "./islands/Tasks/TasksList.tsx": $Tasks_TasksList,
     "./islands/TeamDeveloperWelcomeOptions.tsx": $TeamDeveloperWelcomeOptions,
+    "./islands/UnauthorizedLogoutButton.tsx": $UnauthorizedLogoutButton,
     "./islands/UserInfoCard.tsx": $UserInfoCard,
     "./islands/UserStories/CreateUserStoryForm.tsx":
       $UserStories_CreateUserStoryForm,
@@ -180,8 +194,12 @@ const manifest = {
     "./islands/UserStories/UserStoryCard.tsx": $UserStories_UserStoryCard,
     "./islands/WelcomeHeader.tsx": $WelcomeHeader,
     "./islands/WelcomeScreen.tsx": $WelcomeScreen,
+    "./islands/welcome/AdminWelcomeOptions.tsx": $welcome_AdminWelcomeOptions,
+    "./islands/welcome/CommonWelcomeOptions.tsx": $welcome_CommonWelcomeOptions,
     "./islands/welcome/InteractiveWelcomeCard.tsx":
       $welcome_InteractiveWelcomeCard,
+    "./islands/welcome/WelcomeHeader.tsx": $welcome_WelcomeHeader,
+    "./islands/welcome/WelcomeScreen.tsx": $welcome_WelcomeScreen,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

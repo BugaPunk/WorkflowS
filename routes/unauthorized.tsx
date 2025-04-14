@@ -1,4 +1,5 @@
 import { MainLayout } from "../layouts/MainLayout.tsx";
+import UnauthorizedLogoutButton from "../islands/UnauthorizedLogoutButton.tsx";
 
 export default function Unauthorized() {
   return (
@@ -11,12 +12,13 @@ export default function Unauthorized() {
               No tienes permisos suficientes para acceder a esta página.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-6">
-              <a href="/welcome" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
+              <a
+                href="/welcome"
+                class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              >
                 Volver al Inicio
               </a>
-              <a href="/logout" class="inline-block px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">
-                Cerrar Sesión
-              </a>
+              <UnauthorizedLogoutButton />
             </div>
           </div>
         </div>

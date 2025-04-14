@@ -1,28 +1,35 @@
 import { useSession } from "../hooks/useSession.ts";
 
 export default function HeaderNav() {
-  const { session, loading } = useSession();
+  const { session, loading, logout, isAuthenticated } = useSession();
+
+  // Función para manejar el cierre de sesión
+  const handleLogout = (e: Event) => {
+    e.preventDefault();
+    logout();
+  };
 
   return (
     <div class="flex items-center space-x-4">
       {loading ? (
         // Show loading state
         <div class="w-24 h-10 bg-blue-500 rounded-md animate-pulse"></div>
-      ) : session ? (
+      ) : isAuthenticated ? (
         // User is logged in
         <div class="flex items-center space-x-4">
           <a
             href="/welcome"
             class="text-white hover:underline"
           >
-            {session.username}
+            {session?.username}
           </a>
-          <a
-            href="/logout"
+          <button
+            type="button"
+            onClick={handleLogout}
             class="bg-red-500 text-white hover:bg-red-600 px-4 py-2 rounded-md font-medium transition-colors"
           >
             Salir
-          </a>
+          </button>
         </div>
       ) : (
         // User is not logged in

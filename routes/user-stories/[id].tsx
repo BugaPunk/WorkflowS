@@ -1,10 +1,11 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
-import { getKv } from "../../utils/db.ts";
-import { type UserStory, UserStoryPriority, UserStoryStatus } from "../../models/userStory.ts";
+import { type UserStory, UserStoryPriority, UserStoryStatus, getUserStoryById } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
+import { getProjectById } from "../../models/project.ts";
 import type { User } from "../../models/user.ts";
+import { getUserById } from "../../models/user.ts";
 import { Button } from "../../components/Button.tsx";
 
 export const handler = {
@@ -22,13 +23,10 @@ export const handler = {
 
     const { id } = ctx.params;
 
-    // Obtener la instancia de KV
-    const kv = getKv();
+    // Obtener la historia de usuario usando la función del modelo
+    const userStory = await getUserStoryById(id);
 
-    // Obtener la historia de usuario
-    const userStoryEntry = await kv.get<UserStory>(["userStories", id]);
-
-    if (!userStoryEntry.value) {
+    if (!userStory) {
       return new Response(null, {
         status: 302,
         headers: {
@@ -37,21 +35,16 @@ export const handler = {
       });
     }
 
-    const userStory = userStoryEntry.value;
+    // Obtener el proyecto usando la función del modelo
+    const project = await getProjectById(userStory.projectId);
 
-    // Obtener el proyecto
-    const projectEntry = await kv.get<Project>(["projects", userStory.projectId]);
-    const project = projectEntry.value;
-
-    // Obtener el creador
-    const creatorEntry = await kv.get<User>(["users", userStory.createdBy]);
-    const creator = creatorEntry.value;
+    // Obtener el creador usando la función del modelo
+    const creator = await getUserById(userStory.createdBy);
 
     // Obtener el usuario asignado si existe
     let assignedUser = null;
     if (userStory.assignedTo) {
-      const assignedUserEntry = await kv.get<User>(["users", userStory.assignedTo]);
-      assignedUser = assignedUserEntry.value;
+      assignedUser = await getUserById(userStory.assignedTo);
     }
 
     return ctx.render({ session, userStory, project, creator, assignedUser });

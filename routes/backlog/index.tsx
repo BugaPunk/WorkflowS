@@ -1,57 +1,29 @@
-import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
-import { getKv } from "../../utils/db.ts";
+import { requireRole, type FreshContextWithSession } from "../../utils/session.ts";
 import { UserRole } from "../../models/user.ts";
-import { type UserStory, UserStoryStatus } from "../../models/userStory.ts";
+import { type UserStory, UserStoryStatus, getUserStoriesWithFilters } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
+import { getAllProjects, getProjectById } from "../../models/project.ts";
 import ProductBacklog from "../../islands/Backlog/ProductBacklog.tsx";
 
+// Utilizar el middleware requireRole para verificar que el usuario tenga los roles permitidos
 export const handler = {
-  async GET(req: Request, ctx: FreshContext) {
-    const session = await getSession(req);
-
-    if (!session) {
-      return new Response(null, {
-        status: 302,
-        headers: {
-          Location: "/login",
-        },
-      });
-    }
-
-    // Verificar que el usuario sea Product Owner o Admin
-    if (session.role !== UserRole.PRODUCT_OWNER && session.role !== UserRole.ADMIN && session.role !== UserRole.SCRUM_MASTER) {
-      return new Response(null, {
-        status: 302,
-        headers: {
-          Location: "/unauthorized",
-        },
-      });
-    }
+  async GET(req: Request, ctx: FreshContextWithSession) {
+    // Verificar que el usuario tenga permisos para ver el backlog
+    return await requireRole(
+      [UserRole.PRODUCT_OWNER, UserRole.ADMIN, UserRole.SCRUM_MASTER],
+      async (req: Request, ctx: FreshContextWithSession) => {
+        const session = ctx.session!;
 
     // Obtener el ID del proyecto si se proporciona
     const url = new URL(req.url);
     const projectId = url.searchParams.get("projectId");
 
-    // Obtener la instancia de KV
-    const kv = getKv();
-
-    // Obtener todas las historias de usuario en estado BACKLOG
-    const userStoriesIterator = kv.list<UserStory>({ prefix: ["userStories"] });
-    const backlogItems: UserStory[] = [];
-
-    for await (const entry of userStoriesIterator) {
-      const userStory = entry.value;
-
-      // Filtrar por proyecto si se proporciona un ID
-      if (projectId && userStory.projectId !== projectId) continue;
-
-      // Solo incluir historias en estado BACKLOG
-      if (userStory.status === UserStoryStatus.BACKLOG) {
-        backlogItems.push(userStory);
-      }
-    }
+    // Obtener historias de usuario con filtros usando la función optimizada
+    const backlogItems = await getUserStoriesWithFilters({
+      projectId: projectId || undefined,
+      status: UserStoryStatus.BACKLOG
+    });
 
     // Ordenar por prioridad y fecha de creación
     backlogItems.sort((a, b) => {
@@ -65,28 +37,24 @@ export const handler = {
       return b.createdAt - a.createdAt;
     });
 
-    // Obtener todos los proyectos para el selector de proyectos
-    const projectsIterator = kv.list<Project>({ prefix: ["projects"] });
-    const projects: Project[] = [];
+    // Obtener todos los proyectos para el selector de proyectos usando la función optimizada
+    const projects = await getAllProjects();
 
-    for await (const entry of projectsIterator) {
-      projects.push(entry.value);
-    }
-
-    // Obtener el proyecto actual si se proporciona un ID
+    // Obtener el proyecto actual si se proporciona un ID usando la función optimizada
     let currentProject = null;
     if (projectId) {
-      const projectEntry = await kv.get<Project>(["projects", projectId]);
-      currentProject = projectEntry.value;
+      currentProject = await getProjectById(projectId);
     }
 
-    return ctx.render({
-      session,
-      backlogItems,
-      projects,
-      projectId,
-      currentProject
-    });
+        return ctx.render({
+          session,
+          backlogItems,
+          projects,
+          projectId,
+          currentProject
+        });
+      }
+    )(req, ctx);
   },
 };
 
@@ -105,6 +73,7 @@ interface BacklogPageProps {
 
 export default function BacklogPage({ data }: { data: BacklogPageProps }) {
   const { session, backlogItems, projects, projectId, currentProject } = data;
+  // Utilizar las funciones de permisos para determinar los roles
   const isProductOwner = session.role === UserRole.PRODUCT_OWNER;
   const isAdmin = session.role === UserRole.ADMIN;
 

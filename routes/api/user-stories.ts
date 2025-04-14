@@ -7,17 +7,14 @@ import {
   createUserStory,
   getUserStoriesWithFilters
 } from "../../models/userStory.ts";
-import { Status } from "../../utils/api.ts";
+import { Status, errorResponse, successResponse, handleApiError } from "../../utils/api.ts";
 
 export const handler = {
   // Obtener historias de usuario
   async GET(req: Request, _ctx: FreshContext) {
     const session = await getSession(req);
     if (!session) {
-      return new Response(JSON.stringify({ message: "No autorizado" }), {
-        status: Status.Unauthorized,
-        headers: { "Content-Type": "application/json" },
-      });
+      return errorResponse("No autorizado", Status.Unauthorized);
     }
 
     const url = new URL(req.url);
@@ -45,16 +42,10 @@ export const handler = {
         return b.createdAt - a.createdAt;
       });
 
-      return new Response(JSON.stringify({ userStories }), {
-        status: Status.OK,
-        headers: { "Content-Type": "application/json" },
-      });
+      return successResponse({ userStories });
     } catch (error) {
       console.error("Error al obtener historias de usuario:", error);
-      return new Response(JSON.stringify({ message: "Error al obtener historias de usuario" }), {
-        status: Status.InternalServerError,
-        headers: { "Content-Type": "application/json" },
-      });
+      return handleApiError(error);
     }
   },
 
@@ -62,18 +53,12 @@ export const handler = {
   async POST(req: Request, _ctx: FreshContext) {
     const session = await getSession(req);
     if (!session) {
-      return new Response(JSON.stringify({ message: "No autorizado" }), {
-        status: Status.Unauthorized,
-        headers: { "Content-Type": "application/json" },
-      });
+      return errorResponse("No autorizado", Status.Unauthorized);
     }
 
     // Verificar que el usuario sea Product Owner o Admin
     if (session.role !== UserRole.PRODUCT_OWNER && session.role !== UserRole.ADMIN) {
-      return new Response(JSON.stringify({ message: "No tienes permisos para crear historias de usuario" }), {
-        status: Status.Forbidden,
-        headers: { "Content-Type": "application/json" },
-      });
+      return errorResponse("No tienes permisos para crear historias de usuario", Status.Forbidden);
     }
 
     try {
@@ -82,13 +67,7 @@ export const handler = {
       // Validar datos con Zod
       const result = CreateUserStorySchema.safeParse(requestData);
       if (!result.success) {
-        return new Response(JSON.stringify({
-          message: "Datos inválidos",
-          errors: result.error.format()
-        }), {
-          status: Status.BadRequest,
-          headers: { "Content-Type": "application/json" },
-        });
+        return errorResponse("Datos inválidos", Status.BadRequest);
       }
 
       // Obtener la instancia de KV
@@ -97,25 +76,16 @@ export const handler = {
       // Verificar que el proyecto existe
       const projectEntry = await kv.get(["projects", result.data.projectId]);
       if (!projectEntry.value) {
-        return new Response(JSON.stringify({ message: "El proyecto no existe" }), {
-          status: Status.NotFound,
-          headers: { "Content-Type": "application/json" },
-        });
+        return errorResponse("El proyecto no existe", Status.NotFound);
       }
 
       // Crear la historia de usuario usando la función del modelo
       const userStory = await createUserStory(result.data, session.userId);
 
-      return new Response(JSON.stringify({ userStory }), {
-        status: Status.Created,
-        headers: { "Content-Type": "application/json" },
-      });
+      return successResponse({ userStory }, "Historia de usuario creada exitosamente", Status.Created);
     } catch (error) {
       console.error("Error al crear historia de usuario:", error);
-      return new Response(JSON.stringify({ message: "Error al procesar la solicitud" }), {
-        status: Status.BadRequest,
-        headers: { "Content-Type": "application/json" },
-      });
+      return handleApiError(error);
     }
   },
 
