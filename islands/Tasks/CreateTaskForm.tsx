@@ -1,7 +1,10 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import { TaskStatus } from "../../models/task.ts";
 import { createTask } from "../../services/taskService.ts";
+import { getUserStoryById } from "../../services/userStoryService.ts";
+import { getProjectMembers } from "../../services/projectService.ts";
+// No necesitamos importar User ya que no lo estamos usando
 
 interface CreateTaskFormProps {
   userStoryId: string;
@@ -9,11 +12,15 @@ interface CreateTaskFormProps {
   onCancel: () => void;
 }
 
-export default function CreateTaskForm({
-  userStoryId,
-  onSuccess,
-  onCancel,
-}: CreateTaskFormProps) {
+// Definir una interfaz extendida para los miembros del proyecto
+import type { ProjectMember } from "../../models/project.ts";
+
+interface ExtendedProjectMember extends ProjectMember {
+  firstName?: string;
+  lastName?: string;
+}
+
+export default function CreateTaskForm({ userStoryId, onSuccess, onCancel }: CreateTaskFormProps) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -24,6 +31,36 @@ export default function CreateTaskForm({
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [projectMembers, setProjectMembers] = useState<ExtendedProjectMember[]>([]);
+  const [isLoadingMembers, setIsLoadingMembers] = useState(false);
+  const [loadMembersError, setLoadMembersError] = useState<string | null>(null);
+
+  // Cargar miembros del proyecto al montar el componente
+  useEffect(() => {
+    const loadProjectMembers = async () => {
+      setIsLoadingMembers(true);
+      setLoadMembersError(null);
+
+      try {
+        // Obtener la historia de usuario para conseguir el ID del proyecto
+        const userStory = await getUserStoryById(userStoryId);
+
+        if (userStory?.projectId) {
+          // Obtener miembros del proyecto
+          const members = await getProjectMembers(userStory.projectId);
+          // Los miembros ya vienen con la información completa desde la API
+          setProjectMembers(members as ExtendedProjectMember[]);
+        }
+      } catch (err) {
+        console.error("Error cargando miembros del proyecto:", err);
+        setLoadMembersError("Error al cargar los miembros del proyecto");
+      } finally {
+        setIsLoadingMembers(false);
+      }
+    };
+
+    loadProjectMembers();
+  }, [userStoryId]);
 
   // Manejar cambios en el formulario
   const handleChange = (e: Event) => {
@@ -47,8 +84,10 @@ export default function CreateTaskForm({
       }
 
       // Convertir horas a números
-      const estimatedHours = formData.estimatedHours ? parseFloat(formData.estimatedHours) : undefined;
-      const spentHours = formData.spentHours ? parseFloat(formData.spentHours) : undefined;
+      const estimatedHours = formData.estimatedHours
+        ? Number.parseFloat(formData.estimatedHours)
+        : undefined;
+      const spentHours = formData.spentHours ? Number.parseFloat(formData.spentHours) : undefined;
 
       // Crear tarea
       await createTask({
@@ -128,16 +167,35 @@ export default function CreateTaskForm({
 
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-1" htmlFor="assignedTo">
-          Asignada a (ID de usuario)
+          Asignada a
         </label>
-        <input
-          type="text"
-          id="assignedTo"
-          name="assignedTo"
-          value={formData.assignedTo}
-          onChange={handleChange}
-          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        />
+        {isLoadingMembers ? (
+          <div class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50">
+            Cargando miembros...
+          </div>
+        ) : loadMembersError ? (
+          <div class="w-full px-3 py-2 border border-red-300 rounded-md bg-red-50 text-red-700">
+            {loadMembersError}
+          </div>
+        ) : (
+          <select
+            id="assignedTo"
+            name="assignedTo"
+            value={formData.assignedTo}
+            onChange={handleChange}
+            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">-- Sin asignar --</option>
+            {projectMembers.map((member) => (
+              <option key={member.userId} value={member.userId}>
+                {member.firstName && member.lastName
+                  ? `${member.firstName} ${member.lastName}`
+                  : member.username}{" "}
+                ({member.email})
+              </option>
+            ))}
+          </select>
+        )}
       </div>
 
       <div class="grid grid-cols-2 gap-4">

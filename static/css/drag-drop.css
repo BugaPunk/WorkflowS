@@ -1,0 +1,53 @@
+/* Estilos para drag & drop */
+.task-draggable {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-draggable:hover {
+  cursor: grab;
+}
+
+.task-draggable:active {
+  cursor: grabbing;
+}
+
+.task-dragging {
+  transform: scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  opacity: 0.8;
+}
+
+.drop-zone {
+  transition: background-color 0.2s;
+}
+
+.drop-zone-highlight {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 2px dashed #3b82f6;
+}
+
+/* Estilos para las columnas de estado */
+.column-todo.drop-zone-highlight {
+  background-color: rgba(209, 213, 219, 0.3);
+  border: 2px dashed #9ca3af;
+}
+
+.column-in-progress.drop-zone-highlight {
+  background-color: rgba(59, 130, 246, 0.2);
+  border: 2px dashed #3b82f6;
+}
+
+.column-review.drop-zone-highlight {
+  background-color: rgba(245, 158, 11, 0.2);
+  border: 2px dashed #f59e0b;
+}
+
+.column-done.drop-zone-highlight {
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 2px dashed #10b981;
+}
+
+.column-blocked.drop-zone-highlight {
+  background-color: rgba(239, 68, 68, 0.2);
+  border: 2px dashed #ef4444;
+}

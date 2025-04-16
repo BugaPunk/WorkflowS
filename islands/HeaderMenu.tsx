@@ -11,7 +11,11 @@ export default function HeaderMenu() {
     return (
       <nav>
         <ul class="flex space-x-6">
-          <li><a href="/" class="hover:underline">Inicio</a></li>
+          <li>
+            <a href="/" class="hover:underline">
+              Inicio
+            </a>
+          </li>
         </ul>
       </nav>
     );
@@ -20,15 +24,44 @@ export default function HeaderMenu() {
   return (
     <nav>
       <ul class="flex space-x-6">
-        <li><a href={homeUrl} class="hover:underline">Inicio</a></li>
-        <li><a href="/projects" class="hover:underline">Proyectos</a></li>
+        <li>
+          <a href={homeUrl} class="hover:underline">
+            Inicio
+          </a>
+        </li>
+        {isAuthenticated && (
+          <>
+            <li>
+              <a href="/projects" class="hover:underline">
+                Proyectos
+              </a>
+            </li>
+            <li>
+              <a href="/my-tasks" class="hover:underline">
+                Mis Tareas
+              </a>
+            </li>
+          </>
+        )}
         {permissions.canViewBacklog && (
-          <li><a href="/backlog" class="hover:underline">Backlog</a></li>
+          <li>
+            <a href="/backlog" class="hover:underline">
+              Backlog
+            </a>
+          </li>
         )}
         {permissions.canManageUsers && (
-          <li><a href="/admin/users" class="hover:underline">Usuarios</a></li>
+          <li>
+            <a href="/admin/users" class="hover:underline">
+              Usuarios
+            </a>
+          </li>
         )}
-        <li><a href="/about" class="hover:underline">Acerca de</a></li>
+        <li>
+          <a href="/about" class="hover:underline">
+            Acerca de
+          </a>
+        </li>
       </ul>
     </nav>
   );

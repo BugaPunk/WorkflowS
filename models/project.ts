@@ -15,7 +15,7 @@ export enum ProjectStatus {
   IN_PROGRESS = "in_progress",
   ON_HOLD = "on_hold",
   COMPLETED = "completed",
-  CANCELLED = "cancelled"
+  CANCELLED = "cancelled",
 }
 
 // Definir el esquema del proyecto con Zod para validación
@@ -40,7 +40,7 @@ export interface Project extends Model, ProjectData {
 export enum ProjectRole {
   PRODUCT_OWNER = "product_owner",
   SCRUM_MASTER = "scrum_master",
-  TEAM_MEMBER = "team_member"
+  TEAM_MEMBER = "team_member",
 }
 
 // Definir el esquema de miembro del proyecto
@@ -108,7 +108,7 @@ export async function getAllProjects(): Promise<Project[]> {
 // Obtener proyectos por creador
 export async function getProjectsByCreator(userId: string): Promise<Project[]> {
   const projects = await getAllProjects();
-  return projects.filter(project => project.createdBy === userId);
+  return projects.filter((project) => project.createdBy === userId);
 }
 
 // Agregar un miembro al proyecto
@@ -126,8 +126,14 @@ export async function addProjectMember(memberData: ProjectMemberData): Promise<P
   await kv.set(memberKey, member);
 
   // Crear índices para búsqueda rápida
-  await kv.set([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", memberData.userId, memberData.projectId], member.id);
-  await kv.set([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", memberData.projectId, memberData.userId], member.id);
+  await kv.set(
+    [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", memberData.userId, memberData.projectId],
+    member.id
+  );
+  await kv.set(
+    [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", memberData.projectId, memberData.userId],
+    member.id
+  );
 
   // Actualizar la lista de miembros del proyecto
   const project = await getProjectById(memberData.projectId);
@@ -169,7 +175,7 @@ export async function getProjectMembers(projectId: string): Promise<ProjectMembe
 
   // Listar todos los miembros del proyecto
   const membersIterator = kv.list<string>({
-    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId]
+    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId],
   });
 
   for await (const entry of membersIterator) {
@@ -192,7 +198,7 @@ export async function getUserProjects(userId: string): Promise<Project[]> {
 
   // Listar todos los proyectos del usuario
   const projectsIterator = kv.list<string>({
-    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId]
+    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId],
   });
 
   for await (const entry of projectsIterator) {
@@ -211,7 +217,10 @@ export async function getUserProjects(userId: string): Promise<Project[]> {
 }
 
 // Actualizar el estado de un proyecto
-export async function updateProjectStatus(projectId: string, status: ProjectStatus): Promise<Project | null> {
+export async function updateProjectStatus(
+  projectId: string,
+  status: ProjectStatus
+): Promise<Project | null> {
   const project = await getProjectById(projectId);
 
   if (!project) {
@@ -241,7 +250,7 @@ export async function deleteProject(projectId: string): Promise<boolean> {
 
   // Eliminar todos los miembros del proyecto
   const membersIterator = kv.list({
-    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId]
+    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId],
   });
 
   for await (const entry of membersIterator) {
@@ -258,4 +267,126 @@ export async function deleteProject(projectId: string): Promise<boolean> {
   }
 
   return true;
+}
+
+// Actualizar un miembro del proyecto
+export async function updateProjectMember(
+  projectId: string,
+  userId: string,
+  role: ProjectRole
+): Promise<ProjectMember | null> {
+  const kv = getKv();
+
+  // Buscar el ID del miembro
+  const memberIdEntry = await kv.get<string>([
+    ...PROJECT_COLLECTIONS.PROJECT_MEMBERS,
+    "by_project",
+    projectId,
+    userId,
+  ]);
+
+  if (!memberIdEntry.value) {
+    return null;
+  }
+
+  const memberId = memberIdEntry.value;
+  const memberKey = [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, memberId];
+  const memberEntry = await kv.get<ProjectMember>(memberKey);
+
+  if (!memberEntry.value) {
+    return null;
+  }
+
+  // Actualizar el rol del miembro
+  const updatedMember = {
+    ...memberEntry.value,
+    role,
+    updatedAt: new Date().getTime(),
+  };
+
+  await kv.set(memberKey, updatedMember);
+
+  // Actualizar el rol del usuario en el sistema según su rol en el proyecto
+  const user = await getUserById(userId);
+  if (user) {
+    let newUserRole = user.role; // Mantener el rol actual por defecto
+
+    // Asignar el rol correspondiente según el rol en el proyecto
+    if (role === ProjectRole.SCRUM_MASTER && user.role !== UserRole.ADMIN) {
+      newUserRole = UserRole.SCRUM_MASTER;
+    } else if (role === ProjectRole.PRODUCT_OWNER && user.role !== UserRole.ADMIN) {
+      newUserRole = UserRole.PRODUCT_OWNER;
+    }
+
+    // Actualizar el rol del usuario si es diferente al actual
+    if (newUserRole !== user.role) {
+      await updateUserRole(user.id, newUserRole);
+    }
+  }
+
+  return updatedMember;
+}
+
+// Eliminar un miembro del proyecto
+export async function removeProjectMember(projectId: string, userId: string): Promise<boolean> {
+  const kv = getKv();
+
+  // Buscar el ID del miembro
+  const memberIdEntry = await kv.get<string>([
+    ...PROJECT_COLLECTIONS.PROJECT_MEMBERS,
+    "by_project",
+    projectId,
+    userId,
+  ]);
+
+  if (!memberIdEntry.value) {
+    return false;
+  }
+
+  const memberId = memberIdEntry.value;
+
+  // Eliminar el miembro
+  await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, memberId]);
+
+  // Eliminar los índices
+  await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId, userId]);
+  await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId, projectId]);
+
+  // Actualizar la lista de miembros del proyecto
+  const project = await getProjectById(projectId);
+  if (project) {
+    const updatedProject = {
+      ...project,
+      members: project.members.filter((member) => member.userId !== userId),
+    };
+
+    const projectKey = [...PROJECT_COLLECTIONS.PROJECTS, project.id];
+    await kv.set(projectKey, updatedProject);
+  }
+
+  return true;
+}
+
+// Actualizar un proyecto
+export async function updateProject(
+  id: string,
+  updateData: Partial<ProjectData>
+): Promise<Project | null> {
+  const project = await getProjectById(id);
+
+  if (!project) {
+    return null;
+  }
+
+  const updatedProject = {
+    ...project,
+    ...updateData,
+    updatedAt: new Date().getTime(),
+  };
+
+  const kv = getKv();
+  const key = [...PROJECT_COLLECTIONS.PROJECTS, id];
+  await kv.set(key, updatedProject);
+
+  return updatedProject;
 }

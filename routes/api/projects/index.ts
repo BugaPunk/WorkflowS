@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
 import { UserRole } from "../../../models/user.ts";
-import { getKv } from "../../../utils/db.ts";
-import { ProjectSchema, createProject, getAllProjects, getUserProjects, getProjectById, deleteProject, PROJECT_COLLECTIONS } from "../../../models/project.ts";
+import { ProjectSchema } from "../../../models/project.ts";
 import { Status, errorResponse, successResponse, handleApiError } from "../../../utils/api.ts";
+import { ProjectService } from "../../../services/backend/index.ts";
 
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   // Verificar si el usuario está autenticado
@@ -20,10 +20,10 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
 
       // Los administradores pueden ver todos los proyectos
       if (session.role === UserRole.ADMIN) {
-        projects = await getAllProjects();
+        projects = await ProjectService.getAllProjects();
       } else {
         // Los usuarios no administradores solo pueden ver sus proyectos
-        projects = await getUserProjects(session.userId);
+        projects = await ProjectService.getUserProjects(session.userId);
       }
 
       return successResponse({ projects });
@@ -52,13 +52,9 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       }
 
       // Crear el proyecto
-      const project = await createProject(result.data);
+      const project = await ProjectService.createProject(result.data);
 
-      return successResponse(
-        { project },
-        "Proyecto creado exitosamente",
-        Status.Created
-      );
+      return successResponse({ project }, "Proyecto creado exitosamente", Status.Created);
     } catch (error) {
       console.error("Error al crear proyecto:", error);
       return handleApiError(error);
@@ -82,7 +78,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       }
 
       // Verificar que el proyecto existe
-      const project = await getProjectById(body.id);
+      const project = await ProjectService.getProjectById(body.id);
 
       if (!project) {
         return errorResponse("Proyecto no encontrado", Status.NotFound);
@@ -96,20 +92,11 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       }
 
       // Actualizar el proyecto
-      const kv = getKv();
-      const updatedProject = {
-        ...project,
+      const updatedProject = await ProjectService.updateProject(project.id, {
         ...result.data,
-        updatedAt: new Date().getTime(),
-      };
+      });
 
-      const key = [...PROJECT_COLLECTIONS.PROJECTS, project.id];
-      await kv.set(key, updatedProject);
-
-      return successResponse(
-        { project: updatedProject },
-        "Proyecto actualizado exitosamente"
-      );
+      return successResponse({ project: updatedProject }, "Proyecto actualizado exitosamente");
     } catch (error) {
       console.error("Error al actualizar proyecto:", error);
       return handleApiError(error);
@@ -133,14 +120,18 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
       }
 
       // Verificar que el proyecto existe
-      const project = await getProjectById(projectId);
+      const project = await ProjectService.getProjectById(projectId);
 
       if (!project) {
         return errorResponse("Proyecto no encontrado", Status.NotFound);
       }
 
       // Eliminar el proyecto
-      await deleteProject(projectId);
+      const success = await ProjectService.deleteProject(projectId);
+
+      if (!success) {
+        return errorResponse("No se pudo eliminar el proyecto", Status.InternalServerError);
+      }
 
       return successResponse({}, "Proyecto eliminado exitosamente");
     } catch (error) {

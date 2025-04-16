@@ -6,7 +6,7 @@ export enum UserRole {
   ADMIN = "admin",
   SCRUM_MASTER = "scrum_master",
   PRODUCT_OWNER = "product_owner",
-  TEAM_DEVELOPER = "team_developer"
+  TEAM_DEVELOPER = "team_developer",
 }
 
 // Define the User schema with Zod for validation
@@ -94,12 +94,12 @@ export async function getUserByUsername(username: string): Promise<User | null> 
 
 // Simple password hashing function (for demo purposes only)
 // In a real app, use a proper password hashing library like bcrypt
-async function hashPassword(password: string): Promise<string> {
+export async function hashPassword(password: string): Promise<string> {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
   const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
   return hashHex;
 }
 
@@ -158,7 +158,7 @@ export async function updateUserRole(userId: string, newRole: UserRole): Promise
     // Update all active sessions for this user
     const sessionsIterator = kv.list({ prefix: [...COLLECTIONS.USERS, "sessions"] });
     for await (const entry of sessionsIterator) {
-      const sessionData = entry.value as { userId: string, role: UserRole };
+      const sessionData = entry.value as { userId: string; role: UserRole };
       if (sessionData && sessionData.userId === userId) {
         // Update the role in the session
         const updatedSession = {
@@ -172,6 +172,55 @@ export async function updateUserRole(userId: string, newRole: UserRole): Promise
     return updatedUser;
   } catch (error) {
     console.error("Error updating user role:", error);
+    return null;
+  }
+}
+
+// Update a user
+export async function updateUser(
+  userId: string,
+  updateData: Partial<Omit<UserData, "password"> & { passwordHash?: string }>
+): Promise<User | null> {
+  try {
+    const kv = getKv();
+
+    // Get the user first
+    const user = await getUserById(userId);
+
+    if (!user) {
+      return null;
+    }
+
+    // Update the user with the new data
+    const updatedUser = {
+      ...user,
+      ...updateData,
+      updatedAt: new Date().getTime(),
+    };
+
+    // Save the updated user
+    const key = [...COLLECTIONS.USERS, userId];
+    await kv.set(key, updatedUser);
+
+    // If email was updated, update the email index
+    if (updateData.email && updateData.email !== user.email) {
+      // Delete old email index
+      await kv.delete([...COLLECTIONS.USERS, "by_email", user.email]);
+      // Create new email index
+      await kv.set([...COLLECTIONS.USERS, "by_email", updateData.email], userId);
+    }
+
+    // If username was updated, update the username index
+    if (updateData.username && updateData.username !== user.username) {
+      // Delete old username index
+      await kv.delete([...COLLECTIONS.USERS, "by_username", user.username]);
+      // Create new username index
+      await kv.set([...COLLECTIONS.USERS, "by_username", updateData.username], userId);
+    }
+
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating user:", error);
     return null;
   }
 }

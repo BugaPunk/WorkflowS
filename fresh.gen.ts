@@ -11,6 +11,7 @@ import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_logout from "./routes/api/logout.ts";
+import * as $api_projects_id_members from "./routes/api/projects/[id]/members.ts";
 import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_projects_members_id_ from "./routes/api/projects/members/[id].ts";
@@ -21,13 +22,18 @@ import * as $api_sprints_id_user_stories from "./routes/api/sprints/[id]/user-st
 import * as $api_sprints_id_user_stories_userStoryId_ from "./routes/api/sprints/[id]/user-stories/[userStoryId].ts";
 import * as $api_sprints_index from "./routes/api/sprints/index.ts";
 import * as $api_tasks_id_ from "./routes/api/tasks/[id].ts";
+import * as $api_tasks_id_comments from "./routes/api/tasks/[id]/comments.ts";
+import * as $api_tasks_id_history from "./routes/api/tasks/[id]/history.ts";
+import * as $api_tasks_id_time from "./routes/api/tasks/[id]/time.ts";
 import * as $api_tasks_index from "./routes/api/tasks/index.ts";
 import * as $api_user_stories from "./routes/api/user-stories.ts";
 import * as $api_user_stories_id_ from "./routes/api/user-stories/[id].ts";
+import * as $api_users_id_ from "./routes/api/users/[id].ts";
 import * as $backlog_index from "./routes/backlog/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
+import * as $my_tasks from "./routes/my-tasks.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $projects_id_members from "./routes/projects/[id]/members.tsx";
 import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
@@ -35,6 +41,7 @@ import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $sprints_id_ from "./routes/sprints/[id].tsx";
 import * as $sprints_id_add_user_stories from "./routes/sprints/[id]/add-user-stories.tsx";
+import * as $tasks_id_ from "./routes/tasks/[id].tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
 import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
@@ -78,8 +85,20 @@ import * as $Sprints_SprintCard from "./islands/Sprints/SprintCard.tsx";
 import * as $Sprints_SprintsList from "./islands/Sprints/SprintsList.tsx";
 import * as $Tasks_CreateTaskForm from "./islands/Tasks/CreateTaskForm.tsx";
 import * as $Tasks_EditTaskForm from "./islands/Tasks/EditTaskForm.tsx";
+import * as $Tasks_FilteredTasksList from "./islands/Tasks/FilteredTasksList.tsx";
+import * as $Tasks_MyTasksList from "./islands/Tasks/MyTasksList.tsx";
+import * as $Tasks_TaskCalendarView from "./islands/Tasks/TaskCalendarView.tsx";
 import * as $Tasks_TaskCard from "./islands/Tasks/TaskCard.tsx";
+import * as $Tasks_TaskDetailView from "./islands/Tasks/TaskDetailView.tsx";
+import * as $Tasks_TaskFilters from "./islands/Tasks/TaskFilters.tsx";
+import * as $Tasks_TaskGrouping from "./islands/Tasks/TaskGrouping.tsx";
+import * as $Tasks_TaskListView from "./islands/Tasks/TaskListView.tsx";
+import * as $Tasks_TaskViewSelector from "./islands/Tasks/TaskViewSelector.tsx";
 import * as $Tasks_TasksList from "./islands/Tasks/TasksList.tsx";
+import * as $Tasks_WorkloadExport from "./islands/Tasks/WorkloadExport.tsx";
+import * as $Tasks_WorkloadMetrics from "./islands/Tasks/WorkloadMetrics.tsx";
+import * as $Tasks_WorkloadPreferences from "./islands/Tasks/WorkloadPreferences.tsx";
+import * as $Tasks_WorkloadSummary from "./islands/Tasks/WorkloadSummary.tsx";
 import * as $TeamDeveloperWelcomeOptions from "./islands/TeamDeveloperWelcomeOptions.tsx";
 import * as $UnauthorizedLogoutButton from "./islands/UnauthorizedLogoutButton.tsx";
 import * as $UserInfoCard from "./islands/UserInfoCard.tsx";
@@ -107,6 +126,7 @@ const manifest = {
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
     "./routes/api/login.ts": $api_login,
     "./routes/api/logout.ts": $api_logout,
+    "./routes/api/projects/[id]/members.ts": $api_projects_id_members,
     "./routes/api/projects/index.ts": $api_projects_index,
     "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/projects/members/[id].ts": $api_projects_members_id_,
@@ -118,13 +138,18 @@ const manifest = {
       $api_sprints_id_user_stories_userStoryId_,
     "./routes/api/sprints/index.ts": $api_sprints_index,
     "./routes/api/tasks/[id].ts": $api_tasks_id_,
+    "./routes/api/tasks/[id]/comments.ts": $api_tasks_id_comments,
+    "./routes/api/tasks/[id]/history.ts": $api_tasks_id_history,
+    "./routes/api/tasks/[id]/time.ts": $api_tasks_id_time,
     "./routes/api/tasks/index.ts": $api_tasks_index,
     "./routes/api/user-stories.ts": $api_user_stories,
     "./routes/api/user-stories/[id].ts": $api_user_stories_id_,
+    "./routes/api/users/[id].ts": $api_users_id_,
     "./routes/backlog/index.tsx": $backlog_index,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
+    "./routes/my-tasks.tsx": $my_tasks,
     "./routes/projects/[id].tsx": $projects_id_,
     "./routes/projects/[id]/members.tsx": $projects_id_members,
     "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
@@ -132,6 +157,7 @@ const manifest = {
     "./routes/register.tsx": $register,
     "./routes/sprints/[id].tsx": $sprints_id_,
     "./routes/sprints/[id]/add-user-stories.tsx": $sprints_id_add_user_stories,
+    "./routes/tasks/[id].tsx": $tasks_id_,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
     "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
@@ -181,8 +207,20 @@ const manifest = {
     "./islands/Sprints/SprintsList.tsx": $Sprints_SprintsList,
     "./islands/Tasks/CreateTaskForm.tsx": $Tasks_CreateTaskForm,
     "./islands/Tasks/EditTaskForm.tsx": $Tasks_EditTaskForm,
+    "./islands/Tasks/FilteredTasksList.tsx": $Tasks_FilteredTasksList,
+    "./islands/Tasks/MyTasksList.tsx": $Tasks_MyTasksList,
+    "./islands/Tasks/TaskCalendarView.tsx": $Tasks_TaskCalendarView,
     "./islands/Tasks/TaskCard.tsx": $Tasks_TaskCard,
+    "./islands/Tasks/TaskDetailView.tsx": $Tasks_TaskDetailView,
+    "./islands/Tasks/TaskFilters.tsx": $Tasks_TaskFilters,
+    "./islands/Tasks/TaskGrouping.tsx": $Tasks_TaskGrouping,
+    "./islands/Tasks/TaskListView.tsx": $Tasks_TaskListView,
+    "./islands/Tasks/TaskViewSelector.tsx": $Tasks_TaskViewSelector,
     "./islands/Tasks/TasksList.tsx": $Tasks_TasksList,
+    "./islands/Tasks/WorkloadExport.tsx": $Tasks_WorkloadExport,
+    "./islands/Tasks/WorkloadMetrics.tsx": $Tasks_WorkloadMetrics,
+    "./islands/Tasks/WorkloadPreferences.tsx": $Tasks_WorkloadPreferences,
+    "./islands/Tasks/WorkloadSummary.tsx": $Tasks_WorkloadSummary,
     "./islands/TeamDeveloperWelcomeOptions.tsx": $TeamDeveloperWelcomeOptions,
     "./islands/UnauthorizedLogoutButton.tsx": $UnauthorizedLogoutButton,
     "./islands/UserInfoCard.tsx": $UserInfoCard,

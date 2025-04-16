@@ -42,7 +42,7 @@ export default function HeaderNav() {
           </a>
           <a
             href="/register"
-            class="bg-white text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-md font-medium transition-colors"
+            class="hidden bg-white text-blue-600 hover:bg-blue-100 px-4 py-2 rounded-md font-medium transition-colors"
           >
             Registrarse
           </a>

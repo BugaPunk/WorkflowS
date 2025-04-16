@@ -1,9 +1,8 @@
 import { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
-import { UserRole } from "../../../models/user.ts";
-import { getKv } from "../../../utils/db.ts";
-import { TaskSchema, createTask, getUserStoryTasks, getUserTasks } from "../../../models/task.ts";
+import { TaskSchema, TaskStatus } from "../../../models/task.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
+import { TaskService } from "../../../services/backend/index.ts";
 
 export const handler = {
   // Obtener tareas
@@ -16,18 +15,30 @@ export const handler = {
     const url = new URL(req.url);
     const userStoryId = url.searchParams.get("userStoryId");
     const assignedTo = url.searchParams.get("assignedTo");
+    const projectId = url.searchParams.get("projectId");
+    const status = url.searchParams.get("status");
+    const search = url.searchParams.get("search");
 
     try {
       let tasks = [];
 
-      if (userStoryId) {
+      // Si se proporcionan filtros avanzados, usar el método de filtrado
+      if (projectId || status || search) {
+        tasks = await TaskService.getTasksWithFilters({
+          userStoryId: userStoryId || undefined,
+          projectId: projectId || undefined,
+          assignedTo: assignedTo || undefined,
+          status: status ? status.split(",").map((s) => s as TaskStatus) : undefined,
+          search: search || undefined,
+        });
+      } else if (userStoryId) {
         // Obtener tareas de una historia de usuario
-        tasks = await getUserStoryTasks(userStoryId);
+        tasks = await TaskService.getUserStoryTasks(userStoryId);
       } else if (assignedTo) {
         // Obtener tareas asignadas a un usuario
-        tasks = await getUserTasks(assignedTo);
+        tasks = await TaskService.getUserTasks(assignedTo);
       } else {
-        return errorResponse("Se requiere userStoryId o assignedTo", Status.BadRequest);
+        return errorResponse("Se requiere al menos un filtro", Status.BadRequest);
       }
 
       return successResponse({ tasks });
@@ -53,17 +64,8 @@ export const handler = {
         return errorResponse("Datos inválidos", Status.BadRequest);
       }
 
-      // Obtener la instancia de KV
-      const kv = getKv();
-
-      // Verificar que la historia de usuario existe
-      const userStoryEntry = await kv.get(["userStories", result.data.userStoryId]);
-      if (!userStoryEntry.value) {
-        return errorResponse("Historia de usuario no encontrada", Status.NotFound);
-      }
-
-      // Crear la tarea
-      const task = await createTask({
+      // Crear la tarea usando el servicio
+      const task = await TaskService.createTask({
         ...result.data,
         createdBy: session.userId,
       });
@@ -71,7 +73,10 @@ export const handler = {
       return successResponse({ task }, "Tarea creada exitosamente", Status.Created);
     } catch (error) {
       console.error("Error al crear tarea:", error);
+      if (error instanceof Error) {
+        return errorResponse(error.message, Status.BadRequest);
+      }
       return errorResponse("Error al procesar la solicitud", Status.BadRequest);
     }
-  }
+  },
 };

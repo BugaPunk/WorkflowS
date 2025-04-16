@@ -1,7 +1,7 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 // import { Head } from "$fresh/runtime.ts";
 import { getSession } from "../../../utils/session.ts";
-import { getUserStoryById } from "../../../services/userStoryService.ts";
+import { getUserStoryById } from "../../../models/userStory.ts";
 import { getProjectById } from "../../../models/project.ts";
 import { getUserStoryTasks } from "../../../models/task.ts";
 import { UserRole } from "../../../models/user.ts";
@@ -9,8 +9,8 @@ import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import TasksList from "../../../islands/Tasks/TasksList.tsx";
 
 interface UserStoryTasksPageData {
-  userStory: Awaited<ReturnType<typeof getUserStoryById>>;
-  project: Awaited<ReturnType<typeof getProjectById>>;
+  userStory: NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>;
+  project: NonNullable<Awaited<ReturnType<typeof getProjectById>>>;
   tasks: Awaited<ReturnType<typeof getUserStoryTasks>>;
   canManageTasks: boolean;
 }
@@ -108,14 +108,20 @@ export default function UserStoryTasksPage({ data }: PageProps<UserStoryTasksPag
               <h1 class="text-3xl font-bold text-gray-800">Tareas</h1>
             </div>
             <div class="flex items-center space-x-4">
-              <span class={`px-2 py-1 text-xs font-semibold rounded-full ${
-                userStory.status === "done" ? "bg-green-100 text-green-800" :
-                userStory.status === "in_progress" ? "bg-blue-100 text-blue-800" :
-                "bg-gray-100 text-gray-800"
-              }`}>
-                {userStory.status === "done" ? "Completada" :
-                 userStory.status === "in_progress" ? "En progreso" :
-                 "Pendiente"}
+              <span
+                class={`px-2 py-1 text-xs font-semibold rounded-full ${
+                  userStory.status === "done"
+                    ? "bg-green-100 text-green-800"
+                    : userStory.status === "in_progress"
+                      ? "bg-blue-100 text-blue-800"
+                      : "bg-gray-100 text-gray-800"
+                }`}
+              >
+                {userStory.status === "done"
+                  ? "Completada"
+                  : userStory.status === "in_progress"
+                    ? "En progreso"
+                    : "Pendiente"}
               </span>
               <span class="text-gray-600">Prioridad: {userStory.priority}</span>
             </div>

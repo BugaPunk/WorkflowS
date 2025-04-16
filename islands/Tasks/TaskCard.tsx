@@ -1,9 +1,11 @@
-import { useState } from "preact/hooks";
-import { Task, TaskStatus } from "../../models/task.ts";
+import { useState, useEffect } from "preact/hooks";
+import type { Task } from "../../models/task.ts";
+import { TaskStatus } from "../../models/task.ts";
 import { Button } from "../../components/Button.tsx";
 import Modal from "../Modal.tsx";
 import EditTaskForm from "./EditTaskForm.tsx";
 import { deleteTask, updateTask } from "../../services/taskService.ts";
+import { getUserById } from "../../services/userService.ts";
 
 interface TaskCardProps {
   task: Task;
@@ -17,6 +19,37 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [assignedUser, setAssignedUser] = useState<{
+    username: string;
+    firstName?: string;
+    lastName?: string;
+  } | null>(null);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
+
+  // Cargar datos del usuario asignado
+  useEffect(() => {
+    const loadAssignedUser = async () => {
+      if (!task.assignedTo) return;
+
+      setIsLoadingUser(true);
+      try {
+        const user = await getUserById(task.assignedTo);
+        if (user) {
+          setAssignedUser({
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+          });
+        }
+      } catch (error) {
+        console.error("Error al cargar usuario asignado:", error);
+      } finally {
+        setIsLoadingUser(false);
+      }
+    };
+
+    loadAssignedUser();
+  }, [task.assignedTo]);
 
   // Obtener color según el estado
   const getStatusColor = (status: TaskStatus) => {
@@ -89,7 +122,12 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
     <div class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200">
       <div class="p-4">
         <div class="flex justify-between items-start">
-          <h3 class="text-md font-semibold text-gray-800">{task.title}</h3>
+          <a
+            href={`/tasks/${task.id}`}
+            class="text-md font-semibold text-gray-800 hover:text-blue-600"
+          >
+            {task.title}
+          </a>
           {canManage && (
             <div class="flex space-x-2">
               <button
@@ -98,7 +136,13 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
                 class="text-blue-600 hover:text-blue-800"
                 title="Editar Tarea"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
                   <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                 </svg>
               </button>
@@ -108,8 +152,18 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
                 class="text-red-600 hover:text-red-800"
                 title="Eliminar Tarea"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </button>
             </div>
@@ -117,7 +171,9 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
         </div>
 
         <div class="mt-2">
-          <span class={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(task.status)}`}>
+          <span
+            class={`inline-block px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(task.status)}`}
+          >
             {getStatusText(task.status)}
           </span>
         </div>
@@ -131,7 +187,17 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
         {task.assignedTo && (
           <div class="mt-3 text-sm">
             <span class="text-gray-500">Asignada a:</span>
-            <span class="ml-1 font-medium">{task.assignedTo}</span>
+            {isLoadingUser ? (
+              <span class="ml-1 text-gray-400">Cargando...</span>
+            ) : assignedUser ? (
+              <span class="ml-1 font-medium">
+                {assignedUser.firstName && assignedUser.lastName
+                  ? `${assignedUser.firstName} ${assignedUser.lastName}`
+                  : assignedUser.username}
+              </span>
+            ) : (
+              <span class="ml-1 font-medium">{task.assignedTo}</span>
+            )}
           </div>
         )}
 
@@ -205,22 +271,15 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
 
         {isUpdatingStatus && (
           <div class="mt-4 flex justify-center">
-            <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+            <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600" />
           </div>
         )}
 
-        {error && (
-          <div class="mt-3 text-sm text-red-600">
-            {error}
-          </div>
-        )}
+        {error && <div class="mt-3 text-sm text-red-600">{error}</div>}
       </div>
 
       {/* Modal para editar tarea */}
-      <Modal
-        show={showEditModal}
-        onClose={() => setShowEditModal(false)}
-      >
+      <Modal show={showEditModal} onClose={() => setShowEditModal(false)}>
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-4">Editar Tarea</h2>
           <EditTaskForm
@@ -235,10 +294,7 @@ export default function TaskCard({ task, onUpdate, canManage }: TaskCardProps) {
       </Modal>
 
       {/* Modal para confirmar eliminación */}
-      <Modal
-        show={showDeleteConfirmModal}
-        onClose={() => setShowDeleteConfirmModal(false)}
-      >
+      <Modal show={showDeleteConfirmModal} onClose={() => setShowDeleteConfirmModal(false)}>
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-4">Confirmar eliminación</h2>
           {error && (
