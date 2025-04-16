@@ -1,20 +1,16 @@
 import { useState, useEffect } from "preact/hooks";
-import type { Task, TaskComment, TaskHistoryEntry } from "../../models/task.ts";
+import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
 import type { UserStory } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
 import type { User } from "../../models/user.ts";
 import { Button } from "../../components/Button.tsx";
 import { updateTask } from "../../services/taskService.ts";
-import {
-  getTaskComments,
-  addTaskComment,
-  getTaskHistory,
-  logTaskTime,
-} from "../../services/taskDetailService.ts";
-import { getUserById } from "../../services/userService.ts";
+import { logTaskTime } from "../../services/taskDetailService.ts";
 import Modal from "../Modal.tsx";
 import EditTaskForm from "./EditTaskForm.tsx";
+import TaskComments from "./TaskComments.tsx";
+import TaskHistory from "./TaskHistory.tsx";
 
 interface TaskDetailViewProps {
   task: Task;
@@ -38,17 +34,29 @@ export default function TaskDetailView({
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
-  // Estados para comentarios
-  const [comments, setComments] = useState<TaskComment[]>([]);
-  const [isLoadingComments, setIsLoadingComments] = useState(false);
-  const [newComment, setNewComment] = useState("");
-  const [isAddingComment, setIsAddingComment] = useState(false);
-  const [commentUsers, setCommentUsers] = useState<Record<string, User>>({});
+  // Estado para la sesión actual
+  const [currentUserId, setCurrentUserId] = useState<string>("");
 
-  // Estados para historial
-  const [history, setHistory] = useState<TaskHistoryEntry[]>([]);
-  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
-  const [historyUsers, setHistoryUsers] = useState<Record<string, User>>({});
+  // Obtener el ID del usuario actual
+  useEffect(() => {
+    const getUserId = async () => {
+      try {
+        const response = await fetch("/api/session");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.user?.id) {
+            setCurrentUserId(data.user.id);
+          }
+        }
+      } catch (error) {
+        console.error("Error al obtener la sesión:", error);
+      }
+    };
+
+    getUserId();
+  }, []);
+
+  // No necesitamos estados para historial ya que ahora usamos un componente separado
 
   // Estados para registro de tiempo
   const [timeToLog, setTimeToLog] = useState("");
@@ -56,74 +64,6 @@ export default function TaskDetailView({
 
   // Estado general
   const [error, setError] = useState<string | null>(null);
-
-  // Cargar comentarios
-  useEffect(() => {
-    const loadComments = async () => {
-      setIsLoadingComments(true);
-      try {
-        const taskComments = await getTaskComments(task.id);
-        setComments(taskComments);
-
-        // Cargar información de usuarios para los comentarios
-        const userIds = new Set(taskComments.map((comment) => comment.userId));
-        const users: Record<string, User> = {};
-
-        for (const userId of userIds) {
-          try {
-            const user = await getUserById(userId);
-            if (user) {
-              users[userId] = user;
-            }
-          } catch (error) {
-            console.error(`Error al cargar usuario ${userId}:`, error);
-          }
-        }
-
-        setCommentUsers(users);
-      } catch (err) {
-        console.error("Error al cargar comentarios:", err);
-      } finally {
-        setIsLoadingComments(false);
-      }
-    };
-
-    loadComments();
-  }, [task.id]);
-
-  // Cargar historial
-  useEffect(() => {
-    const loadHistory = async () => {
-      setIsLoadingHistory(true);
-      try {
-        const taskHistory = await getTaskHistory(task.id);
-        setHistory(taskHistory);
-
-        // Cargar información de usuarios para el historial
-        const userIds = new Set(taskHistory.map((entry) => entry.userId));
-        const users: Record<string, User> = {};
-
-        for (const userId of userIds) {
-          try {
-            const user = await getUserById(userId);
-            if (user) {
-              users[userId] = user;
-            }
-          } catch (error) {
-            console.error(`Error al cargar usuario ${userId}:`, error);
-          }
-        }
-
-        setHistoryUsers(users);
-      } catch (err) {
-        console.error("Error al cargar historial:", err);
-      } finally {
-        setIsLoadingHistory(false);
-      }
-    };
-
-    loadHistory();
-  }, [task.id]);
 
   // Función para cambiar el estado de la tarea
   const handleStatusChange = async (newStatus: TaskStatus) => {
@@ -139,43 +79,6 @@ export default function TaskDetailView({
       setError(err instanceof Error ? err.message : "Error al actualizar el estado de la tarea");
     } finally {
       setIsUpdatingStatus(false);
-    }
-  };
-
-  // Función para añadir un comentario
-  const handleAddComment = async (e: Event) => {
-    e.preventDefault();
-
-    if (!newComment.trim()) return;
-
-    setIsAddingComment(true);
-    setError(null);
-
-    try {
-      const comment = await addTaskComment(task.id, newComment);
-
-      // Actualizar la lista de comentarios
-      setComments([...comments, comment]);
-      setNewComment("");
-
-      // Actualizar la información del usuario si es necesario
-      if (!commentUsers[comment.userId]) {
-        try {
-          const user = await getUserById(comment.userId);
-          if (user) {
-            setCommentUsers((prev) => ({
-              ...prev,
-              [comment.userId]: user,
-            }));
-          }
-        } catch (error) {
-          console.error(`Error al cargar usuario ${comment.userId}:`, error);
-        }
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Error al añadir comentario");
-    } finally {
-      setIsAddingComment(false);
     }
   };
 
@@ -258,47 +161,6 @@ export default function TaskDetailView({
       hour: "2-digit",
       minute: "2-digit",
     });
-  };
-
-  // Obtener nombre de usuario
-  const getUserName = (userId: string, userMap: Record<string, User> = {}) => {
-    const user = userMap[userId] || historyUsers[userId] || commentUsers[userId];
-    if (!user) return userId;
-
-    if (user.firstName && user.lastName) {
-      return `${user.firstName} ${user.lastName}`;
-    }
-
-    return user.username;
-  };
-
-  // Obtener nombre legible del campo
-  const getFieldName = (field: string) => {
-    const fieldNames: Record<string, string> = {
-      title: "Título",
-      description: "Descripción",
-      status: "Estado",
-      assignedTo: "Asignado a",
-      estimatedHours: "Horas estimadas",
-      spentHours: "Horas dedicadas",
-    };
-
-    return fieldNames[field] || field;
-  };
-
-  // Obtener valor legible
-  const getReadableValue = (field: string, value: string) => {
-    if (field === "status") {
-      return getStatusText(value as TaskStatus);
-    }
-
-    if (field === "assignedTo") {
-      // Aquí podríamos buscar el nombre del usuario, pero por simplicidad
-      // dejamos el ID por ahora
-      return value || "No asignado";
-    }
-
-    return value || "-";
   };
 
   return (
@@ -425,100 +287,10 @@ export default function TaskDetailView({
         </div>
 
         {/* Historial de cambios */}
-        <div class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200 mb-6">
-          <div class="p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Historial de cambios</h2>
-
-            {isLoadingHistory ? (
-              <div class="flex justify-center py-4">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-              </div>
-            ) : history.length > 0 ? (
-              <div class="space-y-4">
-                {history.map((entry) => (
-                  <div key={entry.id} class="border-b border-gray-200 pb-3 last:border-0">
-                    <div class="flex justify-between items-start">
-                      <div>
-                        <span class="font-medium">{getUserName(entry.userId, historyUsers)}</span>
-                        <span class="text-gray-600"> cambió </span>
-                        <span class="font-medium">{getFieldName(entry.field)}</span>
-                      </div>
-                      <span class="text-sm text-gray-500">{formatDate(entry.createdAt)}</span>
-                    </div>
-                    <div class="mt-1 text-sm">
-                      <span class="text-gray-600">De: </span>
-                      <span class="font-medium">
-                        {getReadableValue(entry.field, entry.oldValue)}
-                      </span>
-                      <span class="text-gray-600"> a: </span>
-                      <span class="font-medium">
-                        {getReadableValue(entry.field, entry.newValue)}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p class="text-gray-500 italic">No hay cambios registrados</p>
-            )}
-          </div>
-        </div>
+        <TaskHistory taskId={task.id} />
 
         {/* Comentarios */}
-        <div class="bg-white shadow-sm rounded-lg overflow-hidden border border-gray-200">
-          <div class="p-6">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Comentarios</h2>
-
-            {/* Lista de comentarios */}
-            {isLoadingComments ? (
-              <div class="flex justify-center py-4">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
-              </div>
-            ) : comments.length > 0 ? (
-              <div class="space-y-4 mb-6">
-                {comments.map((comment) => (
-                  <div key={comment.id} class="bg-gray-50 p-4 rounded-lg">
-                    <div class="flex justify-between items-start">
-                      <span class="font-medium">{getUserName(comment.userId, commentUsers)}</span>
-                      <span class="text-sm text-gray-500">{formatDate(comment.createdAt)}</span>
-                    </div>
-                    <p class="mt-2 text-gray-700 whitespace-pre-line">{comment.content}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p class="text-gray-500 italic mb-6">No hay comentarios</p>
-            )}
-
-            {/* Formulario para añadir comentario */}
-            <form onSubmit={handleAddComment}>
-              <div class="mb-3">
-                <label class="block text-sm font-medium text-gray-700 mb-1" htmlFor="newComment">
-                  Añadir comentario
-                </label>
-                <textarea
-                  id="newComment"
-                  name="newComment"
-                  rows={3}
-                  value={newComment}
-                  onChange={(e) => setNewComment((e.target as HTMLTextAreaElement).value)}
-                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Escribe tu comentario aquí..."
-                  required
-                />
-              </div>
-              <div class="flex justify-end">
-                <Button
-                  type="submit"
-                  disabled={isAddingComment || !newComment.trim()}
-                  class="bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  {isAddingComment ? "Enviando..." : "Enviar comentario"}
-                </Button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <TaskComments taskId={task.id} userId={currentUserId} />
       </div>
 
       {/* Panel lateral (1/4 del ancho) */}

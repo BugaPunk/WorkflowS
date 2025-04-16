@@ -33,12 +33,22 @@ export const TaskSchema = z.object({
 export type TaskData = z.infer<typeof TaskSchema>;
 
 // Tipo para el historial de cambios
+export enum TaskHistoryType {
+  FIELD_CHANGE = "field_change",
+  STATUS_CHANGE = "status_change",
+  ASSIGNMENT = "assignment",
+  TIME_LOGGED = "time_logged",
+  COMMENT_ADDED = "comment_added",
+}
+
 export interface TaskHistoryEntry extends Model {
   taskId: string;
   userId: string;
+  type: TaskHistoryType;
   field: string;
   oldValue: string;
   newValue: string;
+  description?: string; // Descripción legible del cambio
 }
 
 // Tipo para comentarios
@@ -160,18 +170,62 @@ export async function updateTask(
 
       // Solo registrar si el valor ha cambiado
       if (oldValue !== newValue) {
+        // Determinar el tipo de cambio
+        let type = TaskHistoryType.FIELD_CHANGE;
+        let description;
+
+        if (field === "status") {
+          type = TaskHistoryType.STATUS_CHANGE;
+          description = `Estado cambiado de "${getStatusText(oldValue as TaskStatus)}" a "${getStatusText(newValue as TaskStatus)}"`;
+        } else if (field === "assignedTo") {
+          type = TaskHistoryType.ASSIGNMENT;
+          if (!oldValue && newValue) {
+            description = `Tarea asignada`;
+          } else if (oldValue && !newValue) {
+            description = `Asignación removida`;
+          } else {
+            description = `Tarea reasignada`;
+          }
+        } else if (field === "spentHours") {
+          type = TaskHistoryType.TIME_LOGGED;
+          const oldHours = oldValue ? Number(oldValue) : 0;
+          const newHours = newValue ? Number(newValue) : 0;
+          const hoursLogged = newHours - oldHours;
+          description = `${hoursLogged > 0 ? `${hoursLogged} horas registradas` : `Horas ajustadas`}`;
+        }
+
         await addTaskHistoryEntry({
           taskId: id,
           userId,
+          type,
           field,
           oldValue: oldValue !== undefined ? String(oldValue) : "",
           newValue: newValue !== undefined ? String(newValue) : "",
+          description,
         });
       }
     }
   }
 
   return updatedTask;
+}
+
+// Función auxiliar para obtener texto legible del estado
+function getStatusText(status: TaskStatus): string {
+  switch (status) {
+    case TaskStatus.TODO:
+      return "Por hacer";
+    case TaskStatus.IN_PROGRESS:
+      return "En progreso";
+    case TaskStatus.REVIEW:
+      return "En revisión";
+    case TaskStatus.DONE:
+      return "Completada";
+    case TaskStatus.BLOCKED:
+      return "Bloqueada";
+    default:
+      return String(status);
+  }
 }
 
 // Añadir una entrada al historial de cambios
@@ -184,9 +238,11 @@ export async function addTaskHistoryEntry(
   const entry = createModel<Omit<TaskHistoryEntry, keyof Model>>({
     taskId: entryData.taskId,
     userId: entryData.userId,
+    type: entryData.type,
     field: entryData.field,
     oldValue: entryData.oldValue,
     newValue: entryData.newValue,
+    description: entryData.description,
   });
 
   // Guardar la entrada de historial
@@ -247,6 +303,17 @@ export async function addTaskComment(commentData: {
     [...TASK_COLLECTIONS.TASK_COMMENTS, "by_task", commentData.taskId, comment.id],
     comment.id
   );
+
+  // Registrar en el historial la adición del comentario
+  await addTaskHistoryEntry({
+    taskId: commentData.taskId,
+    userId: commentData.userId,
+    type: TaskHistoryType.COMMENT_ADDED,
+    field: "comments",
+    oldValue: "",
+    newValue: comment.id,
+    description: "Comentario añadido",
+  });
 
   return comment;
 }

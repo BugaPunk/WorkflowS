@@ -27,7 +27,7 @@ export default function ProductBacklog({
   currentProject,
   isProductOwner,
   isAdmin,
-  _userId
+  _userId,
 }: ProductBacklogProps) {
   // Estado para las historias de usuario
   const [backlogItems, setBacklogItems] = useState<UserStory[]>(initialBacklogItems);
@@ -46,6 +46,7 @@ export default function ProductBacklog({
   // Estado para drag and drop
   const [draggedItem, setDraggedItem] = useState<UserStory | null>(null);
   const [_isDragging, setIsDragging] = useState(false);
+  const [highlightedZone, setHighlightedZone] = useState<UserStoryPriority | null>(null);
 
   // Cargar historias de usuario (memoizado para evitar recreaciones innecesarias)
   const loadBacklogItems = useCallback(async () => {
@@ -81,16 +82,15 @@ export default function ProductBacklog({
 
     // Filtrar por prioridad
     if (priorityFilter !== "all") {
-      result = result.filter(item => item.priority === priorityFilter);
+      result = result.filter((item) => item.priority === priorityFilter);
     }
 
     // Filtrar por búsqueda
     if (searchQuery.trim() !== "") {
       const query = searchQuery.toLowerCase();
       result = result.filter(
-        item =>
-          item.title.toLowerCase().includes(query) ||
-          item.description.toLowerCase().includes(query)
+        (item) =>
+          item.title.toLowerCase().includes(query) || item.description.toLowerCase().includes(query)
       );
     }
 
@@ -100,7 +100,7 @@ export default function ProductBacklog({
   // Efecto para cargar historias cuando cambia el proyecto
   useEffect(() => {
     loadBacklogItems();
-  }, [projectId]);
+  }, [loadBacklogItems]);
 
   // Manejadores para modales
   const handleCreateUserStory = () => {
@@ -132,9 +132,22 @@ export default function ProductBacklog({
   const handleDragEnd = () => {
     setDraggedItem(null);
     setIsDragging(false);
+    setHighlightedZone(null);
+  };
+
+  const handleDragOver = (priority: UserStoryPriority) => {
+    if (draggedItem && draggedItem.priority !== priority) {
+      setHighlightedZone(priority);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setHighlightedZone(null);
   };
 
   const handleDrop = async (targetPriority: UserStoryPriority) => {
+    setHighlightedZone(null);
+
     if (!draggedItem || draggedItem.priority === targetPriority) {
       return;
     }
@@ -251,12 +264,26 @@ export default function ProductBacklog({
 
         {isLoading ? (
           <div class="flex justify-center items-center py-12">
-            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
           </div>
         ) : filteredItems.length === 0 ? (
           <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-16 w-16 mx-auto text-gray-400 mb-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+              role="img"
+            >
+              <title>No hay historias de usuario</title>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <h3 class="text-lg font-medium text-gray-900 mb-2">No hay elementos en el backlog</h3>
             <p class="text-gray-600 mb-4">
@@ -279,24 +306,26 @@ export default function ProductBacklog({
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Sección Crítica */}
               <div
-                class="bg-red-50 border border-red-200 rounded-lg p-4"
+                class={`bg-red-50 border border-red-200 rounded-lg p-4 drop-zone priority-critical ${highlightedZone === UserStoryPriority.CRITICAL ? "drop-zone-highlight" : ""}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  handleDragOver(UserStoryPriority.CRITICAL);
                 }}
+                onDragLeave={() => handleDragLeave()}
                 onDrop={(e) => {
                   e.preventDefault();
                   handleDrop(UserStoryPriority.CRITICAL);
                 }}
               >
                 <h3 class="font-semibold text-red-800 mb-3 flex items-center">
-                  <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
+                  <span class="w-3 h-3 bg-red-500 rounded-full mr-2" />
                   Prioridad Crítica
                 </h3>
                 <div class="space-y-4">
                   {filteredItems
-                    .filter(item => item.priority === UserStoryPriority.CRITICAL)
-                    .map(item => (
+                    .filter((item) => item.priority === UserStoryPriority.CRITICAL)
+                    .map((item) => (
                       <BacklogItemCard
                         key={item.id}
                         userStory={item}
@@ -314,24 +343,26 @@ export default function ProductBacklog({
 
               {/* Sección Alta */}
               <div
-                class="bg-orange-50 border border-orange-200 rounded-lg p-4"
+                class={`bg-orange-50 border border-orange-200 rounded-lg p-4 drop-zone priority-high ${highlightedZone === UserStoryPriority.HIGH ? "drop-zone-highlight" : ""}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  handleDragOver(UserStoryPriority.HIGH);
                 }}
+                onDragLeave={() => handleDragLeave()}
                 onDrop={(e) => {
                   e.preventDefault();
                   handleDrop(UserStoryPriority.HIGH);
                 }}
               >
                 <h3 class="font-semibold text-orange-800 mb-3 flex items-center">
-                  <span class="w-3 h-3 bg-orange-500 rounded-full mr-2"></span>
+                  <span class="w-3 h-3 bg-orange-500 rounded-full mr-2" />
                   Prioridad Alta
                 </h3>
                 <div class="space-y-4">
                   {filteredItems
-                    .filter(item => item.priority === UserStoryPriority.HIGH)
-                    .map(item => (
+                    .filter((item) => item.priority === UserStoryPriority.HIGH)
+                    .map((item) => (
                       <BacklogItemCard
                         key={item.id}
                         userStory={item}
@@ -349,24 +380,26 @@ export default function ProductBacklog({
 
               {/* Sección Media */}
               <div
-                class="bg-yellow-50 border border-yellow-200 rounded-lg p-4"
+                class={`bg-yellow-50 border border-yellow-200 rounded-lg p-4 drop-zone priority-medium ${highlightedZone === UserStoryPriority.MEDIUM ? "drop-zone-highlight" : ""}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  handleDragOver(UserStoryPriority.MEDIUM);
                 }}
+                onDragLeave={() => handleDragLeave()}
                 onDrop={(e) => {
                   e.preventDefault();
                   handleDrop(UserStoryPriority.MEDIUM);
                 }}
               >
                 <h3 class="font-semibold text-yellow-800 mb-3 flex items-center">
-                  <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
+                  <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2" />
                   Prioridad Media
                 </h3>
                 <div class="space-y-4">
                   {filteredItems
-                    .filter(item => item.priority === UserStoryPriority.MEDIUM)
-                    .map(item => (
+                    .filter((item) => item.priority === UserStoryPriority.MEDIUM)
+                    .map((item) => (
                       <BacklogItemCard
                         key={item.id}
                         userStory={item}
@@ -384,24 +417,26 @@ export default function ProductBacklog({
 
               {/* Sección Baja */}
               <div
-                class="bg-green-50 border border-green-200 rounded-lg p-4"
+                class={`bg-green-50 border border-green-200 rounded-lg p-4 drop-zone priority-low ${highlightedZone === UserStoryPriority.LOW ? "drop-zone-highlight" : ""}`}
                 onDragOver={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  handleDragOver(UserStoryPriority.LOW);
                 }}
+                onDragLeave={() => handleDragLeave()}
                 onDrop={(e) => {
                   e.preventDefault();
                   handleDrop(UserStoryPriority.LOW);
                 }}
               >
                 <h3 class="font-semibold text-green-800 mb-3 flex items-center">
-                  <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
+                  <span class="w-3 h-3 bg-green-500 rounded-full mr-2" />
                   Prioridad Baja
                 </h3>
                 <div class="space-y-4">
                   {filteredItems
-                    .filter(item => item.priority === UserStoryPriority.LOW)
-                    .map(item => (
+                    .filter((item) => item.priority === UserStoryPriority.LOW)
+                    .map((item) => (
                       <BacklogItemCard
                         key={item.id}
                         userStory={item}
@@ -422,14 +457,12 @@ export default function ProductBacklog({
       </div>
 
       {/* Modal para crear historia de usuario */}
-      <Modal
-        show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)} maxWidth="md">
         <div class="p-6">
           <h2 class="text-lg font-medium text-gray-900 mb-4">
-            {projectId ? "Crear Historia de Usuario para el Proyecto Actual" : "Crear Nueva Historia de Usuario"}
+            {projectId
+              ? "Crear Historia de Usuario para el Proyecto Actual"
+              : "Crear Nueva Historia de Usuario"}
           </h2>
           <CreateUserStoryForm
             projectId={projectId}
@@ -441,15 +474,9 @@ export default function ProductBacklog({
       </Modal>
 
       {/* Modal para editar historia de usuario */}
-      <Modal
-        show={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showEditModal} onClose={() => setShowEditModal(false)} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Editar Historia de Usuario
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Editar Historia de Usuario</h2>
           {selectedUserStory && (
             <EditUserStoryForm
               userStory={selectedUserStory}

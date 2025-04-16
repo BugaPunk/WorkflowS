@@ -9,6 +9,7 @@ import * as $admin_index from "./routes/admin/index.tsx";
 import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
+import * as $api_comments_taskId_ from "./routes/api/comments/[taskId].ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_logout from "./routes/api/logout.ts";
 import * as $api_projects_id_members from "./routes/api/projects/[id]/members.ts";
@@ -41,6 +42,9 @@ import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
 import * as $sprints_id_ from "./routes/sprints/[id].tsx";
 import * as $sprints_id_add_user_stories from "./routes/sprints/[id]/add-user-stories.tsx";
+import * as $sprints_create from "./routes/sprints/create.tsx";
+import * as $sprints_index from "./routes/sprints/index.tsx";
+import * as $sprints_plan from "./routes/sprints/plan.tsx";
 import * as $tasks_id_ from "./routes/tasks/[id].tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
@@ -80,18 +84,23 @@ import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
 import * as $Sprints_AddUserStoriesToSprint from "./islands/Sprints/AddUserStoriesToSprint.tsx";
 import * as $Sprints_CreateSprintForm from "./islands/Sprints/CreateSprintForm.tsx";
+import * as $Sprints_CreateSprintPage from "./islands/Sprints/CreateSprintPage.tsx";
 import * as $Sprints_EditSprintForm from "./islands/Sprints/EditSprintForm.tsx";
 import * as $Sprints_SprintCard from "./islands/Sprints/SprintCard.tsx";
+import * as $Sprints_SprintPlanningPage from "./islands/Sprints/SprintPlanningPage.tsx";
 import * as $Sprints_SprintsList from "./islands/Sprints/SprintsList.tsx";
+import * as $Sprints_SprintsOverview from "./islands/Sprints/SprintsOverview.tsx";
 import * as $Tasks_CreateTaskForm from "./islands/Tasks/CreateTaskForm.tsx";
 import * as $Tasks_EditTaskForm from "./islands/Tasks/EditTaskForm.tsx";
 import * as $Tasks_FilteredTasksList from "./islands/Tasks/FilteredTasksList.tsx";
 import * as $Tasks_MyTasksList from "./islands/Tasks/MyTasksList.tsx";
 import * as $Tasks_TaskCalendarView from "./islands/Tasks/TaskCalendarView.tsx";
 import * as $Tasks_TaskCard from "./islands/Tasks/TaskCard.tsx";
+import * as $Tasks_TaskComments from "./islands/Tasks/TaskComments.tsx";
 import * as $Tasks_TaskDetailView from "./islands/Tasks/TaskDetailView.tsx";
 import * as $Tasks_TaskFilters from "./islands/Tasks/TaskFilters.tsx";
 import * as $Tasks_TaskGrouping from "./islands/Tasks/TaskGrouping.tsx";
+import * as $Tasks_TaskHistory from "./islands/Tasks/TaskHistory.tsx";
 import * as $Tasks_TaskListView from "./islands/Tasks/TaskListView.tsx";
 import * as $Tasks_TaskViewSelector from "./islands/Tasks/TaskViewSelector.tsx";
 import * as $Tasks_TasksList from "./islands/Tasks/TasksList.tsx";
@@ -124,6 +133,7 @@ const manifest = {
     "./routes/admin/users.tsx": $admin_users,
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
+    "./routes/api/comments/[taskId].ts": $api_comments_taskId_,
     "./routes/api/login.ts": $api_login,
     "./routes/api/logout.ts": $api_logout,
     "./routes/api/projects/[id]/members.ts": $api_projects_id_members,
@@ -157,6 +167,9 @@ const manifest = {
     "./routes/register.tsx": $register,
     "./routes/sprints/[id].tsx": $sprints_id_,
     "./routes/sprints/[id]/add-user-stories.tsx": $sprints_id_add_user_stories,
+    "./routes/sprints/create.tsx": $sprints_create,
+    "./routes/sprints/index.tsx": $sprints_index,
+    "./routes/sprints/plan.tsx": $sprints_plan,
     "./routes/tasks/[id].tsx": $tasks_id_,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
@@ -202,18 +215,23 @@ const manifest = {
     "./islands/Sprints/AddUserStoriesToSprint.tsx":
       $Sprints_AddUserStoriesToSprint,
     "./islands/Sprints/CreateSprintForm.tsx": $Sprints_CreateSprintForm,
+    "./islands/Sprints/CreateSprintPage.tsx": $Sprints_CreateSprintPage,
     "./islands/Sprints/EditSprintForm.tsx": $Sprints_EditSprintForm,
     "./islands/Sprints/SprintCard.tsx": $Sprints_SprintCard,
+    "./islands/Sprints/SprintPlanningPage.tsx": $Sprints_SprintPlanningPage,
     "./islands/Sprints/SprintsList.tsx": $Sprints_SprintsList,
+    "./islands/Sprints/SprintsOverview.tsx": $Sprints_SprintsOverview,
     "./islands/Tasks/CreateTaskForm.tsx": $Tasks_CreateTaskForm,
     "./islands/Tasks/EditTaskForm.tsx": $Tasks_EditTaskForm,
     "./islands/Tasks/FilteredTasksList.tsx": $Tasks_FilteredTasksList,
     "./islands/Tasks/MyTasksList.tsx": $Tasks_MyTasksList,
     "./islands/Tasks/TaskCalendarView.tsx": $Tasks_TaskCalendarView,
     "./islands/Tasks/TaskCard.tsx": $Tasks_TaskCard,
+    "./islands/Tasks/TaskComments.tsx": $Tasks_TaskComments,
     "./islands/Tasks/TaskDetailView.tsx": $Tasks_TaskDetailView,
     "./islands/Tasks/TaskFilters.tsx": $Tasks_TaskFilters,
     "./islands/Tasks/TaskGrouping.tsx": $Tasks_TaskGrouping,
+    "./islands/Tasks/TaskHistory.tsx": $Tasks_TaskHistory,
     "./islands/Tasks/TaskListView.tsx": $Tasks_TaskListView,
     "./islands/Tasks/TaskViewSelector.tsx": $Tasks_TaskViewSelector,
     "./islands/Tasks/TasksList.tsx": $Tasks_TasksList,
