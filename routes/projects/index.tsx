@@ -54,7 +54,7 @@ export default function ProjectsPage({ data }: { data: ProjectsPageProps }) {
   const isAdmin = session.role === UserRole.ADMIN;
 
   return (
-    <MainLayout title="Proyectos - WorkflowS">
+    <MainLayout title="Proyectos - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           <ProjectsList

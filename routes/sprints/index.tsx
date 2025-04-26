@@ -7,6 +7,12 @@ import { getProjectSprints } from "../../models/sprint.ts";
 import SprintsOverview from "../../islands/Sprints/SprintsOverview.tsx";
 
 interface SprintsPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   projects: Awaited<ReturnType<typeof getUserProjects>>;
   sprintsByProject: Record<string, Awaited<ReturnType<typeof getProjectSprints>>>;
   canManageSprints: boolean;
@@ -40,6 +46,7 @@ export const handler: Handlers<SprintsPageData | null> = {
     const canManageSprints = isAdmin || isScrumMaster;
 
     return ctx.render({
+      session,
       projects,
       sprintsByProject,
       canManageSprints,
@@ -62,10 +69,10 @@ export default function SprintsPage({ data }: PageProps<SprintsPageData | null>)
     );
   }
 
-  const { projects, sprintsByProject, canManageSprints } = data;
+  const { session, projects, sprintsByProject, canManageSprints } = data;
 
   return (
-    <MainLayout title="Sprints - WorkflowS">
+    <MainLayout title="Sprints - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}

@@ -78,7 +78,7 @@ export default function BacklogPage({ data }: { data: BacklogPageProps }) {
   const isAdmin = session.role === UserRole.ADMIN;
 
   return (
-    <MainLayout title="Product Backlog - WorkflowS">
+    <MainLayout title="Product Backlog - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           <ProductBacklog

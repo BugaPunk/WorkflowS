@@ -10,6 +10,13 @@ import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
 import * as $api_comments_taskId_ from "./routes/api/comments/[taskId].ts";
+import * as $api_deliverables_id_ from "./routes/api/deliverables/[id].tsx";
+import * as $api_deliverables_id_attachments from "./routes/api/deliverables/[id]/attachments.tsx";
+import * as $api_deliverables_id_submit from "./routes/api/deliverables/[id]/submit.tsx";
+import * as $api_deliverables_index from "./routes/api/deliverables/index.tsx";
+import * as $api_evaluations_id_ from "./routes/api/evaluations/[id].tsx";
+import * as $api_evaluations_id_finalize from "./routes/api/evaluations/[id]/finalize.tsx";
+import * as $api_evaluations_index from "./routes/api/evaluations/index.tsx";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_logout from "./routes/api/logout.ts";
 import * as $api_projects_id_members from "./routes/api/projects/[id]/members.ts";
@@ -17,6 +24,9 @@ import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_projects_members_id_ from "./routes/api/projects/members/[id].ts";
 import * as $api_register from "./routes/api/register.ts";
+import * as $api_rubrics_id_ from "./routes/api/rubrics/[id].tsx";
+import * as $api_rubrics_id_duplicate from "./routes/api/rubrics/[id]/duplicate.tsx";
+import * as $api_rubrics_index from "./routes/api/rubrics/index.tsx";
 import * as $api_session from "./routes/api/session.ts";
 import * as $api_sprints_id_ from "./routes/api/sprints/[id].ts";
 import * as $api_sprints_id_user_stories from "./routes/api/sprints/[id]/user-stories.ts";
@@ -31,15 +41,23 @@ import * as $api_user_stories from "./routes/api/user-stories.ts";
 import * as $api_user_stories_id_ from "./routes/api/user-stories/[id].ts";
 import * as $api_users_id_ from "./routes/api/users/[id].ts";
 import * as $backlog_index from "./routes/backlog/index.tsx";
+import * as $deliverables_id_evaluate from "./routes/deliverables/[id]/evaluate.tsx";
+import * as $evaluations_id_ from "./routes/evaluations/[id].tsx";
+import * as $evaluations_index from "./routes/evaluations/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
+import * as $my_evaluations_index from "./routes/my-evaluations/index.tsx";
 import * as $my_tasks from "./routes/my-tasks.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $projects_id_members from "./routes/projects/[id]/members.tsx";
 import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
+import * as $rubrics_id_ from "./routes/rubrics/[id].tsx";
+import * as $rubrics_id_edit from "./routes/rubrics/[id]/edit.tsx";
+import * as $rubrics_create from "./routes/rubrics/create.tsx";
+import * as $rubrics_index from "./routes/rubrics/index.tsx";
 import * as $sprints_id_ from "./routes/sprints/[id].tsx";
 import * as $sprints_id_add_user_stories from "./routes/sprints/[id]/add-user-stories.tsx";
 import * as $sprints_create from "./routes/sprints/create.tsx";
@@ -54,6 +72,10 @@ import * as $welcome from "./routes/welcome.tsx";
 import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
 import * as $AdminUsersList from "./islands/AdminUsersList.tsx";
 import * as $AdminWelcomeOptions from "./islands/AdminWelcomeOptions.tsx";
+import * as $AppShell from "./islands/AppShell.tsx";
+import * as $AppShellExternal from "./islands/AppShellExternal.tsx";
+import * as $AppSidebar from "./islands/AppSidebar.tsx";
+import * as $AppSidebarExternal from "./islands/AppSidebarExternal.tsx";
 import * as $AssignProjectForm from "./islands/AssignProjectForm.tsx";
 import * as $Backlog_BacklogFilters from "./islands/Backlog/BacklogFilters.tsx";
 import * as $Backlog_BacklogHeader from "./islands/Backlog/BacklogHeader.tsx";
@@ -66,22 +88,46 @@ import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
 import * as $DropdownMenu from "./islands/DropdownMenu.tsx";
 import * as $EditProjectForm from "./islands/EditProjectForm.tsx";
 import * as $EmptyProjectsMessage from "./islands/EmptyProjectsMessage.tsx";
+import * as $Evaluations_DeliverableDetails from "./islands/Evaluations/DeliverableDetails.tsx";
+import * as $Evaluations_EvaluationCard from "./islands/Evaluations/EvaluationCard.tsx";
+import * as $Evaluations_EvaluationForm from "./islands/Evaluations/EvaluationForm.tsx";
+import * as $Evaluations_EvaluationHistory from "./islands/Evaluations/EvaluationHistory.tsx";
+import * as $Evaluations_EvaluationManager from "./islands/Evaluations/EvaluationManager.tsx";
+import * as $Evaluations_EvaluationStats from "./islands/Evaluations/EvaluationStats.tsx";
+import * as $Evaluations_EvaluationView from "./islands/Evaluations/EvaluationView.tsx";
+import * as $Evaluations_PendingDeliverablesList from "./islands/Evaluations/PendingDeliverablesList.tsx";
+import * as $Evaluations_RubricSelector from "./islands/Evaluations/RubricSelector.tsx";
+import * as $Evaluations_StudentEvaluationsList from "./islands/Evaluations/StudentEvaluationsList.tsx";
 import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $LogoutButton from "./islands/LogoutButton.tsx";
 import * as $Modal from "./islands/Modal.tsx";
+import * as $NavFooter from "./islands/NavFooter.tsx";
+import * as $NavFooterExternal from "./islands/NavFooterExternal.tsx";
+import * as $NavMain from "./islands/NavMain.tsx";
+import * as $NavUser from "./islands/NavUser.tsx";
 import * as $ProductOwnerWelcomeOptions from "./islands/ProductOwnerWelcomeOptions.tsx";
 import * as $ProjectCard from "./islands/ProjectCard.tsx";
 import * as $ProjectModals_AssignProjectModal from "./islands/ProjectModals/AssignProjectModal.tsx";
 import * as $ProjectModals_CreateProjectModal from "./islands/ProjectModals/CreateProjectModal.tsx";
 import * as $ProjectModals_EditProjectModal from "./islands/ProjectModals/EditProjectModal.tsx";
+import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
-import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
+import * as $Rubrics_DeleteRubricModal from "./islands/Rubrics/DeleteRubricModal.tsx";
+import * as $Rubrics_DuplicateRubricForm from "./islands/Rubrics/DuplicateRubricForm.tsx";
+import * as $Rubrics_RubricCreatePage from "./islands/Rubrics/RubricCreatePage.tsx";
+import * as $Rubrics_RubricDetails from "./islands/Rubrics/RubricDetails.tsx";
+import * as $Rubrics_RubricDetailsPage from "./islands/Rubrics/RubricDetailsPage.tsx";
+import * as $Rubrics_RubricEditPage from "./islands/Rubrics/RubricEditPage.tsx";
+import * as $Rubrics_RubricForm from "./islands/Rubrics/RubricForm.tsx";
+import * as $Rubrics_RubricsList from "./islands/Rubrics/RubricsList.tsx";
+import * as $Rubrics_RubricsManager from "./islands/Rubrics/RubricsManager.tsx";
 import * as $ScrumMasterWelcomeOptions from "./islands/ScrumMasterWelcomeOptions.tsx";
+import * as $SidebarProvider from "./islands/SidebarProvider.tsx";
 import * as $Sprints_AddUserStoriesToSprint from "./islands/Sprints/AddUserStoriesToSprint.tsx";
 import * as $Sprints_CreateSprintForm from "./islands/Sprints/CreateSprintForm.tsx";
 import * as $Sprints_CreateSprintPage from "./islands/Sprints/CreateSprintPage.tsx";
@@ -98,6 +144,7 @@ import * as $Tasks_TaskCalendarView from "./islands/Tasks/TaskCalendarView.tsx";
 import * as $Tasks_TaskCard from "./islands/Tasks/TaskCard.tsx";
 import * as $Tasks_TaskComments from "./islands/Tasks/TaskComments.tsx";
 import * as $Tasks_TaskDetailView from "./islands/Tasks/TaskDetailView.tsx";
+import * as $Tasks_TaskEvaluation from "./islands/Tasks/TaskEvaluation.tsx";
 import * as $Tasks_TaskFilters from "./islands/Tasks/TaskFilters.tsx";
 import * as $Tasks_TaskGrouping from "./islands/Tasks/TaskGrouping.tsx";
 import * as $Tasks_TaskHistory from "./islands/Tasks/TaskHistory.tsx";
@@ -134,6 +181,14 @@ const manifest = {
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
     "./routes/api/comments/[taskId].ts": $api_comments_taskId_,
+    "./routes/api/deliverables/[id].tsx": $api_deliverables_id_,
+    "./routes/api/deliverables/[id]/attachments.tsx":
+      $api_deliverables_id_attachments,
+    "./routes/api/deliverables/[id]/submit.tsx": $api_deliverables_id_submit,
+    "./routes/api/deliverables/index.tsx": $api_deliverables_index,
+    "./routes/api/evaluations/[id].tsx": $api_evaluations_id_,
+    "./routes/api/evaluations/[id]/finalize.tsx": $api_evaluations_id_finalize,
+    "./routes/api/evaluations/index.tsx": $api_evaluations_index,
     "./routes/api/login.ts": $api_login,
     "./routes/api/logout.ts": $api_logout,
     "./routes/api/projects/[id]/members.ts": $api_projects_id_members,
@@ -141,6 +196,9 @@ const manifest = {
     "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/projects/members/[id].ts": $api_projects_members_id_,
     "./routes/api/register.ts": $api_register,
+    "./routes/api/rubrics/[id].tsx": $api_rubrics_id_,
+    "./routes/api/rubrics/[id]/duplicate.tsx": $api_rubrics_id_duplicate,
+    "./routes/api/rubrics/index.tsx": $api_rubrics_index,
     "./routes/api/session.ts": $api_session,
     "./routes/api/sprints/[id].ts": $api_sprints_id_,
     "./routes/api/sprints/[id]/user-stories.ts": $api_sprints_id_user_stories,
@@ -156,15 +214,23 @@ const manifest = {
     "./routes/api/user-stories/[id].ts": $api_user_stories_id_,
     "./routes/api/users/[id].ts": $api_users_id_,
     "./routes/backlog/index.tsx": $backlog_index,
+    "./routes/deliverables/[id]/evaluate.tsx": $deliverables_id_evaluate,
+    "./routes/evaluations/[id].tsx": $evaluations_id_,
+    "./routes/evaluations/index.tsx": $evaluations_index,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
+    "./routes/my-evaluations/index.tsx": $my_evaluations_index,
     "./routes/my-tasks.tsx": $my_tasks,
     "./routes/projects/[id].tsx": $projects_id_,
     "./routes/projects/[id]/members.tsx": $projects_id_members,
     "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
+    "./routes/rubrics/[id].tsx": $rubrics_id_,
+    "./routes/rubrics/[id]/edit.tsx": $rubrics_id_edit,
+    "./routes/rubrics/create.tsx": $rubrics_create,
+    "./routes/rubrics/index.tsx": $rubrics_index,
     "./routes/sprints/[id].tsx": $sprints_id_,
     "./routes/sprints/[id]/add-user-stories.tsx": $sprints_id_add_user_stories,
     "./routes/sprints/create.tsx": $sprints_create,
@@ -181,6 +247,10 @@ const manifest = {
     "./islands/AdminCreateUserForm.tsx": $AdminCreateUserForm,
     "./islands/AdminUsersList.tsx": $AdminUsersList,
     "./islands/AdminWelcomeOptions.tsx": $AdminWelcomeOptions,
+    "./islands/AppShell.tsx": $AppShell,
+    "./islands/AppShellExternal.tsx": $AppShellExternal,
+    "./islands/AppSidebar.tsx": $AppSidebar,
+    "./islands/AppSidebarExternal.tsx": $AppSidebarExternal,
     "./islands/AssignProjectForm.tsx": $AssignProjectForm,
     "./islands/Backlog/BacklogFilters.tsx": $Backlog_BacklogFilters,
     "./islands/Backlog/BacklogHeader.tsx": $Backlog_BacklogHeader,
@@ -193,11 +263,30 @@ const manifest = {
     "./islands/DropdownMenu.tsx": $DropdownMenu,
     "./islands/EditProjectForm.tsx": $EditProjectForm,
     "./islands/EmptyProjectsMessage.tsx": $EmptyProjectsMessage,
+    "./islands/Evaluations/DeliverableDetails.tsx":
+      $Evaluations_DeliverableDetails,
+    "./islands/Evaluations/EvaluationCard.tsx": $Evaluations_EvaluationCard,
+    "./islands/Evaluations/EvaluationForm.tsx": $Evaluations_EvaluationForm,
+    "./islands/Evaluations/EvaluationHistory.tsx":
+      $Evaluations_EvaluationHistory,
+    "./islands/Evaluations/EvaluationManager.tsx":
+      $Evaluations_EvaluationManager,
+    "./islands/Evaluations/EvaluationStats.tsx": $Evaluations_EvaluationStats,
+    "./islands/Evaluations/EvaluationView.tsx": $Evaluations_EvaluationView,
+    "./islands/Evaluations/PendingDeliverablesList.tsx":
+      $Evaluations_PendingDeliverablesList,
+    "./islands/Evaluations/RubricSelector.tsx": $Evaluations_RubricSelector,
+    "./islands/Evaluations/StudentEvaluationsList.tsx":
+      $Evaluations_StudentEvaluationsList,
     "./islands/HeaderMenu.tsx": $HeaderMenu,
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/LogoutButton.tsx": $LogoutButton,
     "./islands/Modal.tsx": $Modal,
+    "./islands/NavFooter.tsx": $NavFooter,
+    "./islands/NavFooterExternal.tsx": $NavFooterExternal,
+    "./islands/NavMain.tsx": $NavMain,
+    "./islands/NavUser.tsx": $NavUser,
     "./islands/ProductOwnerWelcomeOptions.tsx": $ProductOwnerWelcomeOptions,
     "./islands/ProjectCard.tsx": $ProjectCard,
     "./islands/ProjectModals/AssignProjectModal.tsx":
@@ -206,12 +295,22 @@ const manifest = {
       $ProjectModals_CreateProjectModal,
     "./islands/ProjectModals/EditProjectModal.tsx":
       $ProjectModals_EditProjectModal,
+    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
-    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/RegisterForm.tsx": $RegisterForm,
+    "./islands/Rubrics/DeleteRubricModal.tsx": $Rubrics_DeleteRubricModal,
+    "./islands/Rubrics/DuplicateRubricForm.tsx": $Rubrics_DuplicateRubricForm,
+    "./islands/Rubrics/RubricCreatePage.tsx": $Rubrics_RubricCreatePage,
+    "./islands/Rubrics/RubricDetails.tsx": $Rubrics_RubricDetails,
+    "./islands/Rubrics/RubricDetailsPage.tsx": $Rubrics_RubricDetailsPage,
+    "./islands/Rubrics/RubricEditPage.tsx": $Rubrics_RubricEditPage,
+    "./islands/Rubrics/RubricForm.tsx": $Rubrics_RubricForm,
+    "./islands/Rubrics/RubricsList.tsx": $Rubrics_RubricsList,
+    "./islands/Rubrics/RubricsManager.tsx": $Rubrics_RubricsManager,
     "./islands/ScrumMasterWelcomeOptions.tsx": $ScrumMasterWelcomeOptions,
+    "./islands/SidebarProvider.tsx": $SidebarProvider,
     "./islands/Sprints/AddUserStoriesToSprint.tsx":
       $Sprints_AddUserStoriesToSprint,
     "./islands/Sprints/CreateSprintForm.tsx": $Sprints_CreateSprintForm,
@@ -229,6 +328,7 @@ const manifest = {
     "./islands/Tasks/TaskCard.tsx": $Tasks_TaskCard,
     "./islands/Tasks/TaskComments.tsx": $Tasks_TaskComments,
     "./islands/Tasks/TaskDetailView.tsx": $Tasks_TaskDetailView,
+    "./islands/Tasks/TaskEvaluation.tsx": $Tasks_TaskEvaluation,
     "./islands/Tasks/TaskFilters.tsx": $Tasks_TaskFilters,
     "./islands/Tasks/TaskGrouping.tsx": $Tasks_TaskGrouping,
     "./islands/Tasks/TaskHistory.tsx": $Tasks_TaskHistory,

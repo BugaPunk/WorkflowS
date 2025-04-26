@@ -84,7 +84,8 @@ export default function LoginForm() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            class={`w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+            variant="primary"
+            class={`w-full font-bold ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

@@ -27,6 +27,7 @@ export const TaskSchema = z.object({
   estimatedHours: z.number().optional(),
   spentHours: z.number().optional(),
   createdBy: z.string(), // userId del creador
+  isDeliverable: z.boolean().default(false), // Indica si la tarea es un entregable
 });
 
 // Tipo de datos de la tarea
@@ -76,6 +77,7 @@ export async function createTask(taskData: TaskData): Promise<Task> {
     estimatedHours: taskData.estimatedHours,
     spentHours: taskData.spentHours,
     createdBy: taskData.createdBy,
+    isDeliverable: taskData.isDeliverable || false,
   });
 
   // Guardar la tarea en la base de datos

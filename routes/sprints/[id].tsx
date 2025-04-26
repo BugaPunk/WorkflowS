@@ -13,6 +13,12 @@ import { getUserStoryTasks } from "../../models/task.ts";
 type UserStory = NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>;
 
 interface SprintDetailPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   sprint: Awaited<ReturnType<typeof getSprintById>>;
   project: Awaited<ReturnType<typeof getProjectById>>;
   userStories: UserStory[];
@@ -71,6 +77,7 @@ export const handler: Handlers<SprintDetailPageData | null> = {
 
 
     return ctx.render({
+      session,
       sprint,
       project,
       userStories: userStories as UserStory[],
@@ -84,7 +91,7 @@ export const handler: Handlers<SprintDetailPageData | null> = {
 export default function SprintDetailPage({ data }: PageProps<SprintDetailPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Sprint no encontrado - WorkflowS">
+      <MainLayout title="Sprint no encontrado - WorkflowS" session={null}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -96,7 +103,7 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
     );
   }
 
-  const { sprint, project, userStories, tasks, canManageSprints } = data;
+  const { session, sprint, project, userStories, tasks, canManageSprints } = data;
 
   // Formatear fechas
   const formatDate = (timestamp?: number) => {
@@ -107,7 +114,7 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
   // Asegurarse de que sprint y project no sean null
   if (!sprint || !project) {
     return (
-      <MainLayout title="Error - WorkflowS">
+      <MainLayout title="Error - WorkflowS" session={null}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -120,7 +127,7 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
   }
 
   return (
-    <MainLayout title={`Sprint: ${sprint.name} | ${project.name} - WorkflowS`}>
+    <MainLayout title={`Sprint: ${sprint.name} | ${project.name} - WorkflowS`} session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}

@@ -57,10 +57,10 @@ interface AdminUsersProps {
 }
 
 export default function AdminUsers({ data }: { data: AdminUsersProps }) {
-  const { users } = data;
+  const { users, session } = data;
 
   return (
-    <MainLayout title="Administración de Usuarios - WorkflowS">
+    <MainLayout title="Administración de Usuarios - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           <AdminUsersList initialUsers={users} />

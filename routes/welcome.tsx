@@ -33,7 +33,7 @@ export default function Welcome({ data }: { data: WelcomeProps }) {
   const { session } = data;
 
   return (
-    <MainLayout title="Bienvenido - WorkflowS">
+    <MainLayout title="Bienvenido - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-md mx-auto">
           <WelcomeScreen session={session} />

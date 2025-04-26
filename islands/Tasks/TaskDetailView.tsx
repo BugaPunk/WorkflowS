@@ -11,6 +11,7 @@ import Modal from "../Modal.tsx";
 import EditTaskForm from "./EditTaskForm.tsx";
 import TaskComments from "./TaskComments.tsx";
 import TaskHistory from "./TaskHistory.tsx";
+import TaskEvaluation from "./TaskEvaluation.tsx";
 
 interface TaskDetailViewProps {
   task: Task;
@@ -36,10 +37,11 @@ export default function TaskDetailView({
 
   // Estado para la sesión actual
   const [currentUserId, setCurrentUserId] = useState<string>("");
+  const [currentUserRole, setCurrentUserRole] = useState<string>("");
 
-  // Obtener el ID del usuario actual
+  // Obtener el ID y rol del usuario actual
   useEffect(() => {
-    const getUserId = async () => {
+    const getUserInfo = async () => {
       try {
         const response = await fetch("/api/session");
         if (response.ok) {
@@ -47,13 +49,16 @@ export default function TaskDetailView({
           if (data.user?.id) {
             setCurrentUserId(data.user.id);
           }
+          if (data.user?.role) {
+            setCurrentUserRole(data.user.role);
+          }
         }
       } catch (error) {
         console.error("Error al obtener la sesión:", error);
       }
     };
 
-    getUserId();
+    getUserInfo();
   }, []);
 
   // No necesitamos estados para historial ya que ahora usamos un componente separado
@@ -285,6 +290,18 @@ export default function TaskDetailView({
             )}
           </div>
         </div>
+
+        {/* Evaluación (si es un entregable) */}
+        {currentTask.isDeliverable && (
+          <div class="mb-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-2">Evaluación</h3>
+            <TaskEvaluation
+              task={currentTask}
+              userId={currentUserId}
+              userRole={currentUserRole}
+            />
+          </div>
+        )}
 
         {/* Historial de cambios */}
         <TaskHistory taskId={task.id} />

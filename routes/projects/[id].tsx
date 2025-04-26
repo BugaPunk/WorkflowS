@@ -118,7 +118,7 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }) {
-  const { project, creator, isAdmin, isProductOwner, isScrumMaster } = data;
+  const { session, project, creator, isAdmin, isProductOwner, isScrumMaster } = data;
 
   // Obtener el nombre de visualización del estado del proyecto
   const getStatusDisplay = (status: ProjectStatus) => {
@@ -168,7 +168,7 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
   };
 
   return (
-    <MainLayout title={`Proyecto: ${project.name} - WorkflowS`}>
+    <MainLayout title={`Proyecto: ${project.name} - WorkflowS`} session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}

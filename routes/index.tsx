@@ -17,13 +17,15 @@ export const handler = {
     }
 
     // Si no está autenticado, mostrar la página de inicio
-    return ctx.render();
+    return ctx.render({ session });
   },
 };
 
-export default function Home() {
+export default function Home({ data }: { data: { session: unknown } }) {
+  const { session } = data;
+
   return (
-    <MainLayout title="Home - WorkflowS">
+    <MainLayout title="Home - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
           <h1 class="text-4xl font-bold mt-8 mb-4">Bienvenido a WorkflowS</h1>

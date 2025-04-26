@@ -10,6 +10,12 @@ import type { Project } from "../models/project.ts";
 import type { UserStory } from "../models/userStory.ts";
 
 interface MyTasksPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: string;
+  };
   tasks: Awaited<ReturnType<typeof getUserTasks>>;
   user: Awaited<ReturnType<typeof getUserById>>;
   // Mapas para almacenar información relacionada
@@ -61,6 +67,7 @@ export const handler: Handlers<MyTasksPageData | null> = {
       }
 
       return ctx.render({
+        session,
         tasks,
         user,
         projects,
@@ -76,7 +83,7 @@ export const handler: Handlers<MyTasksPageData | null> = {
 export default function MyTasksPage({ data }: PageProps<MyTasksPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Mis Tareas - WorkflowS">
+      <MainLayout title="Mis Tareas - WorkflowS" session={null}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -88,7 +95,7 @@ export default function MyTasksPage({ data }: PageProps<MyTasksPageData | null>)
     );
   }
 
-  const { tasks, user: _user, projects: projectsWithNull, userStories: userStoriesWithNull } = data;
+  const { session, tasks, user: _user, projects: projectsWithNull, userStories: userStoriesWithNull } = data;
 
   // Filtrar valores nulos para satisfacer los tipos
   const projects: Record<string, Project> = {};
@@ -107,7 +114,7 @@ export default function MyTasksPage({ data }: PageProps<MyTasksPageData | null>)
   }
 
   return (
-    <MainLayout title="Mis Tareas - WorkflowS">
+    <MainLayout title="Mis Tareas - WorkflowS" session={session}>
       <div class="px-4 py-6 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           {/* Encabezado */}
