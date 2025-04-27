@@ -215,3 +215,8 @@ export async function deleteUserStory(id: string): Promise<boolean> {
 
   return true;
 }
+
+// Obtener todas las historias de usuario de un sprint
+export async function getUserStoriesBySprintId(sprintId: string): Promise<UserStory[]> {
+  return await getUserStoriesWithFilters({ sprintId });
+}

@@ -2,23 +2,33 @@
 
 Este proyecto utiliza Storybook para generar mockups mediante código. Storybook es una herramienta que permite desarrollar, documentar y probar componentes de UI de forma aislada.
 
-## Instalación
+## Opciones para visualizar mockups
 
-Para instalar las dependencias necesarias, ejecuta:
+### Opción 1: Storybook con Deno
+
+Para iniciar Storybook con Deno, ejecuta:
 
 ```bash
-npm install
+deno run -A storybook.ts
 ```
 
-## Ejecución
-
-Para iniciar Storybook, ejecuta:
+Para construir una versión estática de Storybook:
 
 ```bash
-npm run storybook
+deno run -A storybook.ts build
 ```
 
 Esto abrirá Storybook en tu navegador en la dirección http://localhost:6006.
+
+### Opción 2: Servidor de mockups simple
+
+Si tienes problemas con Storybook, puedes usar nuestro servidor de mockups simple:
+
+```bash
+deno run -A mockups.ts
+```
+
+Esto iniciará un servidor en http://localhost:8000/mockups/index.html que muestra los mockups de los componentes.
 
 ## Estructura de archivos
 

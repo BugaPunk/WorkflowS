@@ -19,18 +19,26 @@ import * as $api_evaluations_id_finalize from "./routes/api/evaluations/[id]/fin
 import * as $api_evaluations_index from "./routes/api/evaluations/index.tsx";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_logout from "./routes/api/logout.ts";
+import * as $api_projects_id_health from "./routes/api/projects/[id]/health.ts";
 import * as $api_projects_id_members from "./routes/api/projects/[id]/members.ts";
+import * as $api_projects_id_metrics from "./routes/api/projects/[id]/metrics.ts";
 import * as $api_projects_index from "./routes/api/projects/index.ts";
 import * as $api_projects_members from "./routes/api/projects/members.ts";
 import * as $api_projects_members_id_ from "./routes/api/projects/members/[id].ts";
 import * as $api_register from "./routes/api/register.ts";
+import * as $api_reports_id_export from "./routes/api/reports/[id]/export.ts";
+import * as $api_reports_generate from "./routes/api/reports/generate.ts";
+import * as $api_reports_schedule from "./routes/api/reports/schedule.ts";
 import * as $api_rubrics_id_ from "./routes/api/rubrics/[id].tsx";
 import * as $api_rubrics_id_duplicate from "./routes/api/rubrics/[id]/duplicate.tsx";
 import * as $api_rubrics_index from "./routes/api/rubrics/index.tsx";
 import * as $api_session from "./routes/api/session.ts";
 import * as $api_sprints_id_ from "./routes/api/sprints/[id].ts";
+import * as $api_sprints_id_burndown from "./routes/api/sprints/[id]/burndown.ts";
+import * as $api_sprints_id_metrics from "./routes/api/sprints/[id]/metrics.ts";
 import * as $api_sprints_id_user_stories from "./routes/api/sprints/[id]/user-stories.ts";
 import * as $api_sprints_id_user_stories_userStoryId_ from "./routes/api/sprints/[id]/user-stories/[userStoryId].ts";
+import * as $api_sprints_id_velocity from "./routes/api/sprints/[id]/velocity.ts";
 import * as $api_sprints_index from "./routes/api/sprints/index.ts";
 import * as $api_tasks_id_ from "./routes/api/tasks/[id].ts";
 import * as $api_tasks_id_comments from "./routes/api/tasks/[id]/comments.ts";
@@ -40,6 +48,7 @@ import * as $api_tasks_index from "./routes/api/tasks/index.ts";
 import * as $api_user_stories from "./routes/api/user-stories.ts";
 import * as $api_user_stories_id_ from "./routes/api/user-stories/[id].ts";
 import * as $api_users_id_ from "./routes/api/users/[id].ts";
+import * as $api_users_id_metrics from "./routes/api/users/[id]/metrics.ts";
 import * as $backlog_index from "./routes/backlog/index.tsx";
 import * as $deliverables_id_evaluate from "./routes/deliverables/[id]/evaluate.tsx";
 import * as $evaluations_id_ from "./routes/evaluations/[id].tsx";
@@ -47,10 +56,14 @@ import * as $evaluations_index from "./routes/evaluations/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
+import * as $mockups_metrics from "./routes/mockups/metrics.tsx";
 import * as $my_evaluations_index from "./routes/my-evaluations/index.tsx";
 import * as $my_tasks from "./routes/my-tasks.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
 import * as $projects_id_members from "./routes/projects/[id]/members.tsx";
+import * as $projects_id_metrics from "./routes/projects/[id]/metrics.tsx";
+import * as $projects_id_reports_generate from "./routes/projects/[id]/reports/generate.tsx";
+import * as $projects_id_reports_index from "./routes/projects/[id]/reports/index.tsx";
 import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
@@ -102,6 +115,10 @@ import * as $HeaderMenu from "./islands/HeaderMenu.tsx";
 import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $LogoutButton from "./islands/LogoutButton.tsx";
+import * as $Metrics_BurndownChart from "./islands/Metrics/BurndownChart.tsx";
+import * as $Metrics_ProjectHealthGauge from "./islands/Metrics/ProjectHealthGauge.tsx";
+import * as $Metrics_TeamVelocityChart from "./islands/Metrics/TeamVelocityChart.tsx";
+import * as $Metrics_WorkDistributionChart from "./islands/Metrics/WorkDistributionChart.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $NavFooter from "./islands/NavFooter.tsx";
 import * as $NavFooterExternal from "./islands/NavFooterExternal.tsx";
@@ -117,6 +134,8 @@ import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
+import * as $Reports_ReportGenerator from "./islands/Reports/ReportGenerator.tsx";
+import * as $Reports_ReportsList from "./islands/Reports/ReportsList.tsx";
 import * as $Rubrics_DeleteRubricModal from "./islands/Rubrics/DeleteRubricModal.tsx";
 import * as $Rubrics_DuplicateRubricForm from "./islands/Rubrics/DuplicateRubricForm.tsx";
 import * as $Rubrics_RubricCreatePage from "./islands/Rubrics/RubricCreatePage.tsx";
@@ -191,19 +210,27 @@ const manifest = {
     "./routes/api/evaluations/index.tsx": $api_evaluations_index,
     "./routes/api/login.ts": $api_login,
     "./routes/api/logout.ts": $api_logout,
+    "./routes/api/projects/[id]/health.ts": $api_projects_id_health,
     "./routes/api/projects/[id]/members.ts": $api_projects_id_members,
+    "./routes/api/projects/[id]/metrics.ts": $api_projects_id_metrics,
     "./routes/api/projects/index.ts": $api_projects_index,
     "./routes/api/projects/members.ts": $api_projects_members,
     "./routes/api/projects/members/[id].ts": $api_projects_members_id_,
     "./routes/api/register.ts": $api_register,
+    "./routes/api/reports/[id]/export.ts": $api_reports_id_export,
+    "./routes/api/reports/generate.ts": $api_reports_generate,
+    "./routes/api/reports/schedule.ts": $api_reports_schedule,
     "./routes/api/rubrics/[id].tsx": $api_rubrics_id_,
     "./routes/api/rubrics/[id]/duplicate.tsx": $api_rubrics_id_duplicate,
     "./routes/api/rubrics/index.tsx": $api_rubrics_index,
     "./routes/api/session.ts": $api_session,
     "./routes/api/sprints/[id].ts": $api_sprints_id_,
+    "./routes/api/sprints/[id]/burndown.ts": $api_sprints_id_burndown,
+    "./routes/api/sprints/[id]/metrics.ts": $api_sprints_id_metrics,
     "./routes/api/sprints/[id]/user-stories.ts": $api_sprints_id_user_stories,
     "./routes/api/sprints/[id]/user-stories/[userStoryId].ts":
       $api_sprints_id_user_stories_userStoryId_,
+    "./routes/api/sprints/[id]/velocity.ts": $api_sprints_id_velocity,
     "./routes/api/sprints/index.ts": $api_sprints_index,
     "./routes/api/tasks/[id].ts": $api_tasks_id_,
     "./routes/api/tasks/[id]/comments.ts": $api_tasks_id_comments,
@@ -213,6 +240,7 @@ const manifest = {
     "./routes/api/user-stories.ts": $api_user_stories,
     "./routes/api/user-stories/[id].ts": $api_user_stories_id_,
     "./routes/api/users/[id].ts": $api_users_id_,
+    "./routes/api/users/[id]/metrics.ts": $api_users_id_metrics,
     "./routes/backlog/index.tsx": $backlog_index,
     "./routes/deliverables/[id]/evaluate.tsx": $deliverables_id_evaluate,
     "./routes/evaluations/[id].tsx": $evaluations_id_,
@@ -220,10 +248,15 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
+    "./routes/mockups/metrics.tsx": $mockups_metrics,
     "./routes/my-evaluations/index.tsx": $my_evaluations_index,
     "./routes/my-tasks.tsx": $my_tasks,
     "./routes/projects/[id].tsx": $projects_id_,
     "./routes/projects/[id]/members.tsx": $projects_id_members,
+    "./routes/projects/[id]/metrics.tsx": $projects_id_metrics,
+    "./routes/projects/[id]/reports/generate.tsx":
+      $projects_id_reports_generate,
+    "./routes/projects/[id]/reports/index.tsx": $projects_id_reports_index,
     "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
@@ -282,6 +315,11 @@ const manifest = {
     "./islands/HeaderNav.tsx": $HeaderNav,
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/LogoutButton.tsx": $LogoutButton,
+    "./islands/Metrics/BurndownChart.tsx": $Metrics_BurndownChart,
+    "./islands/Metrics/ProjectHealthGauge.tsx": $Metrics_ProjectHealthGauge,
+    "./islands/Metrics/TeamVelocityChart.tsx": $Metrics_TeamVelocityChart,
+    "./islands/Metrics/WorkDistributionChart.tsx":
+      $Metrics_WorkDistributionChart,
     "./islands/Modal.tsx": $Modal,
     "./islands/NavFooter.tsx": $NavFooter,
     "./islands/NavFooterExternal.tsx": $NavFooterExternal,
@@ -300,6 +338,8 @@ const manifest = {
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
     "./islands/RegisterForm.tsx": $RegisterForm,
+    "./islands/Reports/ReportGenerator.tsx": $Reports_ReportGenerator,
+    "./islands/Reports/ReportsList.tsx": $Reports_ReportsList,
     "./islands/Rubrics/DeleteRubricModal.tsx": $Rubrics_DeleteRubricModal,
     "./islands/Rubrics/DuplicateRubricForm.tsx": $Rubrics_DuplicateRubricForm,
     "./islands/Rubrics/RubricCreatePage.tsx": $Rubrics_RubricCreatePage,
