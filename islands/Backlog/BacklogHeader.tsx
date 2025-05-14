@@ -22,14 +22,14 @@ export default function BacklogHeader({
   const handleProjectChange = (e: Event) => {
     const select = e.target as HTMLSelectElement;
     const value = select.value;
-    
+
     if (value === "") {
-      window.location.href = "/backlog";
+      globalThis.location.href = "/backlog";
     } else {
-      window.location.href = `/backlog?projectId=${value}`;
+      globalThis.location.href = `/backlog?projectId=${value}`;
     }
   };
-  
+
   return (
     <div class="mb-6">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
@@ -55,13 +55,13 @@ export default function BacklogHeader({
           )}
           <a
             href={projectId ? `/projects/${projectId}` : "/projects"}
-            class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors border border-blue-700"
           >
             Volver a Proyectos
           </a>
         </div>
       </div>
-      
+
       <div class="bg-white shadow-md rounded-lg p-4 mb-6">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
           <div class="mb-4 md:mb-0">

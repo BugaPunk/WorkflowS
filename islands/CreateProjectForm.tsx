@@ -16,20 +16,20 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
     startDate: "",
     endDate: "",
   });
-  
+
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  
+
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
     const value = target.name === 'status' ? target.value as ProjectStatus : target.value;
-    
+
     setFormData({
       ...formData,
       [target.name]: value,
     });
-    
+
     // Limpiar error cuando se edita el campo
     if (errors[target.name]) {
       setErrors({
@@ -37,52 +37,52 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
         [target.name]: undefined,
       });
     }
-    
+
     // Limpiar error general
     if (submitError) {
       setSubmitError(null);
     }
   };
-  
+
   const validate = (): boolean => {
     const newErrors: Record<string, string | undefined> = {};
-    
+
     if (!formData.name) {
       newErrors.name = "El nombre del proyecto es obligatorio";
     } else if (formData.name.length < 3) {
       newErrors.name = "El nombre del proyecto debe tener al menos 3 caracteres";
     }
-    
+
     // Validar fechas
     if (formData.startDate && formData.endDate) {
       const startDate = new Date(formData.startDate).getTime();
       const endDate = new Date(formData.endDate).getTime();
-      
+
       if (endDate < startDate) {
         newErrors.endDate = "La fecha de finalización debe ser posterior a la fecha de inicio";
       }
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
+
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    
+
     setSubmitError(null);
-    
+
     if (!validate()) {
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // Convertir fechas a timestamps
       const startDate = formData.startDate ? new Date(formData.startDate).getTime() : undefined;
       const endDate = formData.endDate ? new Date(formData.endDate).getTime() : undefined;
-      
+
       const response = await fetch("/api/projects", {
         method: "POST",
         headers: {
@@ -97,7 +97,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           createdBy: currentUserId,
         }),
       });
-      
+
       if (!response.ok) {
         try {
           const errorData = await response.json();
@@ -106,7 +106,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           throw new Error(`Error al crear el proyecto: ${response.statusText}`);
         }
       }
-      
+
       // Llamar a la función de éxito
       onSuccess();
     } catch (error) {
@@ -115,7 +115,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit} class="space-y-4">
       {submitError && (
@@ -123,7 +123,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           <p>{submitError}</p>
         </div>
       )}
-      
+
       <div>
         <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
           Nombre del Proyecto*
@@ -144,7 +144,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           <p class="text-red-500 text-xs italic mt-1">{errors.name}</p>
         )}
       </div>
-      
+
       <div>
         <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
           Descripción
@@ -159,7 +159,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           rows={3}
         />
       </div>
-      
+
       <div>
         <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="status">
           Estado*
@@ -179,7 +179,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           <option value={ProjectStatus.CANCELLED}>Cancelado</option>
         </select>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="startDate">
@@ -194,7 +194,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
             onChange={handleChange}
           />
         </div>
-        
+
         <div>
           <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="endDate">
             Fecha de Finalización
@@ -214,12 +214,12 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           )}
         </div>
       </div>
-      
+
       <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
         <Button
           type="button"
           onClick={onCancel}
-          class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mr-2"
+          class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mr-2 border border-gray-400"
         >
           Cancelar
         </Button>

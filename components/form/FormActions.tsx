@@ -17,7 +17,7 @@ export default function FormActions({
   submittingText,
   cancelText = "Cancelar",
   submitButtonClass = "bg-blue-600 hover:bg-blue-700",
-  cancelButtonClass = "bg-gray-200 hover:bg-gray-300 text-gray-800",
+  cancelButtonClass = "bg-gray-200 hover:bg-gray-300 text-gray-800 border border-gray-400",
 }: FormActionsProps) {
   return (
     <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">

@@ -26,30 +26,30 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  
+
   // Cargar usuarios no administradores
   useEffect(() => {
     const loadUsers = async () => {
       setIsLoading(true);
       setError(null);
-      
+
       try {
         const response = await fetch("/api/admin/users");
-        
+
         if (!response.ok) {
           throw new Error("Error al cargar los usuarios");
         }
-        
+
         const data = await response.json();
-        
+
         // Filtrar usuarios no administradores y que no estén ya asignados al proyecto
-        const nonAdminUsers = data.users.filter((user: User) => 
-          user.role !== UserRole.ADMIN && 
+        const nonAdminUsers = data.users.filter((user: User) =>
+          user.role !== UserRole.ADMIN &&
           !project.members.some(member => member.userId === user.id)
         );
-        
+
         setUsers(nonAdminUsers);
-        
+
         // Seleccionar el primer usuario por defecto si hay alguno
         if (nonAdminUsers.length > 0) {
           setSelectedUser(nonAdminUsers[0].id);
@@ -61,21 +61,21 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
         setIsLoading(false);
       }
     };
-    
+
     loadUsers();
   }, [project]);
-  
+
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
-    
+
     if (!selectedUser) {
       setSubmitError("Debes seleccionar un usuario");
       return;
     }
-    
+
     setIsSubmitting(true);
     setSubmitError(null);
-    
+
     try {
       const response = await fetch("/api/projects/members", {
         method: "POST",
@@ -88,7 +88,7 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
           role: projectRole,
         }),
       });
-      
+
       if (!response.ok) {
         try {
           const errorData = await response.json();
@@ -97,7 +97,7 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
           throw new Error(`Error al asignar el usuario al proyecto: ${response.statusText}`);
         }
       }
-      
+
       // Llamar a la función de éxito
       onSuccess();
     } catch (error) {
@@ -106,7 +106,7 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
       setIsSubmitting(false);
     }
   };
-  
+
   // Obtener el nombre completo del usuario
   const getUserFullName = (user: User) => {
     if (user.firstName && user.lastName) {
@@ -119,20 +119,20 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
       return user.username;
     }
   };
-  
+
   return (
     <div>
       <div class="mb-4">
         <h3 class="text-md font-medium text-gray-700">Proyecto: {project.name}</h3>
         <p class="text-sm text-gray-500">{project.description || "Sin descripción"}</p>
       </div>
-      
+
       {error && (
         <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
           <p>{error}</p>
         </div>
       )}
-      
+
       {isLoading ? (
         <div class="flex justify-center items-center py-8">
           <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -151,7 +151,7 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
               <p>{submitError}</p>
             </div>
           )}
-          
+
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="userId">
               Usuario*
@@ -171,7 +171,7 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
               ))}
             </select>
           </div>
-          
+
           <div>
             <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
               Rol en el Proyecto*
@@ -189,12 +189,12 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
               <option value={ProjectRole.TEAM_MEMBER}>Miembro del Equipo</option>
             </select>
           </div>
-          
+
           <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
             <Button
               type="button"
               onClick={onCancel}
-              class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mr-2"
+              class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded mr-2 border border-gray-400"
             >
               Cancelar
             </Button>

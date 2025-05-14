@@ -222,8 +222,7 @@ export default function AdminUsersList({ initialUsers }: { initialUsers: User[] 
                         type="button"
                         onClick={() => openDeleteModal(user)}
                         class="text-red-600 hover:text-red-900 ml-2"
-                        disabled={user.role === UserRole.ADMIN}
-                        title={user.role === UserRole.ADMIN ? "No se puede eliminar un administrador" : "Eliminar usuario"}
+                        title="Eliminar usuario"
                       >
                         Eliminar
                       </button>
