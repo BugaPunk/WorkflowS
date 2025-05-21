@@ -119,6 +119,7 @@ import * as $Metrics_BurndownChart from "./islands/Metrics/BurndownChart.tsx";
 import * as $Metrics_ProjectHealthGauge from "./islands/Metrics/ProjectHealthGauge.tsx";
 import * as $Metrics_TeamVelocityChart from "./islands/Metrics/TeamVelocityChart.tsx";
 import * as $Metrics_WorkDistributionChart from "./islands/Metrics/WorkDistributionChart.tsx";
+import * as $MockupsIndex from "./islands/MockupsIndex.tsx";
 import * as $Modal from "./islands/Modal.tsx";
 import * as $NavFooter from "./islands/NavFooter.tsx";
 import * as $NavFooterExternal from "./islands/NavFooterExternal.tsx";
@@ -320,6 +321,7 @@ const manifest = {
     "./islands/Metrics/TeamVelocityChart.tsx": $Metrics_TeamVelocityChart,
     "./islands/Metrics/WorkDistributionChart.tsx":
       $Metrics_WorkDistributionChart,
+    "./islands/MockupsIndex.tsx": $MockupsIndex,
     "./islands/Modal.tsx": $Modal,
     "./islands/NavFooter.tsx": $NavFooter,
     "./islands/NavFooterExternal.tsx": $NavFooterExternal,

@@ -345,7 +345,7 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
               {/* Acciones rápidas */}
               <div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Acciones Rápidas</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
                   <a
                     href={`/user-stories?projectId=${project.id}`}
                     class="bg-indigo-50 hover:bg-indigo-100 p-4 rounded-lg text-center transition-colors"
@@ -367,6 +367,17 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                       <span class="text-sm font-medium text-green-700">Sprints</span>
                     </a>
                   )}
+
+                  {/* Métricas y Reportes */}
+                  <a
+                    href={`/projects/${project.id}/metrics`}
+                    class="bg-purple-50 hover:bg-purple-100 p-4 rounded-lg text-center transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <span class="text-sm font-medium text-purple-700">Métricas y Reportes</span>
+                  </a>
 
                   {(isAdmin || isScrumMaster) && (
                     <a
