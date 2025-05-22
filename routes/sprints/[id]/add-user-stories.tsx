@@ -8,6 +8,12 @@ import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import AddUserStoriesToSprint from "../../../islands/Sprints/AddUserStoriesToSprint.tsx";
 
 interface AddUserStoriesToSprintPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   sprint: Awaited<ReturnType<typeof getSprintById>>;
   project: Awaited<ReturnType<typeof getProjectById>>;
   availableUserStories: Awaited<ReturnType<typeof getUserStoriesWithFilters>>;
@@ -51,10 +57,11 @@ export const handler: Handlers<AddUserStoriesToSprintPageData | null> = {
 
     // Filtrar las historias que ya están en el sprint
     const filteredUserStories = availableUserStories.filter(
-      story => !sprint.userStoryIds.includes(story.id)
+      (story) => !sprint.userStoryIds.includes(story.id)
     );
 
     return ctx.render({
+      session,
       sprint,
       project,
       availableUserStories: filteredUserStories,
@@ -62,7 +69,9 @@ export const handler: Handlers<AddUserStoriesToSprintPageData | null> = {
   },
 };
 
-export default function AddUserStoriesToSprintPage({ data }: PageProps<AddUserStoriesToSprintPageData | null>) {
+export default function AddUserStoriesToSprintPage({
+  data,
+}: PageProps<AddUserStoriesToSprintPageData | null>) {
   if (!data) {
     return (
       <MainLayout title="Sprint no encontrado - WorkflowS">
@@ -77,10 +86,13 @@ export default function AddUserStoriesToSprintPage({ data }: PageProps<AddUserSt
     );
   }
 
-  const { sprint, project, availableUserStories } = data;
+  const { session, sprint, project, availableUserStories } = data;
 
   return (
-    <MainLayout title={`Añadir Historias de Usuario a Sprint - ${project.name} - WorkflowS`}>
+    <MainLayout
+      title={`Añadir Historias de Usuario a Sprint - ${project.name} - WorkflowS`}
+      session={session}
+    >
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}
@@ -100,12 +112,19 @@ export default function AddUserStoriesToSprintPage({ data }: PageProps<AddUserSt
 
           {/* Contenido principal */}
           <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Historias de Usuario Disponibles</h2>
-            
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">
+              Historias de Usuario Disponibles
+            </h2>
+
             {availableUserStories.length === 0 ? (
               <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-                <p class="text-gray-600">No hay historias de usuario disponibles para añadir a este sprint.</p>
-                <p class="text-gray-500 mt-2">Todas las historias ya están asignadas o no hay historias en estado Backlog o Planificado.</p>
+                <p class="text-gray-600">
+                  No hay historias de usuario disponibles para añadir a este sprint.
+                </p>
+                <p class="text-gray-500 mt-2">
+                  Todas las historias ya están asignadas o no hay historias en estado Backlog o
+                  Planificado.
+                </p>
                 <a
                   href={`/sprints/${sprint.id}`}
                   class="mt-4 inline-block px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
@@ -114,10 +133,7 @@ export default function AddUserStoriesToSprintPage({ data }: PageProps<AddUserSt
                 </a>
               </div>
             ) : (
-              <AddUserStoriesToSprint
-                sprint={sprint}
-                availableUserStories={availableUserStories}
-              />
+              <AddUserStoriesToSprint sprint={sprint} availableUserStories={availableUserStories} />
             )}
           </div>
         </div>

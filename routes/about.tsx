@@ -1,8 +1,29 @@
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
+import { getSession } from "../utils/session.ts";
+import { UserRole } from "../models/user.ts";
 
-export default function About() {
+interface AboutPageData {
+  session?: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
+}
+
+export const handler: Handlers<AboutPageData> = {
+  async GET(req, ctx) {
+    const session = await getSession(req);
+    return ctx.render({ session });
+  },
+};
+
+export default function About({ data }: PageProps<AboutPageData>) {
+  const { session } = data;
+  
   return (
-    <MainLayout title="Acerca de - WorkflowS">
+    <MainLayout title="Acerca de - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-md mx-auto">
           <h1 class="text-4xl font-bold mb-6">Acerca de WorkflowS</h1>

@@ -1,9 +1,30 @@
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
+import { getSession } from "../utils/session.ts";
+import { UserRole } from "../models/user.ts";
 import UnauthorizedLogoutButton from "../islands/UnauthorizedLogoutButton.tsx";
 
-export default function Unauthorized() {
+interface UnauthorizedPageData {
+  session?: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
+}
+
+export const handler: Handlers<UnauthorizedPageData> = {
+  async GET(req, ctx) {
+    const session = await getSession(req);
+    return ctx.render({ session });
+  },
+};
+
+export default function Unauthorized({ data }: PageProps<UnauthorizedPageData>) {
+  const { session } = data;
+  
   return (
-    <MainLayout title="No Autorizado - WorkflowS">
+    <MainLayout title="No Autorizado - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
           <div class="bg-red-50 border border-red-200 rounded-lg p-8 my-8 text-center">

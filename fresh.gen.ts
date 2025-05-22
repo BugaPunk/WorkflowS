@@ -56,7 +56,6 @@ import * as $evaluations_index from "./routes/evaluations/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
-import * as $mockups_metrics from "./routes/mockups/metrics.tsx";
 import * as $my_evaluations_index from "./routes/my-evaluations/index.tsx";
 import * as $my_tasks from "./routes/my-tasks.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
@@ -130,10 +129,10 @@ import * as $ProjectCard from "./islands/ProjectCard.tsx";
 import * as $ProjectModals_AssignProjectModal from "./islands/ProjectModals/AssignProjectModal.tsx";
 import * as $ProjectModals_CreateProjectModal from "./islands/ProjectModals/CreateProjectModal.tsx";
 import * as $ProjectModals_EditProjectModal from "./islands/ProjectModals/EditProjectModal.tsx";
-import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
+import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $Reports_ReportGenerator from "./islands/Reports/ReportGenerator.tsx";
 import * as $Reports_ReportsList from "./islands/Reports/ReportsList.tsx";
@@ -249,7 +248,6 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
-    "./routes/mockups/metrics.tsx": $mockups_metrics,
     "./routes/my-evaluations/index.tsx": $my_evaluations_index,
     "./routes/my-tasks.tsx": $my_tasks,
     "./routes/projects/[id].tsx": $projects_id_,
@@ -335,10 +333,10 @@ const manifest = {
       $ProjectModals_CreateProjectModal,
     "./islands/ProjectModals/EditProjectModal.tsx":
       $ProjectModals_EditProjectModal,
-    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
+    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/RegisterForm.tsx": $RegisterForm,
     "./islands/Reports/ReportGenerator.tsx": $Reports_ReportGenerator,
     "./islands/Reports/ReportsList.tsx": $Reports_ReportsList,

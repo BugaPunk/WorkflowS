@@ -8,6 +8,12 @@ import { getUserById, UserRole } from "../../models/user.ts";
 import TaskDetailView from "../../islands/Tasks/TaskDetailView.tsx";
 
 interface TaskDetailPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   task: Awaited<ReturnType<typeof getTaskById>>;
   userStory: Awaited<ReturnType<typeof getUserStoryById>>;
   project: Awaited<ReturnType<typeof getProjectById>>;
@@ -59,11 +65,12 @@ export const handler: Handlers<TaskDetailPageData | null> = {
     const isScrumMaster = session.role === UserRole.SCRUM_MASTER;
     const isProductOwner = session.role === UserRole.PRODUCT_OWNER;
     const isTeamMember = session.role === UserRole.TEAM_DEVELOPER;
-    
+
     // Admin, Scrum Master, Product Owner y Team Developer pueden gestionar tareas
     const canManageTask = isAdmin || isScrumMaster || isProductOwner || isTeamMember;
 
     return ctx.render({
+      session,
       task,
       userStory,
       project,
@@ -89,10 +96,10 @@ export default function TaskDetailPage({ data }: PageProps<TaskDetailPageData | 
     );
   }
 
-  const { task, userStory, project, assignedUser, createdByUser, canManageTask } = data;
+  const { session, task, userStory, project, assignedUser, createdByUser, canManageTask } = data;
 
   return (
-    <MainLayout title={`Tarea: ${task.title} - WorkflowS`}>
+    <MainLayout title={`Tarea: ${task.title} - WorkflowS`} session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           <TaskDetailView

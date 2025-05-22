@@ -9,6 +9,12 @@ import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import TasksList from "../../../islands/Tasks/TasksList.tsx";
 
 interface UserStoryTasksPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   userStory: NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>;
   project: NonNullable<Awaited<ReturnType<typeof getProjectById>>>;
   tasks: Awaited<ReturnType<typeof getUserStoryTasks>>;
@@ -50,6 +56,7 @@ export const handler: Handlers<UserStoryTasksPageData | null> = {
     const canManageTasks = isAdmin || isScrumMaster || isProductOwner || isTeamMember;
 
     return ctx.render({
+      session,
       userStory,
       project,
       tasks,
@@ -73,7 +80,7 @@ export default function UserStoryTasksPage({ data }: PageProps<UserStoryTasksPag
     );
   }
 
-  const { userStory, project, tasks, canManageTasks } = data;
+  const { session, userStory, project, tasks, canManageTasks } = data;
 
   // Asegurarse de que project no sea null
   if (!project) {
@@ -91,7 +98,10 @@ export default function UserStoryTasksPage({ data }: PageProps<UserStoryTasksPag
   }
 
   return (
-    <MainLayout title={`Tareas: ${userStory.title} | ${project.name} - WorkflowS`}>
+    <MainLayout
+      title={`Tareas: ${userStory.title} | ${project.name} - WorkflowS`}
+      session={session}
+    >
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}

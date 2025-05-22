@@ -6,6 +6,12 @@ import { getUserProjects } from "../../models/project.ts";
 import CreateSprintPage from "../../islands/Sprints/CreateSprintPage.tsx";
 
 interface CreateSprintPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   projects: Awaited<ReturnType<typeof getUserProjects>>;
 }
 
@@ -31,6 +37,7 @@ export const handler: Handlers<CreateSprintPageData | null> = {
     const projects = await getUserProjects(session.userId);
 
     return ctx.render({
+      session,
       projects,
     });
   },
@@ -51,10 +58,10 @@ export default function CreateSprint({ data }: PageProps<CreateSprintPageData | 
     );
   }
 
-  const { projects } = data;
+  const { session, projects } = data;
 
   return (
-    <MainLayout title="Crear Sprint - WorkflowS">
+    <MainLayout title="Crear Sprint - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-md mx-auto">
           {/* Encabezado */}

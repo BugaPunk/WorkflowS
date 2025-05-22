@@ -17,7 +17,7 @@ export function Button({
   const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50";
 
   const variantClasses = {
-    default: "bg-white text-black border border-gray-400 hover:bg-gray-100",
+    default: "text-black border border-gray-400",
     primary: "bg-blue-600 text-white hover:bg-blue-700",
     ghost: "border border-gray-400 text-black hover:bg-gray-100 hover:text-gray-900"
   };

@@ -27,7 +27,7 @@ export const handler = {
 
     // Obtener historias de usuario con filtros usando la función del modelo
     const userStories = await getUserStoriesWithFilters({
-      projectId: projectId || undefined
+      projectId: projectId || undefined,
     });
 
     // Ordenar por prioridad y fecha de creación
@@ -65,7 +65,7 @@ export default function UserStoriesPage({ data }: { data: UserStoriesProps }) {
   const { session, userStories, projects, projectId } = data;
 
   return (
-    <MainLayout title="Historias de Usuario - WorkflowS">
+    <MainLayout title="Historias de Usuario - WorkflowS" session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           <UserStoriesList

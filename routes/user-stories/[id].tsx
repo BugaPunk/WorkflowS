@@ -1,7 +1,12 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
-import { type UserStory, UserStoryPriority, UserStoryStatus, getUserStoryById } from "../../models/userStory.ts";
+import {
+  type UserStory,
+  UserStoryPriority,
+  UserStoryStatus,
+  getUserStoryById,
+} from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
 import { getProjectById } from "../../models/project.ts";
 import type { User } from "../../models/user.ts";
@@ -137,27 +142,40 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
 
   // Formatear fecha
   const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(timestamp).toLocaleString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   return (
-    <MainLayout title={`Historia de Usuario: ${userStory.title} - WorkflowS`}>
+    <MainLayout title={`Historia de Usuario: ${userStory.title} - WorkflowS`} session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           <div class="mb-6 flex justify-between items-center">
             <div class="flex items-center">
               <a
-                href={userStory.projectId ? `/user-stories?projectId=${userStory.projectId}` : "/user-stories"}
+                href={
+                  userStory.projectId
+                    ? `/user-stories?projectId=${userStory.projectId}`
+                    : "/user-stories"
+                }
                 class="text-blue-600 hover:text-blue-800 mr-2"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </a>
               <h1 class="text-3xl font-bold text-gray-800">Historia de Usuario</h1>
@@ -185,10 +203,14 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
               <div class="flex justify-between items-start">
                 <h2 class="text-2xl font-bold text-gray-800">{userStory.title}</h2>
                 <div class="flex space-x-2">
-                  <span class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getPriorityColorClass(userStory.priority)}`}>
+                  <span
+                    class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getPriorityColorClass(userStory.priority)}`}
+                  >
                     Prioridad: {getPriorityDisplay(userStory.priority)}
                   </span>
-                  <span class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getStatusColorClass(userStory.status)}`}>
+                  <span
+                    class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getStatusColorClass(userStory.status)}`}
+                  >
                     Estado: {getStatusDisplay(userStory.status)}
                   </span>
                 </div>
@@ -196,7 +218,10 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
               {project && (
                 <div class="mt-2">
                   <span class="text-sm text-gray-600">
-                    Proyecto: <a href={`/projects/${project.id}`} class="text-blue-600 hover:underline">{project.name}</a>
+                    Proyecto:{" "}
+                    <a href={`/projects/${project.id}`} class="text-blue-600 hover:underline">
+                      {project.name}
+                    </a>
                   </span>
                 </div>
               )}
@@ -225,7 +250,8 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                       <span class="font-medium text-gray-700">ID:</span> {userStory.id}
                     </li>
                     <li class="mb-2">
-                      <span class="font-medium text-gray-700">Puntos:</span> {userStory.points || "No estimado"}
+                      <span class="font-medium text-gray-700">Puntos:</span>{" "}
+                      {userStory.points || "No estimado"}
                     </li>
                     {userStory.sprintId && (
                       <li class="mb-2">
@@ -233,10 +259,12 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                       </li>
                     )}
                     <li class="mb-2">
-                      <span class="font-medium text-gray-700">Creado:</span> {formatDate(userStory.createdAt)}
+                      <span class="font-medium text-gray-700">Creado:</span>{" "}
+                      {formatDate(userStory.createdAt)}
                     </li>
                     <li>
-                      <span class="font-medium text-gray-700">Última actualización:</span> {formatDate(userStory.updatedAt)}
+                      <span class="font-medium text-gray-700">Última actualización:</span>{" "}
+                      {formatDate(userStory.updatedAt)}
                     </li>
                   </ul>
                 </div>
@@ -246,16 +274,19 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                   <ul class="bg-gray-50 p-4 rounded-lg">
                     {creator && (
                       <li class="mb-2">
-                        <span class="font-medium text-gray-700">Creado por:</span> {creator.username}
+                        <span class="font-medium text-gray-700">Creado por:</span>{" "}
+                        {creator.username}
                       </li>
                     )}
                     {assignedUser ? (
                       <li>
-                        <span class="font-medium text-gray-700">Asignado a:</span> {assignedUser.username}
+                        <span class="font-medium text-gray-700">Asignado a:</span>{" "}
+                        {assignedUser.username}
                       </li>
                     ) : (
                       <li>
-                        <span class="font-medium text-gray-700">Asignado a:</span> <span class="text-gray-500">No asignado</span>
+                        <span class="font-medium text-gray-700">Asignado a:</span>{" "}
+                        <span class="text-gray-500">No asignado</span>
                       </li>
                     )}
                   </ul>

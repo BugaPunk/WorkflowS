@@ -6,6 +6,12 @@ import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import ProjectMembersList from "../../../islands/Projects/ProjectMembersList.tsx";
 
 interface ProjectMembersPageData {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
   project: Awaited<ReturnType<typeof getProjectById>>;
   isAdmin: boolean;
   isProductOwner: boolean;
@@ -65,6 +71,7 @@ export const handler: Handlers<ProjectMembersPageData | null> = {
     }
 
     return ctx.render({
+      session,
       project,
       isAdmin,
       isProductOwner,
@@ -88,10 +95,10 @@ export default function ProjectMembersPage({ data }: PageProps<ProjectMembersPag
     );
   }
 
-  const { project, isAdmin, isProductOwner, isScrumMaster } = data;
+  const { session, project, isAdmin, isProductOwner, isScrumMaster } = data;
 
   return (
-    <MainLayout title={`Miembros del Proyecto: ${project.name} - WorkflowS`}>
+    <MainLayout title={`Miembros del Proyecto: ${project.name} - WorkflowS`} session={session}>
       <div class="px-4 py-8 mx-auto">
         <div class="max-w-screen-lg mx-auto">
           {/* Encabezado */}
