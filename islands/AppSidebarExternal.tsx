@@ -1,10 +1,10 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../components/ui/sidebar.tsx";
 import NavMain from "./NavMain.tsx";
 import NavFooterExternal from "./NavFooterExternal.tsx";
 import NavUser from "./NavUser.tsx";
 import { AppLogo } from "../components/AppLogo.tsx";
-import { UserRole } from "../models/user.ts";
+import type { UserRole } from "../models/user.ts";
 
 interface AppSidebarExternalProps {
   userRole?: UserRole;

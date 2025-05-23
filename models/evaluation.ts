@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Model, createModel } from "../utils/db.ts";
+import { type Model, createModel } from "../utils/db.ts";
 
 export enum EvaluationStatus {
   DRAFT = "draft",

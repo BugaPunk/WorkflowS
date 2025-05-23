@@ -1,6 +1,6 @@
 import { useState, useEffect } from "preact/hooks";
-import { Evaluation } from "../../models/evaluation.ts";
-import { Deliverable } from "../../models/deliverable.ts";
+import type { Evaluation } from "../../models/evaluation.ts";
+import type { Deliverable } from "../../models/deliverable.ts";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
 
 interface EvaluationCardProps {

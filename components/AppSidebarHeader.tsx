@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { SidebarTrigger } from "./ui/sidebar.tsx";
 
 export function AppSidebarHeader(): JSX.Element {

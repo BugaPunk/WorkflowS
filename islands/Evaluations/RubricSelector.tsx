@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { Rubric, RubricStatus } from "../../models/rubric.ts";
+import { type Rubric, RubricStatus } from "../../models/rubric.ts";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { Model, createModel, getKv } from "../utils/db.ts";
-import { TaskSchema, Task, TaskStatus } from "./task.ts";
+import { type Model, createModel, getKv } from "../utils/db.ts";
+import { TaskSchema, type Task, TaskStatus } from "./task.ts";
 
 // Colecciones para entregables
 export const DELIVERABLE_COLLECTIONS = {

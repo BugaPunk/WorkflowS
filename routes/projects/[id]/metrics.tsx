@@ -1,4 +1,4 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import { getProjectById } from "@/models/project.ts";
 import { getProjectSprints } from "@/models/sprint.ts";

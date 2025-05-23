@@ -1,5 +1,5 @@
 import { UserRole } from "../models/user.ts";
-import { ProjectRole } from "../models/project.ts";
+import type { ProjectRole } from "../models/project.ts";
 import type { Session } from "./session.ts";
 
 /**

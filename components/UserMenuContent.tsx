@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { DropdownMenuItem } from "./ui/dropdown-menu.tsx";
 import { useSession } from "../hooks/useSession.ts";
 

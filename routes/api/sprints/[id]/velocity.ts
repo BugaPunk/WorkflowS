@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getSprintById } from "@/models/sprint.ts";
 import { calculateSprintVelocity } from "@/services/metricService.ts";
 import { requireAuth } from "@/utils/auth.ts";

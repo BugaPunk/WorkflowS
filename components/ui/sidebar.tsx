@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { PanelLeftIcon } from "./icons/PanelLeftIcon.tsx";
 import { Button } from "../Button.tsx";
 import { useSidebar } from "../../islands/SidebarProvider.tsx";

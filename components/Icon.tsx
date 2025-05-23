@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { ComponentType } from "preact";
+import type { ComponentType } from "preact";
 
 interface IconProps {
   iconNode: ComponentType;

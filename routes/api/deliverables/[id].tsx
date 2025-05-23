@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
 import { 
   getDeliverableById, 

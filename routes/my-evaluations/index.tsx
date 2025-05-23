@@ -1,7 +1,7 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getSession } from "../../utils/session.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { UserRole } from "../../models/user.ts";
+import type { UserRole } from "../../models/user.ts";
 import StudentEvaluationsList from "../../islands/Evaluations/StudentEvaluationsList.tsx";
 import EvaluationHistory from "../../islands/Evaluations/EvaluationHistory.tsx";
 

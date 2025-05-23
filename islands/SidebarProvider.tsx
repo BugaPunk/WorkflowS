@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { createContext } from "preact";
 import { useContext } from "preact/hooks";

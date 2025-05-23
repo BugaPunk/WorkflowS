@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { Rubric } from "../../models/rubric.ts";
+import type { Rubric } from "../../models/rubric.ts";
 import { Button } from "../../components/Button.tsx";
 import Modal from "../Modal.tsx";
 

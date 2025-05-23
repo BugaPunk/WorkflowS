@@ -1,9 +1,9 @@
 import { useState, useEffect } from "preact/hooks";
 import {
-  Rubric,
+  type Rubric,
   RubricStatus,
-  RubricCriterion,
-  RubricCriterionLevel,
+  type RubricCriterion,
+  type RubricCriterionLevel,
   createRubricWithDefaults
 } from "../../models/rubric.ts";
 import { Button } from "../../components/Button.tsx";

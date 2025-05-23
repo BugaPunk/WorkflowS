@@ -1,7 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
-import { Evaluation } from "../../models/evaluation.ts";
-import { Rubric, RubricCriterion } from "../../models/rubric.ts";
-import { Deliverable } from "../../models/deliverable.ts";
+import type { Evaluation } from "../../models/evaluation.ts";
+import type { Rubric, RubricCriterion } from "../../models/rubric.ts";
+import type { Deliverable } from "../../models/deliverable.ts";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
 

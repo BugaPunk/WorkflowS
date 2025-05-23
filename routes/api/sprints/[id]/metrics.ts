@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getSprintById } from "@/models/sprint.ts";
 import { getSprintMetrics } from "@/models/sprintMetric.ts";
 import { calculateBurndown } from "@/services/metricService.ts";

@@ -1,4 +1,4 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
 import { getSession } from "../utils/session.ts";
 import { getUserTasks } from "../models/task.ts";

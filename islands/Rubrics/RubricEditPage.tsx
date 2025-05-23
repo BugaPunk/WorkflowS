@@ -1,5 +1,5 @@
-import { UserRole } from "../../models/user.ts";
-import { Rubric } from "../../models/rubric.ts";
+import type { UserRole } from "../../models/user.ts";
+import type { Rubric } from "../../models/rubric.ts";
 import RubricForm from "./RubricForm.tsx";
 
 interface RubricEditPageProps {

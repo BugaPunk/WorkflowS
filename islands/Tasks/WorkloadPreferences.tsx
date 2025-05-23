@@ -45,7 +45,7 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
     
     // Convertir a número si es un campo numérico
     if (target.type === "number") {
-      value = parseInt(target.value, 10);
+      value = Number.parseInt(target.value, 10);
     }
     
     setPreferences((prev) => ({

@@ -5,7 +5,7 @@ import AppShell from "../islands/AppShell.tsx";
 import AppSidebar from "../islands/AppSidebar.tsx";
 import { AppContent } from "../components/AppContent.tsx";
 import { SidebarInset } from "../components/ui/sidebar.tsx";
-import { UserRole } from "../models/user.ts";
+import type { UserRole } from "../models/user.ts";
 
 interface MainLayoutProps {
   children: ComponentChildren;

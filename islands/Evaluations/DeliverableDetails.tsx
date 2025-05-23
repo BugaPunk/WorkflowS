@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { Deliverable } from "../../models/deliverable.ts";
+import type { Deliverable } from "../../models/deliverable.ts";
 import { TaskStatus } from "../../models/task.ts";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";

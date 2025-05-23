@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { AppLogoIcon } from "./AppLogoIcon.tsx";
 
 export function AppLogo(): JSX.Element {

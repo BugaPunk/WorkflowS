@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
-import { Deliverable } from "../../models/deliverable.ts";
-import { Rubric } from "../../models/rubric.ts";
-import { Evaluation } from "../../models/evaluation.ts";
+import type { Deliverable } from "../../models/deliverable.ts";
+import type { Rubric } from "../../models/rubric.ts";
+import type { Evaluation } from "../../models/evaluation.ts";
 import { UserRole } from "../../models/user.ts";
 import PendingDeliverablesList from "./PendingDeliverablesList.tsx";
 import DeliverableDetails from "./DeliverableDetails.tsx";

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "preact/hooks";
-import { Task } from "../../models/task.ts";
-import { Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import type { Task } from "../../models/task.ts";
+import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
 

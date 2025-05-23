@@ -1,5 +1,5 @@
 import { JSX } from "preact";
-import { ComponentChildren } from "preact";
+import type { ComponentChildren } from "preact";
 import { useState, useRef, useEffect } from "preact/hooks";
 
 interface DropdownMenuProps {

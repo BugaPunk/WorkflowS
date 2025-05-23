@@ -56,8 +56,8 @@ export default function TeamVelocityChart({
       
       // Ordenar por nombre de sprint (asumiendo que tienen números)
       const sortedVelocities = velocities.sort((a, b) => {
-        const numA = parseInt(a.sprintName.replace(/[^\d]/g, "")) || 0;
-        const numB = parseInt(b.sprintName.replace(/[^\d]/g, "")) || 0;
+        const numA = Number.parseInt(a.sprintName.replace(/[^\d]/g, "")) || 0;
+        const numB = Number.parseInt(b.sprintName.replace(/[^\d]/g, "")) || 0;
         return numA - numB;
       });
       

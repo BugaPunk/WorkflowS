@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { SidebarGroup, SidebarMenu } from "./ui/sidebar.tsx";
 
 interface NavFooterProps {

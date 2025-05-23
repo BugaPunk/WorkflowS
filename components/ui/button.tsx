@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { ComponentChildren } from "preact";
+import type { JSX } from "preact";
+import type { ComponentChildren } from "preact";
 
 interface ButtonProps extends Omit<JSX.HTMLAttributes<HTMLButtonElement>, 'size'> {
   children: ComponentChildren;

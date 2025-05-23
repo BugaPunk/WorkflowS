@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { scheduleReport } from "@/services/reportService.ts";
 import { requireAuth } from "@/utils/auth.ts";
 import { ScheduledReportSchema } from "@/models/report.ts";

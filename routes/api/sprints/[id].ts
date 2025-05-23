@@ -1,4 +1,4 @@
-import { FreshContext } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
 import { UserRole } from "../../../models/user.ts";
 import { getKv } from "../../../utils/db.ts";

@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { Rubric } from "../../models/rubric.ts";
+import type { Rubric } from "../../models/rubric.ts";
 import { UserRole } from "../../models/user.ts";
 import RubricsList from "./RubricsList.tsx";
 import RubricDetails from "./RubricDetails.tsx";

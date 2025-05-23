@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getProjectById } from "@/models/project.ts";
 import { calculateProjectHealth } from "@/services/metricService.ts";
 import { requireAuth } from "@/utils/auth.ts";

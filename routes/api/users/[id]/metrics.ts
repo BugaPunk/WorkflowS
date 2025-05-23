@@ -1,4 +1,4 @@
-import { Handlers } from "$fresh/server.ts";
+import type { Handlers } from "$fresh/server.ts";
 import { getUserById } from "@/models/user.ts";
 import { getUserMetrics } from "@/models/userMetric.ts";
 import { calculateUserContributions } from "@/services/metricService.ts";

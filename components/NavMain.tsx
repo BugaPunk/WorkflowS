@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import type { JSX } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar.tsx";
 import { LayoutGridIcon } from "./ui/icons/LayoutGridIcon.tsx";

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
-import { Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
 import EvaluationCard from "./EvaluationCard.tsx";
 
 interface StudentEvaluationsListProps {
