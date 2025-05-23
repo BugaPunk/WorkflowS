@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para tareas
 export const TASK_COLLECTIONS = {
@@ -182,18 +182,18 @@ export async function updateTask(
         } else if (field === "assignedTo") {
           type = TaskHistoryType.ASSIGNMENT;
           if (!oldValue && newValue) {
-            description = `Tarea asignada`;
+            description = "Tarea asignada";
           } else if (oldValue && !newValue) {
-            description = `Asignación removida`;
+            description = "Asignación removida";
           } else {
-            description = `Tarea reasignada`;
+            description = "Tarea reasignada";
           }
         } else if (field === "spentHours") {
           type = TaskHistoryType.TIME_LOGGED;
           const oldHours = oldValue ? Number(oldValue) : 0;
           const newHours = newValue ? Number(newValue) : 0;
           const hoursLogged = newHours - oldHours;
-          description = `${hoursLogged > 0 ? `${hoursLogged} horas registradas` : `Horas ajustadas`}`;
+          description = `${hoursLogged > 0 ? `${hoursLogged} horas registradas` : "Horas ajustadas"}`;
         }
 
         await addTaskHistoryEntry({

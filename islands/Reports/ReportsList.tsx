@@ -1,5 +1,5 @@
-import { useState } from "preact/hooks";
 import { ReportFormat } from "@/models/report.ts";
+import { useState } from "preact/hooks";
 
 interface Report {
   id: string;
@@ -24,11 +24,7 @@ interface ReportsListProps {
   projectId: string;
 }
 
-export default function ReportsList({
-  reports,
-  scheduledReports,
-  projectId,
-}: ReportsListProps) {
+export default function ReportsList({ reports, scheduledReports, projectId }: ReportsListProps) {
   const [activeTab, setActiveTab] = useState<"saved" | "scheduled">("saved");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -199,173 +195,159 @@ export default function ReportsList({
 
       {/* Contenido de la pestaña activa */}
       <div class="p-4">
-        {activeTab === "saved" && (
-          <>
-            {reports.length === 0 ? (
-              <div class="text-center py-8">
-                <p class="text-gray-500">
-                  No hay reportes guardados. Genera un nuevo reporte para comenzar.
-                </p>
-                <a
-                  href={`/projects/${projectId}/reports/generate`}
-                  class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Generar Nuevo Reporte
-                </a>
-              </div>
-            ) : (
-              <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Título
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Tipo
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Fecha de Creación
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Acciones
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
-                    {reports.map((report) => (
-                      <tr key={report.id}>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm font-medium text-gray-900">
-                            {report.title}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm text-gray-500">
-                            {formatReportType(report.type)}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm text-gray-500">
-                            {new Date(report.createdAt).toLocaleString()}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <div class="flex space-x-2">
-                            <div class="relative group">
-                              <button type="button" class="text-blue-600 hover:text-blue-900">
-                                Exportar
-                              </button>
-                              <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 rounded shadow-lg p-2 mt-1">
-                                {report.exportFormats.map((format) => (
-                                  <button
-                                    type="button"
-                                    key={format}
-                                    class="block w-full text-left px-2 py-1 text-sm hover:bg-gray-100"
-                                    onClick={() => exportReport(report.id, format)}
-                                    disabled={loading}
-                                  >
-                                    {format.toUpperCase()}
-                                  </button>
-                                ))}
-                              </div>
+        {activeTab === "saved" &&
+          (reports.length === 0 ? (
+            <div class="text-center py-8">
+              <p class="text-gray-500">
+                No hay reportes guardados. Genera un nuevo reporte para comenzar.
+              </p>
+              <a
+                href={`/projects/${projectId}/reports/generate`}
+                class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Generar Nuevo Reporte
+              </a>
+            </div>
+          ) : (
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Título
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Tipo
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Fecha de Creación
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Acciones
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  {reports.map((report) => (
+                    <tr key={report.id}>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{report.title}</div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">{formatReportType(report.type)}</div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">
+                          {new Date(report.createdAt).toLocaleString()}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div class="flex space-x-2">
+                          <div class="relative group">
+                            <button type="button" class="text-blue-600 hover:text-blue-900">
+                              Exportar
+                            </button>
+                            <div class="absolute z-10 hidden group-hover:block bg-white border border-gray-200 rounded shadow-lg p-2 mt-1">
+                              {report.exportFormats.map((format) => (
+                                <button
+                                  type="button"
+                                  key={format}
+                                  class="block w-full text-left px-2 py-1 text-sm hover:bg-gray-100"
+                                  onClick={() => exportReport(report.id, format)}
+                                  disabled={loading}
+                                >
+                                  {format.toUpperCase()}
+                                </button>
+                              ))}
                             </div>
-                            <button
-                              type="button"
-                              class="text-red-600 hover:text-red-900"
-                              onClick={() => deleteReport(report.id)}
-                              disabled={loading}
-                            >
-                              Eliminar
-                            </button>
                           </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </>
-        )}
-
-        {activeTab === "scheduled" && (
-          <>
-            {scheduledReports.length === 0 ? (
-              <div class="text-center py-8">
-                <p class="text-gray-500">
-                  No hay reportes programados. Programa un nuevo reporte para comenzar.
-                </p>
-                <a
-                  href={`/projects/${projectId}/reports/schedule`}
-                  class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Programar Nuevo Reporte
-                </a>
-              </div>
-            ) : (
-              <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="bg-gray-50">
-                    <tr>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Título
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Frecuencia
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Próxima Ejecución
-                      </th>
-                      <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Acciones
-                      </th>
+                          <button
+                            type="button"
+                            class="text-red-600 hover:text-red-900"
+                            onClick={() => deleteReport(report.id)}
+                            disabled={loading}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
-                    {scheduledReports.map((report) => (
-                      <tr key={report.id}>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm font-medium text-gray-900">
-                            {report.title}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm text-gray-500">
-                            {formatFrequency(report.frequency)}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                          <div class="text-sm text-gray-500">
-                            {new Date(report.nextRunTime).toLocaleString()}
-                          </div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <div class="flex space-x-2">
-                            <a
-                              href={`/projects/${projectId}/reports/schedule/${report.id}`}
-                              class="text-blue-600 hover:text-blue-900"
-                            >
-                              Editar
-                            </a>
-                            <button
-                              type="button"
-                              class="text-red-600 hover:text-red-900"
-                              onClick={() => deleteScheduledReport(report.id)}
-                              disabled={loading}
-                            >
-                              Eliminar
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </>
-        )}
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
+
+        {activeTab === "scheduled" &&
+          (scheduledReports.length === 0 ? (
+            <div class="text-center py-8">
+              <p class="text-gray-500">
+                No hay reportes programados. Programa un nuevo reporte para comenzar.
+              </p>
+              <a
+                href={`/projects/${projectId}/reports/schedule`}
+                class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Programar Nuevo Reporte
+              </a>
+            </div>
+          ) : (
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Título
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Frecuencia
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Próxima Ejecución
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Acciones
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  {scheduledReports.map((report) => (
+                    <tr key={report.id}>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm font-medium text-gray-900">{report.title}</div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">{formatFrequency(report.frequency)}</div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-500">
+                          {new Date(report.nextRunTime).toLocaleString()}
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <div class="flex space-x-2">
+                          <a
+                            href={`/projects/${projectId}/reports/schedule/${report.id}`}
+                            class="text-blue-600 hover:text-blue-900"
+                          >
+                            Editar
+                          </a>
+                          <button
+                            type="button"
+                            class="text-red-600 hover:text-red-900"
+                            onClick={() => deleteScheduledReport(report.id)}
+                            disabled={loading}
+                          >
+                            Eliminar
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ))}
       </div>
     </div>
   );

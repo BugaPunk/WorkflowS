@@ -1,13 +1,13 @@
-import { useMemo, useCallback } from "preact/hooks";
+import { useCallback, useMemo } from "preact/hooks";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { Project } from "../../models/project.ts";
 import type { UserStory } from "../../models/userStory.ts";
+import TaskCalendarView from "./TaskCalendarView.tsx";
 import type { TaskFiltersState } from "./TaskFilters.tsx";
 import type { GroupingOption } from "./TaskGrouping.tsx";
-import type { ViewType } from "./TaskViewSelector.tsx";
 import TaskListView from "./TaskListView.tsx";
-import TaskCalendarView from "./TaskCalendarView.tsx";
+import type { ViewType } from "./TaskViewSelector.tsx";
 
 interface FilteredTasksListProps {
   tasks: Task[];

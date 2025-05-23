@@ -28,22 +28,22 @@ export default function TeamVelocityChart({
   const loadData = async () => {
     try {
       setLoading(true);
-      
+
       // Obtener los sprints del proyecto
       const sprintsResponse = await fetch(`/api/projects/${projectId}/sprints`);
-      
+
       if (!sprintsResponse.ok) {
         throw new Error(`Error al cargar sprints: ${sprintsResponse.status}`);
       }
-      
+
       const sprints = await sprintsResponse.json();
-      
+
       // Obtener la velocidad de cada sprint
       const velocities: SprintVelocity[] = [];
-      
+
       for (const sprint of sprints) {
         const velocityResponse = await fetch(`/api/sprints/${sprint.id}/velocity`);
-        
+
         if (velocityResponse.ok) {
           const velocityData = await velocityResponse.json();
           velocities.push({
@@ -53,25 +53,25 @@ export default function TeamVelocityChart({
           });
         }
       }
-      
+
       // Ordenar por nombre de sprint (asumiendo que tienen números)
       const sortedVelocities = velocities.sort((a, b) => {
         const numA = Number.parseInt(a.sprintName.replace(/[^\d]/g, "")) || 0;
         const numB = Number.parseInt(b.sprintName.replace(/[^\d]/g, "")) || 0;
         return numA - numB;
       });
-      
+
       // Limitar el número de sprints si es necesario
       const limitedVelocities = sortedVelocities.slice(-limit);
-      
+
       setData(limitedVelocities);
-      
+
       // Calcular velocidad promedio
       if (limitedVelocities.length > 0) {
         const sum = limitedVelocities.reduce((acc, curr) => acc + curr.velocity, 0);
         setAverageVelocity(Math.round(sum / limitedVelocities.length));
       }
-      
+
       setError(null);
     } catch (err) {
       console.error("Error al cargar datos de velocidad:", err);
@@ -92,7 +92,7 @@ export default function TeamVelocityChart({
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="text-lg font-semibold mb-4">Velocidad del Equipo</h3>
         <div class="flex justify-center items-center" style={{ height: `${height}px` }}>
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
         </div>
       </div>
     );
@@ -129,7 +129,7 @@ export default function TeamVelocityChart({
 
   // Encontrar valor máximo para escalar el gráfico
   const maxVelocity = Math.max(...data.map((d) => d.velocity));
-  
+
   // Calcular escalas
   const barWidth = chartWidth / data.length;
   const barPadding = barWidth * 0.2; // 20% de padding entre barras
@@ -144,7 +144,7 @@ export default function TeamVelocityChart({
           Promedio: <span class="font-semibold">{averageVelocity} puntos</span>
         </div>
       </div>
-      
+
       <svg width={width} height={height}>
         {/* Eje X */}
         <line
@@ -155,7 +155,7 @@ export default function TeamVelocityChart({
           stroke="#CBD5E0"
           stroke-width="1"
         />
-        
+
         {/* Eje Y */}
         <line
           x1={padding}
@@ -165,7 +165,7 @@ export default function TeamVelocityChart({
           stroke="#CBD5E0"
           stroke-width="1"
         />
-        
+
         {/* Líneas de cuadrícula horizontales */}
         {Array.from({ length: 5 }).map((_, i) => {
           const y = height - padding - (chartHeight / 4) * i;
@@ -181,7 +181,7 @@ export default function TeamVelocityChart({
             />
           );
         })}
-        
+
         {/* Etiquetas del eje Y (velocidad) */}
         {Array.from({ length: 5 }).map((_, i) => {
           const y = height - padding - (chartHeight / 4) * i;
@@ -199,23 +199,16 @@ export default function TeamVelocityChart({
             </text>
           );
         })}
-        
+
         {/* Barras de velocidad */}
         {data.map((d, i) => {
           const barHeight = d.velocity * yScale;
           const x = padding + barPadding + i * barWidth;
           const y = height - padding - barHeight;
-          
+
           return (
             <g key={`bar-${i}`}>
-              <rect
-                x={x}
-                y={y}
-                width={actualBarWidth}
-                height={barHeight}
-                fill="#3182CE"
-                rx="2"
-              />
+              <rect x={x} y={y} width={actualBarWidth} height={barHeight} fill="#3182CE" rx="2" />
               <text
                 x={x + actualBarWidth / 2}
                 y={y - 5}
@@ -228,7 +221,7 @@ export default function TeamVelocityChart({
             </g>
           );
         })}
-        
+
         {/* Etiquetas del eje X (sprints) */}
         {data.map((d, i) => {
           const x = padding + barPadding + i * barWidth + actualBarWidth / 2;
@@ -241,13 +234,11 @@ export default function TeamVelocityChart({
               font-size="10"
               fill="#4A5568"
             >
-              {d.sprintName.length > 10 
-                ? d.sprintName.substring(0, 10) + "..." 
-                : d.sprintName}
+              {d.sprintName.length > 10 ? `${d.sprintName.substring(0, 10)}...` : d.sprintName}
             </text>
           );
         })}
-        
+
         {/* Línea de velocidad promedio */}
         <line
           x1={padding}
@@ -258,7 +249,7 @@ export default function TeamVelocityChart({
           stroke-width="2"
           stroke-dasharray="5,5"
         />
-        
+
         <text
           x={width - padding - 5}
           y={height - padding - averageVelocity * yScale - 5}
@@ -269,7 +260,7 @@ export default function TeamVelocityChart({
           Promedio: {averageVelocity}
         </text>
       </svg>
-      
+
       {/* Botón de actualización */}
       <div class="mt-2 text-right">
         <button

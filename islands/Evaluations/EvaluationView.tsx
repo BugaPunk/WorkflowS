@@ -1,9 +1,9 @@
-import { useState, useEffect } from "preact/hooks";
-import type { Evaluation } from "../../models/evaluation.ts";
-import type { Rubric, RubricCriterion } from "../../models/rubric.ts";
-import type { Deliverable } from "../../models/deliverable.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import type { Deliverable } from "../../models/deliverable.ts";
+import type { Evaluation } from "../../models/evaluation.ts";
+import type { Rubric, RubricCriterion } from "../../models/rubric.ts";
 
 interface EvaluationViewProps {
   evaluationId: string;
@@ -11,11 +11,7 @@ interface EvaluationViewProps {
   onEdit?: (evaluation: Evaluation) => void;
 }
 
-export default function EvaluationView({
-  evaluationId,
-  onBack,
-  onEdit
-}: EvaluationViewProps) {
+export default function EvaluationView({ evaluationId, onBack, onEdit }: EvaluationViewProps) {
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null);
   const [rubric, setRubric] = useState<Rubric | null>(null);
   const [deliverable, setDeliverable] = useState<Deliverable | null>(null);
@@ -77,18 +73,18 @@ export default function EvaluationView({
 
   // Obtener criterio por ID
   const getCriterionById = (criterionId: string): RubricCriterion | undefined => {
-    return rubric?.criteria.find(c => c.id === criterionId);
+    return rubric?.criteria.find((c) => c.id === criterionId);
   };
 
   // Obtener nivel de criterio por puntuación
   const getCriterionLevelByScore = (criterion: RubricCriterion, score: number) => {
-    return criterion.levels.find(level => level.pointValue === score);
+    return criterion.levels.find((level) => level.pointValue === score);
   };
 
   if (loading) {
     return (
       <div class="p-8 text-center">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
         <p class="mt-2 text-gray-600">Cargando evaluación...</p>
       </div>
     );
@@ -114,11 +110,7 @@ export default function EvaluationView({
       <div class="p-8 text-center text-gray-500">
         <p>No se encontró la evaluación o datos relacionados.</p>
         {onBack && (
-          <button
-            type="button"
-            onClick={onBack}
-            class="mt-2 text-blue-600 hover:underline"
-          >
+          <button type="button" onClick={onBack} class="mt-2 text-blue-600 hover:underline">
             Volver
           </button>
         )}
@@ -144,11 +136,7 @@ export default function EvaluationView({
         <div>
           <div class="flex items-center gap-2 mb-2">
             {onBack && (
-              <button
-                type="button"
-                onClick={onBack}
-                class="text-gray-500 hover:text-gray-700"
-              >
+              <button type="button" onClick={onBack} class="text-gray-500 hover:text-gray-700">
                 ← Volver
               </button>
             )}
@@ -173,12 +161,7 @@ export default function EvaluationView({
               {evaluation.totalScore} / {evaluation.maxPossibleScore}
             </span>
             {onEdit && (
-              <Button
-                onClick={() => onEdit(evaluation)}
-                variant="ghost"
-                size="sm"
-                class="ml-4"
-              >
+              <Button onClick={() => onEdit(evaluation)} variant="ghost" size="sm" class="ml-4">
                 Editar
               </Button>
             )}
@@ -186,18 +169,20 @@ export default function EvaluationView({
           <div class="w-full bg-gray-200 rounded-full h-2.5">
             <div
               class={`h-2.5 rounded-full ${
-                percentage >= 90 ? 'bg-green-600' :
-                percentage >= 80 ? 'bg-green-500' :
-                percentage >= 70 ? 'bg-yellow-600' :
-                percentage >= 60 ? 'bg-yellow-500' :
-                'bg-red-500'
+                percentage >= 90
+                  ? "bg-green-600"
+                  : percentage >= 80
+                    ? "bg-green-500"
+                    : percentage >= 70
+                      ? "bg-yellow-600"
+                      : percentage >= 60
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
               }`}
               style={{ width: `${percentage}%` }}
-            ></div>
+            />
           </div>
-          <p class="text-gray-600 text-sm mt-1">
-            {percentage}%
-          </p>
+          <p class="text-gray-600 text-sm mt-1">{percentage}%</p>
         </div>
       </div>
 
@@ -229,7 +214,9 @@ export default function EvaluationView({
                     )}
                   </div>
                   <div class="text-right">
-                    <p class={`text-lg font-bold ${getScoreColor((criterionEval.score / criterion.maxPoints) * 100)}`}>
+                    <p
+                      class={`text-lg font-bold ${getScoreColor((criterionEval.score / criterion.maxPoints) * 100)}`}
+                    >
                       {criterionEval.score} / {criterion.maxPoints}
                     </p>
                   </div>
@@ -244,7 +231,9 @@ export default function EvaluationView({
 
                 {criterionEval.feedback && (
                   <div class="mt-4">
-                    <h4 class="text-sm font-medium text-gray-700 mb-1">Retroalimentación específica:</h4>
+                    <h4 class="text-sm font-medium text-gray-700 mb-1">
+                      Retroalimentación específica:
+                    </h4>
                     <p class="text-gray-800 p-3 bg-gray-50 rounded-lg">{criterionEval.feedback}</p>
                   </div>
                 )}
@@ -256,21 +245,12 @@ export default function EvaluationView({
 
       <div class="mt-8 flex justify-between">
         {onBack && (
-          <Button
-            onClick={onBack}
-            variant="default"
-          >
+          <Button onClick={onBack} variant="default">
             Volver
           </Button>
         )}
 
-        {onEdit && (
-          <Button
-            onClick={() => onEdit(evaluation)}
-          >
-            Editar Evaluación
-          </Button>
-        )}
+        {onEdit && <Button onClick={() => onEdit(evaluation)}>Editar Evaluación</Button>}
       </div>
     </div>
   );

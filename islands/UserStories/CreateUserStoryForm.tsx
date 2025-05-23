@@ -1,11 +1,11 @@
 import { useState } from "preact/hooks";
-import type { Project } from "../../models/project.ts";
-import { type CreateUserStoryData, UserStoryPriority } from "../../models/userStory.ts";
+import FormActions from "../../components/form/FormActions.tsx";
+import FormError from "../../components/form/FormError.tsx";
 import FormField from "../../components/form/FormField.tsx";
 import FormSelect from "../../components/form/FormSelect.tsx";
 import FormTextarea from "../../components/form/FormTextarea.tsx";
-import FormError from "../../components/form/FormError.tsx";
-import FormActions from "../../components/form/FormActions.tsx";
+import type { Project } from "../../models/project.ts";
+import { type CreateUserStoryData, UserStoryPriority } from "../../models/userStory.ts";
 
 interface CreateUserStoryFormProps {
   projectId?: string;
@@ -79,7 +79,7 @@ export default function CreateUserStoryForm({
       newErrors.projectId = "Debes seleccionar un proyecto";
     }
 
-    if (formData.points && (isNaN(Number(formData.points)) || Number(formData.points) < 0)) {
+    if (formData.points && (Number.isNaN(Number(formData.points)) || Number(formData.points) < 0)) {
       newErrors.points = "Los puntos deben ser un número positivo";
     }
 
@@ -215,10 +215,10 @@ export default function CreateUserStoryForm({
           required
           options={[
             { value: "", label: "Selecciona un proyecto" },
-            ...projects.map(project => ({
+            ...projects.map((project) => ({
               value: project.id,
-              label: project.name
-            }))
+              label: project.name,
+            })),
           ]}
         />
       )}

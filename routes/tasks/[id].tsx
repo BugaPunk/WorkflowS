@@ -1,11 +1,11 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
-import { getTaskById } from "../../models/task.ts";
-import { getUserStoryById } from "../../models/userStory.ts";
-import { getProjectById } from "../../models/project.ts";
-import { getUserById, UserRole } from "../../models/user.ts";
 import TaskDetailView from "../../islands/Tasks/TaskDetailView.tsx";
+import { MainLayout } from "../../layouts/MainLayout.tsx";
+import { getProjectById } from "../../models/project.ts";
+import { getTaskById } from "../../models/task.ts";
+import { UserRole, getUserById } from "../../models/user.ts";
+import { getUserStoryById } from "../../models/userStory.ts";
+import { getSession } from "../../utils/session.ts";
 
 interface TaskDetailPageData {
   session: {

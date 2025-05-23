@@ -1,6 +1,6 @@
-import { useState, useEffect } from "preact/hooks";
-import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import { useEffect, useState } from "preact/hooks";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
 
 interface EvaluationStatsProps {
   projectId?: string;
@@ -63,7 +63,9 @@ export default function EvaluationStats({ projectId }: EvaluationStatsProps) {
 
         if (completed.length > 0) {
           completed.forEach((evaluation: Evaluation) => {
-            const percentage = Math.round((evaluation.totalScore / evaluation.maxPossibleScore) * 100);
+            const percentage = Math.round(
+              (evaluation.totalScore / evaluation.maxPossibleScore) * 100
+            );
             totalPercentage += percentage;
             highest = Math.max(highest, percentage);
             lowest = Math.min(lowest, percentage);
@@ -103,7 +105,7 @@ export default function EvaluationStats({ projectId }: EvaluationStatsProps) {
     return (
       <div class="bg-white rounded-lg shadow p-6">
         <div class="flex justify-center items-center h-40">
-          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
           <p class="ml-2 text-gray-600">Cargando estadísticas...</p>
         </div>
       </div>

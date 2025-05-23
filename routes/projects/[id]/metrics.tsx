@@ -1,13 +1,13 @@
-import type { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
+import BurndownChart from "@/islands/Metrics/BurndownChart.tsx";
+import ProjectHealthGauge from "@/islands/Metrics/ProjectHealthGauge.tsx";
+import TeamVelocityChart from "@/islands/Metrics/TeamVelocityChart.tsx";
+import WorkDistributionChart from "@/islands/Metrics/WorkDistributionChart.tsx";
+import { MainLayout } from "@/layouts/MainLayout.tsx";
 import { getProjectById } from "@/models/project.ts";
 import { getProjectSprints } from "@/models/sprint.ts";
 import { requireAuth } from "@/utils/auth.ts";
-import BurndownChart from "@/islands/Metrics/BurndownChart.tsx";
-import TeamVelocityChart from "@/islands/Metrics/TeamVelocityChart.tsx";
-import ProjectHealthGauge from "@/islands/Metrics/ProjectHealthGauge.tsx";
-import WorkDistributionChart from "@/islands/Metrics/WorkDistributionChart.tsx";
-import { MainLayout } from "@/layouts/MainLayout.tsx";
 
 interface MetricsDashboardProps {
   project: {
@@ -127,7 +127,8 @@ export default function MetricsDashboard({ data }: PageProps<MetricsDashboardPro
             <div class="bg-white p-4 rounded-lg shadow mb-6">
               <div class="text-center py-8">
                 <p class="text-gray-500">
-                  No hay sprints en este proyecto. Crea un sprint para comenzar a recopilar métricas.
+                  No hay sprints en este proyecto. Crea un sprint para comenzar a recopilar
+                  métricas.
                 </p>
               </div>
             </div>
@@ -160,9 +161,7 @@ export default function MetricsDashboard({ data }: PageProps<MetricsDashboardPro
 
               {sprints.filter((sprint) => sprint.status === "completed").length === 0 && (
                 <div class="text-center py-4">
-                  <p class="text-gray-500">
-                    No hay sprints completados en este proyecto.
-                  </p>
+                  <p class="text-gray-500">No hay sprints completados en este proyecto.</p>
                 </div>
               )}
             </div>

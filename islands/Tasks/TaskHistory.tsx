@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import type { TaskHistoryEntry } from "../../models/task.ts";
 import { TaskHistoryType } from "../../models/task.ts";
 import { getUserById } from "../../services/userService.ts";

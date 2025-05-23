@@ -1,13 +1,13 @@
-import { useState, useEffect } from "preact/hooks";
-import {
-  type Rubric,
-  RubricStatus,
-  type RubricCriterion,
-  type RubricCriterionLevel,
-  createRubricWithDefaults
-} from "../../models/rubric.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import FormError from "../../components/form/FormError.tsx";
+import {
+  type Rubric,
+  type RubricCriterion,
+  type RubricCriterionLevel,
+  RubricStatus,
+  createRubricWithDefaults,
+} from "../../models/rubric.ts";
 
 interface RubricFormProps {
   rubricId?: string;
@@ -22,7 +22,7 @@ export default function RubricForm({
   projectId,
   isTemplate = false,
   onSave,
-  onCancel
+  onCancel,
 }: RubricFormProps) {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -71,14 +71,14 @@ export default function RubricForm({
     const target = e.target as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
     const { name, value } = target;
 
-    setRubric(prev => ({
+    setRubric((prev) => ({
       ...prev,
       [name]: value,
     }));
 
     // Limpiar error del campo
     if (formErrors[name]) {
-      setFormErrors(prev => {
+      setFormErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[name];
         return newErrors;
@@ -87,8 +87,12 @@ export default function RubricForm({
   };
 
   // Manejar cambios en los criterios
-  const handleCriterionChange = (index: number, field: keyof RubricCriterion, value: string | number) => {
-    setRubric(prev => {
+  const handleCriterionChange = (
+    index: number,
+    field: keyof RubricCriterion,
+    value: string | number
+  ) => {
+    setRubric((prev) => {
       const newCriteria = [...prev.criteria];
       newCriteria[index] = {
         ...newCriteria[index],
@@ -108,12 +112,12 @@ export default function RubricForm({
     field: keyof RubricCriterionLevel,
     value: string | number
   ) => {
-    setRubric(prev => {
+    setRubric((prev) => {
       const newCriteria = [...prev.criteria];
       const newLevels = [...newCriteria[criterionIndex].levels];
       newLevels[levelIndex] = {
         ...newLevels[levelIndex],
-        [field]: field === 'pointValue' ? Number(value) : value,
+        [field]: field === "pointValue" ? Number(value) : value,
       };
       newCriteria[criterionIndex] = {
         ...newCriteria[criterionIndex],
@@ -128,7 +132,7 @@ export default function RubricForm({
 
   // Añadir un nuevo criterio
   const addCriterion = () => {
-    setRubric(prev => {
+    setRubric((prev) => {
       const newCriterion: RubricCriterion = {
         id: crypto.randomUUID(),
         name: `Criterio ${prev.criteria.length + 1}`,
@@ -167,7 +171,7 @@ export default function RubricForm({
 
   // Eliminar un criterio
   const removeCriterion = (index: number) => {
-    setRubric(prev => {
+    setRubric((prev) => {
       const newCriteria = [...prev.criteria];
       newCriteria.splice(index, 1);
       return {
@@ -179,7 +183,7 @@ export default function RubricForm({
 
   // Añadir un nuevo nivel a un criterio
   const addLevel = (criterionIndex: number) => {
-    setRubric(prev => {
+    setRubric((prev) => {
       const newCriteria = [...prev.criteria];
       const criterion = newCriteria[criterionIndex];
       const newLevels = [...criterion.levels];
@@ -204,7 +208,7 @@ export default function RubricForm({
 
   // Eliminar un nivel de un criterio
   const removeLevel = (criterionIndex: number, levelIndex: number) => {
-    setRubric(prev => {
+    setRubric((prev) => {
       const newCriteria = [...prev.criteria];
       const criterion = newCriteria[criterionIndex];
       const newLevels = [...criterion.levels];
@@ -250,11 +254,13 @@ export default function RubricForm({
         } else {
           criterion.levels.forEach((level, levelIndex) => {
             if (!level.description.trim()) {
-              errors[`criterion_${index}_level_${levelIndex}_description`] = "La descripción del nivel es requerida";
+              errors[`criterion_${index}_level_${levelIndex}_description`] =
+                "La descripción del nivel es requerida";
             }
 
             if (level.pointValue < 0) {
-              errors[`criterion_${index}_level_${levelIndex}_pointValue`] = "Los puntos deben ser mayores o iguales a 0";
+              errors[`criterion_${index}_level_${levelIndex}_pointValue`] =
+                "Los puntos deben ser mayores o iguales a 0";
             }
           });
         }
@@ -307,7 +313,7 @@ export default function RubricForm({
   if (loading) {
     return (
       <div class="p-8 text-center">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
         <p class="mt-2 text-gray-600">Cargando rúbrica...</p>
       </div>
     );
@@ -320,11 +326,7 @@ export default function RubricForm({
       </h2>
 
       <form onSubmit={handleSubmit}>
-        {error && (
-          <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
-            {error}
-          </div>
-        )}
+        {error && <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
         <div class="space-y-4 mb-6">
           {/* Campos básicos */}
@@ -343,9 +345,7 @@ export default function RubricForm({
               onChange={handleChange}
               required
             />
-            {formErrors.name && (
-              <p class="text-red-500 text-xs italic mt-1">{formErrors.name}</p>
-            )}
+            {formErrors.name && <p class="text-red-500 text-xs italic mt-1">{formErrors.name}</p>}
           </div>
 
           <div class="mb-4">
@@ -398,7 +398,7 @@ export default function RubricForm({
                 checked={rubric.isTemplate}
                 onChange={(e) => {
                   const target = e.target as HTMLInputElement;
-                  setRubric(prev => ({
+                  setRubric((prev) => ({
                     ...prev,
                     isTemplate: target.checked,
                   }));
@@ -416,25 +416,17 @@ export default function RubricForm({
         <div class="mb-6">
           <div class="flex justify-between items-center mb-4">
             <h3 class="text-lg font-medium text-gray-800">Criterios de Evaluación</h3>
-            <Button
-              type="button"
-              onClick={addCriterion}
-            >
+            <Button type="button" onClick={addCriterion}>
               Añadir Criterio
             </Button>
           </div>
 
-          {formErrors.criteria && (
-            <FormError error={formErrors.criteria} />
-          )}
+          {formErrors.criteria && <FormError error={formErrors.criteria} />}
 
           {rubric.criteria.length === 0 ? (
             <div class="text-center p-6 bg-gray-50 rounded-lg">
               <p class="text-gray-500 mb-4">No hay criterios definidos.</p>
-              <Button
-                type="button"
-                onClick={addCriterion}
-              >
+              <Button type="button" onClick={addCriterion}>
                 Añadir Primer Criterio
               </Button>
             </div>
@@ -443,9 +435,7 @@ export default function RubricForm({
               {rubric.criteria.map((criterion, criterionIndex) => (
                 <div key={criterion.id} class="border border-gray-200 rounded-lg p-4">
                   <div class="flex justify-between items-start mb-4">
-                    <h4 class="text-md font-medium text-gray-800">
-                      Criterio {criterionIndex + 1}
-                    </h4>
+                    <h4 class="text-md font-medium text-gray-800">Criterio {criterionIndex + 1}</h4>
                     <button
                       type="button"
                       onClick={() => removeCriterion(criterionIndex)}
@@ -457,7 +447,10 @@ export default function RubricForm({
 
                   <div class="space-y-4 mb-6">
                     <div class="mb-4">
-                      <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor={`criterion_${criterionIndex}_name`}>
+                      <label
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                        htmlFor={`criterion_${criterionIndex}_name`}
+                      >
                         Nombre del criterio{<span class="text-red-500 ml-1">*</span>}
                       </label>
                       <input
@@ -475,17 +468,24 @@ export default function RubricForm({
                         required
                       />
                       {formErrors[`criterion_${criterionIndex}_name`] && (
-                        <p class="text-red-500 text-xs italic mt-1">{formErrors[`criterion_${criterionIndex}_name`]}</p>
+                        <p class="text-red-500 text-xs italic mt-1">
+                          {formErrors[`criterion_${criterionIndex}_name`]}
+                        </p>
                       )}
                     </div>
 
                     <div class="mb-4">
-                      <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor={`criterion_${criterionIndex}_description`}>
+                      <label
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                        htmlFor={`criterion_${criterionIndex}_description`}
+                      >
                         Descripción del criterio
                       </label>
                       <textarea
                         class={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                          formErrors[`criterion_${criterionIndex}_description`] ? "border-red-500" : ""
+                          formErrors[`criterion_${criterionIndex}_description`]
+                            ? "border-red-500"
+                            : ""
                         }`}
                         id={`criterion_${criterionIndex}_description`}
                         name={`criterion_${criterionIndex}_description`}
@@ -497,17 +497,24 @@ export default function RubricForm({
                         rows={2}
                       />
                       {formErrors[`criterion_${criterionIndex}_description`] && (
-                        <p class="text-red-500 text-xs italic mt-1">{formErrors[`criterion_${criterionIndex}_description`]}</p>
+                        <p class="text-red-500 text-xs italic mt-1">
+                          {formErrors[`criterion_${criterionIndex}_description`]}
+                        </p>
                       )}
                     </div>
 
                     <div class="mb-4">
-                      <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor={`criterion_${criterionIndex}_maxPoints`}>
+                      <label
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                        htmlFor={`criterion_${criterionIndex}_maxPoints`}
+                      >
                         Puntos máximos{<span class="text-red-500 ml-1">*</span>}
                       </label>
                       <input
                         class={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                          formErrors[`criterion_${criterionIndex}_maxPoints`] ? "border-red-500" : ""
+                          formErrors[`criterion_${criterionIndex}_maxPoints`]
+                            ? "border-red-500"
+                            : ""
                         }`}
                         id={`criterion_${criterionIndex}_maxPoints`}
                         name={`criterion_${criterionIndex}_maxPoints`}
@@ -521,7 +528,9 @@ export default function RubricForm({
                         required
                       />
                       {formErrors[`criterion_${criterionIndex}_maxPoints`] && (
-                        <p class="text-red-500 text-xs italic mt-1">{formErrors[`criterion_${criterionIndex}_maxPoints`]}</p>
+                        <p class="text-red-500 text-xs italic mt-1">
+                          {formErrors[`criterion_${criterionIndex}_maxPoints`]}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -559,16 +568,28 @@ export default function RubricForm({
                         <table class="min-w-full divide-y divide-gray-200">
                           <thead class="bg-gray-50">
                             <tr>
-                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Nivel
                               </th>
-                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Descripción
                               </th>
-                              <th scope="col" class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Puntos
                               </th>
-                              <th scope="col" class="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                              <th
+                                scope="col"
+                                class="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                              >
                                 Acciones
                               </th>
                             </tr>
@@ -585,14 +606,25 @@ export default function RubricForm({
                                     value={level.description}
                                     onChange={(e) => {
                                       const target = e.target as HTMLInputElement;
-                                      handleLevelChange(criterionIndex, levelIndex, "description", target.value);
+                                      handleLevelChange(
+                                        criterionIndex,
+                                        levelIndex,
+                                        "description",
+                                        target.value
+                                      );
                                     }}
                                     class="w-full px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     required
                                   />
-                                  {formErrors[`criterion_${criterionIndex}_level_${levelIndex}_description`] && (
+                                  {formErrors[
+                                    `criterion_${criterionIndex}_level_${levelIndex}_description`
+                                  ] && (
                                     <p class="mt-1 text-xs text-red-600">
-                                      {formErrors[`criterion_${criterionIndex}_level_${levelIndex}_description`]}
+                                      {
+                                        formErrors[
+                                          `criterion_${criterionIndex}_level_${levelIndex}_description`
+                                        ]
+                                      }
                                     </p>
                                   )}
                                 </td>
@@ -603,14 +635,25 @@ export default function RubricForm({
                                     value={level.pointValue}
                                     onChange={(e) => {
                                       const target = e.target as HTMLInputElement;
-                                      handleLevelChange(criterionIndex, levelIndex, "pointValue", Number(target.value));
+                                      handleLevelChange(
+                                        criterionIndex,
+                                        levelIndex,
+                                        "pointValue",
+                                        Number(target.value)
+                                      );
                                     }}
                                     class="w-20 px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     required
                                   />
-                                  {formErrors[`criterion_${criterionIndex}_level_${levelIndex}_pointValue`] && (
+                                  {formErrors[
+                                    `criterion_${criterionIndex}_level_${levelIndex}_pointValue`
+                                  ] && (
                                     <p class="mt-1 text-xs text-red-600">
-                                      {formErrors[`criterion_${criterionIndex}_level_${levelIndex}_pointValue`]}
+                                      {
+                                        formErrors[
+                                          `criterion_${criterionIndex}_level_${levelIndex}_pointValue`
+                                        ]
+                                      }
                                     </p>
                                   )}
                                 </td>
@@ -638,20 +681,10 @@ export default function RubricForm({
         </div>
 
         <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={onCancel}
-            disabled={saving}
-          >
+          <Button type="button" variant="ghost" onClick={onCancel} disabled={saving}>
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            disabled={saving}
-            class="ml-2"
-          >
+          <Button type="submit" variant="primary" disabled={saving} class="ml-2">
             {saving ? "Guardando..." : rubricId ? "Actualizar Rúbrica" : "Crear Rúbrica"}
           </Button>
         </div>

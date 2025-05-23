@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 
 interface WorkloadPreferencesProps {
   onClose: () => void;
@@ -37,17 +37,17 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
     const target = e.target as HTMLInputElement | HTMLSelectElement;
     const name = target.name;
     let value: string | number | boolean = target.value;
-    
+
     // Convertir a booleano si es un checkbox
     if (target.type === "checkbox") {
       value = (target as HTMLInputElement).checked;
     }
-    
+
     // Convertir a número si es un campo numérico
     if (target.type === "number") {
       value = Number.parseInt(target.value, 10);
     }
-    
+
     setPreferences((prev) => ({
       ...prev,
       [name]: value,
@@ -58,12 +58,12 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
   const handleSave = () => {
     try {
       localStorage.setItem("workloadPreferences", JSON.stringify(preferences));
-      
+
       // Actualizar la vista predeterminada
       localStorage.setItem("workloadViewMode", preferences.defaultView);
-      
+
       onClose();
-      
+
       // Recargar la página para aplicar los cambios
       window.location.reload();
     } catch (error) {
@@ -76,18 +76,19 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
       <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
         <div class="flex justify-between items-center mb-4">
           <h3 class="text-lg font-semibold text-gray-800">Preferencias de Visualización</h3>
-          <button
-            type="button"
-            onClick={onClose}
-            class="text-gray-400 hover:text-gray-500"
-          >
+          <button type="button" onClick={onClose} class="text-gray-400 hover:text-gray-500">
             <span class="sr-only">Cerrar</span>
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
-        
+
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1" htmlFor="defaultView">
@@ -106,7 +107,7 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
               <option value="byStatus">Por Estado</option>
             </select>
           </div>
-          
+
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1" htmlFor="daysToShow">
               Días a mostrar
@@ -125,7 +126,7 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
               Número de días a mostrar en la vista diaria (1-30)
             </p>
           </div>
-          
+
           <div class="flex items-center">
             <input
               type="checkbox"
@@ -139,7 +140,7 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
               Mostrar métricas de carga de trabajo
             </label>
           </div>
-          
+
           <div class="flex items-center">
             <input
               type="checkbox"
@@ -154,7 +155,7 @@ export default function WorkloadPreferences({ onClose }: WorkloadPreferencesProp
             </label>
           </div>
         </div>
-        
+
         <div class="mt-6 flex justify-end space-x-3">
           <button
             type="button"

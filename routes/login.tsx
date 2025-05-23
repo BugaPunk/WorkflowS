@@ -1,7 +1,7 @@
-import { MainLayout } from "../layouts/MainLayout.tsx";
-import LoginForm from "../islands/LoginForm.tsx";
-import { getSession } from "../utils/session.ts";
 import type { FreshContext } from "$fresh/server.ts";
+import LoginForm from "../islands/LoginForm.tsx";
+import { MainLayout } from "../layouts/MainLayout.tsx";
+import { getSession } from "../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

@@ -1,5 +1,5 @@
+import { ReportFormat, ReportType } from "@/models/report.ts";
 import { useState } from "preact/hooks";
-import { ReportType, ReportFormat } from "@/models/report.ts";
 
 interface Sprint {
   id: string;
@@ -202,7 +202,7 @@ export default function ReportGenerator({
               rows={3}
               value={config.description}
               onChange={handleChange}
-            ></textarea>
+            />
           </div>
 
           <div class="mb-4">
@@ -368,9 +368,7 @@ export default function ReportGenerator({
           <div class="bg-gray-100 rounded-lg p-4 mb-4">
             <h3 class="font-bold text-lg mb-2">{config.title}</h3>
 
-            {config.description && (
-              <p class="text-gray-700 mb-4">{config.description}</p>
-            )}
+            {config.description && <p class="text-gray-700 mb-4">{config.description}</p>}
 
             <div class="mb-4">
               <p class="text-sm text-gray-600">
@@ -421,7 +419,8 @@ export default function ReportGenerator({
             <div class="bg-green-50 border border-green-200 rounded-lg p-4">
               <h3 class="font-bold text-lg mb-2">Reporte Generado</h3>
               <p class="text-sm text-gray-600 mb-4">
-                El reporte se ha generado correctamente. Puedes exportarlo en los siguientes formatos:
+                El reporte se ha generado correctamente. Puedes exportarlo en los siguientes
+                formatos:
               </p>
 
               <div class="flex flex-wrap">

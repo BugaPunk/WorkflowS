@@ -24,7 +24,7 @@ export default function EditProjectForm({ project, onSuccess, onCancel }: EditPr
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-    const value = target.name === 'status' ? target.value as ProjectStatus : target.value;
+    const value = target.name === "status" ? (target.value as ProjectStatus) : target.value;
 
     setFormData({
       ...formData,
@@ -141,9 +141,7 @@ export default function EditProjectForm({ project, onSuccess, onCancel }: EditPr
           onChange={handleChange}
           required
         />
-        {errors.name && (
-          <p class="text-red-500 text-xs italic mt-1">{errors.name}</p>
-        )}
+        {errors.name && <p class="text-red-500 text-xs italic mt-1">{errors.name}</p>}
       </div>
 
       <div>
@@ -210,9 +208,7 @@ export default function EditProjectForm({ project, onSuccess, onCancel }: EditPr
             value={formData.endDate}
             onChange={handleChange}
           />
-          {errors.endDate && (
-            <p class="text-red-500 text-xs italic mt-1">{errors.endDate}</p>
-          )}
+          {errors.endDate && <p class="text-red-500 text-xs italic mt-1">{errors.endDate}</p>}
         </div>
       </div>
 

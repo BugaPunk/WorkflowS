@@ -31,41 +31,41 @@ export default function WorkDistributionChart({
   const loadData = async () => {
     try {
       setLoading(true);
-      
+
       // Obtener los miembros del proyecto
       const membersResponse = await fetch(`/api/projects/${projectId}/members`);
-      
+
       if (!membersResponse.ok) {
         throw new Error(`Error al cargar miembros: ${membersResponse.status}`);
       }
-      
+
       const members = await membersResponse.json();
-      
+
       // Obtener las métricas de cada usuario
       const contributions: UserContribution[] = [];
-      
+
       for (const member of members) {
         let url = `/api/users/${member.userId}/metrics`;
         if (sprintId) {
           url += `?sprintId=${sprintId}`;
         }
-        
+
         const metricsResponse = await fetch(url);
-        
+
         if (metricsResponse.ok) {
           const metrics = await metricsResponse.json();
-          
+
           // Calcular totales
           let tasksCompleted = 0;
           let pointsContributed = 0;
           let hoursLogged = 0;
-          
+
           for (const metric of metrics) {
             tasksCompleted += metric.tasksCompleted;
             pointsContributed += metric.pointsContributed;
             hoursLogged += metric.hoursLogged;
           }
-          
+
           contributions.push({
             userId: member.userId,
             userName: member.userName || `Usuario ${member.userId.substring(0, 6)}`,
@@ -75,7 +75,7 @@ export default function WorkDistributionChart({
           });
         }
       }
-      
+
       setData(contributions);
       setError(null);
     } catch (err) {
@@ -97,7 +97,7 @@ export default function WorkDistributionChart({
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="text-lg font-semibold mb-4">Distribución de Trabajo</h3>
         <div class="flex justify-center items-center" style={{ height: `${height}px` }}>
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
         </div>
       </div>
     );
@@ -134,7 +134,6 @@ export default function WorkDistributionChart({
         return data.map((d) => d.tasksCompleted);
       case "hours":
         return data.map((d) => d.hoursLogged);
-      case "points":
       default:
         return data.map((d) => d.pointsContributed);
     }
@@ -146,7 +145,6 @@ export default function WorkDistributionChart({
         return "Tareas Completadas";
       case "hours":
         return "Horas Registradas";
-      case "points":
       default:
         return "Puntos Contribuidos";
     }
@@ -154,7 +152,7 @@ export default function WorkDistributionChart({
 
   const values = getMetricValues();
   const total = values.reduce((sum, val) => sum + val, 0);
-  
+
   // Si el total es 0, mostrar mensaje
   if (total === 0) {
     return (
@@ -192,7 +190,7 @@ export default function WorkDistributionChart({
     const value = values[i];
     const percentage = (value / total) * 100;
     const angle = (percentage / 100) * Math.PI * 2;
-    
+
     const slice = {
       startAngle,
       endAngle: startAngle + angle,
@@ -201,7 +199,7 @@ export default function WorkDistributionChart({
       color: colors[i % colors.length],
       label: d.userName,
     };
-    
+
     startAngle += angle;
     return slice;
   });
@@ -243,36 +241,25 @@ export default function WorkDistributionChart({
           </button>
         </div>
       </div>
-      
+
       <div class="flex flex-col md:flex-row">
         <svg width={width} height={height}>
           {/* Gráfico de pastel */}
           {slices.map((slice, i) => {
-            const path = describeArc(
-              centerX,
-              centerY,
-              radius,
-              slice.startAngle,
-              slice.endAngle
-            );
-            
+            const path = describeArc(centerX, centerY, radius, slice.startAngle, slice.endAngle);
+
             // Calcular posición para la etiqueta
             const labelAngle = slice.startAngle + (slice.endAngle - slice.startAngle) / 2;
             const labelRadius = radius * 0.7;
             const labelX = centerX + Math.cos(labelAngle) * labelRadius;
             const labelY = centerY + Math.sin(labelAngle) * labelRadius;
-            
+
             // Solo mostrar etiquetas para secciones grandes
             const showLabel = slice.percentage > 5;
-            
+
             return (
               <g key={`slice-${i}`}>
-                <path
-                  d={path}
-                  fill={slice.color}
-                  stroke="white"
-                  stroke-width="1"
-                />
+                <path d={path} fill={slice.color} stroke="white" stroke-width="1" />
                 {showLabel && (
                   <text
                     x={labelX}
@@ -290,27 +277,22 @@ export default function WorkDistributionChart({
             );
           })}
         </svg>
-        
+
         <div class="mt-4 md:mt-0 md:ml-4">
           <h4 class="text-sm font-semibold mb-2">{getMetricLabel()}</h4>
           <div class="space-y-2">
             {slices.map((slice, i) => (
               <div key={`legend-${i}`} class="flex items-center">
-                <div
-                  class="w-4 h-4 mr-2"
-                  style={{ backgroundColor: slice.color }}
-                ></div>
+                <div class="w-4 h-4 mr-2" style={{ backgroundColor: slice.color }} />
                 <div class="text-sm flex-1">{slice.label}</div>
                 <div class="text-sm font-medium">{slice.value}</div>
-                <div class="text-xs text-gray-500 ml-2">
-                  ({slice.percentage.toFixed(1)}%)
-                </div>
+                <div class="text-xs text-gray-500 ml-2">({slice.percentage.toFixed(1)}%)</div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      
+
       {/* Botón de actualización */}
       <div class="mt-2 text-right">
         <button
@@ -337,18 +319,29 @@ function describeArc(
     x: x + Math.cos(startAngle) * radius,
     y: y + Math.sin(startAngle) * radius,
   };
-  
+
   const end = {
     x: x + Math.cos(endAngle) * radius,
     y: y + Math.sin(endAngle) * radius,
   };
-  
+
   const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
-  
+
   return [
-    "M", x, y,
-    "L", start.x, start.y,
-    "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y,
+    "M",
+    x,
+    y,
+    "L",
+    start.x,
+    start.y,
+    "A",
+    radius,
+    radius,
+    0,
+    largeArcFlag,
+    1,
+    end.x,
+    end.y,
     "Z",
   ].join(" ");
 }

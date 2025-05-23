@@ -1,9 +1,9 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
-import { getProjectById, ProjectRole } from "../../../models/project.ts";
-import { getUserById, UserRole } from "../../../models/user.ts";
-import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import ProjectMembersList from "../../../islands/Projects/ProjectMembersList.tsx";
+import { MainLayout } from "../../../layouts/MainLayout.tsx";
+import { ProjectRole, getProjectById } from "../../../models/project.ts";
+import { UserRole, getUserById } from "../../../models/user.ts";
+import { getSession } from "../../../utils/session.ts";
 
 interface ProjectMembersPageData {
   session: {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
 import EvaluationCard from "./EvaluationCard.tsx";
 
@@ -50,21 +50,17 @@ export default function StudentEvaluationsList({
   }, [studentId]);
 
   // Filtrar evaluaciones
-  const filteredEvaluations = evaluations.filter(evaluation => {
+  const filteredEvaluations = evaluations.filter((evaluation) => {
     // Aquí necesitaríamos el título del entregable, pero no lo tenemos en la evaluación
     // Por ahora, filtramos por ID, pero idealmente deberíamos cargar los datos del entregable
     return evaluation.deliverableId.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
-
-
   return (
     <div class="bg-white rounded-lg shadow">
       <div class="p-4 border-b border-gray-200">
         <div class="flex justify-between items-center mb-4">
-          <h2 class="text-lg font-semibold text-gray-800">
-            Mis Evaluaciones
-          </h2>
+          <h2 class="text-lg font-semibold text-gray-800">Mis Evaluaciones</h2>
         </div>
 
         <div class="mb-4">
@@ -80,7 +76,7 @@ export default function StudentEvaluationsList({
 
       {loading ? (
         <div class="p-8 text-center">
-          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
           <p class="mt-2 text-gray-600">Cargando evaluaciones...</p>
         </div>
       ) : error ? (
@@ -104,7 +100,7 @@ export default function StudentEvaluationsList({
             <EvaluationCard
               key={evaluation.id}
               evaluation={evaluation}
-              onClick={() => onSelectEvaluation && onSelectEvaluation(evaluation)}
+              onClick={() => onSelectEvaluation?.(evaluation)}
             />
           ))}
         </div>

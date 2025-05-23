@@ -1,10 +1,10 @@
 import { useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import { SprintStatus } from "../../models/sprint.ts";
 import type { Sprint } from "../../models/sprint.ts";
-import { Button } from "../../components/Button.tsx";
+import { deleteSprint } from "../../services/sprintService.ts";
 import Modal from "../Modal.tsx";
 import EditSprintForm from "./EditSprintForm.tsx";
-import { deleteSprint } from "../../services/sprintService.ts";
 
 interface SprintCardProps {
   sprint: Sprint;

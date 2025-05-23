@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
+import { deleteSprint, getSprintById, updateSprint } from "../../../models/sprint.ts";
 import { UserRole } from "../../../models/user.ts";
-import { getKv } from "../../../utils/db.ts";
-import { getSprintById, updateSprint, deleteSprint } from "../../../models/sprint.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
+import { getKv } from "../../../utils/db.ts";
+import { getSession } from "../../../utils/session.ts";
 
 export const handler = {
   // Obtener un sprint específico
@@ -87,5 +87,5 @@ export const handler = {
       console.error("Error al eliminar sprint:", error);
       return errorResponse("Error al procesar la solicitud", Status.BadRequest);
     }
-  }
+  },
 };

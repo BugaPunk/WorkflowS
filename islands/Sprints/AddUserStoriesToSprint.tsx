@@ -1,15 +1,18 @@
 import { useState } from "preact/hooks";
-import type { UserStory } from "../../models/userStory.ts";
-import type { Sprint } from "../../models/sprint.ts";
-import { addUserStoryToSprint } from "../../services/sprintService.ts";
 import { Button } from "../../components/Button.tsx";
+import type { Sprint } from "../../models/sprint.ts";
+import type { UserStory } from "../../models/userStory.ts";
+import { addUserStoryToSprint } from "../../services/sprintService.ts";
 
 interface AddUserStoriesToSprintProps {
   sprint: Sprint;
   availableUserStories: UserStory[];
 }
 
-export default function AddUserStoriesToSprint({ sprint, availableUserStories }: AddUserStoriesToSprintProps) {
+export default function AddUserStoriesToSprint({
+  sprint,
+  availableUserStories,
+}: AddUserStoriesToSprintProps) {
   const [selectedUserStories, setSelectedUserStories] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,12 +20,11 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
 
   // Manejar cambio en la selección de historias de usuario
   const handleUserStorySelection = (userStoryId: string) => {
-    setSelectedUserStories(prev => {
+    setSelectedUserStories((prev) => {
       if (prev.includes(userStoryId)) {
-        return prev.filter(id => id !== userStoryId);
-      } else {
-        return [...prev, userStoryId];
+        return prev.filter((id) => id !== userStoryId);
       }
+      return [...prev, userStoryId];
     });
   };
 
@@ -43,9 +45,11 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
         await addUserStoryToSprint(sprint.id, userStoryId);
       }
 
-      setSuccessMessage(`${selectedUserStories.length} historia(s) de usuario añadida(s) al sprint exitosamente.`);
+      setSuccessMessage(
+        `${selectedUserStories.length} historia(s) de usuario añadida(s) al sprint exitosamente.`
+      );
       setSelectedUserStories([]);
-      
+
       // Redirigir al sprint después de 2 segundos
       setTimeout(() => {
         window.location.href = `/sprints/${sprint.id}`;
@@ -74,10 +78,12 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
       )}
 
       <div class="mb-4">
-        <p class="text-gray-600 mb-2">Selecciona las historias de usuario que deseas añadir al sprint:</p>
+        <p class="text-gray-600 mb-2">
+          Selecciona las historias de usuario que deseas añadir al sprint:
+        </p>
         <div class="flex justify-end mb-2">
           <button
-            onClick={() => setSelectedUserStories(availableUserStories.map(story => story.id))}
+            onClick={() => setSelectedUserStories(availableUserStories.map((story) => story.id))}
             class="text-blue-600 hover:text-blue-800 text-sm mr-4"
           >
             Seleccionar todas
@@ -92,7 +98,7 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        {availableUserStories.map(userStory => (
+        {availableUserStories.map((userStory) => (
           <div
             key={userStory.id}
             class={`border rounded-lg p-4 ${
@@ -123,10 +129,10 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
                       userStory.priority === "critical"
                         ? "bg-red-100 text-red-800"
                         : userStory.priority === "high"
-                        ? "bg-orange-100 text-orange-800"
-                        : userStory.priority === "medium"
-                        ? "bg-yellow-100 text-yellow-800"
-                        : "bg-green-100 text-green-800"
+                          ? "bg-orange-100 text-orange-800"
+                          : userStory.priority === "medium"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : "bg-green-100 text-green-800"
                     }`}
                   >
                     {userStory.priority.charAt(0).toUpperCase() + userStory.priority.slice(1)}
@@ -157,9 +163,25 @@ export default function AddUserStoriesToSprint({ sprint, availableUserStories }:
         >
           {isLoading ? (
             <span class="flex items-center">
-              <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              <svg
+                class="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  class="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  stroke-width="4"
+                />
+                <path
+                  class="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
               </svg>
               Añadiendo...
             </span>

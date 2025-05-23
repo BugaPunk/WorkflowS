@@ -4,11 +4,11 @@ import { getSession } from "../../utils/session.ts";
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   try {
     const session = await getSession(req);
-    
+
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         session,
-        isAuthenticated: !!session
+        isAuthenticated: !!session,
       }),
       {
         headers: { "Content-Type": "application/json" },
@@ -16,12 +16,12 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
     );
   } catch (error) {
     console.error("Error getting session:", error);
-    
+
     return new Response(
-      JSON.stringify({ 
+      JSON.stringify({
         session: null,
         isAuthenticated: false,
-        error: "Error getting session"
+        error: "Error getting session",
       }),
       {
         headers: { "Content-Type": "application/json" },

@@ -1,12 +1,12 @@
-import type { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
-import { getProjectById } from "@/models/project.ts";
-import { getProjectSprints } from "@/models/sprint.ts";
-import { getProjectMembers } from "@/models/project.ts";
-import { requireAuth } from "@/utils/auth.ts";
-import { ReportType, ReportFormat } from "@/models/report.ts";
-import { MainLayout } from "@/layouts/MainLayout.tsx";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import ReportGenerator from "@/islands/Reports/ReportGenerator.tsx";
+import { MainLayout } from "@/layouts/MainLayout.tsx";
+import { getProjectById } from "@/models/project.ts";
+import { getProjectMembers } from "@/models/project.ts";
+import { ReportFormat, ReportType } from "@/models/report.ts";
+import { getProjectSprints } from "@/models/sprint.ts";
+import { requireAuth } from "@/utils/auth.ts";
 
 interface GenerateReportProps {
   project: {

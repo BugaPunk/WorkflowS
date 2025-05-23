@@ -1,11 +1,11 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import { Button } from "../../components/Button.tsx";
-import Modal from "../Modal.tsx";
-import EditTaskForm from "./EditTaskForm.tsx";
 import { deleteTask, updateTask } from "../../services/taskService.ts";
 import { getUserById } from "../../services/userService.ts";
+import Modal from "../Modal.tsx";
+import EditTaskForm from "./EditTaskForm.tsx";
 
 interface TaskCardProps {
   task: Task;

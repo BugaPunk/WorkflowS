@@ -1,5 +1,5 @@
+import { type Model, createModel, generateId, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel, generateId } from "@/utils/db.ts";
 
 // Colecciones para sprints
 export const SPRINT_COLLECTIONS = {
@@ -11,7 +11,7 @@ export enum SprintStatus {
   PLANNED = "planned",
   ACTIVE = "active",
   COMPLETED = "completed",
-  CANCELLED = "cancelled"
+  CANCELLED = "cancelled",
 }
 
 // Esquema del sprint con Zod para validación
@@ -90,79 +90,88 @@ export async function getProjectSprints(projectId: string): Promise<Sprint[]> {
 }
 
 // Actualizar un sprint
-export async function updateSprint(id: string, updateData: Partial<SprintData>): Promise<Sprint | null> {
+export async function updateSprint(
+  id: string,
+  updateData: Partial<SprintData>
+): Promise<Sprint | null> {
   const kv = getKv();
   const key = [...SPRINT_COLLECTIONS.SPRINTS, id];
-  
+
   // Obtener el sprint actual
   const result = await kv.get<Sprint>(key);
   if (!result.value) {
     return null;
   }
-  
+
   // Actualizar los campos
   const updatedSprint: Sprint = {
     ...result.value,
     ...updateData,
     updatedAt: Date.now(),
   };
-  
+
   // Guardar el sprint actualizado
   await kv.set(key, updatedSprint);
-  
+
   return updatedSprint;
 }
 
 // Añadir una historia de usuario a un sprint
-export async function addUserStoryToSprint(sprintId: string, userStoryId: string): Promise<Sprint | null> {
+export async function addUserStoryToSprint(
+  sprintId: string,
+  userStoryId: string
+): Promise<Sprint | null> {
   const kv = getKv();
   const key = [...SPRINT_COLLECTIONS.SPRINTS, sprintId];
-  
+
   // Obtener el sprint actual
   const result = await kv.get<Sprint>(key);
   if (!result.value) {
     return null;
   }
-  
+
   // Verificar si la historia ya está en el sprint
   if (result.value.userStoryIds.includes(userStoryId)) {
     return result.value;
   }
-  
+
   // Añadir la historia al sprint
   const updatedSprint: Sprint = {
     ...result.value,
     userStoryIds: [...result.value.userStoryIds, userStoryId],
     updatedAt: Date.now(),
   };
-  
+
   // Guardar el sprint actualizado
   await kv.set(key, updatedSprint);
-  
+
   return updatedSprint;
 }
 
 // Eliminar una historia de usuario de un sprint
-export async function removeUserStoryFromSprint(sprintId: string, userStoryId: string): Promise<Sprint | null> {
+export async function removeUserStoryFromSprint(
+  sprintId: string,
+  userStoryId: string
+): Promise<Sprint | null> {
   const kv = getKv();
   const key = [...SPRINT_COLLECTIONS.SPRINTS, sprintId];
-  
+
   // Obtener el sprint actual
   const result = await kv.get<Sprint>(key);
   if (!result.value) {
     return null;
   }
-  
+
   // Eliminar la historia del sprint
   const updatedSprint: Sprint = {
     ...result.value,
-    userStoryIds: result.value.userStoryIds.filter(id => id !== userStoryId),
+    userStoryIds: result.value.userStoryIds.filter((id) => id !== userStoryId),
     updatedAt: Date.now(),
   };
-  
+
   // Guardar el sprint actualizado
   await kv.set(key, updatedSprint);
-  
+
   return updatedSprint;
 }
 
@@ -170,9 +179,9 @@ export async function removeUserStoryFromSprint(sprintId: string, userStoryId: s
 export async function deleteSprint(id: string): Promise<boolean> {
   const kv = getKv();
   const key = [...SPRINT_COLLECTIONS.SPRINTS, id];
-  
+
   // Eliminar el sprint
   await kv.delete(key);
-  
+
   return true;
 }

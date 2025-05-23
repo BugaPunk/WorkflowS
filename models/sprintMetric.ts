@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para métricas de sprint
 export const SPRINT_METRIC_COLLECTIONS = {
@@ -48,7 +48,12 @@ export async function createSprintMetric(metricData: SprintMetricData): Promise<
 
   // Crear índice por sprint y fecha
   await kv.set(
-    [...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS, "by_sprint", metricData.sprintId, metricData.date.toString()],
+    [
+      ...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS,
+      "by_sprint",
+      metricData.sprintId,
+      metricData.date.toString(),
+    ],
     metric.id
   );
 
@@ -73,8 +78,11 @@ export async function getSprintMetrics(sprintId: string): Promise<SprintMetric[]
 
   for await (const entry of metricsIterator) {
     const metricId = entry.value;
-    const result = await kv.get<SprintMetric>([...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS, metricId]);
-    
+    const result = await kv.get<SprintMetric>([
+      ...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS,
+      metricId,
+    ]);
+
     if (result.value) {
       metrics.push(result.value);
     }
@@ -87,11 +95,11 @@ export async function getSprintMetrics(sprintId: string): Promise<SprintMetric[]
 // Obtener la última métrica de un sprint
 export async function getLatestSprintMetric(sprintId: string): Promise<SprintMetric | null> {
   const metrics = await getSprintMetrics(sprintId);
-  
+
   if (metrics.length === 0) {
     return null;
   }
-  
+
   // Ordenar por fecha descendente y tomar la primera
   return metrics.sort((a, b) => b.date - a.date)[0];
 }
@@ -100,11 +108,11 @@ export async function getLatestSprintMetric(sprintId: string): Promise<SprintMet
 export async function deleteSprintMetrics(sprintId: string): Promise<boolean> {
   const kv = getKv();
   const metrics = await getSprintMetrics(sprintId);
-  
+
   for (const metric of metrics) {
     // Eliminar la métrica
     await kv.delete([...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS, metric.id]);
-    
+
     // Eliminar índice por sprint y fecha
     await kv.delete([
       ...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS,
@@ -112,7 +120,7 @@ export async function deleteSprintMetrics(sprintId: string): Promise<boolean> {
       sprintId,
       metric.date.toString(),
     ]);
-    
+
     // Eliminar índice por proyecto
     await kv.delete([
       ...SPRINT_METRIC_COLLECTIONS.SPRINT_METRICS,
@@ -121,6 +129,6 @@ export async function deleteSprintMetrics(sprintId: string): Promise<boolean> {
       metric.id,
     ]);
   }
-  
+
   return true;
 }

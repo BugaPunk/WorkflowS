@@ -1,13 +1,13 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
+import MyTasksList from "../islands/Tasks/MyTasksList.tsx";
 import { MainLayout } from "../layouts/MainLayout.tsx";
-import { getSession } from "../utils/session.ts";
+import { getProjectById } from "../models/project.ts";
+import type { Project } from "../models/project.ts";
 import { getUserTasks } from "../models/task.ts";
 import { getUserById } from "../models/user.ts";
-import { getProjectById } from "../models/project.ts";
 import { getUserStoryById } from "../models/userStory.ts";
-import MyTasksList from "../islands/Tasks/MyTasksList.tsx";
-import type { Project } from "../models/project.ts";
 import type { UserStory } from "../models/userStory.ts";
+import { getSession } from "../utils/session.ts";
 
 interface MyTasksPageData {
   session: {
@@ -95,7 +95,13 @@ export default function MyTasksPage({ data }: PageProps<MyTasksPageData | null>)
     );
   }
 
-  const { session, tasks, user: _user, projects: projectsWithNull, userStories: userStoriesWithNull } = data;
+  const {
+    session,
+    tasks,
+    user: _user,
+    projects: projectsWithNull,
+    userStories: userStoriesWithNull,
+  } = data;
 
   // Filtrar valores nulos para satisfacer los tipos
   const projects: Record<string, Project> = {};

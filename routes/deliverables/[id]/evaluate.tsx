@@ -1,13 +1,13 @@
 import type { Handlers } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
+import EvaluationManager from "../../../islands/Evaluations/EvaluationManager.tsx";
 import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import { UserRole } from "../../../models/user.ts";
-import EvaluationManager from "../../../islands/Evaluations/EvaluationManager.tsx";
+import { getSession } from "../../../utils/session.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {
     const session = await getSession(req);
-    
+
     if (!session) {
       return new Response(null, {
         status: 302,
@@ -16,11 +16,13 @@ export const handler: Handlers = {
         },
       });
     }
-    
+
     // Solo los profesores pueden evaluar entregables
-    if (session.role !== UserRole.ADMIN && 
-        session.role !== UserRole.PRODUCT_OWNER && 
-        session.role !== UserRole.SCRUM_MASTER) {
+    if (
+      session.role !== UserRole.ADMIN &&
+      session.role !== UserRole.PRODUCT_OWNER &&
+      session.role !== UserRole.SCRUM_MASTER
+    ) {
       return new Response(null, {
         status: 302,
         headers: {
@@ -28,9 +30,9 @@ export const handler: Handlers = {
         },
       });
     }
-    
+
     const { id } = ctx.params;
-    
+
     return ctx.render({ session, deliverableId: id });
   },
 };
@@ -49,16 +51,13 @@ interface DeliverableEvaluatePageProps {
 
 export default function DeliverableEvaluatePage({ data }: DeliverableEvaluatePageProps) {
   const { session, deliverableId } = data;
-  
+
   return (
     <MainLayout title="Evaluar Entregable - WorkflowS" session={session}>
       <div class="container mx-auto px-4 py-8">
         <h1 class="text-2xl font-bold text-gray-900 mb-6">Evaluar Entregable</h1>
-        
-        <EvaluationManager 
-          session={session} 
-          deliverableId={deliverableId}
-        />
+
+        <EvaluationManager session={session} deliverableId={deliverableId} />
       </div>
     </MainLayout>
   );

@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import type { Project } from "../../models/project.ts";
 import { SprintStatus } from "../../models/sprint.ts";
-import { Button } from "../../components/Button.tsx";
 import { createSprint } from "../../services/sprintService.ts";
 
 interface CreateSprintPageProps {
@@ -68,7 +68,7 @@ export default function CreateSprintPage({ projects }: CreateSprintPageProps) {
 
       // Mostrar mensaje de éxito
       setSuccess("Sprint creado correctamente");
-      
+
       // Limpiar formulario
       setFormData({
         projectId: "",
@@ -98,7 +98,7 @@ export default function CreateSprintPage({ projects }: CreateSprintPageProps) {
           <p>{error}</p>
         </div>
       )}
-      
+
       {success && (
         <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
           <p>{success}</p>
@@ -121,8 +121,10 @@ export default function CreateSprintPage({ projects }: CreateSprintPageProps) {
             required
           >
             <option value="">Selecciona un proyecto</option>
-            {projects.map(project => (
-              <option key={project.id} value={project.id}>{project.name}</option>
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
             ))}
           </select>
         </div>
@@ -212,11 +214,7 @@ export default function CreateSprintPage({ projects }: CreateSprintPageProps) {
 
         {/* Botones */}
         <div class="flex justify-end space-x-3">
-          <Button
-            type="button"
-            href="/sprints"
-            class="bg-gray-200 hover:bg-gray-300 text-gray-800"
-          >
+          <Button type="button" href="/sprints" class="bg-gray-200 hover:bg-gray-300 text-gray-800">
             Cancelar
           </Button>
           <Button

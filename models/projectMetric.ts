@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para métricas de proyecto
 export const PROJECT_METRIC_COLLECTIONS = {
@@ -48,7 +48,12 @@ export async function createProjectMetric(metricData: ProjectMetricData): Promis
 
   // Crear índice por proyecto y fecha
   await kv.set(
-    [...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS, "by_project", metricData.projectId, metricData.date.toString()],
+    [
+      ...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS,
+      "by_project",
+      metricData.projectId,
+      metricData.date.toString(),
+    ],
     metric.id
   );
 
@@ -67,8 +72,11 @@ export async function getProjectMetrics(projectId: string): Promise<ProjectMetri
 
   for await (const entry of metricsIterator) {
     const metricId = entry.value;
-    const result = await kv.get<ProjectMetric>([...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS, metricId]);
-    
+    const result = await kv.get<ProjectMetric>([
+      ...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS,
+      metricId,
+    ]);
+
     if (result.value) {
       metrics.push(result.value);
     }
@@ -81,11 +89,11 @@ export async function getProjectMetrics(projectId: string): Promise<ProjectMetri
 // Obtener la última métrica de un proyecto
 export async function getLatestProjectMetric(projectId: string): Promise<ProjectMetric | null> {
   const metrics = await getProjectMetrics(projectId);
-  
+
   if (metrics.length === 0) {
     return null;
   }
-  
+
   // Ordenar por fecha descendente y tomar la primera
   return metrics.sort((a, b) => b.date - a.date)[0];
 }
@@ -94,11 +102,11 @@ export async function getLatestProjectMetric(projectId: string): Promise<Project
 export async function deleteProjectMetrics(projectId: string): Promise<boolean> {
   const kv = getKv();
   const metrics = await getProjectMetrics(projectId);
-  
+
   for (const metric of metrics) {
     // Eliminar la métrica
     await kv.delete([...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS, metric.id]);
-    
+
     // Eliminar índice por proyecto y fecha
     await kv.delete([
       ...PROJECT_METRIC_COLLECTIONS.PROJECT_METRICS,
@@ -107,6 +115,6 @@ export async function deleteProjectMetrics(projectId: string): Promise<boolean> 
       metric.date.toString(),
     ]);
   }
-  
+
   return true;
 }

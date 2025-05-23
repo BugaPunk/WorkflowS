@@ -16,7 +16,7 @@ export function NavUser(): JSX.Element {
       <SidebarGroup class="px-2 py-0">
         <SidebarMenu>
           <SidebarMenuItem>
-            <div class="h-8 bg-gray-200 rounded-md animate-pulse"></div>
+            <div class="h-8 bg-gray-200 rounded-md animate-pulse" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>

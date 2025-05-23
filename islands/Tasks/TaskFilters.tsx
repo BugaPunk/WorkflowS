@@ -1,9 +1,9 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import type { Project } from "../../models/project.ts";
-import type { UserStory } from "../../models/userStory.ts";
-import { TaskStatus } from "../../models/task.ts";
-import { getProjectSprints } from "../../services/sprintService.ts";
 import type { Sprint } from "../../models/sprint.ts";
+import { TaskStatus } from "../../models/task.ts";
+import type { UserStory } from "../../models/userStory.ts";
+import { getProjectSprints } from "../../services/sprintService.ts";
 import type { GroupingOption } from "./TaskGrouping.tsx";
 
 export interface TaskFiltersState {

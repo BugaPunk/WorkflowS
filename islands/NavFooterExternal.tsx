@@ -9,9 +9,7 @@ export default function NavFooterExternal({ class: className = "" }: NavFooterPr
   // Se han eliminado las opciones de Documentación, Repositorio y Ayuda
   return (
     <SidebarGroup class={`px-2 py-0 ${className}`}>
-      <SidebarMenu>
-        {/* No hay elementos en el footer */}
-      </SidebarMenu>
+      <SidebarMenu>{/* No hay elementos en el footer */}</SidebarMenu>
     </SidebarGroup>
   );
 }

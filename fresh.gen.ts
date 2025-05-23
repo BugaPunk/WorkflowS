@@ -79,6 +79,7 @@ import * as $tasks_id_ from "./routes/tasks/[id].tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
 import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
+import * as $user_stories_edit_id_ from "./routes/user-stories/edit/[id].tsx";
 import * as $user_stories_index from "./routes/user-stories/index.tsx";
 import * as $welcome from "./routes/welcome.tsx";
 import * as $AdminCreateUserForm from "./islands/AdminCreateUserForm.tsx";
@@ -272,6 +273,7 @@ const manifest = {
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
     "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
+    "./routes/user-stories/edit/[id].tsx": $user_stories_edit_id_,
     "./routes/user-stories/index.tsx": $user_stories_index,
     "./routes/welcome.tsx": $welcome,
   },

@@ -1,5 +1,5 @@
-import { MainLayout } from "../layouts/MainLayout.tsx";
 import RegisterForm from "../islands/RegisterForm.tsx";
+import { MainLayout } from "../layouts/MainLayout.tsx";
 
 export default function Register() {
   return (
@@ -14,10 +14,18 @@ export default function Register() {
               Selecciona el rol que mejor describe tu posición en el equipo:
             </p>
             <ul class="text-sm text-blue-700 list-disc pl-5">
-              <li><strong>Team Developer</strong> - Miembro del equipo de desarrollo</li>
-              <li><strong>Scrum Master</strong> - Facilitador para el equipo de desarrollo</li>
-              <li><strong>Product Owner</strong> - Representa a los interesados</li>
-              <li><strong>Administrator</strong> - Administrador del sistema con acceso completo</li>
+              <li>
+                <strong>Team Developer</strong> - Miembro del equipo de desarrollo
+              </li>
+              <li>
+                <strong>Scrum Master</strong> - Facilitador para el equipo de desarrollo
+              </li>
+              <li>
+                <strong>Product Owner</strong> - Representa a los interesados
+              </li>
+              <li>
+                <strong>Administrator</strong> - Administrador del sistema con acceso completo
+              </li>
             </ul>
           </div>
 

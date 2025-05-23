@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { MainLayout } from "../layouts/MainLayout.tsx";
-import { getSession } from "../utils/session.ts";
-import type { UserRole } from "../models/user.ts";
 import WelcomeScreen from "../islands/welcome/WelcomeScreen.tsx";
+import { MainLayout } from "../layouts/MainLayout.tsx";
+import type { UserRole } from "../models/user.ts";
+import { getSession } from "../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

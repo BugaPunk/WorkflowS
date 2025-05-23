@@ -12,7 +12,9 @@ if (!IS_BROWSER) {
 // Export a getter function for KV
 export function getKv(): Deno.Kv {
   if (!_kv) {
-    throw new Error("La base de datos KV no está inicializada o se está accediendo desde el navegador");
+    throw new Error(
+      "La base de datos KV no está inicializada o se está accediendo desde el navegador"
+    );
   }
   return _kv;
 }

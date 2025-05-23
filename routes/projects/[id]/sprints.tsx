@@ -1,11 +1,11 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-// import { Head } from "$fresh/runtime.ts";
-import { getSession } from "../../../utils/session.ts";
+import SprintsList from "../../../islands/Sprints/SprintsList.tsx";
+import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import { getProjectById } from "../../../models/project.ts";
 import { getProjectSprints } from "../../../models/sprint.ts";
 import { UserRole } from "../../../models/user.ts";
-import { MainLayout } from "../../../layouts/MainLayout.tsx";
-import SprintsList from "../../../islands/Sprints/SprintsList.tsx";
+// import { Head } from "$fresh/runtime.ts";
+import { getSession } from "../../../utils/session.ts";
 
 interface ProjectSprintsPageData {
   session: {

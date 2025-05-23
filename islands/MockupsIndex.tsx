@@ -1,8 +1,8 @@
 import { useState } from "preact/hooks";
 import BurndownChart from "./Metrics/BurndownChart.tsx";
+import ProjectHealthGauge from "./Metrics/ProjectHealthGauge.tsx";
 import TeamVelocityChart from "./Metrics/TeamVelocityChart.tsx";
 import WorkDistributionChart from "./Metrics/WorkDistributionChart.tsx";
-import ProjectHealthGauge from "./Metrics/ProjectHealthGauge.tsx";
 
 export default function MockupsIndex() {
   const [activeTab, setActiveTab] = useState("burndown");

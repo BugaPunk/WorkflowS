@@ -1,7 +1,13 @@
 import type { JSX } from "preact";
-import { useState, useEffect } from "preact/hooks";
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../components/ui/sidebar.tsx";
+import { useEffect, useState } from "preact/hooks";
 import { MaterialIcon } from "../components/ui/MaterialIcon.tsx";
+import {
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "../components/ui/sidebar.tsx";
 import { UserRole } from "../models/user.ts";
 
 interface NavMainProps {
@@ -16,15 +22,21 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
 
   // Solo ejecutar en el cliente
   useEffect(() => {
-    if (typeof globalThis !== "undefined" && "location" in globalThis && globalThis.location && globalThis.location.pathname) {
+    if (
+      typeof globalThis !== "undefined" &&
+      "location" in globalThis &&
+      globalThis.location &&
+      globalThis.location.pathname
+    ) {
       setCurrentPath(globalThis.location.pathname);
     }
   }, []);
 
   // Verificar si el usuario es un profesor (admin, product owner o scrum master)
-  const isTeacher = userRole === UserRole.ADMIN ||
-                    userRole === UserRole.PRODUCT_OWNER ||
-                    userRole === UserRole.SCRUM_MASTER;
+  const isTeacher =
+    userRole === UserRole.ADMIN ||
+    userRole === UserRole.PRODUCT_OWNER ||
+    userRole === UserRole.SCRUM_MASTER;
 
   const mainNavItems = [
     {
@@ -65,18 +77,20 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
   ];
 
   // Elementos de navegación para profesores
-  const teacherNavItems = isTeacher ? [
-    {
-      title: "Rúbricas",
-      href: "/rubrics",
-      iconName: "assignment",
-    },
-    {
-      title: "Evaluaciones",
-      href: "/evaluations",
-      iconName: "grading",
-    },
-  ] : [];
+  const teacherNavItems = isTeacher
+    ? [
+        {
+          title: "Rúbricas",
+          href: "/rubrics",
+          iconName: "assignment",
+        },
+        {
+          title: "Evaluaciones",
+          href: "/evaluations",
+          iconName: "grading",
+        },
+      ]
+    : [];
 
   return (
     <>

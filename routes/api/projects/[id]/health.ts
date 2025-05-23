@@ -57,13 +57,10 @@ export const handler: Handlers = {
       );
     } catch (error) {
       console.error(`Error al obtener salud del proyecto ${id}:`, error);
-      return new Response(
-        JSON.stringify({ error: "Error al obtener salud del proyecto" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new Response(JSON.stringify({ error: "Error al obtener salud del proyecto" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
   },
 };

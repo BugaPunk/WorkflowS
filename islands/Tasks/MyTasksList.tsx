@@ -1,14 +1,14 @@
 import { useState } from "preact/hooks";
-import type { Task } from "../../models/task.ts";
 import type { Project } from "../../models/project.ts";
+import type { Task } from "../../models/task.ts";
 import type { UserStory } from "../../models/userStory.ts";
+import FilteredTasksList from "./FilteredTasksList.tsx";
 import TaskFilters from "./TaskFilters.tsx";
 import type { TaskFiltersState } from "./TaskFilters.tsx";
+import type { GroupingOption } from "./TaskGrouping.tsx";
 import TaskViewSelector from "./TaskViewSelector.tsx";
 import type { ViewType } from "./TaskViewSelector.tsx";
-import FilteredTasksList from "./FilteredTasksList.tsx";
 import WorkloadSummary from "./WorkloadSummary.tsx";
-import type { GroupingOption } from "./TaskGrouping.tsx";
 
 interface MyTasksListProps {
   initialTasks: Task[];

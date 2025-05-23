@@ -1,7 +1,7 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
 import { getTaskById, getTaskHistory } from "../../../../models/task.ts";
 import { Status, errorResponse, successResponse } from "../../../../utils/api.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 export const handler = {
   // Obtener historial de cambios de una tarea

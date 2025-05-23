@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../../utils/session.ts";
-import { UserRole } from "../../../../../models/user.ts";
 import { getSprintById, removeUserStoryFromSprint } from "../../../../../models/sprint.ts";
+import { UserRole } from "../../../../../models/user.ts";
 import { Status, errorResponse, successResponse } from "../../../../../utils/api.ts";
+import { getSession } from "../../../../../utils/session.ts";
 
 export const handler = {
   // Eliminar una historia de usuario de un sprint
@@ -33,10 +33,13 @@ export const handler = {
 
       const updatedSprint = await removeUserStoryFromSprint(id, userStoryId);
 
-      return successResponse({ sprint: updatedSprint }, "Historia de usuario eliminada del sprint exitosamente");
+      return successResponse(
+        { sprint: updatedSprint },
+        "Historia de usuario eliminada del sprint exitosamente"
+      );
     } catch (error) {
       console.error("Error al eliminar historia de usuario del sprint:", error);
       return errorResponse("Error al procesar la solicitud", Status.BadRequest);
     }
-  }
+  },
 };

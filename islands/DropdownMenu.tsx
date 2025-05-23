@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "preact/hooks";
 import type { JSX } from "preact";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 export interface DropdownMenuItem {
   label: string;
@@ -108,14 +108,14 @@ export default function DropdownMenu({
         >
           {sections.map((section, sectionIndex) => (
             <div key={sectionIndex}>
-              {section.items.map((item, itemIndex) => (
+              {section.items.map((item, itemIndex) =>
                 item.href ? (
                   <a
                     key={itemIndex}
                     href={item.href}
                     class={`block px-3 py-2 text-sm font-medium ${
-                      item.isDanger 
-                        ? "text-red-700 hover:bg-red-50" 
+                      item.isDanger
+                        ? "text-red-700 hover:bg-red-50"
                         : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                     } transition-colors`}
                     role="menuitem"
@@ -128,8 +128,8 @@ export default function DropdownMenu({
                     key={itemIndex}
                     type="button"
                     class={`block w-full px-3 py-2 text-left text-sm font-medium ${
-                      item.isDanger 
-                        ? "text-red-700 hover:bg-red-50" 
+                      item.isDanger
+                        ? "text-red-700 hover:bg-red-50"
                         : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                     } transition-colors`}
                     onClick={() => handleItemClick(item)}
@@ -137,7 +137,7 @@ export default function DropdownMenu({
                     {item.label}
                   </button>
                 )
-              ))}
+              )}
             </div>
           ))}
         </div>

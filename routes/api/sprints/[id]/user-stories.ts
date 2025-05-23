@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
+import { addUserStoryToSprint, getSprintById } from "../../../../models/sprint.ts";
 import { UserRole } from "../../../../models/user.ts";
-import { getKv } from "../../../../utils/db.ts";
-import { getSprintById, addUserStoryToSprint } from "../../../../models/sprint.ts";
 import { Status, errorResponse, successResponse } from "../../../../utils/api.ts";
+import { getKv } from "../../../../utils/db.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 export const handler = {
   // Añadir una historia de usuario a un sprint
@@ -41,10 +41,13 @@ export const handler = {
 
       const updatedSprint = await addUserStoryToSprint(id, data.userStoryId);
 
-      return successResponse({ sprint: updatedSprint }, "Historia de usuario añadida al sprint exitosamente");
+      return successResponse(
+        { sprint: updatedSprint },
+        "Historia de usuario añadida al sprint exitosamente"
+      );
     } catch (error) {
       console.error("Error al añadir historia de usuario al sprint:", error);
       return errorResponse("Error al procesar la solicitud", Status.BadRequest);
     }
-  }
+  },
 };

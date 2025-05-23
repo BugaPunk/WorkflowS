@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
 import { getProjectById, getProjectMembers } from "../../../../models/project.ts";
 import { getUserById } from "../../../../models/user.ts";
 import { Status, errorResponse, successResponse } from "../../../../utils/api.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

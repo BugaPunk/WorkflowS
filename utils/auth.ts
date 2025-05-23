@@ -1,4 +1,4 @@
-import { getSession, type Session } from "./session.ts";
+import { type Session, getSession } from "./session.ts";
 
 interface AuthResult {
   success: boolean;
@@ -14,23 +14,23 @@ interface AuthResult {
 export async function requireAuth(req: Request): Promise<AuthResult> {
   try {
     const session = await getSession(req);
-    
+
     if (!session) {
       return {
         success: false,
-        error: "No autorizado. Debe iniciar sesión."
+        error: "No autorizado. Debe iniciar sesión.",
       };
     }
-    
+
     return {
       success: true,
-      user: session
+      user: session,
     };
   } catch (error) {
     console.error("Error en la autenticación:", error);
     return {
       success: false,
-      error: "Error en la autenticación"
+      error: "Error en la autenticación",
     };
   }
 }
@@ -43,20 +43,20 @@ export async function requireAuth(req: Request): Promise<AuthResult> {
  */
 export async function requireRole(req: Request, roles: string | string[]): Promise<AuthResult> {
   const authResult = await requireAuth(req);
-  
+
   if (!authResult.success) {
     return authResult;
   }
-  
+
   const allowedRoles = Array.isArray(roles) ? roles : [roles];
-  
-  if (!allowedRoles.includes(authResult.user!.role)) {
+
+  if (!allowedRoles.includes(authResult.user?.role)) {
     return {
       success: false,
-      error: "No tiene permisos para acceder a este recurso"
+      error: "No tiene permisos para acceder a este recurso",
     };
   }
-  
+
   return authResult;
 }
 
@@ -68,17 +68,17 @@ export async function requireRole(req: Request, roles: string | string[]): Promi
  */
 export async function requireOwnership(req: Request, ownerId: string): Promise<AuthResult> {
   const authResult = await requireAuth(req);
-  
+
   if (!authResult.success) {
     return authResult;
   }
-  
-  if (authResult.user!.userId !== ownerId) {
+
+  if (authResult.user?.userId !== ownerId) {
     return {
       success: false,
-      error: "No tiene permisos para acceder a este recurso"
+      error: "No tiene permisos para acceder a este recurso",
     };
   }
-  
+
   return authResult;
 }

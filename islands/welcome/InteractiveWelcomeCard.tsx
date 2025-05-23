@@ -6,7 +6,7 @@ import DropdownMenu, { type DropdownMenuSection } from "../DropdownMenu.tsx";
  * Props para el componente InteractiveWelcomeCard
  * Extiende las props de WelcomeCard y añade propiedades para el menú desplegable
  */
-interface InteractiveWelcomeCardProps extends Omit<WelcomeCardProps, 'rightElement'> {
+interface InteractiveWelcomeCardProps extends Omit<WelcomeCardProps, "rightElement"> {
   dropdownSections?: DropdownMenuSection[];
   dropdownButtonIcon?: JSX.Element;
   dropdownButtonText?: string;

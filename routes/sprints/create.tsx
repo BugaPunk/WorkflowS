@@ -1,9 +1,9 @@
 import type { Handlers, PageProps } from "$fresh/server.ts";
-import { getSession } from "../../utils/session.ts";
-import { UserRole } from "../../models/user.ts";
+import CreateSprintPage from "../../islands/Sprints/CreateSprintPage.tsx";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getUserProjects } from "../../models/project.ts";
-import CreateSprintPage from "../../islands/Sprints/CreateSprintPage.tsx";
+import { UserRole } from "../../models/user.ts";
+import { getSession } from "../../utils/session.ts";
 
 interface CreateSprintPageData {
   session: {

@@ -1,9 +1,9 @@
 import type { Handlers } from "$fresh/server.ts";
-import { getSession } from "../../utils/session.ts";
+import EvaluationHistory from "../../islands/Evaluations/EvaluationHistory.tsx";
+import StudentEvaluationsList from "../../islands/Evaluations/StudentEvaluationsList.tsx";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import type { UserRole } from "../../models/user.ts";
-import StudentEvaluationsList from "../../islands/Evaluations/StudentEvaluationsList.tsx";
-import EvaluationHistory from "../../islands/Evaluations/EvaluationHistory.tsx";
+import { getSession } from "../../utils/session.ts";
 
 export const handler: Handlers = {
   async GET(req, ctx) {

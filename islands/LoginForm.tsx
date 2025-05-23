@@ -1,7 +1,7 @@
-import { useForm } from "../hooks/useForm.ts";
 import { Button } from "../components/Button.tsx";
-import FormField from "../components/form/FormField.tsx";
 import FormError from "../components/form/FormError.tsx";
+import FormField from "../components/form/FormField.tsx";
+import { useForm } from "../hooks/useForm.ts";
 
 interface LoginFormData {
   identifier: string;
@@ -85,9 +85,7 @@ export default function LoginForm() {
             type="submit"
             disabled={isSubmitting}
             variant="primary"
-            class={`w-full font-bold ${
-              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            class={`w-full font-bold ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             {isSubmitting ? "Iniciando sesión..." : "Iniciar Sesión"}
           </Button>

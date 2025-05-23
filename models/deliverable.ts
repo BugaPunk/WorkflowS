@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { type Model, createModel, getKv } from "../utils/db.ts";
-import { TaskSchema, type Task, TaskStatus } from "./task.ts";
+import { type Task, TaskSchema, TaskStatus } from "./task.ts";
 
 // Colecciones para entregables
 export const DELIVERABLE_COLLECTIONS = {
@@ -47,15 +47,15 @@ export async function createDeliverable(deliverableData: DeliverableData): Promi
 
   // Guardar el entregable en la base de datos
   const kv = getKv();
-  
+
   // Guardar como tarea normal
   const taskKey = ["tasks", deliverable.id];
   await kv.set(taskKey, deliverable);
-  
+
   // Guardar en la colección de entregables
   const deliverableKey = [...DELIVERABLE_COLLECTIONS.DELIVERABLES, deliverable.id];
   await kv.set(deliverableKey, deliverable);
-  
+
   // Crear referencia para buscar entregable por tarea
   await kv.set([...DELIVERABLE_COLLECTIONS.DELIVERABLE_BY_TASK, deliverable.id], deliverable.id);
 
@@ -83,7 +83,7 @@ export async function getDeliverableFromTask(task: Task): Promise<Deliverable | 
   if (!task.isDeliverable) {
     return null;
   }
-  
+
   return getDeliverableById(task.id);
 }
 
@@ -91,16 +91,16 @@ export async function getDeliverableFromTask(task: Task): Promise<Deliverable | 
 export async function updateDeliverable(
   id: string,
   updateData: Partial<DeliverableData>,
-  userId?: string
+  _userId?: string
 ): Promise<Deliverable | null> {
   const kv = getKv();
-  
+
   // Obtener el entregable actual
   const deliverable = await getDeliverableById(id);
   if (!deliverable) {
     return null;
   }
-  
+
   // Actualizar los campos
   const updatedDeliverable: Deliverable = {
     ...deliverable,
@@ -108,15 +108,15 @@ export async function updateDeliverable(
     isDeliverable: true, // Asegurar que sigue siendo un entregable
     updatedAt: Date.now(),
   };
-  
+
   // Guardar el entregable actualizado
   const deliverableKey = [...DELIVERABLE_COLLECTIONS.DELIVERABLES, id];
   await kv.set(deliverableKey, updatedDeliverable);
-  
+
   // También actualizar como tarea
   const taskKey = ["tasks", id];
   await kv.set(taskKey, updatedDeliverable);
-  
+
   return updatedDeliverable;
 }
 
@@ -130,22 +130,18 @@ export async function addAttachmentToDeliverable(
   if (!deliverable) {
     return null;
   }
-  
+
   // Crear ID para el adjunto
   const attachmentWithId: Attachment = {
     ...attachment,
     id: crypto.randomUUID(),
   };
-  
+
   // Añadir el adjunto a la lista
   const updatedAttachments = [...deliverable.attachments, attachmentWithId];
-  
+
   // Actualizar el entregable
-  return updateDeliverable(
-    deliverableId,
-    { attachments: updatedAttachments },
-    userId
-  );
+  return updateDeliverable(deliverableId, { attachments: updatedAttachments }, userId);
 }
 
 // Eliminar un archivo adjunto de un entregable
@@ -158,23 +154,19 @@ export async function removeAttachmentFromDeliverable(
   if (!deliverable) {
     return null;
   }
-  
+
   // Filtrar el adjunto a eliminar
   const updatedAttachments = deliverable.attachments.filter(
-    attachment => attachment.id !== attachmentId
+    (attachment) => attachment.id !== attachmentId
   );
-  
+
   // Si no se encontró el adjunto, no hacer cambios
   if (updatedAttachments.length === deliverable.attachments.length) {
     return deliverable;
   }
-  
+
   // Actualizar el entregable
-  return updateDeliverable(
-    deliverableId,
-    { attachments: updatedAttachments },
-    userId
-  );
+  return updateDeliverable(deliverableId, { attachments: updatedAttachments }, userId);
 }
 
 // Marcar un entregable como enviado
@@ -186,14 +178,14 @@ export async function submitDeliverable(
   if (!deliverable) {
     return null;
   }
-  
+
   // Actualizar el entregable
   return updateDeliverable(
     deliverableId,
-    { 
+    {
       submittedAt: Date.now(),
       submittedBy: userId,
-      status: TaskStatus.REVIEW // Cambiar estado a "En revisión"
+      status: TaskStatus.REVIEW, // Cambiar estado a "En revisión"
     },
     userId
   );

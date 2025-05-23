@@ -1,7 +1,7 @@
-/// <reference lib="deno.unstable" />
-import { getKv, COLLECTIONS } from "./db.ts";
-import type { UserRole } from "../models/user.ts";
 import type { FreshContext } from "$fresh/server.ts";
+import type { UserRole } from "../models/user.ts";
+/// <reference lib="deno.unstable" />
+import { COLLECTIONS, getKv } from "./db.ts";
 
 export interface Session {
   userId: string;
@@ -51,7 +51,9 @@ export interface FreshContextWithSession extends FreshContext {
 }
 
 // Create a middleware to check if user is authenticated
-export function requireAuth(handler: (req: Request, ctx: FreshContextWithSession) => Response | Promise<Response>) {
+export function requireAuth(
+  handler: (req: Request, ctx: FreshContextWithSession) => Response | Promise<Response>
+) {
   return async (req: Request, ctx: FreshContextWithSession) => {
     const session = await getSession(req);
 
@@ -72,7 +74,10 @@ export function requireAuth(handler: (req: Request, ctx: FreshContextWithSession
 }
 
 // Create a middleware to check if user has specific role
-export function requireRole(role: UserRole | UserRole[], handler: (req: Request, ctx: FreshContextWithSession) => Response | Promise<Response>) {
+export function requireRole(
+  role: UserRole | UserRole[],
+  handler: (req: Request, ctx: FreshContextWithSession) => Response | Promise<Response>
+) {
   return requireAuth((req: Request, ctx: FreshContextWithSession) => {
     const session = ctx.session as Session;
 

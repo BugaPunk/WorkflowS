@@ -1,14 +1,14 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import type { Project } from "../models/project.ts";
-import Modal from "./Modal.tsx";
-import CreateProjectForm from "./CreateProjectForm.tsx";
-import EditProjectForm from "./EditProjectForm.tsx";
 import AssignProjectForm from "./AssignProjectForm.tsx";
+import CreateProjectForm from "./CreateProjectForm.tsx";
+import DeleteProjectModal from "./DeleteProjectModal.tsx";
+import EditProjectForm from "./EditProjectForm.tsx";
+import EmptyProjectsMessage from "./EmptyProjectsMessage.tsx";
+import Modal from "./Modal.tsx";
 import ProjectCard from "./ProjectCard.tsx";
 import ProjectsHeader from "./ProjectsHeader.tsx";
 import ProjectsStatusBar from "./ProjectsStatusBar.tsx";
-import EmptyProjectsMessage from "./EmptyProjectsMessage.tsx";
-import DeleteProjectModal from "./DeleteProjectModal.tsx";
 
 interface ProjectsListProps {
   initialProjects: Project[];
@@ -16,18 +16,22 @@ interface ProjectsListProps {
   currentUserId: string;
 }
 
-export default function ProjectsList({ initialProjects, isAdmin, currentUserId }: ProjectsListProps) {
+export default function ProjectsList({
+  initialProjects,
+  isAdmin,
+  currentUserId,
+}: ProjectsListProps) {
   // Estado
   const [projects, setProjects] = useState<Project[]>(initialProjects);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
+
   // Estado de modales
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAssignModal, setShowAssignModal] = useState(false);
   const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
-  
+
   // Estado de proyecto seleccionado y eliminación
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -62,17 +66,17 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
 
   // Manejadores de eventos para modales
   const handleCreateProject = () => setShowCreateModal(true);
-  
+
   const handleEditProject = (project: Project) => {
     setSelectedProject(project);
     setShowEditModal(true);
   };
-  
+
   const handleAssignProject = (project: Project) => {
     setSelectedProject(project);
     setShowAssignModal(true);
   };
-  
+
   const handleDeleteProject = (project: Project) => {
     setSelectedProject(project);
     setShowDeleteConfirmModal(true);
@@ -132,10 +136,7 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
   return (
     <div>
       {/* Encabezado con título y botones de acción */}
-      <ProjectsHeader 
-        isAdmin={isAdmin} 
-        onCreateProject={handleCreateProject} 
-      />
+      <ProjectsHeader isAdmin={isAdmin} onCreateProject={handleCreateProject} />
 
       {/* Mensaje de error si existe */}
       {error && (
@@ -145,10 +146,7 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
       )}
 
       {/* Barra de estado con contador de proyectos e indicador de carga */}
-      <ProjectsStatusBar 
-        projectCount={projects.length} 
-        isLoading={isLoading} 
-      />
+      <ProjectsStatusBar projectCount={projects.length} isLoading={isLoading} />
 
       {/* Lista de proyectos o mensaje de vacío */}
       {projects.length === 0 ? (
@@ -169,15 +167,9 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
       )}
 
       {/* Modal para crear proyecto */}
-      <Modal
-        show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Crear Nuevo Proyecto
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Crear Nuevo Proyecto</h2>
           <CreateProjectForm
             onSuccess={handleProjectCreated}
             onCancel={() => setShowCreateModal(false)}
@@ -187,15 +179,9 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
       </Modal>
 
       {/* Modal para asignar proyecto */}
-      <Modal
-        show={showAssignModal}
-        onClose={() => setShowAssignModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showAssignModal} onClose={() => setShowAssignModal(false)} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Asignar Usuarios al Proyecto
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Asignar Usuarios al Proyecto</h2>
           {selectedProject && (
             <AssignProjectForm
               project={selectedProject}
@@ -207,15 +193,9 @@ export default function ProjectsList({ initialProjects, isAdmin, currentUserId }
       </Modal>
 
       {/* Modal para editar proyecto */}
-      <Modal
-        show={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showEditModal} onClose={() => setShowEditModal(false)} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Editar Proyecto
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Editar Proyecto</h2>
           {selectedProject && (
             <EditProjectForm
               project={selectedProject}

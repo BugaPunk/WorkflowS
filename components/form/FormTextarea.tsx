@@ -30,7 +30,8 @@ export default function FormTextarea({
   return (
     <div class={`mb-4 ${className}`}>
       <label class="block text-gray-700 text-sm font-bold mb-2" htmlFor={id}>
-        {label}{required && <span class="text-red-500 ml-1">*</span>}
+        {label}
+        {required && <span class="text-red-500 ml-1">*</span>}
       </label>
       <textarea
         class={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -45,9 +46,7 @@ export default function FormTextarea({
         rows={rows}
         disabled={disabled}
       />
-      {error && (
-        <p class="text-red-500 text-xs italic mt-1">{error}</p>
-      )}
+      {error && <p class="text-red-500 text-xs italic mt-1">{error}</p>}
     </div>
   );
 }

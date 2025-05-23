@@ -1,10 +1,10 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
+import { getProjectMembers } from "../../services/projectService.ts";
 import { updateTask } from "../../services/taskService.ts";
 import { getUserStoryById } from "../../services/userStoryService.ts";
-import { getProjectMembers } from "../../services/projectService.ts";
 
 // Definir una interfaz extendida para los miembros del proyecto
 import type { ProjectMember } from "../../models/project.ts";

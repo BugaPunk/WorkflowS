@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
-import { UserRole, deleteUser, getUserById } from "../../../../models/user.ts";
 import { PROJECT_COLLECTIONS } from "../../../../models/project.ts";
+import { UserRole, deleteUser, getUserById } from "../../../../models/user.ts";
+import { Status, errorResponse, handleApiError, successResponse } from "../../../../utils/api.ts";
 import { getKv } from "../../../../utils/db.ts";
-import { Status, errorResponse, successResponse, handleApiError } from "../../../../utils/api.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   // Solo permitir solicitudes DELETE
@@ -47,7 +47,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
     // Verificar si el usuario está asignado a algún proyecto
     const kv = getKv();
     const projectMembersIterator = kv.list({
-      prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId]
+      prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId],
     });
 
     let hasProjects = false;
@@ -57,7 +57,10 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
     }
 
     if (hasProjects) {
-      return errorResponse("No se puede eliminar el usuario porque está asignado a uno o más proyectos. Elimina primero las asignaciones de proyectos.", Status.BadRequest);
+      return errorResponse(
+        "No se puede eliminar el usuario porque está asignado a uno o más proyectos. Elimina primero las asignaciones de proyectos.",
+        Status.BadRequest
+      );
     }
 
     // Eliminar el usuario

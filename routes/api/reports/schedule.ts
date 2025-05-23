@@ -1,14 +1,14 @@
 import type { Handlers } from "$fresh/server.ts";
+import { ScheduledReportSchema } from "@/models/report.ts";
 import { scheduleReport } from "@/services/reportService.ts";
 import { requireAuth } from "@/utils/auth.ts";
-import { ScheduledReportSchema } from "@/models/report.ts";
 
 export const handler: Handlers = {
   /**
    * POST /api/reports/schedule
    * Programa un reporte para ejecución periódica
    */
-  async POST(req, ctx) {
+  async POST(req, _ctx) {
     // Verificar autenticación
     const authResult = await requireAuth(req);
     if (!authResult.success) {

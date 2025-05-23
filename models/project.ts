@@ -1,7 +1,10 @@
+import { UserRole, getUserById, updateUserRole } from "@/models/user.ts";
+import { type Model, createModel, getKv } from "@/utils/db.ts";
+import { getUserStoriesWithFilters, deleteUserStory } from "@/models/userStory.ts";
+import { getUserStoryTasks, deleteTask } from "@/models/task.ts";
+import { getProjectSprints, deleteSprint } from "@/models/sprint.ts";
 /// <reference lib="deno.unstable" />
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
-import { UserRole, updateUserRole, getUserById } from "@/models/user.ts";
 
 // Actualizar las colecciones para incluir proyectos
 export const PROJECT_COLLECTIONS = {
@@ -244,29 +247,103 @@ export async function updateProjectStatus(
 export async function deleteProject(projectId: string): Promise<boolean> {
   const kv = getKv();
 
-  // Eliminar el proyecto
-  const projectKey = [...PROJECT_COLLECTIONS.PROJECTS, projectId];
-  await kv.delete(projectKey);
+  try {
+    // 1. Obtener todas las historias de usuario del proyecto
+    const userStories = await getUserStoriesWithFilters({ projectId });
 
-  // Eliminar todos los miembros del proyecto
-  const membersIterator = kv.list({
-    prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId],
-  });
+    // 2. Obtener todos los sprints del proyecto
+    const sprints = await getProjectSprints(projectId);
 
-  for await (const entry of membersIterator) {
-    // Eliminar el índice by_project
-    await kv.delete(entry.key);
+    // 3. Para cada historia de usuario, eliminar sus tareas asociadas
+    for (const userStory of userStories) {
+      // Obtener todas las tareas de la historia de usuario
+      const tasks = await getUserStoryTasks(userStory.id);
 
-    // Eliminar el índice by_user
-    const userId = entry.key[entry.key.length - 1];
-    await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId, projectId]);
+      // Eliminar cada tarea
+      for (const task of tasks) {
+        await deleteTask(task.id);
+      }
 
-    // Eliminar el miembro
-    const memberId = String(entry.value);
-    await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, memberId]);
+      // Eliminar la historia de usuario
+      await deleteUserStory(userStory.id);
+    }
+
+    // 4. Eliminar todos los sprints del proyecto
+    for (const sprint of sprints) {
+      await deleteSprint(sprint.id);
+    }
+
+    // 5. Eliminar todos los miembros del proyecto y actualizar sus roles si es necesario
+    const membersIterator = kv.list({
+      prefix: [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_project", projectId],
+    });
+
+    // Recopilar todos los miembros para procesar sus roles después
+    const memberData: { userId: string; role: ProjectRole; memberId: string }[] = [];
+
+    for await (const entry of membersIterator) {
+      // Obtener el ID del usuario
+      const userId = String(entry.key[entry.key.length - 1]);
+
+      // Obtener el miembro para conocer su rol
+      const memberId = String(entry.value);
+      const memberKey = [...PROJECT_COLLECTIONS.PROJECT_MEMBERS, memberId];
+      const memberEntry = await kv.get<ProjectMember>(memberKey);
+
+      if (memberEntry.value) {
+        memberData.push({
+          userId,
+          role: memberEntry.value.role,
+          memberId,
+        });
+      }
+
+      // Eliminar el índice by_project
+      await kv.delete(entry.key);
+
+      // Eliminar el índice by_user
+      await kv.delete([...PROJECT_COLLECTIONS.PROJECT_MEMBERS, "by_user", userId, projectId]);
+
+      // Eliminar el miembro
+      await kv.delete(memberKey);
+    }
+
+    // Actualizar los roles de los usuarios si es necesario
+    for (const member of memberData) {
+      // Solo procesar usuarios con roles especiales
+      if (member.role === ProjectRole.SCRUM_MASTER || member.role === ProjectRole.PRODUCT_OWNER) {
+        const user = await getUserById(member.userId);
+        if (!user) continue;
+
+        // Verificar si el usuario tiene el mismo rol en otros proyectos
+        const otherProjects = await getUserProjects(member.userId);
+        const hasRoleInOtherProjects = otherProjects.some((p) => {
+          // Ignorar el proyecto que estamos eliminando
+          if (p.id === projectId) return false;
+
+          // Buscar si el usuario tiene el mismo rol en otro proyecto
+          const memberWithRole = p.members.find(
+            (m) => m.userId === member.userId && m.role === member.role
+          );
+          return !!memberWithRole;
+        });
+
+        // Si el usuario no tiene el mismo rol en otros proyectos, cambiar a Team Developer
+        if (!hasRoleInOtherProjects && user.role !== UserRole.ADMIN) {
+          await updateUserRole(member.userId, UserRole.TEAM_DEVELOPER);
+        }
+      }
+    }
+
+    // 6. Finalmente, eliminar el proyecto
+    const projectKey = [...PROJECT_COLLECTIONS.PROJECTS, projectId];
+    await kv.delete(projectKey);
+
+    return true;
+  } catch (error) {
+    console.error("Error al eliminar proyecto:", error);
+    return false;
   }
-
-  return true;
 }
 
 // Actualizar un miembro del proyecto

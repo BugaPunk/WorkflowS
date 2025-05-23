@@ -1,7 +1,7 @@
-import { useState, useCallback, useMemo } from "preact/hooks";
+import { useCallback, useMemo, useState } from "preact/hooks";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { Project } from "../../models/project.ts";
 import type { UserStory } from "../../models/userStory.ts";
 
 interface TaskCalendarViewProps {
@@ -116,7 +116,7 @@ export default function TaskCalendarView({ tasks, projects, userStories }: TaskC
     // Primer día del mes
     const firstDayOfMonth = new Date(year, month, 1);
     // Último día del mes
-    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const _lastDayOfMonth = new Date(year, month + 1, 0);
 
     // Día de la semana del primer día (0 = domingo, 1 = lunes, ...)
     const firstDayWeekday = firstDayOfMonth.getDay();

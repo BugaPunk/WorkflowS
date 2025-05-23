@@ -16,7 +16,7 @@ export default function BacklogHeader({
   projects,
   onCreateUserStory,
   isProductOwner,
-  isAdmin
+  isAdmin,
 }: BacklogHeaderProps) {
   // Función para cambiar de proyecto
   const handleProjectChange = (e: Event) => {
@@ -35,11 +35,7 @@ export default function BacklogHeader({
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
         <div>
           <h1 class="text-3xl font-bold text-gray-800">Product Backlog</h1>
-          {currentProject && (
-            <p class="text-gray-600 mt-1">
-              Proyecto: {currentProject.name}
-            </p>
-          )}
+          {currentProject && <p class="text-gray-600 mt-1">Proyecto: {currentProject.name}</p>}
         </div>
         <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mt-4 md:mt-0">
           {(isProductOwner || isAdmin) && (
@@ -47,8 +43,17 @@ export default function BacklogHeader({
               onClick={onCreateUserStory}
               class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Crear Historia
             </Button>
@@ -71,9 +76,7 @@ export default function BacklogHeader({
             </p>
           </div>
           <div class="w-full md:w-64">
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Seleccionar Proyecto
-            </label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Seleccionar Proyecto</label>
             <select
               value={projectId || ""}
               onChange={handleProjectChange}

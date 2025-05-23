@@ -1,5 +1,5 @@
-import type { UserRole } from "../../models/user.ts";
 import type { Rubric } from "../../models/rubric.ts";
+import type { UserRole } from "../../models/user.ts";
 import RubricForm from "./RubricForm.tsx";
 
 interface RubricEditPageProps {
@@ -25,11 +25,5 @@ export default function RubricEditPage({ session, rubricId }: RubricEditPageProp
     window.location.href = `/rubrics/${rubricId}`;
   };
 
-  return (
-    <RubricForm 
-      rubricId={rubricId}
-      onSave={handleSave}
-      onCancel={handleCancel}
-    />
-  );
+  return <RubricForm rubricId={rubricId} onSave={handleSave} onCancel={handleCancel} />;
 }

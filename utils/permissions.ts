@@ -1,5 +1,5 @@
-import { UserRole } from "../models/user.ts";
 import type { ProjectRole } from "../models/project.ts";
+import { UserRole } from "../models/user.ts";
 import type { Session } from "./session.ts";
 
 /**
@@ -91,7 +91,12 @@ export function canManageUserStories(session: Session): boolean {
  * @returns true si el usuario puede gestionar tareas
  */
 export function canManageTasks(session: Session): boolean {
-  return isAdmin(session) || isScrumMaster(session) || isProductOwner(session) || isTeamDeveloper(session);
+  return (
+    isAdmin(session) ||
+    isScrumMaster(session) ||
+    isProductOwner(session) ||
+    isTeamDeveloper(session)
+  );
 }
 
 /**
@@ -109,7 +114,10 @@ export function canViewBacklog(session: Session): boolean {
  * @param task Tarea a actualizar
  * @returns true si el usuario puede actualizar la tarea
  */
-export function canUpdateTask(session: Session, task: { assignedTo?: string; createdBy: string }): boolean {
+export function canUpdateTask(
+  session: Session,
+  task: { assignedTo?: string; createdBy: string }
+): boolean {
   const isAssignedToUser = task.assignedTo === session.userId;
   const isCreator = task.createdBy === session.userId;
 
@@ -141,12 +149,10 @@ export function isProjectMember(
   role?: ProjectRole
 ): boolean {
   if (!role) {
-    return project.members.some(member => member.userId === session.userId);
+    return project.members.some((member) => member.userId === session.userId);
   }
 
-  return project.members.some(
-    member => member.userId === session.userId && member.role === role
-  );
+  return project.members.some((member) => member.userId === session.userId && member.role === role);
 }
 
 /**

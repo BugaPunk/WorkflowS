@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { Button } from "../components/Button.tsx";
-import Modal from "./Modal.tsx";
 import { UserRole } from "../models/user.ts";
+import Modal from "./Modal.tsx";
 
 export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?: () => void }) {
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +54,7 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
     const target = e.target as HTMLInputElement | HTMLSelectElement;
 
     // Ignorar cambios en el campo de rol (ahora es de solo lectura)
-    if (target.name === 'role') return;
+    if (target.name === "role") return;
 
     setFormData({
       ...formData,
@@ -115,7 +115,7 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
       // Asegurarse de que el rol siempre sea TEAM_DEVELOPER
       const dataToSubmit = {
         ...formData,
-        role: UserRole.TEAM_DEVELOPER
+        role: UserRole.TEAM_DEVELOPER,
       };
 
       const response = await fetch("/api/register", {
@@ -148,25 +148,30 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
     }
   };
 
-
-
   return (
     <>
       <Button
         onClick={openModal}
         class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 mr-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+            clip-rule="evenodd"
+          />
         </svg>
         Crear Usuario
       </Button>
 
       <Modal show={showModal} onClose={closeModal} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Crear Nuevo Usuario
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Crear Nuevo Usuario</h2>
 
           {submitSuccess ? (
             <div class="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-4">
@@ -249,9 +254,7 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
                   onChange={handleChange}
                   required
                 />
-                {errors.email && (
-                  <p class="text-red-500 text-xs italic mt-1">{errors.email}</p>
-                )}
+                {errors.email && <p class="text-red-500 text-xs italic mt-1">{errors.email}</p>}
               </div>
 
               <div>
@@ -283,7 +286,8 @@ export default function AdminCreateUserForm({ onUserCreated }: { onUserCreated?:
                   Desarrollador de Equipo
                 </div>
                 <p class="text-sm text-gray-600 mt-1">
-                  Los roles se asignarán al crear proyectos. Todos los usuarios se crean inicialmente como Desarrolladores de Equipo.
+                  Los roles se asignarán al crear proyectos. Todos los usuarios se crean
+                  inicialmente como Desarrolladores de Equipo.
                 </p>
               </div>
 

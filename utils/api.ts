@@ -8,7 +8,7 @@ export const Status = {
   NotFound: 404,
   MethodNotAllowed: 405,
   InternalServerError: 500,
-  ServiceUnavailable: 503
+  ServiceUnavailable: 503,
 };
 
 /**
@@ -60,15 +60,15 @@ export function successResponse(
  */
 export function handleApiError(error: unknown): Response {
   console.error("API Error:", error);
-  
+
   if (error instanceof Error) {
     // Verificar si es un error de KV
     if (error.message.includes("KV is not initialized")) {
       return errorResponse("Servicio de base de datos no disponible", Status.ServiceUnavailable);
     }
-    
+
     return errorResponse(error.message, Status.InternalServerError);
   }
-  
+
   return errorResponse("Error interno del servidor", Status.InternalServerError);
 }

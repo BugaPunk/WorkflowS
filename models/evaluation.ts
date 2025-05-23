@@ -32,7 +32,9 @@ export const EvaluationSchema = z.object({
 export type Evaluation = Model & z.infer<typeof EvaluationSchema>;
 
 // Función para crear una nueva evaluación
-export function createEvaluationWithDefaults(data: Partial<Omit<Evaluation, keyof Model>>): Evaluation {
+export function createEvaluationWithDefaults(
+  data: Partial<Omit<Evaluation, keyof Model>>
+): Evaluation {
   const defaultData: Omit<Evaluation, keyof Model> = {
     deliverableId: "",
     evaluatorId: "",

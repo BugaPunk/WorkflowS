@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
-import { UserRole, getAllUsers, type User } from "../../models/user.ts";
 import AdminUsersList from "../../islands/AdminUsersList.tsx";
+import { MainLayout } from "../../layouts/MainLayout.tsx";
+import { type User, UserRole, getAllUsers } from "../../models/user.ts";
+import { getSession } from "../../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {
@@ -33,7 +33,7 @@ export const handler = {
       const users = await getAllUsers();
 
       // Eliminar las contraseñas hash antes de enviar a la vista
-      const safeUsers = users.map(user => {
+      const safeUsers = users.map((user) => {
         const { passwordHash: _, ...userWithoutPassword } = user;
         return userWithoutPassword;
       });

@@ -1,6 +1,6 @@
-import Modal from "../Modal.tsx";
-import EditProjectForm from "../EditProjectForm.tsx";
 import type { Project } from "../../models/project.ts";
+import EditProjectForm from "../EditProjectForm.tsx";
+import Modal from "../Modal.tsx";
 
 interface EditProjectModalProps {
   show: boolean;
@@ -16,22 +16,10 @@ export default function EditProjectModal({
   onSuccess,
 }: EditProjectModalProps) {
   return (
-    <Modal
-      show={show}
-      onClose={onClose}
-      maxWidth="md"
-    >
+    <Modal show={show} onClose={onClose} maxWidth="md">
       <div class="p-6">
-        <h2 class="text-lg font-medium text-gray-900 mb-4">
-          Editar Proyecto
-        </h2>
-        {project && (
-          <EditProjectForm
-            project={project}
-            onSuccess={onSuccess}
-            onCancel={onClose}
-          />
-        )}
+        <h2 class="text-lg font-medium text-gray-900 mb-4">Editar Proyecto</h2>
+        {project && <EditProjectForm project={project} onSuccess={onSuccess} onCancel={onClose} />}
       </div>
     </Modal>
   );

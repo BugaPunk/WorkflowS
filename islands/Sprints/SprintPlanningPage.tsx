@@ -1,8 +1,8 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import type { Project } from "../../models/project.ts";
 import type { Sprint } from "../../models/sprint.ts";
 import { SprintStatus } from "../../models/sprint.ts";
-import { Button } from "../../components/Button.tsx";
 
 interface SprintPlanningPageProps {
   projects: Project[];

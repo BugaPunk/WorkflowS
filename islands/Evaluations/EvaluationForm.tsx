@@ -1,9 +1,13 @@
-import { useState, useEffect } from "preact/hooks";
-import type { Deliverable } from "../../models/deliverable.ts";
-import type { Rubric, RubricCriterion } from "../../models/rubric.ts";
-import { type Evaluation, type CriterionEvaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import type { Deliverable } from "../../models/deliverable.ts";
+import {
+  type CriterionEvaluation,
+  type Evaluation,
+  EvaluationStatus,
+} from "../../models/evaluation.ts";
+import type { Rubric, RubricCriterion } from "../../models/rubric.ts";
 
 interface EvaluationFormProps {
   deliverable: Deliverable;
@@ -25,7 +29,9 @@ export default function EvaluationForm({
   // Estado para la evaluación
   const [criteriaEvaluations, setCriteriaEvaluations] = useState<CriterionEvaluation[]>([]);
   const [overallFeedback, setOverallFeedback] = useState("");
-  const [_evaluationStatus, setEvaluationStatus] = useState<EvaluationStatus>(EvaluationStatus.DRAFT);
+  const [_evaluationStatus, setEvaluationStatus] = useState<EvaluationStatus>(
+    EvaluationStatus.DRAFT
+  );
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -41,7 +47,7 @@ export default function EvaluationForm({
       setEvaluationStatus(existingEvaluation.status);
     } else {
       // Crear evaluaciones vacías para cada criterio
-      const initialEvaluations = rubric.criteria.map(criterion => ({
+      const initialEvaluations = rubric.criteria.map((criterion) => ({
         criterionId: criterion.id || "",
         score: 0,
         feedback: "",
@@ -60,8 +66,8 @@ export default function EvaluationForm({
   const handleScoreChange = (criterionId: string | undefined, score: number) => {
     if (!criterionId) return;
 
-    setCriteriaEvaluations(prev =>
-      prev.map(evalItem =>
+    setCriteriaEvaluations((prev) =>
+      prev.map((evalItem) =>
         evalItem.criterionId === criterionId ? { ...evalItem, score } : evalItem
       )
     );
@@ -71,8 +77,8 @@ export default function EvaluationForm({
   const handleFeedbackChange = (criterionId: string | undefined, feedback: string) => {
     if (!criterionId) return;
 
-    setCriteriaEvaluations(prev =>
-      prev.map(evalItem =>
+    setCriteriaEvaluations((prev) =>
+      prev.map((evalItem) =>
         evalItem.criterionId === criterionId ? { ...evalItem, feedback } : evalItem
       )
     );
@@ -80,7 +86,7 @@ export default function EvaluationForm({
 
   // Obtener criterio por ID
   const getCriterionById = (criterionId: string): RubricCriterion | undefined => {
-    return rubric.criteria.find(c => c.id === criterionId);
+    return rubric.criteria.find((c) => c.id === criterionId);
   };
 
   // Guardar evaluación
@@ -116,7 +122,9 @@ export default function EvaluationForm({
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || `Error al guardar la evaluación: ${response.statusText}`);
+        throw new Error(
+          errorData.error || `Error al guardar la evaluación: ${response.statusText}`
+        );
       }
 
       const savedEvaluation = await response.json();
@@ -133,10 +141,12 @@ export default function EvaluationForm({
   // Finalizar evaluación
   const handleFinalize = async () => {
     // Verificar que todos los criterios tienen puntuación
-    const hasAllScores = criteriaEvaluations.every(evalItem => evalItem.score > 0);
+    const hasAllScores = criteriaEvaluations.every((evalItem) => evalItem.score > 0);
 
     if (!hasAllScores) {
-      setError("Debes asignar una puntuación a todos los criterios antes de finalizar la evaluación.");
+      setError(
+        "Debes asignar una puntuación a todos los criterios antes de finalizar la evaluación."
+      );
       return;
     }
 
@@ -159,18 +169,20 @@ export default function EvaluationForm({
               key={level.id}
               class={`p-3 rounded-lg border cursor-pointer transition-colors ${
                 criterionEval.score === level.pointValue
-                  ? 'border-blue-500 bg-blue-50'
-                  : 'border-gray-200 hover:bg-gray-50'
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-200 hover:bg-gray-50"
               }`}
               onClick={() => handleScoreChange(criterion.id || "", level.pointValue)}
             >
               <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                  <div class={`w-5 h-5 rounded-full flex items-center justify-center mr-2 ${
-                    criterionEval.score === level.pointValue
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-200'
-                  }`}>
+                  <div
+                    class={`w-5 h-5 rounded-full flex items-center justify-center mr-2 ${
+                      criterionEval.score === level.pointValue
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200"
+                    }`}
+                  >
                     {criterionEval.score === level.pointValue && (
                       <MaterialIcon icon="check" size="sm" />
                     )}
@@ -205,17 +217,11 @@ export default function EvaluationForm({
           <p class="text-lg font-bold text-gray-900">
             Puntuación: {totalScore} / {maxPossibleScore}
           </p>
-          <p class="text-gray-600 text-sm">
-            {Math.round((totalScore / maxPossibleScore) * 100)}%
-          </p>
+          <p class="text-gray-600 text-sm">{Math.round((totalScore / maxPossibleScore) * 100)}%</p>
         </div>
       </div>
 
-      {error && (
-        <div class="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
-          {error}
-        </div>
-      )}
+      {error && <div class="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">{error}</div>}
 
       <div class="mb-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Criterios de Evaluación</h3>
@@ -250,10 +256,9 @@ export default function EvaluationForm({
                   </label>
                   <textarea
                     value={criterionEval.feedback || ""}
-                    onChange={(e: Event) => handleFeedbackChange(
-                      criterion.id,
-                      (e.target as HTMLTextAreaElement).value
-                    )}
+                    onChange={(e: Event) =>
+                      handleFeedbackChange(criterion.id, (e.target as HTMLTextAreaElement).value)
+                    }
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     rows={3}
                     placeholder="Proporciona retroalimentación específica para este criterio..."
@@ -281,29 +286,14 @@ export default function EvaluationForm({
       </div>
 
       <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={onCancel}
-          disabled={saving}
-        >
+        <Button type="button" variant="ghost" onClick={onCancel} disabled={saving}>
           Cancelar
         </Button>
         <div class="flex space-x-2 ml-2">
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={handleSaveAsDraft}
-            disabled={saving}
-          >
+          <Button type="button" variant="ghost" onClick={handleSaveAsDraft} disabled={saving}>
             {saving ? "Guardando..." : "Guardar Borrador"}
           </Button>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={handleFinalize}
-            disabled={saving}
-          >
+          <Button type="button" variant="primary" onClick={handleFinalize} disabled={saving}>
             {saving ? "Finalizando..." : "Finalizar Evaluación"}
           </Button>
         </div>

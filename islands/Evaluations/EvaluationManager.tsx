@@ -1,14 +1,14 @@
 import { useState } from "preact/hooks";
 import type { Deliverable } from "../../models/deliverable.ts";
-import type { Rubric } from "../../models/rubric.ts";
 import type { Evaluation } from "../../models/evaluation.ts";
+import type { Rubric } from "../../models/rubric.ts";
 import { UserRole } from "../../models/user.ts";
-import PendingDeliverablesList from "./PendingDeliverablesList.tsx";
 import DeliverableDetails from "./DeliverableDetails.tsx";
-import RubricSelector from "./RubricSelector.tsx";
 import EvaluationForm from "./EvaluationForm.tsx";
-import EvaluationView from "./EvaluationView.tsx";
 import EvaluationStats from "./EvaluationStats.tsx";
+import EvaluationView from "./EvaluationView.tsx";
+import PendingDeliverablesList from "./PendingDeliverablesList.tsx";
+import RubricSelector from "./RubricSelector.tsx";
 
 interface EvaluationManagerProps {
   session: {
@@ -33,13 +33,11 @@ export default function EvaluationManager({
   session,
   projectId,
   deliverableId: initialDeliverableId,
-  evaluationId: initialEvaluationId
+  evaluationId: initialEvaluationId,
 }: EvaluationManagerProps) {
   // Estado para controlar la vista actual
   const [viewState, setViewState] = useState<ViewState>(
-    initialEvaluationId ? "view-evaluation" :
-    initialDeliverableId ? "deliverable-details" :
-    "list"
+    initialEvaluationId ? "view-evaluation" : initialDeliverableId ? "deliverable-details" : "list"
   );
 
   // Estado para almacenar datos seleccionados
@@ -49,9 +47,10 @@ export default function EvaluationManager({
   const [evaluationId, setEvaluationId] = useState<string | undefined>(initialEvaluationId);
 
   // Determinar si el usuario puede evaluar
-  const canEvaluate = session.role === UserRole.ADMIN ||
-                      session.role === UserRole.PRODUCT_OWNER ||
-                      session.role === UserRole.SCRUM_MASTER;
+  const canEvaluate =
+    session.role === UserRole.ADMIN ||
+    session.role === UserRole.PRODUCT_OWNER ||
+    session.role === UserRole.SCRUM_MASTER;
 
   // Manejar la selección de un entregable
   const handleSelectDeliverable = (deliverable: Deliverable) => {
@@ -157,14 +156,10 @@ export default function EvaluationManager({
             onEdit={canEvaluate ? handleEditEvaluation : undefined}
           />
         );
-
-      case "list":
       default:
         return (
           <div class="space-y-6">
-            {canEvaluate && (
-              <EvaluationStats projectId={projectId} />
-            )}
+            {canEvaluate && <EvaluationStats projectId={projectId} />}
 
             <PendingDeliverablesList
               projectId={projectId}
@@ -175,9 +170,5 @@ export default function EvaluationManager({
     }
   };
 
-  return (
-    <div>
-      {renderView()}
-    </div>
-  );
+  return <div>{renderView()}</div>;
 }

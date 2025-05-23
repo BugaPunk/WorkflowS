@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
-import type { Rubric } from "../../models/rubric.ts";
 import { Button } from "../../components/Button.tsx";
+import type { Rubric } from "../../models/rubric.ts";
 
 interface DuplicateRubricFormProps {
   rubric: Rubric;
@@ -13,7 +13,7 @@ export default function DuplicateRubricForm({
   rubric,
   projectId,
   onDuplicate,
-  onCancel
+  onCancel,
 }: DuplicateRubricFormProps) {
   const [name, setName] = useState(`Copia de ${rubric.name}`);
   const [isTemplate, setIsTemplate] = useState(false);
@@ -65,16 +65,12 @@ export default function DuplicateRubricForm({
       <h2 class="text-xl font-semibold text-gray-800 mb-4">Duplicar Rúbrica</h2>
 
       <p class="text-gray-600 mb-6">
-        Estás a punto de crear una copia de la rúbrica "{rubric.name}".
-        La nueva rúbrica contendrá los mismos criterios y niveles de desempeño.
+        Estás a punto de crear una copia de la rúbrica "{rubric.name}". La nueva rúbrica contendrá
+        los mismos criterios y niveles de desempeño.
       </p>
 
       <form onSubmit={handleSubmit}>
-        {error && (
-          <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
-            {error}
-          </div>
-        )}
+        {error && <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-md">{error}</div>}
 
         <div class="space-y-4 mb-6">
           <div class="mb-4">
@@ -108,20 +104,10 @@ export default function DuplicateRubricForm({
         </div>
 
         <div class="flex items-center justify-end pt-4 border-t border-gray-200 mt-6">
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={onCancel}
-            disabled={loading}
-          >
+          <Button type="button" variant="ghost" onClick={onCancel} disabled={loading}>
             Cancelar
           </Button>
-          <Button
-            type="submit"
-            variant="primary"
-            disabled={loading}
-            class="ml-2"
-          >
+          <Button type="submit" variant="primary" disabled={loading} class="ml-2">
             {loading ? "Duplicando..." : "Duplicar Rúbrica"}
           </Button>
         </div>

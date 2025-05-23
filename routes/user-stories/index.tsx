@@ -1,12 +1,12 @@
 import type { FreshContext } from "$fresh/server.ts";
+import UserStoriesList from "../../islands/UserStories/UserStoriesList.tsx";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
+import type { Project } from "../../models/project.ts";
+import { getAllProjects } from "../../models/project.ts";
 import type { UserRole } from "../../models/user.ts";
 import type { UserStory } from "../../models/userStory.ts";
 import { getUserStoriesWithFilters } from "../../models/userStory.ts";
-import type { Project } from "../../models/project.ts";
-import { getAllProjects } from "../../models/project.ts";
-import UserStoriesList from "../../islands/UserStories/UserStoriesList.tsx";
+import { getSession } from "../../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

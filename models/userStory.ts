@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para historias de usuario
 export const USER_STORY_COLLECTIONS = {
@@ -60,7 +60,10 @@ export type UpdateUserStoryData = z.infer<typeof UpdateUserStorySchema>;
 export interface UserStory extends Model, UserStoryData {}
 
 // Crear una nueva historia de usuario
-export async function createUserStory(userStoryData: CreateUserStoryData, createdBy: string): Promise<UserStory> {
+export async function createUserStory(
+  userStoryData: CreateUserStoryData,
+  createdBy: string
+): Promise<UserStory> {
   // Crear el modelo de la historia de usuario
   const userStory = createModel<Omit<UserStory, keyof Model>>({
     title: userStoryData.title,
@@ -111,13 +114,15 @@ export async function getProjectUserStories(projectId: string): Promise<UserStor
  * @param filters Filtros para las historias de usuario
  * @returns Lista de historias de usuario filtradas
  */
-export async function getUserStoriesWithFilters(filters: {
-  projectId?: string;
-  status?: string | string[];
-  sprintId?: string;
-  priority?: string | string[];
-  search?: string;
-} = {}): Promise<UserStory[]> {
+export async function getUserStoriesWithFilters(
+  filters: {
+    projectId?: string;
+    status?: string | string[];
+    sprintId?: string;
+    priority?: string | string[];
+    search?: string;
+  } = {}
+): Promise<UserStory[]> {
   const kv = getKv();
   const userStories: UserStory[] = [];
 
@@ -125,13 +130,13 @@ export async function getUserStoriesWithFilters(filters: {
   const userStoriesIterator = kv.list<UserStory>({ prefix: USER_STORY_COLLECTIONS.USER_STORIES });
 
   // Convertir arrays de filtros a conjuntos para búsqueda más eficiente
-  const statusSet = filters.status ?
-    new Set(Array.isArray(filters.status) ? filters.status : [filters.status]) :
-    null;
+  const statusSet = filters.status
+    ? new Set(Array.isArray(filters.status) ? filters.status : [filters.status])
+    : null;
 
-  const prioritySet = filters.priority ?
-    new Set(Array.isArray(filters.priority) ? filters.priority : [filters.priority]) :
-    null;
+  const prioritySet = filters.priority
+    ? new Set(Array.isArray(filters.priority) ? filters.priority : [filters.priority])
+    : null;
 
   // Convertir búsqueda a minúsculas para comparación insensible a mayúsculas/minúsculas
   const searchLower = filters.search ? filters.search.toLowerCase() : null;
@@ -161,9 +166,12 @@ export async function getUserStoriesWithFilters(filters: {
     }
 
     // Filtrar por búsqueda en título o descripción
-    if (include && searchLower &&
-        !userStory.title.toLowerCase().includes(searchLower) &&
-        !userStory.description.toLowerCase().includes(searchLower)) {
+    if (
+      include &&
+      searchLower &&
+      !userStory.title.toLowerCase().includes(searchLower) &&
+      !userStory.description.toLowerCase().includes(searchLower)
+    ) {
       include = false;
     }
 
@@ -176,7 +184,10 @@ export async function getUserStoriesWithFilters(filters: {
 }
 
 // Actualizar una historia de usuario
-export async function updateUserStory(id: string, updateData: UpdateUserStoryData): Promise<UserStory | null> {
+export async function updateUserStory(
+  id: string,
+  updateData: UpdateUserStoryData
+): Promise<UserStory | null> {
   const kv = getKv();
   const key = [...USER_STORY_COLLECTIONS.USER_STORIES, id];
 

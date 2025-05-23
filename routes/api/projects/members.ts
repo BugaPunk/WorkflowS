@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
-import { UserRole } from "../../../models/user.ts";
 import { ProjectMemberSchema, addProjectMember, getProjectById } from "../../../models/project.ts";
-import { Status, errorResponse, successResponse, handleApiError } from "../../../utils/api.ts";
+import { UserRole } from "../../../models/user.ts";
+import { Status, errorResponse, handleApiError, successResponse } from "../../../utils/api.ts";
+import { getSession } from "../../../utils/session.ts";
 
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   // Verificar si el usuario está autenticado
@@ -39,7 +39,7 @@ export const handler = async (req: Request, _ctx: FreshContext): Promise<Respons
 
       // Verificar si el usuario ya está asignado al proyecto
       const isUserAlreadyAssigned = project.members.some(
-        member => member.userId === result.data.userId
+        (member) => member.userId === result.data.userId
       );
 
       if (isUserAlreadyAssigned) {

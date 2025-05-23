@@ -1,6 +1,6 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getKv, COLLECTIONS } from "../../utils/db.ts";
 import { Status } from "../../utils/api.ts";
+import { COLLECTIONS, getKv } from "../../utils/db.ts";
 
 export const handler = {
   async POST(req: Request, _ctx: FreshContext) {

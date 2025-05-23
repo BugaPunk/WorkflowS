@@ -1,8 +1,8 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
-import { Status, errorResponse, successResponse } from "../../../../utils/api.ts";
-import { TaskService } from "../../../../services/backend/index.ts";
 import { z } from "zod";
+import { TaskService } from "../../../../services/backend/index.ts";
+import { Status, errorResponse, successResponse } from "../../../../utils/api.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 // Esquema para validar registro de tiempo
 const TimeLogSchema = z.object({

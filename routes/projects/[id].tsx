@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
-import { getKv } from "../../utils/db.ts";
-import { type Project, ProjectStatus, ProjectRole } from "../../models/project.ts";
+import { type Project, ProjectRole, ProjectStatus } from "../../models/project.ts";
 import { type User, UserRole } from "../../models/user.ts";
+import { getKv } from "../../utils/db.ts";
+import { getSession } from "../../utils/session.ts";
 // import { Button } from "../../components/Button.tsx";
 
 export const handler = {
@@ -56,14 +56,14 @@ export const handler = {
     const creator = creatorEntry.value;
 
     // Verificar si el usuario actual es miembro del proyecto
-    const isMember = project.members.some(member => member.userId === session.userId);
+    const isMember = project.members.some((member) => member.userId === session.userId);
 
     // Verificar si el usuario actual es Product Owner o Scrum Master del proyecto
     const isProductOwner = project.members.some(
-      member => member.userId === session.userId && member.role === ProjectRole.PRODUCT_OWNER
+      (member) => member.userId === session.userId && member.role === ProjectRole.PRODUCT_OWNER
     );
     const isScrumMaster = project.members.some(
-      member => member.userId === session.userId && member.role === ProjectRole.SCRUM_MASTER
+      (member) => member.userId === session.userId && member.role === ProjectRole.SCRUM_MASTER
     );
 
     // Verificar si el usuario es admin
@@ -160,10 +160,10 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
   const formatDate = (timestamp?: number) => {
     if (!timestamp) return "No definida";
 
-    return new Date(timestamp).toLocaleString('es-ES', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    return new Date(timestamp).toLocaleString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -174,12 +174,18 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
           {/* Encabezado */}
           <div class="mb-6 flex justify-between items-center">
             <div class="flex items-center">
-              <a
-                href="/projects"
-                class="text-blue-600 hover:text-blue-800 mr-2"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+              <a href="/projects" class="text-blue-600 hover:text-blue-800 mr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </a>
               <h1 class="text-3xl font-bold text-gray-800">Detalles del Proyecto</h1>
@@ -217,15 +223,15 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
             <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div class="flex justify-between items-start">
                 <h2 class="text-2xl font-bold text-gray-800">{project.name}</h2>
-                <span class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getStatusColorClass(project.status)}`}>
+                <span
+                  class={`px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full ${getStatusColorClass(project.status)}`}
+                >
                   {getStatusDisplay(project.status)}
                 </span>
               </div>
               {creator && (
                 <div class="mt-2">
-                  <span class="text-sm text-gray-600">
-                    Creado por: {creator.username}
-                  </span>
+                  <span class="text-sm text-gray-600">Creado por: {creator.username}</span>
                 </div>
               )}
             </div>
@@ -245,13 +251,20 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                       <h4 class="text-md font-semibold text-gray-700 mb-2 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 mr-2 text-blue-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
                           <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5z" />
                           <path d="M11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                         </svg>
                         Sprints
                       </h4>
-                      <p class="text-sm text-gray-600 mb-3">Organiza el trabajo en iteraciones para un desarrollo incremental.</p>
+                      <p class="text-sm text-gray-600 mb-3">
+                        Organiza el trabajo en iteraciones para un desarrollo incremental.
+                      </p>
                       <a
                         href={`/projects/${project.id}/sprints`}
                         class="inline-block w-full text-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
@@ -261,13 +274,24 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     </div>
                     <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                       <h4 class="text-md font-semibold text-gray-700 mb-2 flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 mr-2 text-green-600"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
                           <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+                            clip-rule="evenodd"
+                          />
                         </svg>
                         Historias de Usuario
                       </h4>
-                      <p class="text-sm text-gray-600 mb-3">Gestiona los requisitos del proyecto desde la perspectiva del usuario.</p>
+                      <p class="text-sm text-gray-600 mb-3">
+                        Gestiona los requisitos del proyecto desde la perspectiva del usuario.
+                      </p>
                       <a
                         href={`/user-stories?projectId=${project.id}`}
                         class="inline-block w-full text-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm"
@@ -284,10 +308,12 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                   <h3 class="text-lg font-semibold text-gray-800 mb-2">Fechas</h3>
                   <ul class="bg-gray-50 p-4 rounded-lg">
                     <li class="mb-2">
-                      <span class="font-medium text-gray-700">Fecha de inicio:</span> {formatDate(project.startDate)}
+                      <span class="font-medium text-gray-700">Fecha de inicio:</span>{" "}
+                      {formatDate(project.startDate)}
                     </li>
                     <li>
-                      <span class="font-medium text-gray-700">Fecha de finalización:</span> {formatDate(project.endDate)}
+                      <span class="font-medium text-gray-700">Fecha de finalización:</span>{" "}
+                      {formatDate(project.endDate)}
                     </li>
                   </ul>
                 </div>
@@ -296,7 +322,8 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                   <h3 class="text-lg font-semibold text-gray-800 mb-2">Equipo</h3>
                   <div class="bg-gray-50 p-4 rounded-lg">
                     <p class="mb-2">
-                      <span class="font-medium text-gray-700">Miembros:</span> {project.members.length}
+                      <span class="font-medium text-gray-700">Miembros:</span>{" "}
+                      {project.members.length}
                     </p>
                     <div class="mt-2">
                       <a
@@ -318,9 +345,12 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     {/* Product Owner */}
                     <div>
                       <h4 class="font-medium text-gray-700">Product Owner:</h4>
-                      {project.members.find(m => m.role === ProjectRole.PRODUCT_OWNER) ? (
+                      {project.members.find((m) => m.role === ProjectRole.PRODUCT_OWNER) ? (
                         <p class="text-gray-800">
-                          {project.members.find(m => m.role === ProjectRole.PRODUCT_OWNER)?.username}
+                          {
+                            project.members.find((m) => m.role === ProjectRole.PRODUCT_OWNER)
+                              ?.username
+                          }
                         </p>
                       ) : (
                         <p class="text-gray-500 italic">No asignado</p>
@@ -330,9 +360,12 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     {/* Scrum Master */}
                     <div>
                       <h4 class="font-medium text-gray-700">Scrum Master:</h4>
-                      {project.members.find(m => m.role === ProjectRole.SCRUM_MASTER) ? (
+                      {project.members.find((m) => m.role === ProjectRole.SCRUM_MASTER) ? (
                         <p class="text-gray-800">
-                          {project.members.find(m => m.role === ProjectRole.SCRUM_MASTER)?.username}
+                          {
+                            project.members.find((m) => m.role === ProjectRole.SCRUM_MASTER)
+                              ?.username
+                          }
                         </p>
                       ) : (
                         <p class="text-gray-500 italic">No asignado</p>
@@ -350,8 +383,19 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     href={`/user-stories?projectId=${project.id}`}
                     class="bg-indigo-50 hover:bg-indigo-100 p-4 rounded-lg text-center transition-colors"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-8 w-8 mx-auto mb-2 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
                     </svg>
                     <span class="text-sm font-medium text-indigo-700">Historias de Usuario</span>
                   </a>
@@ -361,8 +405,19 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                       href={`/projects/${project.id}/sprints`}
                       class="bg-green-50 hover:bg-green-100 p-4 rounded-lg text-center transition-colors"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 mx-auto mb-2 text-green-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        />
                       </svg>
                       <span class="text-sm font-medium text-green-700">Sprints</span>
                     </a>
@@ -373,8 +428,19 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     href={`/projects/${project.id}/metrics`}
                     class="bg-purple-50 hover:bg-purple-100 p-4 rounded-lg text-center transition-colors"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-8 w-8 mx-auto mb-2 text-purple-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      />
                     </svg>
                     <span class="text-sm font-medium text-purple-700">Métricas y Reportes</span>
                   </a>
@@ -384,8 +450,19 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                       href={`/projects/${project.id}/meetings`}
                       class="bg-yellow-50 hover:bg-yellow-100 p-4 rounded-lg text-center transition-colors"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 mx-auto mb-2 text-yellow-600"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
                       </svg>
                       <span class="text-sm font-medium text-yellow-700">Reuniones</span>
                     </a>
@@ -395,8 +472,19 @@ export default function ProjectDetailPage({ data }: { data: ProjectDetailProps }
                     href={`/projects/${project.id}/members`}
                     class="bg-blue-50 hover:bg-blue-100 p-4 rounded-lg text-center transition-colors"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto mb-2 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-8 w-8 mx-auto mb-2 text-blue-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
                     </svg>
                     <span class="text-sm font-medium text-blue-700">Miembros</span>
                   </a>

@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para métricas de usuario
 export const USER_METRIC_COLLECTIONS = {
@@ -28,7 +28,8 @@ export interface UserMetric extends Model, UserMetricData {}
 // Crear una nueva métrica de usuario
 export async function createUserMetric(metricData: UserMetricData): Promise<UserMetric> {
   // Calcular eficiencia si no se proporciona
-  const efficiency = metricData.efficiency ?? 
+  const efficiency =
+    metricData.efficiency ??
     (metricData.hoursLogged > 0 ? metricData.pointsContributed / metricData.hoursLogged : 0);
 
   // Crear el modelo de la métrica
@@ -50,7 +51,12 @@ export async function createUserMetric(metricData: UserMetricData): Promise<User
 
   // Crear índice por usuario y fecha
   await kv.set(
-    [...USER_METRIC_COLLECTIONS.USER_METRICS, "by_user", metricData.userId, metricData.date.toString()],
+    [
+      ...USER_METRIC_COLLECTIONS.USER_METRICS,
+      "by_user",
+      metricData.userId,
+      metricData.date.toString(),
+    ],
     metric.id
   );
 
@@ -82,7 +88,7 @@ export async function getUserMetrics(userId: string): Promise<UserMetric[]> {
   for await (const entry of metricsIterator) {
     const metricId = entry.value;
     const result = await kv.get<UserMetric>([...USER_METRIC_COLLECTIONS.USER_METRICS, metricId]);
-    
+
     if (result.value) {
       metrics.push(result.value);
     }
@@ -93,7 +99,10 @@ export async function getUserMetrics(userId: string): Promise<UserMetric[]> {
 }
 
 // Obtener métricas de un usuario en un sprint
-export async function getUserMetricsForSprint(userId: string, sprintId: string): Promise<UserMetric[]> {
+export async function getUserMetricsForSprint(
+  userId: string,
+  sprintId: string
+): Promise<UserMetric[]> {
   const kv = getKv();
   const metrics: UserMetric[] = [];
 
@@ -105,7 +114,7 @@ export async function getUserMetricsForSprint(userId: string, sprintId: string):
   for await (const entry of metricsIterator) {
     const metricId = entry.value;
     const result = await kv.get<UserMetric>([...USER_METRIC_COLLECTIONS.USER_METRICS, metricId]);
-    
+
     if (result.value && result.value.userId === userId) {
       metrics.push(result.value);
     }
@@ -128,7 +137,7 @@ export async function getProjectUserMetrics(projectId: string): Promise<UserMetr
   for await (const entry of metricsIterator) {
     const metricId = entry.value;
     const result = await kv.get<UserMetric>([...USER_METRIC_COLLECTIONS.USER_METRICS, metricId]);
-    
+
     if (result.value) {
       metrics.push(result.value);
     }
@@ -141,11 +150,11 @@ export async function getProjectUserMetrics(projectId: string): Promise<UserMetr
 export async function deleteUserMetrics(userId: string): Promise<boolean> {
   const kv = getKv();
   const metrics = await getUserMetrics(userId);
-  
+
   for (const metric of metrics) {
     // Eliminar la métrica
     await kv.delete([...USER_METRIC_COLLECTIONS.USER_METRICS, metric.id]);
-    
+
     // Eliminar índice por usuario y fecha
     await kv.delete([
       ...USER_METRIC_COLLECTIONS.USER_METRICS,
@@ -153,7 +162,7 @@ export async function deleteUserMetrics(userId: string): Promise<boolean> {
       userId,
       metric.date.toString(),
     ]);
-    
+
     // Eliminar índice por sprint
     await kv.delete([
       ...USER_METRIC_COLLECTIONS.USER_METRICS,
@@ -161,7 +170,7 @@ export async function deleteUserMetrics(userId: string): Promise<boolean> {
       metric.sprintId,
       metric.id,
     ]);
-    
+
     // Eliminar índice por proyecto
     await kv.delete([
       ...USER_METRIC_COLLECTIONS.USER_METRICS,
@@ -170,6 +179,6 @@ export async function deleteUserMetrics(userId: string): Promise<boolean> {
       metric.id,
     ]);
   }
-  
+
   return true;
 }

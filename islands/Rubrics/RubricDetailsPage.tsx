@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
 import { UserRole } from "../../models/user.ts";
-import RubricDetails from "./RubricDetails.tsx";
 import DeleteRubricModal from "./DeleteRubricModal.tsx";
+import RubricDetails from "./RubricDetails.tsx";
 
 interface RubricDetailsPageProps {
   session: {
@@ -15,11 +15,12 @@ interface RubricDetailsPageProps {
 
 export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPageProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  
+
   // Determinar si el usuario puede editar rúbricas
-  const canEditRubrics = session.role === UserRole.ADMIN || 
-                         session.role === UserRole.PRODUCT_OWNER || 
-                         session.role === UserRole.SCRUM_MASTER;
+  const canEditRubrics =
+    session.role === UserRole.ADMIN ||
+    session.role === UserRole.PRODUCT_OWNER ||
+    session.role === UserRole.SCRUM_MASTER;
 
   // Manejar la edición de la rúbrica
   const handleEdit = () => {
@@ -46,7 +47,7 @@ export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPa
     <div>
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-900">Detalles de Rúbrica</h1>
-        
+
         {canEditRubrics && (
           <div class="flex space-x-4">
             <button
@@ -64,15 +65,15 @@ export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPa
           </div>
         )}
       </div>
-      
-      <RubricDetails 
-        rubricId={rubricId} 
+
+      <RubricDetails
+        rubricId={rubricId}
         onEdit={canEditRubrics ? handleEdit : undefined}
         onBack={handleBack}
       />
-      
+
       {showDeleteModal && (
-        <DeleteRubricModal 
+        <DeleteRubricModal
           rubric={{ id: rubricId } as any} // Solo necesitamos el ID para eliminar
           onDelete={handleDeleteComplete}
           onCancel={() => setShowDeleteModal(false)}

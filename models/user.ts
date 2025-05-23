@@ -1,5 +1,5 @@
+import { COLLECTIONS, type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, COLLECTIONS, type Model, createModel } from "@/utils/db.ts";
 
 // Define user roles
 export enum UserRole {

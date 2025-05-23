@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
-import { useState, useEffect } from "preact/hooks";
 import { createContext } from "preact";
+import { useEffect, useState } from "preact/hooks";
 import { useContext } from "preact/hooks";
 
 // Constantes
@@ -72,7 +72,7 @@ export default function SidebarProvider({
   // Estado interno del sidebar
   const [_open, _setOpen] = useState(defaultOpen);
   const open = openProp ?? _open;
-  
+
   const setOpen = (value: boolean | ((value: boolean) => boolean)) => {
     const openState = typeof value === "function" ? value(open) : value;
     if (setOpenProp) {
@@ -105,11 +105,13 @@ export default function SidebarProvider({
     <SidebarContext.Provider value={contextValue}>
       <div
         data-slot="sidebar-wrapper"
-        style={{
-          "--sidebar-width": SIDEBAR_WIDTH,
-          "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-          ...style,
-        } as JSX.CSSProperties}
+        style={
+          {
+            "--sidebar-width": SIDEBAR_WIDTH,
+            "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
+            ...style,
+          } as JSX.CSSProperties
+        }
         class={`group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-screen w-full ${className}`}
         {...props}
       >

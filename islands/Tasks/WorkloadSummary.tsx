@@ -1,7 +1,7 @@
-import { useState, useMemo, useCallback, useEffect } from "preact/hooks";
+import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { Project } from "../../models/project.ts";
 import type { UserStory } from "../../models/userStory.ts";
 import WorkloadPreferences from "./WorkloadPreferences.tsx";
 

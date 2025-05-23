@@ -1,11 +1,10 @@
 import type { JSX } from "preact";
-import { PanelLeftIcon } from "./icons/PanelLeftIcon.tsx";
-import { Button } from "../Button.tsx";
 import { useSidebar } from "../../islands/SidebarProvider.tsx";
+import { Button } from "../Button.tsx";
+import { PanelLeftIcon } from "./icons/PanelLeftIcon.tsx";
 
 // Constantes
 const SIDEBAR_WIDTH_MOBILE = "18rem";
-
 
 // Componente Sidebar
 export function Sidebar({
@@ -36,15 +35,20 @@ export function Sidebar({
 
   if (isMobile) {
     return (
-      <div class={`${openMobile ? "block" : "hidden"} fixed inset-0 z-50 bg-black bg-opacity-50`} onClick={() => setOpenMobile(false)}>
+      <div
+        class={`${openMobile ? "block" : "hidden"} fixed inset-0 z-50 bg-black bg-opacity-50`}
+        onClick={() => setOpenMobile(false)}
+      >
         <div
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
           class="bg-white text-gray-800 w-[var(--sidebar-width)] h-full p-0 fixed"
-          style={{
-            "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-          } as JSX.CSSProperties}
+          style={
+            {
+              "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+            } as JSX.CSSProperties
+          }
           onClick={(e) => e.stopPropagation()}
         >
           <div class="flex h-full w-full flex-col">{children}</div>
@@ -67,18 +71,24 @@ export function Sidebar({
         class={`relative h-screen w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear
           group-data-[collapsible=offcanvas]:w-0
           group-data-[side=right]:rotate-180
-          ${variant === "floating" || variant === "inset"
-            ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
-            : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"}`}
+          ${
+            variant === "floating" || variant === "inset"
+              ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
+              : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"
+          }`}
       />
       <div
         class={`fixed inset-y-0 z-10 hidden h-screen w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear md:flex
-          ${side === "left"
-            ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
-            : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]"}
-          ${variant === "floating" || variant === "inset"
-            ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r group-data-[side=right]:border-l"}
+          ${
+            side === "left"
+              ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
+              : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]"
+          }
+          ${
+            variant === "floating" || variant === "inset"
+              ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+              : "group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r group-data-[side=right]:border-l"
+          }
           ${className}`}
         {...props}
       >
@@ -222,7 +232,10 @@ export function SidebarGroup({ className = "", ...props }: JSX.HTMLAttributes<HT
 }
 
 // Componente SidebarGroupLabel
-export function SidebarGroupLabel({ className = "", ...props }: JSX.HTMLAttributes<HTMLDivElement>) {
+export function SidebarGroupLabel({
+  className = "",
+  ...props
+}: JSX.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       data-slot="sidebar-group-label"

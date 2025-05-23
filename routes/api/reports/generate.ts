@@ -1,14 +1,14 @@
 import type { Handlers } from "$fresh/server.ts";
+import { ReportConfigSchema } from "@/models/report.ts";
 import { generateReport } from "@/services/reportService.ts";
 import { requireAuth } from "@/utils/auth.ts";
-import { ReportConfigSchema } from "@/models/report.ts";
 
 export const handler: Handlers = {
   /**
    * POST /api/reports/generate
    * Genera un nuevo reporte
    */
-  async POST(req, ctx) {
+  async POST(req, _ctx) {
     // Verificar autenticación
     const authResult = await requireAuth(req);
     if (!authResult.success) {

@@ -35,7 +35,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement;
-    const value = target.name === 'role' ? target.value as UserRole : target.value;
+    const value = target.name === "role" ? (target.value as UserRole) : target.value;
 
     setFormData({
       ...formData,
@@ -219,9 +219,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
               onChange={handleChange}
               required
             />
-            {errors.username && (
-              <p class="text-red-500 text-xs italic mt-1">{errors.username}</p>
-            )}
+            {errors.username && <p class="text-red-500 text-xs italic mt-1">{errors.username}</p>}
           </div>
 
           <div>
@@ -240,9 +238,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
               onChange={handleChange}
               required
             />
-            {errors.email && (
-              <p class="text-red-500 text-xs italic mt-1">{errors.email}</p>
-            )}
+            {errors.email && <p class="text-red-500 text-xs italic mt-1">{errors.email}</p>}
           </div>
 
           <div>
@@ -261,9 +257,7 @@ export default function RegisterForm({ onSuccess }: RegisterFormProps) {
               onChange={handleChange}
               required
             />
-            {errors.password && (
-              <p class="text-red-500 text-xs italic mt-1">{errors.password}</p>
-            )}
+            {errors.password && <p class="text-red-500 text-xs italic mt-1">{errors.password}</p>}
           </div>
 
           <div>

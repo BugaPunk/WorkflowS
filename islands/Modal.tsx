@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "preact/hooks";
 import type { JSX } from "preact";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 interface ModalProps {
   show: boolean;
@@ -18,7 +18,7 @@ export default function Modal({
 }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [showContent, setShowContent] = useState(show);
-  
+
   // Manejar cambios en la propiedad show
   useEffect(() => {
     if (show) {
@@ -37,7 +37,7 @@ export default function Modal({
       }, 200);
     }
   }, [show]);
-  
+
   // Manejar cierre con tecla Escape
   useEffect(() => {
     const closeOnEscape = (e: KeyboardEvent) => {
@@ -48,22 +48,22 @@ export default function Modal({
         }
       }
     };
-    
+
     document.addEventListener("keydown", closeOnEscape);
-    
+
     return () => {
       document.removeEventListener("keydown", closeOnEscape);
       document.body.style.overflow = "";
     };
   }, [show, closeable, onClose]);
-  
+
   // Manejar clic en el fondo para cerrar
   const handleBackdropClick = (e: MouseEvent) => {
     if (closeable && e.target === e.currentTarget) {
       onClose();
     }
   };
-  
+
   // Determinar la clase de ancho máximo
   const maxWidthClass = {
     sm: "sm:max-w-sm",
@@ -72,7 +72,7 @@ export default function Modal({
     xl: "sm:max-w-xl",
     "2xl": "sm:max-w-2xl",
   }[maxWidth];
-  
+
   return (
     <dialog
       ref={dialogRef}
@@ -81,20 +81,20 @@ export default function Modal({
     >
       <div class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50">
         {/* Fondo oscuro con animación */}
-        <div 
+        <div
           class={`fixed inset-0 transform transition-all duration-300 ease-in-out ${
             show ? "opacity-100" : "opacity-0"
-          }`} 
+          }`}
           onClick={closeable ? onClose : undefined}
         >
           <div class="absolute inset-0 bg-gray-500 opacity-75" />
         </div>
-        
+
         {/* Contenido del modal con animación */}
-        <div 
+        <div
           class={`mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all duration-300 ease-in-out sm:w-full sm:mx-auto ${maxWidthClass} ${
-            show 
-              ? "opacity-100 translate-y-0 sm:scale-100" 
+            show
+              ? "opacity-100 translate-y-0 sm:scale-100"
               : "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           }`}
         >

@@ -1,6 +1,6 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { UserSchema, createUser, getUserByEmail, getUserByUsername } from "@/models/user.ts";
-import { Status, errorResponse, successResponse, handleApiError } from "@/utils/api.ts";
+import { Status, errorResponse, handleApiError, successResponse } from "@/utils/api.ts";
 
 export const handler = async (req: Request, _ctx: FreshContext): Promise<Response> => {
   // Only allow POST requests

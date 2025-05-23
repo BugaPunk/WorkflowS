@@ -49,13 +49,10 @@ export const handler: Handlers = {
       });
     } catch (error) {
       console.error(`Error al obtener métricas del usuario ${id}:`, error);
-      return new Response(
-        JSON.stringify({ error: "Error al obtener métricas del usuario" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new Response(JSON.stringify({ error: "Error al obtener métricas del usuario" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
   },
 };

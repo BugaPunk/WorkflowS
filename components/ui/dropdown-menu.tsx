@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 import type { ComponentChildren } from "preact";
-import { useState, useRef, useEffect } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
 interface DropdownMenuProps {
   children: ComponentChildren;
@@ -21,7 +21,7 @@ export function DropdownMenuTrigger({ children, asChild = false }: DropdownMenuT
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
     setIsOpen(!isOpen);
-    
+
     // Buscar el DropdownMenuContent y pasarle el estado
     const content = e.currentTarget.parentElement?.querySelector("[data-dropdown-content]");
     if (content) {
@@ -51,11 +51,11 @@ interface DropdownMenuContentProps {
   class?: string;
 }
 
-export function DropdownMenuContent({ 
-  children, 
-  align = "center", 
+export function DropdownMenuContent({
+  children,
+  align = "center",
   side = "bottom",
-  class: className = ""
+  class: className = "",
 }: DropdownMenuContentProps) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -77,14 +77,14 @@ export function DropdownMenuContent({
   const alignClasses = {
     start: "origin-top-left left-0",
     center: "origin-top",
-    end: "origin-top-right right-0"
+    end: "origin-top-right right-0",
   };
 
   const sideClasses = {
     top: "bottom-full mb-2",
     right: "left-full ml-2",
     bottom: "top-full mt-2",
-    left: "right-full mr-2"
+    left: "right-full mr-2",
   };
 
   return (
@@ -105,10 +105,10 @@ interface DropdownMenuItemProps {
   class?: string;
 }
 
-export function DropdownMenuItem({ 
-  children, 
+export function DropdownMenuItem({
+  children,
   disabled = false,
-  class: className = ""
+  class: className = "",
 }: DropdownMenuItemProps) {
   return (
     <div

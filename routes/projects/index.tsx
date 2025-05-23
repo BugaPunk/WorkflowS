@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { MainLayout } from "../../layouts/MainLayout.tsx";
-import { getSession } from "../../utils/session.ts";
-import { UserRole } from "../../models/user.ts";
-import { getAllProjects, getUserProjects, type Project } from "../../models/project.ts";
 import ProjectsList from "../../islands/ProjectsList.tsx";
+import { MainLayout } from "../../layouts/MainLayout.tsx";
+import { type Project, getAllProjects, getUserProjects } from "../../models/project.ts";
+import { UserRole } from "../../models/user.ts";
+import { getSession } from "../../utils/session.ts";
 
 export const handler = {
   async GET(req: Request, ctx: FreshContext) {

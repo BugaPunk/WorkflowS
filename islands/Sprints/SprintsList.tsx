@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import { SprintStatus } from "../../models/sprint.ts";
 import type { Sprint } from "../../models/sprint.ts";
-import { Button } from "../../components/Button.tsx";
+import { getProjectSprints } from "../../services/sprintService.ts";
 import Modal from "../Modal.tsx";
 import CreateSprintForm from "./CreateSprintForm.tsx";
 import SprintCard from "./SprintCard.tsx";
-import { getProjectSprints } from "../../services/sprintService.ts";
 
 interface SprintsListProps {
   projectId: string;

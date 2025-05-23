@@ -1,6 +1,11 @@
 import type { JSX } from "preact";
+import {
+  SidebarGroup,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "../components/ui/sidebar.tsx";
 import { useSession } from "../hooks/useSession.ts";
-import { SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../components/ui/sidebar.tsx";
 
 export default function NavUser(): JSX.Element {
   const { session, loading, logout, isAuthenticated } = useSession();
@@ -16,7 +21,7 @@ export default function NavUser(): JSX.Element {
       <SidebarGroup class="px-2 py-0">
         <SidebarMenu>
           <SidebarMenuItem>
-            <div class="h-8 bg-gray-200 rounded-md animate-pulse"></div>
+            <div class="h-8 bg-gray-200 rounded-md animate-pulse" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarGroup>

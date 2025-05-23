@@ -1,6 +1,6 @@
-import Modal from "../Modal.tsx";
-import AssignProjectForm from "../AssignProjectForm.tsx";
 import type { Project } from "../../models/project.ts";
+import AssignProjectForm from "../AssignProjectForm.tsx";
+import Modal from "../Modal.tsx";
 
 interface AssignProjectModalProps {
   show: boolean;
@@ -16,21 +16,11 @@ export default function AssignProjectModal({
   onSuccess,
 }: AssignProjectModalProps) {
   return (
-    <Modal
-      show={show}
-      onClose={onClose}
-      maxWidth="md"
-    >
+    <Modal show={show} onClose={onClose} maxWidth="md">
       <div class="p-6">
-        <h2 class="text-lg font-medium text-gray-900 mb-4">
-          Asignar Usuarios al Proyecto
-        </h2>
+        <h2 class="text-lg font-medium text-gray-900 mb-4">Asignar Usuarios al Proyecto</h2>
         {project && (
-          <AssignProjectForm
-            project={project}
-            onSuccess={onSuccess}
-            onCancel={onClose}
-          />
+          <AssignProjectForm project={project} onSuccess={onSuccess} onCancel={onClose} />
         )}
       </div>
     </Modal>

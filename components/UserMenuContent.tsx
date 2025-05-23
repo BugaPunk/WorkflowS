@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
-import { DropdownMenuItem } from "./ui/dropdown-menu.tsx";
 import { useSession } from "../hooks/useSession.ts";
+import { DropdownMenuItem } from "./ui/dropdown-menu.tsx";
 
 interface User {
   username: string;
@@ -35,7 +35,7 @@ export function UserMenuContent({ user }: UserMenuContentProps): JSX.Element {
           Configuración
         </a>
       </DropdownMenuItem>
-      <div class="my-1 h-px bg-gray-200"></div>
+      <div class="my-1 h-px bg-gray-200" />
       <DropdownMenuItem>
         <button onClick={handleLogout} class="flex w-full items-center text-red-600">
           Cerrar Sesión

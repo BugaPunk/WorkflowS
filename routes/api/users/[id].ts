@@ -1,7 +1,7 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
 import { getUserById } from "../../../models/user.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
+import { getSession } from "../../../utils/session.ts";
 
 export const handler = {
   // Obtener un usuario específico
@@ -28,7 +28,7 @@ export const handler = {
         lastName: user.lastName,
         role: user.role,
         createdAt: user.createdAt,
-        updatedAt: user.updatedAt
+        updatedAt: user.updatedAt,
       };
 
       return successResponse({ user: safeUser });
@@ -36,5 +36,5 @@ export const handler = {
       console.error("Error al obtener usuario:", error);
       return errorResponse("Error al obtener usuario", Status.InternalServerError);
     }
-  }
+  },
 };

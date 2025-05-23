@@ -1,13 +1,13 @@
-import { useState, useEffect } from "preact/hooks";
-import { type UserStory, UserStoryStatus } from "../../models/userStory.ts";
-import { UserRole } from "../../models/user.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
+import type { Project } from "../../models/project.ts";
+import { UserRole } from "../../models/user.ts";
+import { type UserStory, UserStoryStatus } from "../../models/userStory.ts";
+import { deleteUserStory, getUserStories } from "../../services/userStoryService.ts";
 import Modal from "../Modal.tsx";
-import UserStoryCard from "./UserStoryCard.tsx";
 import CreateUserStoryForm from "./CreateUserStoryForm.tsx";
 import EditUserStoryForm from "./EditUserStoryForm.tsx";
-import type { Project } from "../../models/project.ts";
-import { getUserStories, deleteUserStory } from "../../services/userStoryService.ts";
+import UserStoryCard from "./UserStoryCard.tsx";
 
 interface UserStoriesListProps {
   initialUserStories: UserStory[];
@@ -132,8 +132,17 @@ export default function UserStoriesList({
               onClick={() => setShowCreateModal(true)}
               class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded flex items-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Crear Historia
             </Button>
@@ -159,9 +168,7 @@ export default function UserStoriesList({
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
           <div class="mb-4 md:mb-0">
             <h2 class="text-lg font-semibold text-gray-800">Filtrar por Estado</h2>
-            <p class="text-gray-600">
-              Selecciona un estado para filtrar las historias de usuario.
-            </p>
+            <p class="text-gray-600">Selecciona un estado para filtrar las historias de usuario.</p>
           </div>
           <div class="w-full md:w-64">
             <select
@@ -182,12 +189,23 @@ export default function UserStoriesList({
 
       {isLoading ? (
         <div class="flex justify-center items-center py-12">
-          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
         </div>
       ) : filteredUserStories.length === 0 ? (
         <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-16 w-16 mx-auto text-gray-400 mb-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
           </svg>
           <h3 class="text-lg font-medium text-gray-900 mb-2">No hay historias de usuario</h3>
           <p class="text-gray-600 mb-4">
@@ -220,14 +238,12 @@ export default function UserStoriesList({
       )}
 
       {/* Modal para crear historia de usuario */}
-      <Modal
-        show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)} maxWidth="md">
         <div class="p-6">
           <h2 class="text-lg font-medium text-gray-900 mb-4">
-            {projectId ? "Crear Historia de Usuario para el Proyecto Actual" : "Crear Nueva Historia de Usuario"}
+            {projectId
+              ? "Crear Historia de Usuario para el Proyecto Actual"
+              : "Crear Nueva Historia de Usuario"}
           </h2>
           <CreateUserStoryForm
             projectId={projectId}
@@ -245,11 +261,10 @@ export default function UserStoriesList({
         maxWidth="sm"
       >
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Confirmar Eliminación
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Confirmar Eliminación</h2>
           <p class="mb-4 text-gray-600">
-            ¿Estás seguro de que deseas eliminar la historia de usuario "{selectedUserStory?.title}"? Esta acción no se puede deshacer.
+            ¿Estás seguro de que deseas eliminar la historia de usuario "{selectedUserStory?.title}
+            "? Esta acción no se puede deshacer.
           </p>
 
           {deleteError && (
@@ -279,15 +294,9 @@ export default function UserStoriesList({
       </Modal>
 
       {/* Modal para editar historia de usuario */}
-      <Modal
-        show={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        maxWidth="md"
-      >
+      <Modal show={showEditModal} onClose={() => setShowEditModal(false)} maxWidth="md">
         <div class="p-6">
-          <h2 class="text-lg font-medium text-gray-900 mb-4">
-            Editar Historia de Usuario
-          </h2>
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Editar Historia de Usuario</h2>
           {selectedUserStory && (
             <EditUserStoryForm
               userStory={selectedUserStory}

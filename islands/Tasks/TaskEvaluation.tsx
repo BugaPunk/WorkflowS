@@ -1,8 +1,8 @@
-import { useState, useEffect } from "preact/hooks";
-import type { Task } from "../../models/task.ts";
-import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import type { Task } from "../../models/task.ts";
 
 interface TaskEvaluationProps {
   task: Task;
@@ -42,8 +42,7 @@ export default function TaskEvaluation({ task, userId, userRole }: TaskEvaluatio
         // Filtrar evaluaciones completadas para este estudiante
         const completedEvaluations = evaluations.filter(
           (evaluation: Evaluation) =>
-            evaluation.status === EvaluationStatus.COMPLETED &&
-            evaluation.studentId === userId
+            evaluation.status === EvaluationStatus.COMPLETED && evaluation.studentId === userId
         );
 
         if (completedEvaluations.length > 0) {
@@ -91,7 +90,7 @@ export default function TaskEvaluation({ task, userId, userRole }: TaskEvaluatio
     return (
       <div class="mt-4 p-4 bg-gray-50 rounded-lg">
         <div class="flex items-center justify-center">
-          <div class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+          <div class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900" />
           <p class="ml-2 text-gray-600">Cargando evaluación...</p>
         </div>
       </div>
@@ -120,7 +119,7 @@ export default function TaskEvaluation({ task, userId, userRole }: TaskEvaluatio
 
           {userRole === "ADMIN" || userRole === "PRODUCT_OWNER" || userRole === "SCRUM_MASTER" ? (
             <Button
-              onClick={() => globalThis.location.href = `/deliverables/${task.id}/evaluate`}
+              onClick={() => (globalThis.location.href = `/deliverables/${task.id}/evaluate`)}
               size="sm"
             >
               Evaluar
@@ -158,14 +157,18 @@ export default function TaskEvaluation({ task, userId, userRole }: TaskEvaluatio
         <div class="w-full bg-gray-200 rounded-full h-2">
           <div
             class={`h-2 rounded-full ${
-              percentage >= 90 ? 'bg-green-600' :
-              percentage >= 80 ? 'bg-green-500' :
-              percentage >= 70 ? 'bg-yellow-600' :
-              percentage >= 60 ? 'bg-yellow-500' :
-              'bg-red-500'
+              percentage >= 90
+                ? "bg-green-600"
+                : percentage >= 80
+                  ? "bg-green-500"
+                  : percentage >= 70
+                    ? "bg-yellow-600"
+                    : percentage >= 60
+                      ? "bg-yellow-500"
+                      : "bg-red-500"
             }`}
             style={{ width: `${percentage}%` }}
-          ></div>
+          />
         </div>
       </div>
 

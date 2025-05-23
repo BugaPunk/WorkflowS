@@ -13,14 +13,11 @@ export default function HeaderNav() {
     <div class="flex items-center space-x-4">
       {loading ? (
         // Show loading state
-        <div class="w-24 h-10 bg-blue-500 rounded-md animate-pulse"></div>
+        <div class="w-24 h-10 bg-blue-500 rounded-md animate-pulse" />
       ) : isAuthenticated ? (
         // User is logged in
         <div class="flex items-center space-x-4">
-          <a
-            href="/welcome"
-            class="text-white hover:underline"
-          >
+          <a href="/welcome" class="text-white hover:underline">
             {session?.username}
           </a>
           <button
@@ -34,10 +31,7 @@ export default function HeaderNav() {
       ) : (
         // User is not logged in
         <div class="flex items-center space-x-4">
-          <a
-            href="/login"
-            class="text-white hover:underline"
-          >
+          <a href="/login" class="text-white hover:underline">
             Iniciar Sesión
           </a>
           <a

@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../utils/session.ts";
-import { UserRole } from "../../../models/user.ts";
-import { getKv } from "../../../utils/db.ts";
 import { SprintSchema, createSprint, getProjectSprints } from "../../../models/sprint.ts";
+import { UserRole } from "../../../models/user.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
+import { getKv } from "../../../utils/db.ts";
+import { getSession } from "../../../utils/session.ts";
 
 export const handler = {
   // Obtener sprints
@@ -70,5 +70,5 @@ export const handler = {
       console.error("Error al crear sprint:", error);
       return errorResponse("Error al procesar la solicitud", Status.BadRequest);
     }
-  }
+  },
 };

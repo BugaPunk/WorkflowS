@@ -46,13 +46,10 @@ export const handler: Handlers = {
       });
     } catch (error) {
       console.error(`Error al obtener burndown del sprint ${id}:`, error);
-      return new Response(
-        JSON.stringify({ error: "Error al obtener burndown del sprint" }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      return new Response(JSON.stringify({ error: "Error al obtener burndown del sprint" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
   },
 };

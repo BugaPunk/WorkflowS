@@ -18,7 +18,11 @@ interface AssignProjectFormProps {
   onCancel: () => void;
 }
 
-export default function AssignProjectForm({ project, onSuccess, onCancel }: AssignProjectFormProps) {
+export default function AssignProjectForm({
+  project,
+  onSuccess,
+  onCancel,
+}: AssignProjectFormProps) {
   const [users, setUsers] = useState<User[]>([]);
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [projectRole, setProjectRole] = useState<ProjectRole>(ProjectRole.TEAM_MEMBER);
@@ -43,9 +47,10 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
         const data = await response.json();
 
         // Filtrar usuarios no administradores y que no estén ya asignados al proyecto
-        const nonAdminUsers = data.users.filter((user: User) =>
-          user.role !== UserRole.ADMIN &&
-          !project.members.some(member => member.userId === user.id)
+        const nonAdminUsers = data.users.filter(
+          (user: User) =>
+            user.role !== UserRole.ADMIN &&
+            !project.members.some((member) => member.userId === user.id)
         );
 
         setUsers(nonAdminUsers);
@@ -111,13 +116,14 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
   const getUserFullName = (user: User) => {
     if (user.firstName && user.lastName) {
       return `${user.firstName} ${user.lastName}`;
-    } else if (user.firstName) {
-      return user.firstName;
-    } else if (user.lastName) {
-      return user.lastName;
-    } else {
-      return user.username;
     }
+    if (user.firstName) {
+      return user.firstName;
+    }
+    if (user.lastName) {
+      return user.lastName;
+    }
+    return user.username;
   };
 
   return (
@@ -135,9 +141,25 @@ export default function AssignProjectForm({ project, onSuccess, onCancel }: Assi
 
       {isLoading ? (
         <div class="flex justify-center items-center py-8">
-          <svg class="animate-spin h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          <svg
+            class="animate-spin h-8 w-8 text-blue-600"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            />
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
           </svg>
         </div>
       ) : users.length === 0 ? (

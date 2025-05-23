@@ -1,12 +1,12 @@
 import { UserRole } from "../models/user.ts";
-import WelcomeHeader from "./WelcomeHeader.tsx";
-import UserInfoCard from "./UserInfoCard.tsx";
 import AdminWelcomeOptions from "./AdminWelcomeOptions.tsx";
+import CommonWelcomeOptions from "./CommonWelcomeOptions.tsx";
+import LogoutButton from "./LogoutButton.tsx";
 import ProductOwnerWelcomeOptions from "./ProductOwnerWelcomeOptions.tsx";
 import ScrumMasterWelcomeOptions from "./ScrumMasterWelcomeOptions.tsx";
 import TeamDeveloperWelcomeOptions from "./TeamDeveloperWelcomeOptions.tsx";
-import CommonWelcomeOptions from "./CommonWelcomeOptions.tsx";
-import LogoutButton from "./LogoutButton.tsx";
+import UserInfoCard from "./UserInfoCard.tsx";
+import WelcomeHeader from "./WelcomeHeader.tsx";
 
 interface WelcomeScreenProps {
   session: {
@@ -39,11 +39,7 @@ export default function WelcomeScreen({ session }: WelcomeScreenProps) {
       <WelcomeHeader username={session.username} />
 
       {/* Tarjeta de información del usuario */}
-      <UserInfoCard 
-        username={session.username} 
-        email={session.email} 
-        role={session.role} 
-      />
+      <UserInfoCard username={session.username} email={session.email} role={session.role} />
 
       <div class="mt-6">
         <h2 class="text-xl font-semibold mb-4">¿Qué puedes hacer ahora?</h2>

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "preact/hooks";
-import type { Evaluation } from "../../models/evaluation.ts";
-import type { Deliverable } from "../../models/deliverable.ts";
+import { useEffect, useState } from "preact/hooks";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import type { Deliverable } from "../../models/deliverable.ts";
+import type { Evaluation } from "../../models/evaluation.ts";
 
 interface EvaluationCardProps {
   evaluation: Evaluation;
@@ -68,20 +68,22 @@ export default function EvaluationCard({ evaluation, onClick }: EvaluationCardPr
 
   return (
     <div
-      class={`border rounded-lg shadow-sm overflow-hidden ${onClick ? 'cursor-pointer hover:shadow-md transition-shadow' : ''} ${getScoreBackgroundColor(percentage)}`}
+      class={`border rounded-lg shadow-sm overflow-hidden ${onClick ? "cursor-pointer hover:shadow-md transition-shadow" : ""} ${getScoreBackgroundColor(percentage)}`}
       onClick={onClick}
     >
       <div class="p-4">
         <div class="flex justify-between items-start">
           <div>
             {loading ? (
-              <div class="h-6 w-40 bg-gray-200 animate-pulse rounded"></div>
+              <div class="h-6 w-40 bg-gray-200 animate-pulse rounded" />
             ) : error ? (
               <h3 class="text-lg font-medium text-gray-900">Error al cargar entregable</h3>
             ) : deliverable ? (
               <h3 class="text-lg font-medium text-gray-900">{deliverable.title}</h3>
             ) : (
-              <h3 class="text-lg font-medium text-gray-900">Entregable #{evaluation.deliverableId}</h3>
+              <h3 class="text-lg font-medium text-gray-900">
+                Entregable #{evaluation.deliverableId}
+              </h3>
             )}
 
             {evaluation.evaluatedAt && (
@@ -103,14 +105,18 @@ export default function EvaluationCard({ evaluation, onClick }: EvaluationCardPr
           <div class="w-full bg-gray-200 rounded-full h-2">
             <div
               class={`h-2 rounded-full ${
-                percentage >= 90 ? 'bg-green-600' :
-                percentage >= 80 ? 'bg-green-500' :
-                percentage >= 70 ? 'bg-yellow-600' :
-                percentage >= 60 ? 'bg-yellow-500' :
-                'bg-red-500'
+                percentage >= 90
+                  ? "bg-green-600"
+                  : percentage >= 80
+                    ? "bg-green-500"
+                    : percentage >= 70
+                      ? "bg-yellow-600"
+                      : percentage >= 60
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
               }`}
               style={{ width: `${percentage}%` }}
-            ></div>
+            />
           </div>
         </div>
 

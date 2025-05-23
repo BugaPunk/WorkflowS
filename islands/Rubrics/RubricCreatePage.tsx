@@ -1,5 +1,5 @@
-import type { UserRole } from "../../models/user.ts";
 import type { Rubric } from "../../models/rubric.ts";
+import type { UserRole } from "../../models/user.ts";
 import RubricForm from "./RubricForm.tsx";
 
 interface RubricCreatePageProps {
@@ -13,7 +13,11 @@ interface RubricCreatePageProps {
   isTemplate?: boolean;
 }
 
-export default function RubricCreatePage({ session, projectId, isTemplate }: RubricCreatePageProps) {
+export default function RubricCreatePage({
+  session,
+  projectId,
+  isTemplate,
+}: RubricCreatePageProps) {
   // Manejar la finalización de la creación
   const handleSave = (rubric: Rubric) => {
     // Redirigir a la página de detalles
@@ -27,7 +31,7 @@ export default function RubricCreatePage({ session, projectId, isTemplate }: Rub
   };
 
   return (
-    <RubricForm 
+    <RubricForm
       projectId={projectId}
       isTemplate={isTemplate}
       onSave={handleSave}

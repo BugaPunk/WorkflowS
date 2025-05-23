@@ -26,11 +26,11 @@ export default function ProjectHealthGauge({
     try {
       setLoading(true);
       const response = await fetch(`/api/projects/${projectId}/health`);
-      
+
       if (!response.ok) {
         throw new Error(`Error al cargar datos: ${response.status}`);
       }
-      
+
       const healthData = await response.json();
       setData(healthData);
       setError(null);
@@ -59,7 +59,7 @@ export default function ProjectHealthGauge({
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="text-lg font-semibold mb-4">Salud del Proyecto</h3>
         <div class="flex justify-center items-center" style={{ height: `${size}px` }}>
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
         </div>
       </div>
     );
@@ -149,25 +149,15 @@ export default function ProjectHealthGauge({
   return (
     <div class="bg-white p-4 rounded-lg shadow">
       <h3 class="text-lg font-semibold mb-4">Salud del Proyecto</h3>
-      
+
       <div class="flex flex-col items-center">
         <svg width={size} height={size}>
           {/* Arco de fondo */}
-          <path
-            d={backgroundArc}
-            fill="none"
-            stroke="#E2E8F0"
-            stroke-width="10"
-          />
-          
+          <path d={backgroundArc} fill="none" stroke="#E2E8F0" stroke-width="10" />
+
           {/* Arco de valor */}
-          <path
-            d={valueArc}
-            fill="none"
-            stroke={getStatusColor(data.status)}
-            stroke-width="10"
-          />
-          
+          <path d={valueArc} fill="none" stroke={getStatusColor(data.status)} stroke-width="10" />
+
           {/* Marcas de escala */}
           {Array.from({ length: 6 }).map((_, i) => {
             const angle = startAngle + (i / 5) * totalAngle;
@@ -175,7 +165,7 @@ export default function ProjectHealthGauge({
             const y1 = centerY + Math.sin(angle) * (radius - 5);
             const x2 = centerX + Math.cos(angle) * (radius + 5);
             const y2 = centerY + Math.sin(angle) * (radius + 5);
-            
+
             return (
               <line
                 key={`mark-${i}`}
@@ -188,14 +178,14 @@ export default function ProjectHealthGauge({
               />
             );
           })}
-          
+
           {/* Etiquetas de escala */}
           {Array.from({ length: 6 }).map((_, i) => {
             const value = i * 20;
             const angle = startAngle + (i / 5) * totalAngle;
             const x = centerX + Math.cos(angle) * (radius + 20);
             const y = centerY + Math.sin(angle) * (radius + 20);
-            
+
             return (
               <text
                 key={`label-${i}`}
@@ -210,15 +200,10 @@ export default function ProjectHealthGauge({
               </text>
             );
           })}
-          
+
           {/* Centro del medidor */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="10"
-            fill="#4A5568"
-          />
-          
+          <circle cx={centerX} cy={centerY} r="10" fill="#4A5568" />
+
           {/* Aguja */}
           <line
             x1={centerX}
@@ -228,16 +213,11 @@ export default function ProjectHealthGauge({
             stroke="#4A5568"
             stroke-width="2"
           />
-          
+
           {/* Punta de la aguja */}
-          <circle
-            cx={needleX}
-            cy={needleY}
-            r="5"
-            fill={getStatusColor(data.status)}
-          />
+          <circle cx={needleX} cy={needleY} r="5" fill={getStatusColor(data.status)} />
         </svg>
-        
+
         <div class="mt-4 text-center">
           <div class="text-3xl font-bold" style={{ color: getStatusColor(data.status) }}>
             {data.score}
@@ -250,7 +230,7 @@ export default function ProjectHealthGauge({
           </div>
         </div>
       </div>
-      
+
       {/* Botón de actualización */}
       <div class="mt-2 text-right">
         <button
@@ -277,16 +257,13 @@ function describeArc(
     x: x + Math.cos(startAngle) * radius,
     y: y + Math.sin(startAngle) * radius,
   };
-  
+
   const end = {
     x: x + Math.cos(endAngle) * radius,
     y: y + Math.sin(endAngle) * radius,
   };
-  
+
   const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
-  
-  return [
-    "M", start.x, start.y,
-    "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y,
-  ].join(" ");
+
+  return ["M", start.x, start.y, "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y].join(" ");
 }

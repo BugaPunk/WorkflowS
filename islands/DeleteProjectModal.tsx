@@ -1,6 +1,6 @@
+import { Button } from "../components/Button.tsx";
 import type { Project } from "../models/project.ts";
 import Modal from "./Modal.tsx";
-import { Button } from "../components/Button.tsx";
 
 interface DeleteProjectModalProps {
   show: boolean;
@@ -20,17 +20,12 @@ export default function DeleteProjectModal({
   onConfirm,
 }: DeleteProjectModalProps) {
   return (
-    <Modal
-      show={show}
-      onClose={onClose}
-      maxWidth="sm"
-    >
+    <Modal show={show} onClose={onClose} maxWidth="sm">
       <div class="p-6">
-        <h2 class="text-lg font-medium text-gray-900 mb-4">
-          Confirmar Eliminación
-        </h2>
+        <h2 class="text-lg font-medium text-gray-900 mb-4">Confirmar Eliminación</h2>
         <p class="mb-4 text-gray-600">
-          ¿Estás seguro de que deseas eliminar el proyecto "{project?.name}"? Esta acción no se puede deshacer.
+          ¿Estás seguro de que deseas eliminar el proyecto "{project?.name}"? Esta acción no se
+          puede deshacer.
         </p>
 
         {error && (

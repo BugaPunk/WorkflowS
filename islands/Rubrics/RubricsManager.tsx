@@ -1,10 +1,10 @@
 import { useState } from "preact/hooks";
 import type { Rubric } from "../../models/rubric.ts";
 import { UserRole } from "../../models/user.ts";
-import RubricsList from "./RubricsList.tsx";
-import RubricDetails from "./RubricDetails.tsx";
 import DeleteRubricModal from "./DeleteRubricModal.tsx";
 import DuplicateRubricForm from "./DuplicateRubricForm.tsx";
+import RubricDetails from "./RubricDetails.tsx";
+import RubricsList from "./RubricsList.tsx";
 
 interface RubricsManagerProps {
   session: {
@@ -20,11 +20,12 @@ export default function RubricsManager({ session, projectId }: RubricsManagerPro
   const [view, setView] = useState<"list" | "details" | "duplicate" | "delete">("list");
   const [selectedRubric, setSelectedRubric] = useState<Rubric | null>(null);
   const [showTemplates, setShowTemplates] = useState(false);
-  
+
   // Determinar si el usuario puede editar rúbricas
-  const canEditRubrics = session.role === UserRole.ADMIN || 
-                         session.role === UserRole.PRODUCT_OWNER || 
-                         session.role === UserRole.SCRUM_MASTER;
+  const canEditRubrics =
+    session.role === UserRole.ADMIN ||
+    session.role === UserRole.PRODUCT_OWNER ||
+    session.role === UserRole.SCRUM_MASTER;
 
   // Manejar la selección de una rúbrica
   const handleSelectRubric = (rubric: Rubric) => {
@@ -34,7 +35,7 @@ export default function RubricsManager({ session, projectId }: RubricsManagerPro
 
   // Manejar la creación de una nueva rúbrica
   const handleCreateRubric = () => {
-    window.location.href = `/rubrics/create${projectId ? `?projectId=${projectId}` : ''}${showTemplates ? '&template=true' : ''}`;
+    window.location.href = `/rubrics/create${projectId ? `?projectId=${projectId}` : ""}${showTemplates ? "&template=true" : ""}`;
   };
 
   // Manejar la edición de una rúbrica
@@ -74,35 +75,33 @@ export default function RubricsManager({ session, projectId }: RubricsManagerPro
       case "details":
         if (!selectedRubric) return null;
         return (
-          <RubricDetails 
-            rubricId={selectedRubric.id} 
+          <RubricDetails
+            rubricId={selectedRubric.id}
             onEdit={() => handleEditRubric(selectedRubric)}
             onBack={() => setView("list")}
           />
         );
-      
+
       case "duplicate":
         if (!selectedRubric) return null;
         return (
-          <DuplicateRubricForm 
+          <DuplicateRubricForm
             rubric={selectedRubric}
             projectId={projectId}
             onDuplicate={handleDuplicateComplete}
             onCancel={() => setView("list")}
           />
         );
-      
+
       case "delete":
         if (!selectedRubric) return null;
         return (
-          <DeleteRubricModal 
+          <DeleteRubricModal
             rubric={selectedRubric}
             onDelete={handleDeleteComplete}
             onCancel={() => setView("list")}
           />
         );
-      
-      case "list":
       default:
         return (
           <div>
@@ -110,20 +109,20 @@ export default function RubricsManager({ session, projectId }: RubricsManagerPro
               <div class="flex items-center space-x-4">
                 <button
                   onClick={() => setShowTemplates(false)}
-                  class={`px-4 py-2 rounded-md ${!showTemplates ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+                  class={`px-4 py-2 rounded-md ${!showTemplates ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"}`}
                 >
                   Mis Rúbricas
                 </button>
                 <button
                   onClick={() => setShowTemplates(true)}
-                  class={`px-4 py-2 rounded-md ${showTemplates ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+                  class={`px-4 py-2 rounded-md ${showTemplates ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700"}`}
                 >
                   Plantillas
                 </button>
               </div>
             </div>
-            
-            <RubricsList 
+
+            <RubricsList
               projectId={projectId}
               templatesOnly={showTemplates}
               onSelectRubric={handleSelectRubric}
@@ -137,9 +136,5 @@ export default function RubricsManager({ session, projectId }: RubricsManagerPro
     }
   };
 
-  return (
-    <div>
-      {renderView()}
-    </div>
-  );
+  return <div>{renderView()}</div>;
 }

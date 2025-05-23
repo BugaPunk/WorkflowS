@@ -1,8 +1,8 @@
-import { useState, useEffect } from "preact/hooks";
-import type { Deliverable } from "../../models/deliverable.ts";
-import { TaskStatus } from "../../models/task.ts";
+import { useEffect, useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import type { Deliverable } from "../../models/deliverable.ts";
+import { TaskStatus } from "../../models/task.ts";
 
 interface DeliverableDetailsProps {
   deliverableId: string;
@@ -10,10 +10,10 @@ interface DeliverableDetailsProps {
   onEvaluate?: (deliverable: Deliverable) => void;
 }
 
-export default function DeliverableDetails({ 
-  deliverableId, 
+export default function DeliverableDetails({
+  deliverableId,
   onBack,
-  onEvaluate
+  onEvaluate,
 }: DeliverableDetailsProps) {
   const [deliverable, setDeliverable] = useState<Deliverable | null>(null);
   const [loading, setLoading] = useState(true);
@@ -24,14 +24,14 @@ export default function DeliverableDetails({
     const fetchDeliverable = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const response = await fetch(`/api/deliverables/${deliverableId}`);
-        
+
         if (!response.ok) {
           throw new Error(`Error al cargar el entregable: ${response.statusText}`);
         }
-        
+
         const data = await response.json();
         setDeliverable(data);
       } catch (err) {
@@ -41,7 +41,7 @@ export default function DeliverableDetails({
         setLoading(false);
       }
     };
-    
+
     fetchDeliverable();
   }, [deliverableId]);
 
@@ -54,18 +54,26 @@ export default function DeliverableDetails({
   const renderStatus = (status: TaskStatus) => {
     switch (status) {
       case TaskStatus.REVIEW:
-        return <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">En revisión</span>;
+        return (
+          <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">
+            En revisión
+          </span>
+        );
       case TaskStatus.DONE:
-        return <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completado</span>;
+        return (
+          <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">Completado</span>
+        );
       default:
-        return <span class="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">{status}</span>;
+        return (
+          <span class="px-2 py-1 text-xs rounded-full bg-gray-100 text-gray-800">{status}</span>
+        );
     }
   };
 
   if (loading) {
     return (
       <div class="p-8 text-center">
-        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
         <p class="mt-2 text-gray-600">Cargando entregable...</p>
       </div>
     );
@@ -75,10 +83,7 @@ export default function DeliverableDetails({
     return (
       <div class="p-4 text-center text-red-600">
         <p>{error}</p>
-        <button 
-          onClick={() => window.location.reload()} 
-          class="mt-2 text-blue-600 hover:underline"
-        >
+        <button onClick={() => window.location.reload()} class="mt-2 text-blue-600 hover:underline">
           Intentar de nuevo
         </button>
       </div>
@@ -90,10 +95,7 @@ export default function DeliverableDetails({
       <div class="p-8 text-center text-gray-500">
         <p>No se encontró el entregable.</p>
         {onBack && (
-          <button 
-            onClick={onBack} 
-            class="mt-2 text-blue-600 hover:underline"
-          >
+          <button onClick={onBack} class="mt-2 text-blue-600 hover:underline">
             Volver
           </button>
         )}
@@ -107,28 +109,19 @@ export default function DeliverableDetails({
         <div>
           <div class="flex items-center gap-2 mb-2">
             {onBack && (
-              <button 
-                onClick={onBack} 
-                class="text-gray-500 hover:text-gray-700"
-              >
+              <button onClick={onBack} class="text-gray-500 hover:text-gray-700">
                 ← Volver
               </button>
             )}
             <h2 class="text-2xl font-bold text-gray-900">{deliverable.title}</h2>
             {renderStatus(deliverable.status)}
           </div>
-          {deliverable.description && (
-            <p class="text-gray-600 mt-2">{deliverable.description}</p>
-          )}
+          {deliverable.description && <p class="text-gray-600 mt-2">{deliverable.description}</p>}
         </div>
-        
-        {onEvaluate && (
-          <Button onClick={() => onEvaluate(deliverable)}>
-            Evaluar Entregable
-          </Button>
-        )}
+
+        {onEvaluate && <Button onClick={() => onEvaluate(deliverable)}>Evaluar Entregable</Button>}
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 class="text-lg font-semibold text-gray-800 mb-3">Información del Entregable</h3>
@@ -166,7 +159,7 @@ export default function DeliverableDetails({
             </li>
           </ul>
         </div>
-        
+
         <div class="bg-gray-50 p-4 rounded-lg">
           <h3 class="text-lg font-semibold text-gray-800 mb-3">Instrucciones de Entrega</h3>
           {deliverable.submissionInstructions ? (
@@ -176,7 +169,7 @@ export default function DeliverableDetails({
           )}
         </div>
       </div>
-      
+
       <div class="mb-6">
         <h3 class="text-lg font-semibold text-gray-800 mb-3">Archivos Adjuntos</h3>
         {deliverable.attachments && deliverable.attachments.length > 0 ? (
@@ -184,20 +177,24 @@ export default function DeliverableDetails({
             {deliverable.attachments.map((attachment) => (
               <li key={attachment.id} class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <MaterialIcon 
-                    icon={attachment.fileType.includes("image") ? "image" : 
-                          attachment.fileType.includes("pdf") ? "picture_as_pdf" : 
-                          "insert_drive_file"} 
-                    class="mr-2" 
+                  <MaterialIcon
+                    icon={
+                      attachment.fileType.includes("image")
+                        ? "image"
+                        : attachment.fileType.includes("pdf")
+                          ? "picture_as_pdf"
+                          : "insert_drive_file"
+                    }
+                    class="mr-2"
                   />
                   <span class="text-gray-700">{attachment.fileName}</span>
                   <span class="ml-2 text-xs text-gray-500">
                     ({Math.round(attachment.fileSize / 1024)} KB)
                   </span>
                 </div>
-                <a 
-                  href={attachment.url} 
-                  target="_blank" 
+                <a
+                  href={attachment.url}
+                  target="_blank"
                   rel="noopener noreferrer"
                   class="text-blue-600 hover:text-blue-800"
                 >
@@ -207,18 +204,13 @@ export default function DeliverableDetails({
             ))}
           </ul>
         ) : (
-          <p class="text-gray-500 italic bg-gray-50 p-4 rounded-lg">
-            No hay archivos adjuntos.
-          </p>
+          <p class="text-gray-500 italic bg-gray-50 p-4 rounded-lg">No hay archivos adjuntos.</p>
         )}
       </div>
-      
+
       {onEvaluate && (
         <div class="mt-8 text-center">
-          <Button 
-            onClick={() => onEvaluate(deliverable)}
-            size="lg"
-          >
+          <Button onClick={() => onEvaluate(deliverable)} size="lg">
             Proceder a Evaluar
           </Button>
         </div>

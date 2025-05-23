@@ -33,7 +33,10 @@ export default function Home({ data }: { data: { session: unknown } }) {
             Sistema de gestión de proyectos Scrum para equipos de desarrollo.
           </p>
           <div class="mt-6">
-            <a href="/login" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            <a
+              href="/login"
+              class="inline-block px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            >
               Iniciar Sesión
             </a>
           </div>

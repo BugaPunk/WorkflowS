@@ -1,9 +1,15 @@
 import type { JSX } from "preact";
-import { useState, useEffect } from "preact/hooks";
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "./ui/sidebar.tsx";
-import { LayoutGridIcon } from "./ui/icons/LayoutGridIcon.tsx";
-import { MaterialIcon } from "./ui/MaterialIcon.tsx";
+import { useEffect, useState } from "preact/hooks";
 import { UserRole } from "../models/user.ts";
+import { MaterialIcon } from "./ui/MaterialIcon.tsx";
+import { LayoutGridIcon } from "./ui/icons/LayoutGridIcon.tsx";
+import {
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "./ui/sidebar.tsx";
 
 interface NavMainProps {
   userRole?: UserRole;
@@ -17,15 +23,21 @@ export function NavMain({ userRole }: NavMainProps): JSX.Element {
 
   // Solo ejecutar en el cliente
   useEffect(() => {
-    if (typeof globalThis !== "undefined" && "location" in globalThis && globalThis.location && globalThis.location.pathname) {
+    if (
+      typeof globalThis !== "undefined" &&
+      "location" in globalThis &&
+      globalThis.location &&
+      globalThis.location.pathname
+    ) {
       setCurrentPath(globalThis.location.pathname);
     }
   }, []);
 
   // Verificar si el usuario es un profesor (admin, product owner o scrum master)
-  const isTeacher = userRole === UserRole.ADMIN ||
-                    userRole === UserRole.PRODUCT_OWNER ||
-                    userRole === UserRole.SCRUM_MASTER;
+  const isTeacher =
+    userRole === UserRole.ADMIN ||
+    userRole === UserRole.PRODUCT_OWNER ||
+    userRole === UserRole.SCRUM_MASTER;
 
   const mainNavItems = [
     {
@@ -46,13 +58,15 @@ export function NavMain({ userRole }: NavMainProps): JSX.Element {
   ];
 
   // Elementos de navegación para profesores
-  const teacherNavItems = isTeacher ? [
-    {
-      title: "Rúbricas",
-      href: "/rubrics",
-      icon: () => <MaterialIcon icon="assignment" />,
-    },
-  ] : [];
+  const teacherNavItems = isTeacher
+    ? [
+        {
+          title: "Rúbricas",
+          href: "/rubrics",
+          icon: () => <MaterialIcon icon="assignment" />,
+        },
+      ]
+    : [];
 
   return (
     <>

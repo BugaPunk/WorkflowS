@@ -1,7 +1,7 @@
 import { useCallback } from "preact/hooks";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { Project } from "../../models/project.ts";
 import type { UserStory } from "../../models/userStory.ts";
 
 interface TaskListViewProps {

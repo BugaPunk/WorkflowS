@@ -1,11 +1,11 @@
-import { useState, useEffect, useCallback } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import { Button } from "../../components/Button.tsx";
+import { getUserStoryTasks, updateTask } from "../../services/taskService.ts";
 import Modal from "../Modal.tsx";
 import CreateTaskForm from "./CreateTaskForm.tsx";
 import TaskCard from "./TaskCard.tsx";
-import { getUserStoryTasks, updateTask } from "../../services/taskService.ts";
 
 interface TasksListProps {
   userStoryId: string;

@@ -1,8 +1,8 @@
 import type { Handlers } from "$fresh/server.ts";
 import { getReportById } from "@/models/report.ts";
+import { ReportFormat } from "@/models/report.ts";
 import { exportReport } from "@/services/reportService.ts";
 import { requireAuth } from "@/utils/auth.ts";
-import { ReportFormat } from "@/models/report.ts";
 
 export const handler: Handlers = {
   /**

@@ -1,17 +1,17 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
+import { Button } from "../../components/Button.tsx";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { UserStory } from "../../models/userStory.ts";
-import type { Project } from "../../models/project.ts";
 import type { User } from "../../models/user.ts";
-import { Button } from "../../components/Button.tsx";
-import { updateTask } from "../../services/taskService.ts";
+import type { UserStory } from "../../models/userStory.ts";
 import { logTaskTime } from "../../services/taskDetailService.ts";
+import { updateTask } from "../../services/taskService.ts";
 import Modal from "../Modal.tsx";
 import EditTaskForm from "./EditTaskForm.tsx";
 import TaskComments from "./TaskComments.tsx";
-import TaskHistory from "./TaskHistory.tsx";
 import TaskEvaluation from "./TaskEvaluation.tsx";
+import TaskHistory from "./TaskHistory.tsx";
 
 interface TaskDetailViewProps {
   task: Task;
@@ -295,11 +295,7 @@ export default function TaskDetailView({
         {currentTask.isDeliverable && (
           <div class="mb-6">
             <h3 class="text-lg font-medium text-gray-900 mb-2">Evaluación</h3>
-            <TaskEvaluation
-              task={currentTask}
-              userId={currentUserId}
-              userRole={currentUserRole}
-            />
+            <TaskEvaluation task={currentTask} userId={currentUserId} userRole={currentUserRole} />
           </div>
         )}
 

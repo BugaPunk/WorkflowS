@@ -8,7 +8,11 @@ interface CreateProjectFormProps {
   currentUserId: string;
 }
 
-export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }: CreateProjectFormProps) {
+export default function CreateProjectForm({
+  onSuccess,
+  onCancel,
+  currentUserId,
+}: CreateProjectFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -23,7 +27,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
 
   const handleChange = (e: Event) => {
     const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-    const value = target.name === 'status' ? target.value as ProjectStatus : target.value;
+    const value = target.name === "status" ? (target.value as ProjectStatus) : target.value;
 
     setFormData({
       ...formData,
@@ -140,9 +144,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
           onChange={handleChange}
           required
         />
-        {errors.name && (
-          <p class="text-red-500 text-xs italic mt-1">{errors.name}</p>
-        )}
+        {errors.name && <p class="text-red-500 text-xs italic mt-1">{errors.name}</p>}
       </div>
 
       <div>
@@ -209,9 +211,7 @@ export default function CreateProjectForm({ onSuccess, onCancel, currentUserId }
             value={formData.endDate}
             onChange={handleChange}
           />
-          {errors.endDate && (
-            <p class="text-red-500 text-xs italic mt-1">{errors.endDate}</p>
-          )}
+          {errors.endDate && <p class="text-red-500 text-xs italic mt-1">{errors.endDate}</p>}
         </div>
       </div>
 

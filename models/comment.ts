@@ -1,4 +1,4 @@
-import { getKv, createModel } from "../utils/db.ts";
+import { createModel, getKv } from "../utils/db.ts";
 
 export interface Comment {
   id: string;

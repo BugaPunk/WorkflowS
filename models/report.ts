@@ -1,5 +1,5 @@
+import { type Model, createModel, getKv } from "@/utils/db.ts";
 import { z } from "zod";
-import { getKv, type Model, createModel } from "@/utils/db.ts";
 
 // Colecciones para reportes
 export const REPORT_COLLECTIONS = {
@@ -147,7 +147,7 @@ export async function getUserReports(userId: string): Promise<Report[]> {
   for await (const entry of reportsIterator) {
     const reportId = entry.value;
     const result = await kv.get<Report>([...REPORT_COLLECTIONS.REPORTS, reportId]);
-    
+
     if (result.value) {
       reports.push(result.value);
     }
@@ -170,7 +170,7 @@ export async function getProjectReports(projectId: string): Promise<Report[]> {
   for await (const entry of reportsIterator) {
     const reportId = entry.value;
     const result = await kv.get<Report>([...REPORT_COLLECTIONS.REPORTS, reportId]);
-    
+
     if (result.value) {
       reports.push(result.value);
     }
@@ -184,47 +184,34 @@ export async function getProjectReports(projectId: string): Promise<Report[]> {
 export async function deleteReport(id: string): Promise<boolean> {
   const kv = getKv();
   const report = await getReportById(id);
-  
+
   if (!report) {
     return false;
   }
-  
+
   // Eliminar el reporte
   await kv.delete([...REPORT_COLLECTIONS.REPORTS, id]);
-  
+
   // Eliminar índice por creador
-  await kv.delete([
-    ...REPORT_COLLECTIONS.REPORTS,
-    "by_user",
-    report.createdBy,
-    id,
-  ]);
-  
+  await kv.delete([...REPORT_COLLECTIONS.REPORTS, "by_user", report.createdBy, id]);
+
   // Eliminar índice por proyecto si existe
   if (report.config.projectId) {
-    await kv.delete([
-      ...REPORT_COLLECTIONS.REPORTS,
-      "by_project",
-      report.config.projectId,
-      id,
-    ]);
+    await kv.delete([...REPORT_COLLECTIONS.REPORTS, "by_project", report.config.projectId, id]);
   }
-  
+
   // Eliminar índice por sprint si existe
   if (report.config.sprintId) {
-    await kv.delete([
-      ...REPORT_COLLECTIONS.REPORTS,
-      "by_sprint",
-      report.config.sprintId,
-      id,
-    ]);
+    await kv.delete([...REPORT_COLLECTIONS.REPORTS, "by_sprint", report.config.sprintId, id]);
   }
-  
+
   return true;
 }
 
 // Crear un nuevo reporte programado
-export async function createScheduledReport(reportData: ScheduledReportData): Promise<ScheduledReport> {
+export async function createScheduledReport(
+  reportData: ScheduledReportData
+): Promise<ScheduledReport> {
   // Crear el modelo del reporte programado
   const scheduledReport = createModel<Omit<ScheduledReport, keyof Model>>({
     reportConfig: reportData.reportConfig,
@@ -251,7 +238,12 @@ export async function createScheduledReport(reportData: ScheduledReportData): Pr
   // Crear índice por proyecto si existe
   if (reportData.reportConfig.projectId) {
     await kv.set(
-      [...REPORT_COLLECTIONS.SCHEDULED_REPORTS, "by_project", reportData.reportConfig.projectId, scheduledReport.id],
+      [
+        ...REPORT_COLLECTIONS.SCHEDULED_REPORTS,
+        "by_project",
+        reportData.reportConfig.projectId,
+        scheduledReport.id,
+      ],
       scheduledReport.id
     );
   }
@@ -279,8 +271,11 @@ export async function getUserScheduledReports(userId: string): Promise<Scheduled
 
   for await (const entry of reportsIterator) {
     const reportId = entry.value;
-    const result = await kv.get<ScheduledReport>([...REPORT_COLLECTIONS.SCHEDULED_REPORTS, reportId]);
-    
+    const result = await kv.get<ScheduledReport>([
+      ...REPORT_COLLECTIONS.SCHEDULED_REPORTS,
+      reportId,
+    ]);
+
     if (result.value) {
       reports.push(result.value);
     }
@@ -297,23 +292,23 @@ export async function updateScheduledReport(
 ): Promise<ScheduledReport | null> {
   const kv = getKv();
   const key = [...REPORT_COLLECTIONS.SCHEDULED_REPORTS, id];
-  
+
   // Obtener el reporte programado actual
   const result = await kv.get<ScheduledReport>(key);
   if (!result.value) {
     return null;
   }
-  
+
   // Actualizar los campos
   const updatedReport: ScheduledReport = {
     ...result.value,
     ...updateData,
     updatedAt: Date.now(),
   };
-  
+
   // Guardar el reporte programado actualizado
   await kv.set(key, updatedReport);
-  
+
   return updatedReport;
 }
 
@@ -321,22 +316,17 @@ export async function updateScheduledReport(
 export async function deleteScheduledReport(id: string): Promise<boolean> {
   const kv = getKv();
   const report = await getScheduledReportById(id);
-  
+
   if (!report) {
     return false;
   }
-  
+
   // Eliminar el reporte programado
   await kv.delete([...REPORT_COLLECTIONS.SCHEDULED_REPORTS, id]);
-  
+
   // Eliminar índice por creador
-  await kv.delete([
-    ...REPORT_COLLECTIONS.SCHEDULED_REPORTS,
-    "by_user",
-    report.createdBy,
-    id,
-  ]);
-  
+  await kv.delete([...REPORT_COLLECTIONS.SCHEDULED_REPORTS, "by_user", report.createdBy, id]);
+
   // Eliminar índice por proyecto si existe
   if (report.reportConfig.projectId) {
     await kv.delete([
@@ -346,6 +336,6 @@ export async function deleteScheduledReport(id: string): Promise<boolean> {
       id,
     ]);
   }
-  
+
   return true;
 }

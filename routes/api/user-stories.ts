@@ -1,13 +1,13 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../utils/session.ts";
 import { UserRole } from "../../models/user.ts";
-import { getKv } from "../../utils/db.ts";
 import {
   CreateUserStorySchema,
   createUserStory,
-  getUserStoriesWithFilters
+  getUserStoriesWithFilters,
 } from "../../models/userStory.ts";
-import { Status, errorResponse, successResponse, handleApiError } from "../../utils/api.ts";
+import { Status, errorResponse, handleApiError, successResponse } from "../../utils/api.ts";
+import { getKv } from "../../utils/db.ts";
+import { getSession } from "../../utils/session.ts";
 
 export const handler = {
   // Obtener historias de usuario
@@ -27,7 +27,7 @@ export const handler = {
       const userStories = await getUserStoriesWithFilters({
         projectId: projectId || undefined,
         status: statusFilter || undefined,
-        sprintId: sprintId || undefined
+        sprintId: sprintId || undefined,
       });
 
       // Ordenar por prioridad y fecha de creación
@@ -82,12 +82,14 @@ export const handler = {
       // Crear la historia de usuario usando la función del modelo
       const userStory = await createUserStory(result.data, session.userId);
 
-      return successResponse({ userStory }, "Historia de usuario creada exitosamente", Status.Created);
+      return successResponse(
+        { userStory },
+        "Historia de usuario creada exitosamente",
+        Status.Created
+      );
     } catch (error) {
       console.error("Error al crear historia de usuario:", error);
       return handleApiError(error);
     }
   },
-
-
 };

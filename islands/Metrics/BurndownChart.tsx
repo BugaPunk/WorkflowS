@@ -29,11 +29,11 @@ export default function BurndownChart({
     try {
       setLoading(true);
       const response = await fetch(`/api/sprints/${sprintId}/burndown`);
-      
+
       if (!response.ok) {
         throw new Error(`Error al cargar datos: ${response.status}`);
       }
-      
+
       const burndownData = await response.json();
       setData(burndownData);
       setError(null);
@@ -62,7 +62,7 @@ export default function BurndownChart({
       <div class="bg-white p-4 rounded-lg shadow">
         <h3 class="text-lg font-semibold mb-4">Gráfico de Burndown</h3>
         <div class="flex justify-center items-center" style={{ height: `${height}px` }}>
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500" />
         </div>
       </div>
     );
@@ -98,10 +98,8 @@ export default function BurndownChart({
   const chartHeight = height - padding * 2;
 
   // Encontrar valores máximos para escalar el gráfico
-  const maxPoints = Math.max(
-    ...data.map((d) => Math.max(d.remaining, d.ideal, d.completed))
-  );
-  
+  const maxPoints = Math.max(...data.map((d) => Math.max(d.remaining, d.ideal, d.completed)));
+
   // Calcular escalas
   const xScale = chartWidth / (data.length - 1);
   const yScale = chartHeight / maxPoints;
@@ -130,7 +128,7 @@ export default function BurndownChart({
   return (
     <div class="bg-white p-4 rounded-lg shadow">
       <h3 class="text-lg font-semibold mb-4">Gráfico de Burndown</h3>
-      
+
       <svg width={width} height={height}>
         {/* Eje X */}
         <line
@@ -141,7 +139,7 @@ export default function BurndownChart({
           stroke="#CBD5E0"
           stroke-width="1"
         />
-        
+
         {/* Eje Y */}
         <line
           x1={padding}
@@ -151,7 +149,7 @@ export default function BurndownChart({
           stroke="#CBD5E0"
           stroke-width="1"
         />
-        
+
         {/* Líneas de cuadrícula horizontales */}
         {Array.from({ length: 5 }).map((_, i) => {
           const y = padding + (chartHeight / 4) * i;
@@ -167,9 +165,9 @@ export default function BurndownChart({
             />
           );
         })}
-        
+
         {/* Líneas de cuadrícula verticales */}
-        {data.map((d, i) => {
+        {data.map((_d, i) => {
           const x = padding + i * xScale;
           return (
             <line
@@ -183,7 +181,7 @@ export default function BurndownChart({
             />
           );
         })}
-        
+
         {/* Etiquetas del eje X (fechas) */}
         {data.map((d, i) => {
           // Mostrar solo algunas fechas para evitar solapamiento
@@ -204,7 +202,7 @@ export default function BurndownChart({
           }
           return null;
         })}
-        
+
         {/* Etiquetas del eje Y (puntos) */}
         {Array.from({ length: 5 }).map((_, i) => {
           const y = height - padding - (chartHeight / 4) * i;
@@ -222,53 +220,45 @@ export default function BurndownChart({
             </text>
           );
         })}
-        
+
         {/* Línea ideal */}
-        <path
-          d={idealPath}
-          fill="none"
+        <path d={idealPath} fill="none" stroke="#CBD5E0" stroke-width="2" stroke-dasharray="5,5" />
+
+        {/* Línea de puntos completados */}
+        <path d={completedPath} fill="none" stroke="#48BB78" stroke-width="2" />
+
+        {/* Línea de puntos restantes */}
+        <path d={remainingPath} fill="none" stroke="#3182CE" stroke-width="2" />
+
+        {/* Puntos de datos para puntos restantes */}
+        {remainingPoints.map((p, i) => (
+          <circle key={`remaining-${i}`} cx={p.x} cy={p.y} r="4" fill="#3182CE" />
+        ))}
+
+        {/* Leyenda */}
+        <rect x={width - 150} y={padding} width="130" height="60" fill="white" stroke="#E2E8F0" />
+        <circle cx={width - 130} cy={padding + 15} r="4" fill="#3182CE" />
+        <text x={width - 120} y={padding + 18} font-size="10" fill="#4A5568">
+          Puntos Restantes
+        </text>
+        <line
+          x1={width - 140}
+          y1={padding + 30}
+          x2={width - 120}
+          y2={padding + 30}
           stroke="#CBD5E0"
           stroke-width="2"
           stroke-dasharray="5,5"
         />
-        
-        {/* Línea de puntos completados */}
-        <path
-          d={completedPath}
-          fill="none"
-          stroke="#48BB78"
-          stroke-width="2"
-        />
-        
-        {/* Línea de puntos restantes */}
-        <path
-          d={remainingPath}
-          fill="none"
-          stroke="#3182CE"
-          stroke-width="2"
-        />
-        
-        {/* Puntos de datos para puntos restantes */}
-        {remainingPoints.map((p, i) => (
-          <circle
-            key={`remaining-${i}`}
-            cx={p.x}
-            cy={p.y}
-            r="4"
-            fill="#3182CE"
-          />
-        ))}
-        
-        {/* Leyenda */}
-        <rect x={width - 150} y={padding} width="130" height="60" fill="white" stroke="#E2E8F0" />
-        <circle cx={width - 130} cy={padding + 15} r="4" fill="#3182CE" />
-        <text x={width - 120} y={padding + 18} font-size="10" fill="#4A5568">Puntos Restantes</text>
-        <line x1={width - 140} y1={padding + 30} x2={width - 120} y2={padding + 30} stroke="#CBD5E0" stroke-width="2" stroke-dasharray="5,5" />
-        <text x={width - 115} y={padding + 33} font-size="10" fill="#4A5568">Ideal</text>
+        <text x={width - 115} y={padding + 33} font-size="10" fill="#4A5568">
+          Ideal
+        </text>
         <circle cx={width - 130} cy={padding + 45} r="4" fill="#48BB78" />
-        <text x={width - 120} y={padding + 48} font-size="10" fill="#4A5568">Puntos Completados</text>
+        <text x={width - 120} y={padding + 48} font-size="10" fill="#4A5568">
+          Puntos Completados
+        </text>
       </svg>
-      
+
       {/* Botón de actualización */}
       <div class="mt-2 text-right">
         <button

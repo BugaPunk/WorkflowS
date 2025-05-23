@@ -1,7 +1,7 @@
 import { useState } from "preact/hooks";
+import type { Project } from "../../models/project.ts";
 import type { Task } from "../../models/task.ts";
 import { TaskStatus } from "../../models/task.ts";
-import type { Project } from "../../models/project.ts";
 import type { UserStory } from "../../models/userStory.ts";
 
 interface WorkloadExportProps {
@@ -19,13 +19,15 @@ export default function WorkloadExport({
 }: WorkloadExportProps) {
   const [isExporting, setIsExporting] = useState(false);
   const [exportFormat, setExportFormat] = useState<"csv" | "json">("csv");
-  const [exportType, setExportType] = useState<"daily" | "weekly" | "byProject" | "byStatus">("daily");
+  const [exportType, setExportType] = useState<"daily" | "weekly" | "byProject" | "byStatus">(
+    "daily"
+  );
 
   // Función para obtener el nombre del proyecto de una tarea
   const getProjectName = (task: Task): string => {
     const userStory = userStories[task.userStoryId];
     if (!userStory) return "Proyecto desconocido";
-    
+
     const project = projects[userStory.projectId];
     return project ? project.name : "Proyecto desconocido";
   };
@@ -57,11 +59,11 @@ export default function WorkloadExport({
 
     // Agrupar tareas por fecha
     const tasksByDate: Record<string, { date: Date; tasks: Task[]; totalHours: number }> = {};
-    
+
     for (const task of activeTasks) {
       const dueDate = getTaskDueDate(task);
       const dateKey = dueDate.toISOString().split("T")[0];
-      
+
       if (!tasksByDate[dateKey]) {
         tasksByDate[dateKey] = {
           date: new Date(dueDate),
@@ -69,11 +71,11 @@ export default function WorkloadExport({
           totalHours: 0,
         };
       }
-      
+
       tasksByDate[dateKey].tasks.push(task);
       tasksByDate[dateKey].totalHours += task.estimatedHours || 0;
     }
-    
+
     // Convertir a array y ordenar por fecha
     return Object.values(tasksByDate).sort((a, b) => a.date.getTime() - b.date.getTime());
   };
@@ -86,15 +88,18 @@ export default function WorkloadExport({
     );
 
     // Agrupar tareas por proyecto
-    const tasksByProject: Record<string, { projectId: string; projectName: string; tasks: Task[]; totalHours: number }> = {};
-    
+    const tasksByProject: Record<
+      string,
+      { projectId: string; projectName: string; tasks: Task[]; totalHours: number }
+    > = {};
+
     for (const task of activeTasks) {
       const userStory = userStories[task.userStoryId];
       if (!userStory) continue;
-      
+
       const projectId = userStory.projectId;
       const projectName = getProjectName(task);
-      
+
       if (!tasksByProject[projectId]) {
         tasksByProject[projectId] = {
           projectId,
@@ -103,11 +108,11 @@ export default function WorkloadExport({
           totalHours: 0,
         };
       }
-      
+
       tasksByProject[projectId].tasks.push(task);
       tasksByProject[projectId].totalHours += task.estimatedHours || 0;
     }
-    
+
     // Convertir a array y ordenar por horas totales (descendente)
     return Object.values(tasksByProject).sort((a, b) => b.totalHours - a.totalHours);
   };
@@ -120,12 +125,15 @@ export default function WorkloadExport({
     );
 
     // Agrupar tareas por estado
-    const tasksByStatus: Record<string, { status: TaskStatus; statusName: string; tasks: Task[]; totalHours: number }> = {};
-    
+    const tasksByStatus: Record<
+      string,
+      { status: TaskStatus; statusName: string; tasks: Task[]; totalHours: number }
+    > = {};
+
     for (const task of activeTasks) {
       const status = task.status;
       const statusName = getStatusName(status);
-      
+
       if (!tasksByStatus[status]) {
         tasksByStatus[status] = {
           status,
@@ -134,11 +142,11 @@ export default function WorkloadExport({
           totalHours: 0,
         };
       }
-      
+
       tasksByStatus[status].tasks.push(task);
       tasksByStatus[status].totalHours += task.estimatedHours || 0;
     }
-    
+
     // Convertir a array
     return Object.values(tasksByStatus);
   };
@@ -146,29 +154,29 @@ export default function WorkloadExport({
   // Función para exportar datos en formato CSV
   const exportAsCSV = (data: any[]) => {
     let csvContent = "";
-    
+
     // Cabeceras según el tipo de exportación
     if (exportType === "daily") {
       csvContent = "Fecha,Total Horas,Número de Tareas\n";
-      
+
       for (const day of data) {
         const formattedDate = day.date.toLocaleDateString("es-ES");
         csvContent += `"${formattedDate}",${day.totalHours},${day.tasks.length}\n`;
       }
     } else if (exportType === "byProject") {
       csvContent = "Proyecto,Total Horas,Número de Tareas\n";
-      
+
       for (const project of data) {
         csvContent += `"${project.projectName}",${project.totalHours},${project.tasks.length}\n`;
       }
     } else if (exportType === "byStatus") {
       csvContent = "Estado,Total Horas,Número de Tareas\n";
-      
+
       for (const status of data) {
         csvContent += `"${status.statusName}",${status.totalHours},${status.tasks.length}\n`;
       }
     }
-    
+
     // Crear un blob y descargar
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -199,10 +207,10 @@ export default function WorkloadExport({
   // Función para manejar la exportación
   const handleExport = () => {
     setIsExporting(true);
-    
+
     try {
       let dataToExport;
-      
+
       // Generar datos según el tipo de exportación
       if (exportType === "daily") {
         dataToExport = generateDailyExportData();
@@ -214,7 +222,7 @@ export default function WorkloadExport({
         // Por defecto, exportar datos diarios
         dataToExport = generateDailyExportData();
       }
-      
+
       // Exportar según el formato seleccionado
       if (exportFormat === "csv") {
         exportAsCSV(dataToExport);
@@ -231,7 +239,7 @@ export default function WorkloadExport({
   return (
     <div class="mt-4 pt-4 border-t border-gray-200">
       <h4 class="text-sm font-medium text-gray-700 mb-2">Exportar Datos</h4>
-      
+
       <div class="flex flex-col sm:flex-row gap-2 mb-3">
         <div>
           <label class="block text-xs text-gray-600 mb-1" htmlFor="export-type">
@@ -248,7 +256,7 @@ export default function WorkloadExport({
             <option value="byStatus">Por estado</option>
           </select>
         </div>
-        
+
         <div>
           <label class="block text-xs text-gray-600 mb-1" htmlFor="export-format">
             Formato
@@ -263,7 +271,7 @@ export default function WorkloadExport({
             <option value="json">JSON</option>
           </select>
         </div>
-        
+
         <div class="self-end">
           <button
             type="button"
@@ -275,7 +283,7 @@ export default function WorkloadExport({
           </button>
         </div>
       </div>
-      
+
       <p class="text-xs text-gray-500">
         Exporta los datos de carga de trabajo para análisis o informes.
       </p>

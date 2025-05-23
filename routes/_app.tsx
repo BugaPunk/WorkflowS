@@ -7,7 +7,7 @@ export default function App({ Component, url }: PageProps) {
     if (path === "/") return "Home - WorkflowS";
     // Convert path to title case (e.g., /about -> About)
     const title = path.split("/").pop() || "";
-    return title.charAt(0).toUpperCase() + title.slice(1) + " - WorkflowS";
+    return `${title.charAt(0).toUpperCase() + title.slice(1)} - WorkflowS`;
   };
 
   return (
@@ -19,8 +19,14 @@ export default function App({ Component, url }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          rel="stylesheet"
+        />
       </head>
       <body class="font-sans">
         <Component />

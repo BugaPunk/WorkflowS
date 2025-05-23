@@ -1,6 +1,6 @@
-import { useState, useEffect } from "preact/hooks";
-import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
+import { useEffect, useState } from "preact/hooks";
 import { MaterialIcon } from "../../components/ui/MaterialIcon.tsx";
+import { type Evaluation, EvaluationStatus } from "../../models/evaluation.ts";
 import EvaluationCard from "./EvaluationCard.tsx";
 
 interface EvaluationHistoryProps {
@@ -56,7 +56,9 @@ export default function EvaluationHistory({
           let lowest = 100;
 
           completedEvaluations.forEach((evaluation: Evaluation) => {
-            const percentage = Math.round((evaluation.totalScore / evaluation.maxPossibleScore) * 100);
+            const percentage = Math.round(
+              (evaluation.totalScore / evaluation.maxPossibleScore) * 100
+            );
             totalPercentage += percentage;
             highest = Math.max(highest, percentage);
             lowest = Math.min(lowest, percentage);
@@ -150,14 +152,12 @@ export default function EvaluationHistory({
       {/* Lista de evaluaciones */}
       <div class="bg-white rounded-lg shadow">
         <div class="p-4 border-b border-gray-200">
-          <h2 class="text-lg font-semibold text-gray-800">
-            Historial de Evaluaciones
-          </h2>
+          <h2 class="text-lg font-semibold text-gray-800">Historial de Evaluaciones</h2>
         </div>
 
         {loading ? (
           <div class="p-8 text-center">
-            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
             <p class="mt-2 text-gray-600">Cargando evaluaciones...</p>
           </div>
         ) : error ? (
@@ -181,7 +181,7 @@ export default function EvaluationHistory({
               <EvaluationCard
                 key={evaluation.id}
                 evaluation={evaluation}
-                onClick={() => onSelectEvaluation && onSelectEvaluation(evaluation)}
+                onClick={() => onSelectEvaluation?.(evaluation)}
               />
             ))}
           </div>

@@ -1,9 +1,9 @@
 import type { FreshContext } from "$fresh/server.ts";
-import { getSession } from "../../../../utils/session.ts";
-import { UserRole } from "../../../../models/user.ts";
-import { getKv, COLLECTIONS } from "../../../../utils/db.ts";
 import { getProjectById } from "../../../../models/project.ts";
-import { Status, errorResponse, successResponse, handleApiError } from "../../../../utils/api.ts";
+import { UserRole } from "../../../../models/user.ts";
+import { Status, errorResponse, handleApiError, successResponse } from "../../../../utils/api.ts";
+import { COLLECTIONS, getKv } from "../../../../utils/db.ts";
+import { getSession } from "../../../../utils/session.ts";
 
 export const handler = async (req: Request, ctx: FreshContext): Promise<Response> => {
   // Verificar si el usuario está autenticado
