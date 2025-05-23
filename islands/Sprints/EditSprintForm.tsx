@@ -1,6 +1,7 @@
 import { useState } from "preact/hooks";
 import { Button } from "../../components/Button.tsx";
-import { Sprint, SprintStatus } from "../../models/sprint.ts";
+import { SprintStatus } from "../../models/sprint.ts";
+import type { Sprint } from "../../models/sprint.ts";
 import { updateSprint } from "../../services/sprintService.ts";
 
 interface EditSprintFormProps {
@@ -9,18 +10,12 @@ interface EditSprintFormProps {
   onCancel: () => void;
 }
 
-export default function EditSprintForm({
-  sprint,
-  onSuccess,
-  onCancel,
-}: EditSprintFormProps) {
+export default function EditSprintForm({ sprint, onSuccess, onCancel }: EditSprintFormProps) {
   // Convertir timestamps a fechas para el formulario
   const startDateStr = sprint.startDate
     ? new Date(sprint.startDate).toISOString().split("T")[0]
     : "";
-  const endDateStr = sprint.endDate
-    ? new Date(sprint.endDate).toISOString().split("T")[0]
-    : "";
+  const endDateStr = sprint.endDate ? new Date(sprint.endDate).toISOString().split("T")[0] : "";
 
   const [formData, setFormData] = useState({
     name: sprint.name,

@@ -9,7 +9,7 @@ import {
 } from "../../models/userStory.ts";
 import type { Project } from "../../models/project.ts";
 import { getProjectById } from "../../models/project.ts";
-import type { User } from "../../models/user.ts";
+import type { User, UserRole } from "../../models/user.ts";
 import { getUserById } from "../../models/user.ts";
 import { Button } from "../../components/Button.tsx";
 
@@ -52,16 +52,24 @@ export const handler = {
       assignedUser = await getUserById(userStory.assignedTo);
     }
 
-    return ctx.render({ session, userStory, project, creator, assignedUser });
+    // Asegurarnos de que la sesión tenga el formato correcto para MainLayout
+    const sessionData = {
+      userId: session.userId,
+      username: session.username,
+      email: session.email,
+      role: session.role as UserRole, // Aseguramos que el tipo sea UserRole
+    };
+
+    return ctx.render({ session: sessionData, userStory, project, creator, assignedUser });
   },
 };
 
 interface UserStoryDetailProps {
   session: {
-    id: string;
+    userId: string; // Cambiado de id a userId para coincidir con MainLayout
     username: string;
     email: string;
-    role: string;
+    role: UserRole; // Cambiado de string a UserRole para coincidir con MainLayout
   };
   userStory: UserStory;
   project: Project | null;
@@ -170,7 +178,10 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                   class="h-5 w-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
+                  aria-labelledby="backToUserStoriesTitle"
+                  role="img"
                 >
+                  <title id="backToUserStoriesTitle">Volver a historias de usuario</title>
                   <path
                     fill-rule="evenodd"
                     d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"

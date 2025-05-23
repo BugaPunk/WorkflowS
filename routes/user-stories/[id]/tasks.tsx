@@ -68,7 +68,7 @@ export const handler: Handlers<UserStoryTasksPageData | null> = {
 export default function UserStoryTasksPage({ data }: PageProps<UserStoryTasksPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Historia no encontrada - WorkflowS">
+      <MainLayout title="Historia no encontrada - WorkflowS" session={undefined}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">

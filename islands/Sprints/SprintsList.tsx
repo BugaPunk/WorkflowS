@@ -1,5 +1,6 @@
-import { useState, useEffect } from "preact/hooks";
-import { Sprint, SprintStatus } from "../../models/sprint.ts";
+import { useState, useEffect, useCallback } from "preact/hooks";
+import { SprintStatus } from "../../models/sprint.ts";
+import type { Sprint } from "../../models/sprint.ts";
 import { Button } from "../../components/Button.tsx";
 import Modal from "../Modal.tsx";
 import CreateSprintForm from "./CreateSprintForm.tsx";
@@ -22,8 +23,8 @@ export default function SprintsList({
   const [error, setError] = useState<string | null>(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
 
-  // Cargar sprints
-  const loadSprints = async () => {
+  // Cargar sprints (usando useCallback para memorizar la función)
+  const loadSprints = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -36,12 +37,12 @@ export default function SprintsList({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [projectId]);
 
   // Cargar sprints al montar el componente
   useEffect(() => {
     loadSprints();
-  }, [projectId]);
+  }, [loadSprints]);
 
   // Función para manejar la creación exitosa de un sprint
   const handleSprintCreated = () => {
@@ -50,9 +51,9 @@ export default function SprintsList({
   };
 
   // Agrupar sprints por estado
-  const plannedSprints = sprints.filter(sprint => sprint.status === SprintStatus.PLANNED);
-  const activeSprints = sprints.filter(sprint => sprint.status === SprintStatus.ACTIVE);
-  const completedSprints = sprints.filter(sprint => sprint.status === SprintStatus.COMPLETED);
+  const plannedSprints = sprints.filter((sprint) => sprint.status === SprintStatus.PLANNED);
+  const activeSprints = sprints.filter((sprint) => sprint.status === SprintStatus.ACTIVE);
+  const completedSprints = sprints.filter((sprint) => sprint.status === SprintStatus.COMPLETED);
 
   return (
     <div class="space-y-6">
@@ -76,7 +77,7 @@ export default function SprintsList({
 
       {isLoading ? (
         <div class="flex justify-center py-8">
-          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600" />
         </div>
       ) : sprints.length === 0 ? (
         <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
@@ -97,7 +98,7 @@ export default function SprintsList({
             <div>
               <h3 class="text-xl font-semibold text-gray-700 mb-4">Sprint Activo</h3>
               <div class="grid grid-cols-1 gap-4">
-                {activeSprints.map(sprint => (
+                {activeSprints.map((sprint) => (
                   <SprintCard
                     key={sprint.id}
                     sprint={sprint}
@@ -114,7 +115,7 @@ export default function SprintsList({
             <div>
               <h3 class="text-xl font-semibold text-gray-700 mb-4">Sprints Planificados</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {plannedSprints.map(sprint => (
+                {plannedSprints.map((sprint) => (
                   <SprintCard
                     key={sprint.id}
                     sprint={sprint}
@@ -131,7 +132,7 @@ export default function SprintsList({
             <div>
               <h3 class="text-xl font-semibold text-gray-700 mb-4">Sprints Completados</h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {completedSprints.map(sprint => (
+                {completedSprints.map((sprint) => (
                   <SprintCard
                     key={sprint.id}
                     sprint={sprint}
@@ -146,10 +147,7 @@ export default function SprintsList({
       )}
 
       {/* Modal para crear sprint */}
-      <Modal
-        show={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
-      >
+      <Modal show={showCreateModal} onClose={() => setShowCreateModal(false)}>
         <div class="p-4">
           <h2 class="text-xl font-semibold mb-4">Crear Sprint</h2>
           <CreateSprintForm

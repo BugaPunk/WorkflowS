@@ -46,7 +46,7 @@ export const handler: Handlers<CreateSprintPageData | null> = {
 export default function CreateSprint({ data }: PageProps<CreateSprintPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Crear Sprint - WorkflowS">
+      <MainLayout title="Crear Sprint - WorkflowS" session={undefined}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">

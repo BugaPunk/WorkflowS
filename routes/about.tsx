@@ -1,7 +1,7 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import { MainLayout } from "../layouts/MainLayout.tsx";
 import { getSession } from "../utils/session.ts";
-import { UserRole } from "../models/user.ts";
+import type { UserRole } from "../models/user.ts";
 
 interface AboutPageData {
   session?: {
@@ -15,7 +15,15 @@ interface AboutPageData {
 export const handler: Handlers<AboutPageData> = {
   async GET(req, ctx) {
     const session = await getSession(req);
-    return ctx.render({ session });
+    // Convertir el tipo de session para que coincida con la interfaz AboutPageData
+    const typedSession = session ? {
+      userId: session.userId,
+      username: session.username,
+      email: session.email,
+      role: session.role
+    } : undefined;
+    
+    return ctx.render({ session: typedSession });
   },
 };
 

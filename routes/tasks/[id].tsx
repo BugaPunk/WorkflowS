@@ -1,4 +1,4 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { getSession } from "../../utils/session.ts";
 import { getTaskById } from "../../models/task.ts";
@@ -84,7 +84,7 @@ export const handler: Handlers<TaskDetailPageData | null> = {
 export default function TaskDetailPage({ data }: PageProps<TaskDetailPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Tarea no encontrada - WorkflowS">
+      <MainLayout title="Tarea no encontrada - WorkflowS" session={undefined}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -97,6 +97,21 @@ export default function TaskDetailPage({ data }: PageProps<TaskDetailPageData | 
   }
 
   const { session, task, userStory, project, assignedUser, createdByUser, canManageTask } = data;
+
+  // Verificar que task, userStory y project no sean null
+  if (!task || !userStory || !project) {
+    return (
+      <MainLayout title="Error - WorkflowS" session={session}>
+        <div class="px-4 py-8 mx-auto">
+          <div class="max-w-screen-lg mx-auto">
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+              <p>Error al cargar los datos de la tarea.</p>
+            </div>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout title={`Tarea: ${task.title} - WorkflowS`} session={session}>

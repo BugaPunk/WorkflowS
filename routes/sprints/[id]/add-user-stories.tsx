@@ -1,4 +1,4 @@
-import { Handlers, PageProps } from "$fresh/server.ts";
+import type { Handlers, PageProps } from "$fresh/server.ts";
 import { getSession } from "../../../utils/session.ts";
 import { getSprintById } from "../../../models/sprint.ts";
 import { getProjectById } from "../../../models/project.ts";
@@ -74,7 +74,7 @@ export default function AddUserStoriesToSprintPage({
 }: PageProps<AddUserStoriesToSprintPageData | null>) {
   if (!data) {
     return (
-      <MainLayout title="Sprint no encontrado - WorkflowS">
+      <MainLayout title="Sprint no encontrado - WorkflowS" session={undefined}>
         <div class="px-4 py-8 mx-auto">
           <div class="max-w-screen-lg mx-auto">
             <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
@@ -87,6 +87,21 @@ export default function AddUserStoriesToSprintPage({
   }
 
   const { session, sprint, project, availableUserStories } = data;
+
+  // Verificar que sprint y project no sean null
+  if (!sprint || !project) {
+    return (
+      <MainLayout title="Error - WorkflowS" session={session}>
+        <div class="px-4 py-8 mx-auto">
+          <div class="max-w-screen-lg mx-auto">
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+              <p>Error al cargar los datos del sprint o proyecto.</p>
+            </div>
+          </div>
+        </div>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout

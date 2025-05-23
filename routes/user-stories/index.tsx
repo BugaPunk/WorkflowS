@@ -45,13 +45,21 @@ export const handler = {
     // Obtener todos los proyectos para el formulario de creación usando la función del modelo
     const projects = await getAllProjects();
 
-    return ctx.render({ session, userStories, projects, projectId });
+    // Asegurarnos de que la sesión tenga el formato correcto para MainLayout
+    const sessionData = {
+      userId: session.userId,
+      username: session.username,
+      email: session.email,
+      role: session.role,
+    };
+
+    return ctx.render({ session: sessionData, userStories, projects, projectId });
   },
 };
 
 interface UserStoriesProps {
   session: {
-    id: string;
+    userId: string; // Cambiado de id a userId para coincidir con MainLayout
     username: string;
     email: string;
     role: UserRole;
