@@ -77,7 +77,10 @@ export default function AdminWelcomeOptions() {
       strokeWidth="1.5"
       stroke="currentColor"
       class="w-4 h-4"
+      aria-labelledby="reportsIconTitle"
+      role="img"
     >
+      <title id="reportsIconTitle">Reportes y estadísticas</title>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -106,7 +109,10 @@ export default function AdminWelcomeOptions() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-labelledby="userManagementIconTitle"
+                role="img"
               >
+                <title id="userManagementIconTitle">Administrar Usuarios</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -137,7 +143,10 @@ export default function AdminWelcomeOptions() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-labelledby="projectManagementIconTitle"
+                role="img"
               >
+                <title id="projectManagementIconTitle">Gestionar Proyectos</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -171,7 +180,10 @@ export default function AdminWelcomeOptions() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-labelledby="reportsStatsIconTitle"
+                role="img"
               >
+                <title id="reportsStatsIconTitle">Reportes y Estadísticas</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -206,7 +218,10 @@ export default function AdminWelcomeOptions() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-labelledby="configIconTitle"
+                role="img"
               >
+                <title id="configIconTitle">Configuración</title>
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -244,7 +259,10 @@ export default function AdminWelcomeOptions() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-labelledby="createUserIconTitle"
+              role="img"
             >
+              <title id="createUserIconTitle">Crear Usuario</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -264,7 +282,10 @@ export default function AdminWelcomeOptions() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-labelledby="createProjectIconTitle"
+              role="img"
             >
+              <title id="createProjectIconTitle">Crear Proyecto</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -284,7 +305,10 @@ export default function AdminWelcomeOptions() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-labelledby="dashboardIconTitle"
+              role="img"
             >
+              <title id="dashboardIconTitle">Dashboard</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -304,7 +328,10 @@ export default function AdminWelcomeOptions() {
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-labelledby="settingsIconTitle"
+              role="img"
             >
+              <title id="settingsIconTitle">Configuración</title>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

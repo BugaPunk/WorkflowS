@@ -109,7 +109,7 @@ export default function SidebarProvider({
           {
             "--sidebar-width": SIDEBAR_WIDTH,
             "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
-            ...style,
+            ...(style as Record<string, string>),
           } as JSX.CSSProperties
         }
         class={`group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-screen w-full ${className}`}
