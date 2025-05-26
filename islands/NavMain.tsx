@@ -32,6 +32,19 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
     }
   }, []);
 
+  // Función para determinar si un elemento está activo
+  const isItemActive = (href: string): boolean => {
+    if (!currentPath) return false;
+
+    // Para rutas exactas como /welcome, /chat, etc.
+    if (href === currentPath) return true;
+
+    // Para rutas que pueden tener subrutas
+    if (href !== "/welcome" && currentPath.startsWith(`${href}/`)) return true;
+
+    return false;
+  };
+
   // Verificar si el usuario es un profesor (admin, product owner o scrum master)
   const isTeacher =
     userRole === UserRole.ADMIN ||
@@ -54,6 +67,7 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
       href: "/my-tasks",
       iconName: "task",
     },
+
     {
       title: "Backlog",
       href: "/backlog",
@@ -99,7 +113,7 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
         <SidebarMenu>
           {mainNavItems.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton isActive={item.href === currentPath}>
+              <SidebarMenuButton isActive={isItemActive(item.href)}>
                 <a href={item.href} class="flex items-center w-full">
                   <MaterialIcon icon={item.iconName} class="mr-2" />
                   <span>{item.title}</span>
@@ -116,7 +130,7 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
           <SidebarMenu>
             {teacherNavItems.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton isActive={currentPath.startsWith(item.href)}>
+                <SidebarMenuButton isActive={isItemActive(item.href)}>
                   <a href={item.href} class="flex items-center w-full">
                     <MaterialIcon icon={item.iconName} class="mr-2" />
                     <span>{item.title}</span>

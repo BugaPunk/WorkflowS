@@ -10,6 +10,8 @@ import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
 import * as $api_comments_taskId_ from "./routes/api/comments/[taskId].ts";
+import * as $api_conversations_id_messages from "./routes/api/conversations/[id]/messages.ts";
+import * as $api_conversations_index from "./routes/api/conversations/index.ts";
 import * as $api_deliverables_id_ from "./routes/api/deliverables/[id].tsx";
 import * as $api_deliverables_id_attachments from "./routes/api/deliverables/[id]/attachments.tsx";
 import * as $api_deliverables_id_submit from "./routes/api/deliverables/[id]/submit.tsx";
@@ -50,6 +52,8 @@ import * as $api_user_stories_id_ from "./routes/api/user-stories/[id].ts";
 import * as $api_users_id_ from "./routes/api/users/[id].ts";
 import * as $api_users_id_metrics from "./routes/api/users/[id]/metrics.ts";
 import * as $backlog_index from "./routes/backlog/index.tsx";
+import * as $chat from "./routes/chat.tsx";
+import * as $chat_disabled_index from "./routes/chat_disabled/index.tsx";
 import * as $deliverables_id_evaluate from "./routes/deliverables/[id]/evaluate.tsx";
 import * as $evaluations_id_ from "./routes/evaluations/[id].tsx";
 import * as $evaluations_index from "./routes/evaluations/index.tsx";
@@ -76,6 +80,7 @@ import * as $sprints_create from "./routes/sprints/create.tsx";
 import * as $sprints_index from "./routes/sprints/index.tsx";
 import * as $sprints_plan from "./routes/sprints/plan.tsx";
 import * as $tasks_id_ from "./routes/tasks/[id].tsx";
+import * as $test_sidebar from "./routes/test-sidebar.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
 import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
@@ -95,6 +100,10 @@ import * as $Backlog_BacklogHeader from "./islands/Backlog/BacklogHeader.tsx";
 import * as $Backlog_BacklogItemCard from "./islands/Backlog/BacklogItemCard.tsx";
 import * as $Backlog_BacklogMetrics from "./islands/Backlog/BacklogMetrics.tsx";
 import * as $Backlog_ProductBacklog from "./islands/Backlog/ProductBacklog.tsx";
+import * as $Chat_ChatApp from "./islands/Chat/ChatApp.tsx";
+import * as $Chat_ChatInterface from "./islands/Chat/ChatInterface.tsx";
+import * as $Chat_ConversationList from "./islands/Chat/ConversationList.tsx";
+import * as $Chat_NewConversationModal from "./islands/Chat/NewConversationModal.tsx";
 import * as $CommonWelcomeOptions from "./islands/CommonWelcomeOptions.tsx";
 import * as $CreateProjectForm from "./islands/CreateProjectForm.tsx";
 import * as $DeleteProjectModal from "./islands/DeleteProjectModal.tsx";
@@ -201,6 +210,9 @@ const manifest = {
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
     "./routes/api/comments/[taskId].ts": $api_comments_taskId_,
+    "./routes/api/conversations/[id]/messages.ts":
+      $api_conversations_id_messages,
+    "./routes/api/conversations/index.ts": $api_conversations_index,
     "./routes/api/deliverables/[id].tsx": $api_deliverables_id_,
     "./routes/api/deliverables/[id]/attachments.tsx":
       $api_deliverables_id_attachments,
@@ -243,6 +255,8 @@ const manifest = {
     "./routes/api/users/[id].ts": $api_users_id_,
     "./routes/api/users/[id]/metrics.ts": $api_users_id_metrics,
     "./routes/backlog/index.tsx": $backlog_index,
+    "./routes/chat.tsx": $chat,
+    "./routes/chat_disabled/index.tsx": $chat_disabled_index,
     "./routes/deliverables/[id]/evaluate.tsx": $deliverables_id_evaluate,
     "./routes/evaluations/[id].tsx": $evaluations_id_,
     "./routes/evaluations/index.tsx": $evaluations_index,
@@ -270,6 +284,7 @@ const manifest = {
     "./routes/sprints/index.tsx": $sprints_index,
     "./routes/sprints/plan.tsx": $sprints_plan,
     "./routes/tasks/[id].tsx": $tasks_id_,
+    "./routes/test-sidebar.tsx": $test_sidebar,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
     "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
@@ -291,6 +306,10 @@ const manifest = {
     "./islands/Backlog/BacklogItemCard.tsx": $Backlog_BacklogItemCard,
     "./islands/Backlog/BacklogMetrics.tsx": $Backlog_BacklogMetrics,
     "./islands/Backlog/ProductBacklog.tsx": $Backlog_ProductBacklog,
+    "./islands/Chat/ChatApp.tsx": $Chat_ChatApp,
+    "./islands/Chat/ChatInterface.tsx": $Chat_ChatInterface,
+    "./islands/Chat/ConversationList.tsx": $Chat_ConversationList,
+    "./islands/Chat/NewConversationModal.tsx": $Chat_NewConversationModal,
     "./islands/CommonWelcomeOptions.tsx": $CommonWelcomeOptions,
     "./islands/CreateProjectForm.tsx": $CreateProjectForm,
     "./islands/DeleteProjectModal.tsx": $DeleteProjectModal,

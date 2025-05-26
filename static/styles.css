@@ -5,7 +5,12 @@
 /* Custom styles */
 
 /* Apply Ubuntu Sans to specific elements if needed */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Ubuntu Sans", ui-sans-serif, system-ui, sans-serif;
   font-weight: 700;
 }
@@ -40,10 +45,10 @@ html {
 
 /* Material Symbols configuration */
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
+  font-family: "Material Symbols Outlined";
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -52,4 +57,43 @@ html {
   white-space: nowrap;
   direction: ltr;
   vertical-align: middle;
+}
+
+/* Sidebar collapsed state - ocultar texto en modo icono */
+.group[data-collapsible="icon"][data-state="collapsed"]
+  [data-sidebar="menu-button"]
+  > span:last-child {
+  opacity: 0 !important;
+  width: 0 !important;
+  overflow: hidden;
+  transition: opacity 200ms ease-linear, width 200ms ease-linear;
+}
+
+.group[data-collapsible="icon"][data-state="collapsed"] [data-sidebar="group-label"] {
+  opacity: 0 !important;
+  margin-top: -2rem !important;
+  transition: opacity 200ms ease-linear, margin-top 200ms ease-linear;
+}
+
+/* Asegurar que los iconos se mantengan visibles */
+.group[data-collapsible="icon"] [data-sidebar="menu-button"] > svg {
+  opacity: 1 !important;
+  flex-shrink: 0;
+}
+
+/* Debug: Mostrar el estado del sidebar - descomentado para debug */
+/*
+.group[data-state="collapsed"] {
+  border: 2px solid red !important;
+}
+
+.group[data-state="expanded"] {
+  border: 2px solid green !important;
+}
+*/
+
+/* Forzar el ancho del sidebar en estado collapsed */
+.group[data-state="collapsed"][data-collapsible="icon"]
+  .group-data-\[collapsible\=icon\]\:w-\[var\(--sidebar-width-icon\)\] {
+  width: var(--sidebar-width-icon) !important;
 }

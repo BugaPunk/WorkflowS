@@ -37,7 +37,7 @@ function useIsMobile() {
     // Solo ejecutar en el navegador
     if (typeof globalThis !== "undefined") {
       const checkMobile = () => {
-        setIsMobile(globalThis.innerWidth < 768);
+        setIsMobile(globalThis.innerWidth < 1024);
       };
 
       checkMobile();
@@ -84,7 +84,12 @@ export default function SidebarProvider({
 
   // Función para alternar el sidebar
   const toggleSidebar = () => {
-    return isMobile ? setOpenMobile(!openMobile) : setOpen(!open);
+    console.log("toggleSidebar called", { isMobile, open, openMobile });
+    if (isMobile) {
+      setOpenMobile(!openMobile);
+    } else {
+      setOpen(!open);
+    }
   };
 
   // Estado para clases CSS
