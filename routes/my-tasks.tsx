@@ -121,12 +121,12 @@ export default function MyTasksPage({ data }: PageProps<MyTasksPageData | null>)
 
   return (
     <MainLayout title="Mis Tareas - WorkflowS" session={session}>
-      <div class="px-4 py-6 mx-auto">
+      <div class="px-4 sm:px-6 py-4 sm:py-6 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           {/* Encabezado */}
-          <div class="mb-6">
-            <h1 class="text-2xl font-bold text-gray-800 mb-2">Mis Tareas</h1>
-            <p class="text-gray-600">
+          <div class="mb-4 sm:mb-6">
+            <h1 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Mis Tareas</h1>
+            <p class="text-sm sm:text-base text-gray-600">
               Gestiona todas las tareas asignadas a ti en diferentes proyectos y sprints.
             </p>
           </div>

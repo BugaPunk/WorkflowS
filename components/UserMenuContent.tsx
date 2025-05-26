@@ -37,7 +37,11 @@ export function UserMenuContent({ user }: UserMenuContentProps): JSX.Element {
       </DropdownMenuItem>
       <div class="my-1 h-px bg-gray-200" />
       <DropdownMenuItem>
-        <button onClick={handleLogout} class="flex w-full items-center text-red-600">
+        <button 
+          type="button" 
+          onClick={handleLogout} 
+          class="flex w-full items-center text-red-600"
+        >
           Cerrar Sesión
         </button>
       </DropdownMenuItem>

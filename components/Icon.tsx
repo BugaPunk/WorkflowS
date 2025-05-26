@@ -1,8 +1,7 @@
-import { JSX } from "preact";
-import type { ComponentType } from "preact";
+import type { ComponentType, JSX } from "preact";
 
 interface IconProps {
-  iconNode: ComponentType;
+  iconNode: ComponentType<JSX.HTMLAttributes<HTMLElement>>;
   class?: string;
 }
 

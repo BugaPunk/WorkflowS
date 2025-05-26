@@ -79,7 +79,7 @@ export default function Modal({
       class="z-50 m-0 min-h-full min-w-full overflow-y-auto bg-transparent backdrop:bg-transparent"
       onClick={handleBackdropClick}
     >
-      <div class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50">
+      <div class="fixed inset-0 overflow-y-auto px-2 sm:px-4 py-4 sm:py-6 z-50">
         {/* Fondo oscuro con animación */}
         <div
           class={`fixed inset-0 transform transition-all duration-300 ease-in-out ${
@@ -92,7 +92,7 @@ export default function Modal({
 
         {/* Contenido del modal con animación */}
         <div
-          class={`mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all duration-300 ease-in-out sm:w-full sm:mx-auto ${maxWidthClass} ${
+          class={`mb-4 sm:mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all duration-300 ease-in-out w-full sm:mx-auto max-h-[90vh] sm:max-h-none overflow-y-auto ${maxWidthClass} ${
             show
               ? "opacity-100 translate-y-0 sm:scale-100"
               : "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"

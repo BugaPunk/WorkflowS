@@ -12,10 +12,10 @@ export function AppContent({ children, variant = "header" }: AppContentProps): J
     return (
       <div class="flex flex-col flex-1 w-full">
         <AppSidebarHeader />
-        <div class="flex-1 p-4">{children}</div>
+        <div class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">{children}</div>
       </div>
     );
   }
 
-  return <div class="flex-1 p-4">{children}</div>;
+  return <div class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">{children}</div>;
 }

@@ -35,11 +35,18 @@ export function Sidebar({
 
   if (isMobile) {
     return (
-      <div
-        class={`${openMobile ? "block" : "hidden"} fixed inset-0 z-50 bg-black bg-opacity-50`}
+      <dialog
+        open={openMobile}
+        class={`${openMobile ? "block" : "hidden"} fixed inset-0 z-50 bg-black bg-opacity-50 p-0 m-0 max-w-none max-h-none w-full h-full`}
         onClick={() => setOpenMobile(false)}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setOpenMobile(false);
+          }
+        }}
+        aria-modal="true"
       >
-        <div
+        <nav
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
@@ -50,16 +57,23 @@ export function Sidebar({
             } as JSX.CSSProperties
           }
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (e.key === "Tab" && !e.shiftKey) {
+              // Mantener el foco dentro del diálogo
+              e.stopPropagation();
+            }
+          }}
+          aria-label="Menú lateral"
         >
           <div class="flex h-full w-full flex-col">{children}</div>
-        </div>
-      </div>
+        </nav>
+      </dialog>
     );
   }
 
   return (
     <div
-      class="group peer text-gray-800 hidden md:block"
+      class="group peer text-gray-800 hidden lg:block"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
@@ -78,7 +92,7 @@ export function Sidebar({
           }`}
       />
       <div
-        class={`fixed inset-y-0 z-10 hidden h-screen w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear md:flex
+        class={`fixed inset-y-0 z-10 hidden h-screen w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear lg:flex
           ${
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
@@ -105,23 +119,27 @@ export function Sidebar({
 
 // Componente SidebarTrigger
 export function SidebarTrigger({
-  className = "",
+  className: _className = "",
   onClick,
   ...props
 }: JSX.HTMLAttributes<HTMLButtonElement>) {
   const { toggleSidebar } = useSidebar();
+
+  // Extraer las propiedades que no queremos pasar directamente a Button
+  const { class: _, size: _size, ...restProps } = props;
 
   return (
     <Button
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
       variant="ghost"
-      class={`h-7 w-7 ${className}`}
+      size="icon"
+      class="h-7 w-7"
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
-      {...props}
+      {...restProps}
     >
       <PanelLeftIcon />
       <span class="sr-only">Toggle Sidebar</span>
@@ -193,27 +211,40 @@ export function SidebarMenuItem({ className = "", ...props }: JSX.HTMLAttributes
 export function SidebarMenuButton({
   isActive = false,
   variant: _variant = "default",
-  size = "default",
+  size,
   className = "",
   ...props
 }: JSX.HTMLAttributes<HTMLButtonElement> & {
   isActive?: boolean;
   variant?: "default" | "outline";
-  size?: "default" | "sm" | "lg";
+  size?: "default" | "sm" | "lg" | number;
 }) {
+  // Asegurarse de que size sea uno de los valores permitidos y sea un string literal
+  let sizeValue: "default" | "sm" | "lg" = "default";
+
+  if (typeof size === "string") {
+    if (size === "sm" || size === "lg" || size === "default") {
+      sizeValue = size;
+    }
+  }
+
   const sizeClasses = {
     default: "h-8 text-sm",
     sm: "h-7 text-xs",
     lg: "h-12 text-sm group-data-[collapsible=icon]:p-0!",
   };
 
+  // Convertir className a string para evitar problemas de tipo
+  const classNameStr = typeof className === "string" ? className : "";
+
   return (
     <button
+      type="button"
       data-slot="sidebar-menu-button"
       data-sidebar="menu-button"
-      data-size={size}
+      data-size={sizeValue}
       data-active={isActive}
-      class={`peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 active:bg-gray-100 active:text-gray-900 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-100 data-[active=true]:font-medium data-[active=true]:text-gray-900 data-[state=open]:hover:bg-gray-100 data-[state=open]:hover:text-gray-900 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 ${sizeClasses[size]} ${className}`}
+      class={`peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden hover:bg-gray-100 hover:text-gray-900 focus-visible:ring-2 active:bg-gray-100 active:text-gray-900 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-gray-100 data-[active=true]:font-medium data-[active=true]:text-gray-900 data-[state=open]:hover:bg-gray-100 data-[state=open]:hover:text-gray-900 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 ${sizeClasses[sizeValue]} ${classNameStr}`}
       {...props}
     />
   );

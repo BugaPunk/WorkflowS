@@ -1,8 +1,15 @@
 import type { JSX } from "preact";
 
-export function AppLogoIcon(props: JSX.SVGAttributes<SVGElement>) {
+export function AppLogoIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
-    <svg {...props} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      {...props}
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby="appLogoTitle"
+      role="img"
+    >
+      <title id="appLogoTitle">Logo de la aplicación</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

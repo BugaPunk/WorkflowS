@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
 import type { ComponentChildren } from "preact";
-import { SidebarProvider } from "./ui/sidebar.tsx";
+import SidebarProvider from "../islands/SidebarProvider.tsx";
 
 interface AppShellProps {
   children: ComponentChildren;

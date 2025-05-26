@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+// No se necesita importar JSX ya que no se usa directamente
 
 interface Option {
   value: string;

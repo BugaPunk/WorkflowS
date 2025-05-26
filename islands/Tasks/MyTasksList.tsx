@@ -48,7 +48,7 @@ export default function MyTasksList({ initialTasks, projects, userStories }: MyT
   };
 
   return (
-    <div class="space-y-6">
+    <div class="space-y-4 sm:space-y-6">
       {/* Componente de filtros */}
       <TaskFilters
         projects={projects}

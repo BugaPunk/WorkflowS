@@ -54,7 +54,11 @@ export function NavUser(): JSX.Element {
         </SidebarMenuItem>
         <SidebarMenuItem>
           <SidebarMenuButton>
-            <button onClick={handleLogout} class="flex items-center w-full text-red-500">
+            <button
+              type="button"
+              onClick={handleLogout}
+              class="flex items-center w-full text-red-500"
+            >
               <span>Cerrar Sesión</span>
             </button>
           </SidebarMenuButton>

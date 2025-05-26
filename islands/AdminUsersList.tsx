@@ -173,7 +173,7 @@ export default function AdminUsersList({ initialUsers }: { initialUsers: User[] 
         </div>
 
         <div class="overflow-x-auto">
-          <table class="min-w-full divide-y divide-gray-200">
+          <table class="min-w-full divide-y divide-gray-200 hidden sm:table">
             <thead class="bg-gray-50">
               <tr>
                 <th
@@ -267,6 +267,64 @@ export default function AdminUsersList({ initialUsers }: { initialUsers: User[] 
             </tbody>
           </table>
         </div>
+
+        {/* Vista de tarjetas para móviles */}
+        <div class="sm:hidden space-y-4">
+          {users.length === 0 ? (
+            <div class="text-center py-8 text-gray-500">No hay usuarios registrados</div>
+          ) : (
+            users.map((user) => (
+              <div key={user.id} class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                  <div>
+                    <h3 class="font-medium text-gray-900">{user.username}</h3>
+                    <p class="text-sm text-gray-500">ID: {user.id.substring(0, 8)}...</p>
+                  </div>
+                  <span
+                    class={`px-2 py-1 text-xs rounded-full ${
+                      user.role === UserRole.ADMIN
+                        ? "bg-purple-100 text-purple-800"
+                        : user.role === UserRole.SCRUM_MASTER
+                          ? "bg-blue-100 text-blue-800"
+                          : user.role === UserRole.PRODUCT_OWNER
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                    }`}
+                  >
+                    {getRoleDisplay(user.role)}
+                  </span>
+                </div>
+
+                <div class="space-y-2 text-sm">
+                  <div>
+                    <span class="font-medium text-gray-700">Nombre:</span>
+                    <span class="ml-2 text-gray-600">
+                      {user.firstName || "-"} {user.lastName || ""}
+                    </span>
+                  </div>
+                  <div>
+                    <span class="font-medium text-gray-700">Email:</span>
+                    <span class="ml-2 text-gray-600">{user.email}</span>
+                  </div>
+                  <div>
+                    <span class="font-medium text-gray-700">Registro:</span>
+                    <span class="ml-2 text-gray-600">{formatDate(user.createdAt)}</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => openDeleteModal(user)}
+                    class="text-red-600 hover:text-red-900 text-sm font-medium"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
 
       {/* Modal de confirmación para eliminar usuario */}
@@ -346,7 +404,9 @@ export default function AdminUsersList({ initialUsers }: { initialUsers: User[] 
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                aria-hidden="true"
               >
+                <title>Éxito</title>
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"

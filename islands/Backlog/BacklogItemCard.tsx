@@ -1,4 +1,4 @@
-import { useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import type { UserStory } from "../../models/userStory.ts";
 import DropdownMenu from "../DropdownMenu.tsx";
 
@@ -38,19 +38,7 @@ export default function BacklogItemCard({
     onDragEnd();
   };
 
-  // Cargar estilos CSS para drag & drop
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "/css/backlog-drag-drop.css";
-    document.head.appendChild(link);
-
-    return () => {
-      // Limpiar el link cuando el componente se desmonte
-      const existingLink = document.querySelector('link[href="/css/backlog-drag-drop.css"]');
-      existingLink?.parentNode?.removeChild(existingLink);
-    };
-  }, []);
+  // Los estilos de drag & drop ahora están en styles.css global
   // Formatear fecha
   const formatDate = (timestamp: number) => {
     return new Date(timestamp).toLocaleDateString("es-ES", {

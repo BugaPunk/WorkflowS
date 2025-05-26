@@ -1,6 +1,6 @@
 import type { JSX } from "preact";
 
-export function LayoutGridIcon(props: JSX.SVGAttributes<SVGElement>) {
+export function LayoutGridIcon(props: JSX.SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,8 +12,11 @@ export function LayoutGridIcon(props: JSX.SVGAttributes<SVGElement>) {
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      aria-labelledby="layoutGridIconTitle"
+      role="img"
       {...props}
     >
+      <title id="layoutGridIconTitle">Diseño en cuadrícula</title>
       <rect width="7" height="7" x="3" y="3" rx="1" />
       <rect width="7" height="7" x="14" y="3" rx="1" />
       <rect width="7" height="7" x="14" y="14" rx="1" />

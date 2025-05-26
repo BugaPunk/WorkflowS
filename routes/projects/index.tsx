@@ -55,7 +55,7 @@ export default function ProjectsPage({ data }: { data: ProjectsPageProps }) {
 
   return (
     <MainLayout title="Proyectos - WorkflowS" session={session}>
-      <div class="px-4 py-8 mx-auto">
+      <div class="px-4 sm:px-6 py-4 sm:py-8 mx-auto">
         <div class="max-w-screen-xl mx-auto">
           <ProjectsList
             initialProjects={projects}

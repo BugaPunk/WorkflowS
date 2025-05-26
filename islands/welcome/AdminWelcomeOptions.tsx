@@ -47,27 +47,6 @@ export default function AdminWelcomeOptions() {
     },
   ];
 
-  // Menú de configuración
-  const configSections: DropdownMenuSection[] = [
-    {
-      items: [
-        { label: "Configuración general", href: "/admin/settings" },
-        { label: "Personalización", href: "/admin/settings/customization" },
-        { label: "Notificaciones", href: "/admin/settings/notifications" },
-        { label: "Seguridad", href: "/admin/settings/security" },
-      ],
-    },
-    {
-      items: [
-        {
-          label: "Restablecer configuración",
-          isDanger: true,
-          onClick: () => console.log("Restablecer configuración"),
-        },
-      ],
-    },
-  ];
-
   // Iconos personalizados
   const reportsIcon = (
     <svg
@@ -204,51 +183,12 @@ export default function AdminWelcomeOptions() {
               />
             </div>
           </div>
-
-          {/* Tarjeta de Configuración */}
-          <div class="bg-amber-50 p-5 rounded-lg border border-amber-200">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-bold text-lg text-amber-800">Configuración</h3>
-                <p class="text-gray-600 mt-1">Personaliza la configuración del sistema.</p>
-              </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-amber-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-labelledby="configIconTitle"
-                role="img"
-              >
-                <title id="configIconTitle">Configuración del sistema</title>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
-            </div>
-            <div class="flex justify-between items-center">
-              <a href="/admin/settings" class="text-amber-600 hover:underline">
-                Ir a configuración →
-              </a>
-              <DropdownMenu buttonText="Opciones" sections={configSections} className="ml-2" />
-            </div>
-          </div>
         </div>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Acciones Rápidas</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           <a
             href="/admin/users?action=create"
             class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"
@@ -317,35 +257,6 @@ export default function AdminWelcomeOptions() {
               />
             </svg>
             <span class="text-sm font-medium text-gray-700">Dashboard</span>
-          </a>
-          <a
-            href="/admin/settings"
-            class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 mx-auto mb-2 text-gray-700"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-labelledby="settingsIconTitle"
-              role="img"
-            >
-              <title id="settingsIconTitle">Configuración del sistema</title>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-            <span class="text-sm font-medium text-gray-700">Configuración</span>
           </a>
         </div>
       </div>

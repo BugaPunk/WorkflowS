@@ -94,7 +94,7 @@ export default function AdminWelcomeOptions() {
           Como administrador, tienes acceso completo a todas las funcionalidades del sistema.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Tarjeta de Gestión de Usuarios */}
           <InteractiveWelcomeCard
             title="Administrar Usuarios"
@@ -233,7 +233,7 @@ export default function AdminWelcomeOptions() {
 
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Acciones Rápidas</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           <a
             href="/admin/users?action=create"
             class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"

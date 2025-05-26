@@ -1,4 +1,3 @@
-import { JSX } from "preact";
 import type { ComponentChildren } from "preact";
 import { useEffect, useRef, useState } from "preact/hooks";
 
@@ -23,22 +22,36 @@ export function DropdownMenuTrigger({ children, asChild = false }: DropdownMenuT
     setIsOpen(!isOpen);
 
     // Buscar el DropdownMenuContent y pasarle el estado
-    const content = e.currentTarget.parentElement?.querySelector("[data-dropdown-content]");
-    if (content) {
-      content.setAttribute("data-state", isOpen ? "closed" : "open");
+    const target = e.currentTarget as HTMLElement;
+    if (target?.parentElement) {
+      const content = target.parentElement.querySelector("[data-dropdown-content]");
+      if (content) {
+        content.setAttribute("data-state", isOpen ? "closed" : "open");
+      }
     }
   };
 
   if (asChild) {
     return (
-      <div onClick={handleClick} data-state={isOpen ? "open" : "closed"}>
+      <button
+        type="button"
+        onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick(e as unknown as MouseEvent);
+          }
+        }}
+        data-state={isOpen ? "open" : "closed"}
+        class="bg-transparent border-none p-0 m-0 cursor-pointer"
+      >
         {children}
-      </div>
+      </button>
     );
   }
 
   return (
-    <button onClick={handleClick} data-state={isOpen ? "open" : "closed"}>
+    <button type="button" onClick={handleClick} data-state={isOpen ? "open" : "closed"}>
       {children}
     </button>
   );

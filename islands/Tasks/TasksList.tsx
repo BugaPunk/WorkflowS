@@ -25,17 +25,7 @@ export default function TasksList({ userStoryId, initialTasks, canManageTasks }:
   // Configuración de límites WIP (Work In Progress)
   const WIP_LIMIT = 3; // Límite de tareas en progreso
 
-  // Cargar estilos CSS para drag & drop
-  useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "/css/drag-drop.css";
-    document.head.appendChild(link);
-
-    return () => {
-      document.head.removeChild(link);
-    };
-  }, []);
+  // Los estilos de drag & drop ahora están en styles.css global
 
   // Cargar tareas
   const loadTasks = useCallback(async () => {

@@ -40,20 +40,6 @@ export default function ScrumMasterWelcomeOptions() {
     },
   ];
 
-  // Menú de impedimentos
-  const impedimentsSections: DropdownMenuSection[] = [
-    {
-      items: [
-        { label: "Registrar impedimento", href: "/impediments/create" },
-        { label: "Impedimentos activos", href: "/impediments?filter=active" },
-        { label: "Impedimentos resueltos", href: "/impediments?filter=resolved" },
-      ],
-    },
-    {
-      items: [{ label: "Asignar responsable", href: "/impediments/assign" }],
-    },
-  ];
-
   // Icono personalizado para sprints
   const sprintIcon = (
     <svg
@@ -84,7 +70,7 @@ export default function ScrumMasterWelcomeOptions() {
           mejorar continuamente.
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
           {/* Tarjeta de Mis Proyectos */}
           <div class="bg-blue-50 p-5 rounded-lg border border-blue-200">
             <div class="flex justify-between items-start mb-4">
@@ -192,47 +178,12 @@ export default function ScrumMasterWelcomeOptions() {
               <DropdownMenu buttonText="Opciones" sections={meetingsSections} className="ml-2" />
             </div>
           </div>
-
-          {/* Tarjeta de Impedimentos */}
-          <div class="bg-amber-50 p-5 rounded-lg border border-amber-200">
-            <div class="flex justify-between items-start mb-4">
-              <div>
-                <h3 class="font-bold text-lg text-amber-800">Impedimentos</h3>
-                <p class="text-gray-600 mt-1">
-                  Registra y da seguimiento a los impedimentos del equipo.
-                </p>
-              </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-amber-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-                role="img"
-              >
-                <title>Icono de advertencia</title>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </div>
-            <div class="flex justify-between items-center">
-              <a href="/impediments" class="text-amber-600 hover:underline">
-                Ver impedimentos →
-              </a>
-              <DropdownMenu buttonText="Opciones" sections={impedimentsSections} className="ml-2" />
-            </div>
-          </div>
         </div>
       </div>
 
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-bold mb-4 text-gray-800">Acciones Rápidas</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
           <a
             href="/sprints/create"
             class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"
@@ -279,29 +230,7 @@ export default function ScrumMasterWelcomeOptions() {
             </svg>
             <span class="text-sm font-medium text-gray-700">Programar Reunión</span>
           </a>
-          <a
-            href="/impediments/create"
-            class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-8 w-8 mx-auto mb-2 text-gray-700"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-              role="img"
-            >
-              <title>Icono de impedimento</title>
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-              />
-            </svg>
-            <span class="text-sm font-medium text-gray-700">Registrar Impedimento</span>
-          </a>
+
           <a
             href="/meetings/daily"
             class="bg-gray-100 hover:bg-gray-200 p-4 rounded-lg text-center transition-colors"
