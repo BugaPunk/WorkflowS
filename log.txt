@@ -1,392 +1,154 @@
-Watcher Restarting! File change detected: "C:\\Users\\punks\\TGZ\\WorkflowS\\islands\\Chat"
-Verificando si existe un usuario administrador...
-Usuario administrador encontrado: Admin (admin@admin.com)
-The manifest has been generated for 84 routes and 111 islands.
-
- 🍋 Fresh ready 
-    Local: http://localhost:8000/
-
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-An error occurred during route handling or page rendering.
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
-TypeError: this[#extractResult].notFound.handler is not a function
-    at otherHandler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:474:43)
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/router.ts:256:22)
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at handler (https://deno.land/x/fresh@1.7.3/plugins/tailwind.ts:37:22)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:109:31
-    at Object.ctx.next (https://deno.land/x/fresh@1.7.3/src/server/compose.ts:97:32)
-    at https://deno.land/x/fresh@1.7.3/src/server/compose.ts:124:16
-    at handler (https://deno.land/x/fresh@1.7.3/src/server/context.ts:295:20)
-    at https://deno.land/x/fresh@1.7.3/src/server/boot.ts:108:9
-    at mapped (ext:deno_http/00_serve.ts:399:24)
+[
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useImportType",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-import-type",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "All these imports are only used as types.",
+    "source": "biome",
+    "startLineNumber": 11,
+    "startColumn": 8,
+    "endLineNumber": 11,
+    "endColumn": 51
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/correctness/noUnusedVariables",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/no-unused-variables",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "This parameter is unused.",
+    "source": "biome",
+    "startLineNumber": 485,
+    "startColumn": 57,
+    "endLineNumber": 485,
+    "endColumn": 62
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useSelfClosingElements",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-self-closing-elements",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.",
+    "source": "biome",
+    "startLineNumber": 503,
+    "startColumn": 27,
+    "endLineNumber": 506,
+    "endColumn": 34
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useSelfClosingElements",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-self-closing-elements",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.",
+    "source": "biome",
+    "startLineNumber": 543,
+    "startColumn": 19,
+    "endLineNumber": 546,
+    "endColumn": 26
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useSelfClosingElements",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-self-closing-elements",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.",
+    "source": "biome",
+    "startLineNumber": 554,
+    "startColumn": 19,
+    "endLineNumber": 557,
+    "endColumn": 26
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useSelfClosingElements",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-self-closing-elements",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.",
+    "source": "biome",
+    "startLineNumber": 565,
+    "startColumn": 19,
+    "endLineNumber": 568,
+    "endColumn": 26
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "_generated_diagnostic_collection_name_#6",
+    "code": {
+      "value": "lint/style/useSelfClosingElements",
+      "target": {
+        "$mid": 1,
+        "path": "/linter/rules/use-self-closing-elements",
+        "scheme": "https",
+        "authority": "biomejs.dev"
+      }
+    },
+    "severity": 8,
+    "message": "JSX elements without children should be marked as self-closing. In JSX, it is valid for any element to be self-closing.",
+    "source": "biome",
+    "startLineNumber": 615,
+    "startColumn": 23,
+    "endLineNumber": 620,
+    "endColumn": 30
+  },
+  {
+    "resource": "/c:/Users/punks/TGZ/WorkflowS/routes/projects/[id]/metrics.tsx",
+    "owner": "deno",
+    "code": "no-unused-vars",
+    "severity": 4,
+    "message": "`index` is never used\nIf this is intentional, prefix it with an underscore like `_index`",
+    "source": "deno-lint",
+    "startLineNumber": 485,
+    "startColumn": 57,
+    "endLineNumber": 485,
+    "endColumn": 62
+  }
+]

@@ -174,7 +174,7 @@ export async function updateTask(
       if (oldValue !== newValue) {
         // Determinar el tipo de cambio
         let type = TaskHistoryType.FIELD_CHANGE;
-        let description;
+        let description: string | undefined;
 
         if (field === "status") {
           type = TaskHistoryType.STATUS_CHANGE;
