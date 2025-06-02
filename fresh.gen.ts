@@ -82,6 +82,7 @@ import * as $rubrics_id_ from "./routes/rubrics/[id].tsx";
 import * as $rubrics_id_edit from "./routes/rubrics/[id]/edit.tsx";
 import * as $rubrics_create from "./routes/rubrics/create.tsx";
 import * as $rubrics_index from "./routes/rubrics/index.tsx";
+import * as $rubrics_list from "./routes/rubrics/list.tsx";
 import * as $sprints_id_ from "./routes/sprints/[id].tsx";
 import * as $sprints_id_add_user_stories from "./routes/sprints/[id]/add-user-stories.tsx";
 import * as $sprints_create from "./routes/sprints/create.tsx";
@@ -294,6 +295,7 @@ const manifest = {
     "./routes/rubrics/[id]/edit.tsx": $rubrics_id_edit,
     "./routes/rubrics/create.tsx": $rubrics_create,
     "./routes/rubrics/index.tsx": $rubrics_index,
+    "./routes/rubrics/list.tsx": $rubrics_list,
     "./routes/sprints/[id].tsx": $sprints_id_,
     "./routes/sprints/[id]/add-user-stories.tsx": $sprints_id_add_user_stories,
     "./routes/sprints/create.tsx": $sprints_create,
