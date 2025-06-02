@@ -1,220 +1,187 @@
-# Scripts de Población de Datos
+# Scripts de Población de Datos - ACTUALIZADO
 
-Este directorio contiene scripts para poblar tu base de datos Deno KV con datos de ejemplo para probar la plataforma de gestión de proyectos académicos.
+Este directorio contiene scripts para poblar la base de datos con datos de ejemplo completos para el desarrollo y testing del sistema.
 
-## 🚀 Uso Rápido
+## 🚀 Scripts Principales
 
-### Para Sistema COMPLETO (RECOMENDADO):
+### `setup-complete-demo-updated.ts` ⭐ **RECOMENDADO**
+**Script maestro que ejecuta todo automáticamente**
+- Ejecuta todos los scripts en el orden correcto
+- Crea un sistema completamente funcional
+- Incluye TODAS las funcionalidades implementadas
+
+**Uso:**
 ```bash
-deno run --unstable-kv -A scripts/setup-complete-demo.ts
-```
-**Crea un ejemplo completo con TODAS las funcionalidades**
-
-### Para Sistema Básico:
-```bash
-deno run --unstable-kv -A scripts/setup-demo-data.ts
-```
-**Crea solo las funcionalidades principales**
-
-## 📁 Scripts Disponibles
-
-### 1. `setup-complete-demo.ts` (NUEVO - RECOMENDADO)
-**Script maestro para sistema COMPLETO con TODAS las funcionalidades**
-
-```bash
-deno run --unstable-kv -A scripts/setup-complete-demo.ts
+deno run -A --unstable-kv scripts/setup-complete-demo-updated.ts
 ```
 
-**Qué hace:**
-- Limpia la base de datos completamente
-- Crea 16+ usuarios con roles diversos
-- Crea 3 proyectos diferentes con equipos
-- Crea 90+ tareas con estados realistas
-- Crea métricas y datos para dashboards
-- Sistema completo listo para demostración
+### `populate-everything.ts`
+Script base para crear datos fundamentales:
+- 25 usuarios con roles diversos
+- 3 proyectos completos con equipos
+- Historias de usuario detalladas
+- Estructura básica del sistema
 
-### 2. `setup-demo-data.ts` (BÁSICO)
-**Script maestro para funcionalidades principales**
-
+**Uso:**
 ```bash
-deno run --unstable-kv -A scripts/setup-demo-data.ts
+deno run -A --unstable-kv scripts/populate-everything.ts
 ```
 
-**Qué hace:**
-- Ejecuta scripts básicos en orden correcto
-- Crea usuarios, proyectos, tareas y rúbricas
-- Muestra un resumen completo al final
-- Proporciona credenciales de acceso
+## 📋 Scripts Especializados
 
-### 3. `reset-database.ts` (RESET COMPLETO)
-**Limpia la base de datos y opcionalmente la puebla de nuevo**
+### `populate-rubrics.ts`
+Crea sistema completo de rúbricas:
+- 4 plantillas especializadas
+- Rúbricas específicas por proyecto
+- Rúbricas personales
+- Criterios y niveles de evaluación
 
+### `populate-evaluations.ts`
+Genera evaluaciones realistas:
+- Evaluaciones de entregables
+- Calificaciones con rúbricas
+- Feedback detallado
+- Estados variados
+
+### `populate-metrics.ts`
+Crea datos para métricas:
+- Datos de progreso
+- Estadísticas de rendimiento
+- Métricas de equipo
+- Reportes de proyecto
+
+## 🛠️ Scripts de Utilidad
+
+### `clear-database.ts`
+Limpia completamente la base de datos KV.
 ```bash
-deno run --unstable-kv -A scripts/reset-database.ts
+deno run -A --unstable-kv scripts/clear-database.ts
 ```
 
-**Qué hace:**
-- Limpia completamente la base de datos
-- Pregunta si quieres poblar con datos de ejemplo
-- Proceso guiado paso a paso
-
-### 4. `clear-database.ts` (SOLO LIMPIAR)
-**Solo limpia la base de datos sin poblar**
-
+### `view-kv-data.ts`
+Muestra el contenido actual de la base de datos.
 ```bash
-# Con confirmación
-deno run --unstable-kv -A scripts/clear-database.ts
-
-# Sin confirmación (forzado)
-deno run --unstable-kv -A scripts/clear-database.ts --force
+deno run -A --unstable-kv scripts/view-kv-data.ts
 ```
 
-**Qué hace:**
-- Elimina TODOS los datos de la base de datos
-- Muestra estadísticas de lo que se elimina
-- Requiere confirmación (excepto con --force)
-
-### 5. `populate-complete-system.ts` (SISTEMA BASE COMPLETO)
-**Crea sistema base con datos detallados**
-
+### `reset-database.ts`
+Limpia y repuebla automáticamente.
 ```bash
-deno run --unstable-kv -A scripts/populate-complete-system.ts
+deno run -A --unstable-kv scripts/reset-database.ts
 ```
 
-**Qué hace:**
-- Crea 16+ usuarios con roles diversos
-- Crea 3 proyectos con equipos asignados
-- Crea historias de usuario detalladas
-- Crea sprints con cronología realista
-- Crea 90+ tareas asignadas
+## 🎯 Orden de Ejecución Recomendado
 
-### 6. `populate-metrics.ts` (MÉTRICAS Y DATOS ADICIONALES)
-**Agrega métricas y datos adicionales para dashboards**
-
+### Opción 1: Setup Completo (Recomendado)
 ```bash
-deno run --unstable-kv -A scripts/populate-metrics.ts
+# Un solo comando para todo
+deno run -A --unstable-kv scripts/setup-complete-demo-updated.ts
 ```
 
-**Qué hace:**
-- Crea métricas de ejemplo para dashboards
-- Crea datos de actividad reciente
-- Crea índices de búsqueda
-- Crea datos de rendimiento histórico
-- Mejora la experiencia del usuario
-
-### 7. `populate-sample-data-simple.ts`
-**Crea datos básicos del sistema**
-
+### Opción 2: Paso a Paso
 ```bash
-deno run --unstable-kv -A scripts/populate-sample-data-simple.ts
+# 1. Limpiar datos existentes
+deno run -A --unstable-kv scripts/clear-database.ts
+
+# 2. Crear datos básicos
+deno run -A --unstable-kv scripts/populate-everything.ts
+
+# 3. Agregar rúbricas
+deno run -A --unstable-kv scripts/populate-rubrics.ts
+
+# 4. Crear evaluaciones
+deno run -A --unstable-kv scripts/populate-evaluations.ts
+
+# 5. Generar métricas
+deno run -A --unstable-kv scripts/populate-metrics.ts
 ```
 
-**Qué crea:**
-- 👥 **Usuarios**: Admin, profesores, Product Owners, Scrum Masters, estudiantes
-- 📁 **Proyecto**: "Sistema de Gestión Académica"
-- 📝 **Historias de usuario**: Registro, autenticación, dashboard
-- 🏃 **Sprint**: Sprint activo con tareas
-- ✅ **Tareas**: Asignadas a diferentes estudiantes
+## 📊 Datos Creados (Sistema Completo)
 
-### 8. `populate-rubrics.ts`
-**Crea rúbricas de evaluación**
+### 👥 Usuarios (25 total)
+- **3 Administradores**: admin, prof.martinez, prof.rodriguez
+- **3 Product Owners**: po.garcia, po.lopez, po.mendoza
+- **3 Scrum Masters**: sm.fernandez, sm.torres, sm.silva
+- **15 Estudiantes**: dev.perez, dev.gonzalez, etc.
 
-```bash
-deno run --unstable-kv -A scripts/populate-rubrics.ts
+### 📁 Proyectos (3 completos)
+- **Sistema de Gestión Académica** (5 desarrolladores)
+- **Aplicación Móvil de Biblioteca** (5 desarrolladores)
+- **Portal de Empleabilidad Estudiantil** (4 desarrolladores)
+
+### 📝 Funcionalidades Completas
+- ✅ **Historias de usuario** (8 por proyecto)
+- ✅ **Sprints** (5 por proyecto con cronología realista)
+- ✅ **Tareas** (5 por historia, incluyendo entregables)
+- ✅ **Rúbricas** (4 plantillas + rúbricas específicas)
+- ✅ **Evaluaciones** (con calificaciones reales)
+- ✅ **Mensajes** (conversaciones de equipo)
+- ✅ **Comentarios** (en tareas)
+- ✅ **Métricas** (datos de progreso)
+
+### 🔑 Usuarios de Prueba
+```
+admin / admin123           - Administrador principal
+prof.martinez / prof123   - Profesor
+po.garcia / po123         - Product Owner
+sm.fernandez / sm123      - Scrum Master
+dev.perez / dev123        - Estudiante
 ```
 
-**Qué crea:**
-- 📋 **Rúbrica General**: Para evaluar desarrollo de software (100 puntos)
-- 📋 **Rúbrica de Presentación**: Para evaluar presentaciones orales (100 puntos)
+## 🌐 Rutas Disponibles Después de la Población
 
-## 👥 Credenciales de Acceso
-
-Después de ejecutar los scripts, puedes usar estas credenciales:
-
-| Rol | Email | Contraseña | Descripción |
-|-----|-------|------------|-------------|
-| **Admin** | admin@admin.com | admin123 | Usuario administrador principal |
-| **Profesor** | martinez@universidad.edu | prof123 | Profesor con permisos de admin |
-| **Product Owner** | garcia@universidad.edu | po123 | Gestiona historias de usuario |
-| **Scrum Master** | lopez@universidad.edu | sm123 | Gestiona sprints y equipos |
-| **Estudiante** | perez@estudiante.edu | dev123 | Desarrollador del equipo |
-| **Estudiante** | gonzalez@estudiante.edu | dev123 | Desarrollador del equipo |
-| **Estudiante** | sanchez@estudiante.edu | dev123 | Desarrollador del equipo |
-
-## 🎯 Datos Creados
-
-### Usuarios
-- **1 Admin principal** (ya existe por defecto)
-- **1 Profesor adicional** con permisos de admin
-- **1 Product Owner** para gestionar el backlog
-- **1 Scrum Master** para gestionar sprints
-- **6 Estudiantes** como desarrolladores
-
-### Proyecto: "Sistema de Gestión Académica"
-- **Descripción**: Sistema web para gestionar estudiantes, cursos y calificaciones
-- **Estado**: Activo
-- **Equipo**: Product Owner, Scrum Master, 3 estudiantes asignados
-- **Duración**: 3 meses (iniciado hace 1 mes)
-
-### Historias de Usuario
-1. **Registro de usuarios** (8 puntos, Alta prioridad)
-2. **Autenticación de usuarios** (5 puntos, Alta prioridad)  
-3. **Dashboard principal** (13 puntos, Media prioridad)
-
-### Sprint Activo
-- **Nombre**: "Sprint 1 - Fundamentos"
-- **Objetivo**: Implementar funcionalidades básicas de autenticación y registro
-- **Estado**: Activo
-- **Duración**: 2 semanas
-
-### Tareas
-- **Tareas de diseño**: Completadas
-- **Tareas de implementación**: En progreso
-- **Asignación**: Distribuidas entre los estudiantes del equipo
+### Principales
+- `http://localhost:8000/` - Dashboard principal
+- `http://localhost:8000/projects` - Gestión de proyectos
+- `http://localhost:8000/my-tasks` - Mis tareas asignadas
+- `http://localhost:8000/evaluations` - Sistema de evaluaciones
+- `http://localhost:8000/rubrics` - Gestión de rúbricas
+- `http://localhost:8000/users` - Gestión de usuarios (admin)
 
 ### Rúbricas
-1. **Rúbrica General de Desarrollo de Software**
-   - Funcionalidad (25 pts)
-   - Calidad del Código (20 pts)
-   - Interfaz de Usuario (20 pts)
-   - Pruebas y Validación (15 pts)
-   - Documentación (20 pts)
+- `http://localhost:8000/rubrics/list` - Lista completa
+- `http://localhost:8000/rubrics/list?templates=true` - Plantillas
+- `http://localhost:8000/rubrics/create` - Crear nueva
 
-2. **Rúbrica de Presentación de Proyecto**
-   - Contenido (30 pts)
-   - Claridad de Comunicación (25 pts)
-   - Uso del Tiempo (15 pts)
-   - Manejo de Preguntas (20 pts)
-   - Material Visual (10 pts)
+### Evaluaciones
+- `http://localhost:8000/evaluations` - Lista de entregables
+- `http://localhost:8000/evaluations/[id]` - Detalle específico
+
+## 🎊 Resultado Final
+
+Después de ejecutar los scripts tendrás:
+- **Sistema completamente funcional**
+- **Datos realistas y variados**
+- **Todas las funcionalidades pobladas**
+- **Usuarios para probar diferentes roles**
+- **Proyectos en diferentes estados**
+- **Evaluaciones con calificaciones reales**
 
 ## 🔧 Solución de Problemas
 
-### Error: "Usuario ya existe"
-**Normal** - Los scripts detectan usuarios existentes y continúan sin problemas.
+Si hay errores:
+1. Asegúrate de que el servidor no esté ejecutándose
+2. Ejecuta: `deno run -A --unstable-kv scripts/clear-database.ts`
+3. Vuelve a ejecutar el script de población
+4. Verifica que todas las dependencias estén instaladas
 
-### Error: "Permission denied"
-Asegúrate de ejecutar con los permisos correctos:
-```bash
-deno run --unstable-kv -A scripts/setup-demo-data.ts
-```
+## 📈 Notas de Actualización
 
-### Error: "Module not found"
-Ejecuta desde la raíz del proyecto:
-```bash
-cd /ruta/a/tu/proyecto
-deno run --unstable-kv -A scripts/setup-demo-data.ts
-```
-
-### Base de datos vacía después de ejecutar
-1. Verifica que Deno KV esté funcionando
-2. Revisa los logs del script para errores
-3. Intenta ejecutar scripts individuales
+**Nuevas funcionalidades incluidas:**
+- ✅ Sistema completo de rúbricas (4 plantillas)
+- ✅ Evaluaciones con calificaciones reales
+- ✅ Métricas y reportes de progreso
+- ✅ Conversaciones y mensajes de equipo
+- ✅ Comentarios en tareas
+- ✅ Estados realistas de proyectos
+- ✅ Cronología coherente de sprints
+- ✅ Datos de ejemplo más diversos y realistas
 
 ## 🎮 Cómo Probar la Plataforma
 
-1. **Ejecuta los scripts**:
+1. **Ejecuta el script maestro**:
    ```bash
-   deno run --unstable-kv -A scripts/setup-demo-data.ts
+   deno run -A --unstable-kv scripts/setup-complete-demo-updated.ts
    ```
 
 2. **Inicia el servidor**:
@@ -234,9 +201,10 @@ deno run --unstable-kv -A scripts/setup-demo-data.ts
 
 5. **Prueba funcionalidades**:
    - Dashboard personalizado
-   - Tablero Kanban
-   - Sistema de evaluaciones
+   - Sistema de evaluaciones con rúbricas
+   - Gestión completa de rúbricas
    - Métricas y reportes
+   - Tablero Kanban
 
 ## 📝 Notas
 
@@ -244,3 +212,5 @@ deno run --unstable-kv -A scripts/setup-demo-data.ts
 - Los datos existentes no se duplican
 - Los scripts muestran mensajes informativos sobre qué se crea o ya existe
 - Todos los scripts incluyen manejo de errores y continúan ejecutándose aunque fallen algunas operaciones
+
+## 🎊 ¡El sistema está listo para usar con datos completos!
