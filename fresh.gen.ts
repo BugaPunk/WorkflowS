@@ -70,6 +70,14 @@ import * as $projects_id_reports_index from "./routes/projects/[id]/reports/inde
 import * as $projects_id_sprints from "./routes/projects/[id]/sprints.tsx";
 import * as $projects_index from "./routes/projects/index.tsx";
 import * as $register from "./routes/register.tsx";
+import * as $reports_dashboard from "./routes/reports/dashboard.tsx";
+import * as $reports_evaluations from "./routes/reports/evaluations.tsx";
+import * as $reports_export from "./routes/reports/export.tsx";
+import * as $reports_index from "./routes/reports/index.tsx";
+import * as $reports_projects from "./routes/reports/projects.tsx";
+import * as $reports_projects_id_ from "./routes/reports/projects/[id].tsx";
+import * as $reports_sprints from "./routes/reports/sprints.tsx";
+import * as $reports_users from "./routes/reports/users.tsx";
 import * as $rubrics_id_ from "./routes/rubrics/[id].tsx";
 import * as $rubrics_id_edit from "./routes/rubrics/[id]/edit.tsx";
 import * as $rubrics_create from "./routes/rubrics/create.tsx";
@@ -274,6 +282,14 @@ const manifest = {
     "./routes/projects/[id]/sprints.tsx": $projects_id_sprints,
     "./routes/projects/index.tsx": $projects_index,
     "./routes/register.tsx": $register,
+    "./routes/reports/dashboard.tsx": $reports_dashboard,
+    "./routes/reports/evaluations.tsx": $reports_evaluations,
+    "./routes/reports/export.tsx": $reports_export,
+    "./routes/reports/index.tsx": $reports_index,
+    "./routes/reports/projects.tsx": $reports_projects,
+    "./routes/reports/projects/[id].tsx": $reports_projects_id_,
+    "./routes/reports/sprints.tsx": $reports_sprints,
+    "./routes/reports/users.tsx": $reports_users,
     "./routes/rubrics/[id].tsx": $rubrics_id_,
     "./routes/rubrics/[id]/edit.tsx": $rubrics_id_edit,
     "./routes/rubrics/create.tsx": $rubrics_create,

@@ -1,12 +1,12 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { EvaluationStatus } from "../../../../models/evaluation.ts";
 import { UserRole } from "../../../../models/user.ts";
 import { finalizeEvaluation, getEvaluationById } from "../../../../services/evaluationService.ts";
 import { getSession } from "../../../../utils/session.ts";
 
-export const handler: Handlers = {
+export const handler = {
   // POST /api/evaluations/:id/finalize - Finalizar una evaluación
-  async POST(req, ctx) {
+  async POST(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {

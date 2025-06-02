@@ -1,4 +1,4 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { EvaluationStatus } from "../../../models/evaluation.ts";
 import { UserRole } from "../../../models/user.ts";
 import {
@@ -9,9 +9,9 @@ import {
 } from "../../../services/evaluationService.ts";
 import { getSession } from "../../../utils/session.ts";
 
-export const handler: Handlers = {
+export const handler = {
   // GET /api/evaluations/:id - Obtener una evaluación por ID
-  async GET(req, ctx) {
+  async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -68,7 +68,7 @@ export const handler: Handlers = {
   },
 
   // PUT /api/evaluations/:id - Actualizar una evaluación
-  async PUT(req, ctx) {
+  async PUT(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -138,7 +138,7 @@ export const handler: Handlers = {
   },
 
   // DELETE /api/evaluations/:id - Eliminar una evaluación
-  async DELETE(req, ctx) {
+  async DELETE(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {

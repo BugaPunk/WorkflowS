@@ -1,11 +1,11 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { UserRole } from "../../../../models/user.ts";
 import { duplicateRubric, getRubricById } from "../../../../services/rubricService.ts";
 import { getSession } from "../../../../utils/session.ts";
 
-export const handler: Handlers = {
+export const handler = {
   // POST /api/rubrics/:id/duplicate - Duplicar una rúbrica
-  async POST(req, ctx) {
+  async POST(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -16,7 +16,11 @@ export const handler: Handlers = {
     }
 
     // Solo los profesores pueden duplicar rúbricas
-    if (session.role !== UserRole.ADMIN && session.role !== UserRole.PRODUCT_OWNER) {
+    if (
+      session.role !== UserRole.ADMIN &&
+      session.role !== UserRole.PRODUCT_OWNER &&
+      session.role !== UserRole.SCRUM_MASTER
+    ) {
       return new Response(JSON.stringify({ error: "No autorizado para duplicar rúbricas" }), {
         status: 403,
         headers: { "Content-Type": "application/json" },

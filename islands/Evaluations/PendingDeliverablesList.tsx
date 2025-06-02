@@ -25,7 +25,7 @@ export default function PendingDeliverablesList({
       setError(null);
 
       try {
-        let url = "/api/tasks?isDeliverable=true&status=review";
+        let url = "/api/tasks?status=review";
 
         if (projectId) {
           url += `&projectId=${projectId}`;
@@ -38,7 +38,12 @@ export default function PendingDeliverablesList({
         }
 
         const data = await response.json();
-        setDeliverables(data);
+        // El API devuelve { tasks }, necesitamos extraer el array
+        const tasks = data.tasks || [];
+
+        // Filtrar solo las tareas que son entregables
+        const deliverableTasks = tasks.filter((task: any) => task.isDeliverable === true);
+        setDeliverables(deliverableTasks);
       } catch (err) {
         setError(err.message || "Error al cargar entregables");
         console.error(err);

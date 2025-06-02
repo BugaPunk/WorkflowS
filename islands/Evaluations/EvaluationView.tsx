@@ -45,15 +45,17 @@ export default function EvaluationView({ evaluationId, onBack, onEdit }: Evaluat
         const rubricData = await rubricResponse.json();
         setRubric(rubricData);
 
-        // Cargar entregable
-        const deliverableResponse = await fetch(`/api/deliverables/${evalData.deliverableId}`);
+        // Cargar entregable (usando el endpoint de tareas ya que los entregables son tareas)
+        const deliverableResponse = await fetch(`/api/tasks/${evalData.deliverableId}`);
 
         if (!deliverableResponse.ok) {
           throw new Error(`Error al cargar el entregable: ${deliverableResponse.statusText}`);
         }
 
         const deliverableData = await deliverableResponse.json();
-        setDeliverable(deliverableData);
+        // El API de tareas devuelve { task }, extraer la tarea
+        const task = deliverableData.task || deliverableData;
+        setDeliverable(task);
       } catch (err: unknown) {
         const errorMessage = err instanceof Error ? err.message : "Error al cargar la evaluación";
         setError(errorMessage);

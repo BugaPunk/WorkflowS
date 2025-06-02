@@ -1,16 +1,25 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext, PageProps } from "$fresh/server.ts";
 import EvaluationHistory from "../../islands/Evaluations/EvaluationHistory.tsx";
 import StudentEvaluationsList from "../../islands/Evaluations/StudentEvaluationsList.tsx";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import type { UserRole } from "../../models/user.ts";
 import { getSession } from "../../utils/session.ts";
 
-export const handler: Handlers = {
-  async GET(req, ctx) {
+interface Data {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
+}
+
+export const handler = {
+  async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
-      return new Response(null, {
+      return new Response("", {
         status: 302,
         headers: {
           Location: `/login?redirect=${encodeURIComponent(req.url)}`,
@@ -22,18 +31,7 @@ export const handler: Handlers = {
   },
 };
 
-interface MyEvaluationsPageProps {
-  data: {
-    session: {
-      userId: string;
-      username: string;
-      email: string;
-      role: UserRole;
-    };
-  };
-}
-
-export default function MyEvaluationsPage({ data }: MyEvaluationsPageProps) {
+export default function MyEvaluationsPage({ data }: PageProps<Data>) {
   const { session } = data;
 
   const handleSelectEvaluation = (evaluationId: string) => {

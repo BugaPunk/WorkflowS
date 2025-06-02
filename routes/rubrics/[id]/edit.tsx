@@ -1,15 +1,25 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext, PageProps } from "$fresh/server.ts";
 import RubricEditPage from "../../../islands/Rubrics/RubricEditPage.tsx";
 import { MainLayout } from "../../../layouts/MainLayout.tsx";
 import { UserRole } from "../../../models/user.ts";
 import { getSession } from "../../../utils/session.ts";
 
-export const handler: Handlers = {
-  async GET(req, ctx) {
+interface Data {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
+  rubricId: string;
+}
+
+export const handler = {
+  async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
-      return new Response(null, {
+      return new Response("", {
         status: 302,
         headers: {
           Location: `/login?redirect=${encodeURIComponent(req.url)}`,
@@ -23,7 +33,7 @@ export const handler: Handlers = {
       session.role !== UserRole.PRODUCT_OWNER &&
       session.role !== UserRole.SCRUM_MASTER
     ) {
-      return new Response(null, {
+      return new Response("", {
         status: 302,
         headers: {
           Location: "/unauthorized",
@@ -37,19 +47,7 @@ export const handler: Handlers = {
   },
 };
 
-interface RubricEditPageProps {
-  data: {
-    session: {
-      userId: string;
-      username: string;
-      email: string;
-      role: UserRole;
-    };
-    rubricId: string;
-  };
-}
-
-export default function RubricEdit({ data }: RubricEditPageProps) {
+export default function RubricEdit({ data }: PageProps<Data>) {
   const { session, rubricId } = data;
 
   return (

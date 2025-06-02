@@ -26,14 +26,28 @@ export default function DeliverableDetails({
       setError(null);
 
       try {
-        const response = await fetch(`/api/deliverables/${deliverableId}`);
+        console.log(`Cargando entregable con ID: ${deliverableId}`);
+
+        // Usar el endpoint de tareas ya que los entregables son tareas con isDeliverable=true
+        const response = await fetch(`/api/tasks/${deliverableId}`);
 
         if (!response.ok) {
-          throw new Error(`Error al cargar el entregable: ${response.statusText}`);
+          const errorText = await response.text();
+          console.error(`Error del servidor: ${response.status} - ${errorText}`);
+          throw new Error(`Error al cargar el entregable: ${response.statusText} (${response.status})`);
         }
 
         const data = await response.json();
-        setDeliverable(data);
+        console.log('Datos recibidos:', data);
+
+        // El API de tareas devuelve { task }, extraer la tarea
+        const task = data.task || data;
+
+        if (!task) {
+          throw new Error('No se recibieron datos de la tarea');
+        }
+
+        setDeliverable(task);
       } catch (err) {
         setError(err.message || "Error al cargar el entregable");
         console.error(err);

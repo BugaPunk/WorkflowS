@@ -1,4 +1,4 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { RubricSchema } from "../../../models/rubric.ts";
 import { UserRole } from "../../../models/user.ts";
 import {
@@ -9,9 +9,9 @@ import {
 } from "../../../services/rubricService.ts";
 import { getSession } from "../../../utils/session.ts";
 
-export const handler: Handlers = {
+export const handler = {
   // GET /api/rubrics - Obtener rúbricas (con filtros opcionales)
-  async GET(req, _ctx) {
+  async GET(req: Request, _ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -32,7 +32,11 @@ export const handler: Handlers = {
       // Filtrar por tipo de consulta
       if (templateOnly) {
         // Solo los profesores pueden ver las plantillas de rúbricas
-        if (session.role !== UserRole.ADMIN && session.role !== UserRole.PRODUCT_OWNER) {
+        if (
+          session.role !== UserRole.ADMIN &&
+          session.role !== UserRole.PRODUCT_OWNER &&
+          session.role !== UserRole.SCRUM_MASTER
+        ) {
           return new Response(JSON.stringify({ error: "No autorizado para ver plantillas" }), {
             status: 403,
             headers: { "Content-Type": "application/json" },
@@ -48,7 +52,8 @@ export const handler: Handlers = {
         if (
           userId !== session.userId &&
           session.role !== UserRole.ADMIN &&
-          session.role !== UserRole.PRODUCT_OWNER
+          session.role !== UserRole.PRODUCT_OWNER &&
+          session.role !== UserRole.SCRUM_MASTER
         ) {
           return new Response(
             JSON.stringify({ error: "No autorizado para ver rúbricas de este usuario" }),
@@ -77,7 +82,7 @@ export const handler: Handlers = {
   },
 
   // POST /api/rubrics - Crear una nueva rúbrica
-  async POST(req, _ctx) {
+  async POST(req: Request, _ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -88,7 +93,11 @@ export const handler: Handlers = {
     }
 
     // Solo los profesores pueden crear rúbricas
-    if (session.role !== UserRole.ADMIN && session.role !== UserRole.PRODUCT_OWNER) {
+    if (
+      session.role !== UserRole.ADMIN &&
+      session.role !== UserRole.PRODUCT_OWNER &&
+      session.role !== UserRole.SCRUM_MASTER
+    ) {
       return new Response(JSON.stringify({ error: "No autorizado para crear rúbricas" }), {
         status: 403,
         headers: { "Content-Type": "application/json" },

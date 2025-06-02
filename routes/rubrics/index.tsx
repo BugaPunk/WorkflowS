@@ -1,15 +1,24 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext, PageProps } from "$fresh/server.ts";
 import RubricsManager from "../../islands/Rubrics/RubricsManager.tsx";
 import { MainLayout } from "../../layouts/MainLayout.tsx";
 import { UserRole } from "../../models/user.ts";
 import { getSession } from "../../utils/session.ts";
 
-export const handler: Handlers = {
-  async GET(req, ctx) {
+interface Data {
+  session: {
+    userId: string;
+    username: string;
+    email: string;
+    role: UserRole;
+  };
+}
+
+export const handler = {
+  async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
-      return new Response(null, {
+      return new Response("", {
         status: 302,
         headers: {
           Location: `/login?redirect=${encodeURIComponent(req.url)}`,
@@ -23,7 +32,7 @@ export const handler: Handlers = {
       session.role !== UserRole.PRODUCT_OWNER &&
       session.role !== UserRole.SCRUM_MASTER
     ) {
-      return new Response(null, {
+      return new Response("", {
         status: 302,
         headers: {
           Location: "/unauthorized",
@@ -35,18 +44,7 @@ export const handler: Handlers = {
   },
 };
 
-interface RubricsPageProps {
-  data: {
-    session: {
-      userId: string;
-      username: string;
-      email: string;
-      role: UserRole;
-    };
-  };
-}
-
-export default function RubricsPage({ data }: RubricsPageProps) {
+export default function RubricsPage({ data }: PageProps<Data>) {
   const { session } = data;
 
   return (

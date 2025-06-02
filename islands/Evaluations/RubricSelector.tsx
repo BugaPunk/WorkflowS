@@ -28,29 +28,34 @@ export default function RubricSelector({
       setError(null);
 
       try {
-        // Cargar rúbricas del proyecto
+        // Cargar rúbricas del proyecto o del usuario actual
         let projectRubricsUrl = "/api/rubrics";
         if (projectId) {
           projectRubricsUrl += `?projectId=${projectId}`;
         }
+        // Si no hay projectId, cargar rúbricas del usuario actual (por defecto)
 
         const projectRubricsResponse = await fetch(projectRubricsUrl);
 
         if (!projectRubricsResponse.ok) {
+          console.error(`Error del servidor: ${projectRubricsResponse.status} - ${projectRubricsResponse.statusText}`);
           throw new Error(`Error al cargar rúbricas: ${projectRubricsResponse.statusText}`);
         }
 
         const projectRubricsData = await projectRubricsResponse.json();
+        console.log('Rúbricas del proyecto/usuario:', projectRubricsData);
         setRubrics(projectRubricsData);
 
         // Cargar plantillas de rúbricas
         const templatesResponse = await fetch("/api/rubrics?template=true");
 
         if (!templatesResponse.ok) {
+          console.error(`Error del servidor (plantillas): ${templatesResponse.status} - ${templatesResponse.statusText}`);
           throw new Error(`Error al cargar plantillas: ${templatesResponse.statusText}`);
         }
 
         const templatesData = await templatesResponse.json();
+        console.log('Plantillas de rúbricas:', templatesData);
         setTemplates(templatesData);
       } catch (err) {
         setError(err.message || "Error al cargar rúbricas");
@@ -144,23 +149,44 @@ export default function RubricSelector({
         </div>
       ) : filteredRubrics.length === 0 ? (
         <div class="p-8 text-center text-gray-500">
-          <p>No se encontraron rúbricas{showTemplates ? " plantilla" : ""}.</p>
+          <div class="mb-4">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <p class="text-lg font-medium text-gray-900 mb-2">
+            No se encontraron rúbricas{showTemplates ? " plantilla" : ""}.
+          </p>
           {showTemplates ? (
-            <p class="mt-2">
-              Puedes crear plantillas de rúbricas en la sección de
-              <a href="/rubrics" class="text-blue-600 hover:underline ml-1">
-                Gestión de Rúbricas
-              </a>
-              .
-            </p>
+            <div class="text-sm text-gray-600">
+              <p class="mb-2">No hay plantillas de rúbricas disponibles.</p>
+              <p>
+                Puedes crear plantillas en la sección de
+                <a href="/rubrics" class="text-blue-600 hover:underline ml-1 font-medium">
+                  Gestión de Rúbricas
+                </a>
+                .
+              </p>
+            </div>
           ) : (
-            <p class="mt-2">
-              Puedes crear rúbricas para este proyecto en la sección de
-              <a href="/rubrics" class="text-blue-600 hover:underline ml-1">
-                Gestión de Rúbricas
-              </a>
-              .
-            </p>
+            <div class="text-sm text-gray-600">
+              <p class="mb-2">
+                {projectId
+                  ? "No hay rúbricas específicas para este proyecto."
+                  : "No tienes rúbricas personales creadas."
+                }
+              </p>
+              <p>
+                Puedes crear rúbricas en la sección de
+                <a href="/rubrics" class="text-blue-600 hover:underline ml-1 font-medium">
+                  Gestión de Rúbricas
+                </a>
+                .
+              </p>
+              <p class="mt-3 text-xs text-gray-500">
+                💡 Tip: También puedes usar las plantillas disponibles cambiando a la pestaña "Plantillas"
+              </p>
+            </div>
           )}
         </div>
       ) : (

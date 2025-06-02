@@ -1,4 +1,4 @@
-import type { Handlers } from "$fresh/server.ts";
+import type { FreshContext } from "$fresh/server.ts";
 import { UserRole } from "../../../models/user.ts";
 import {
   deleteRubric,
@@ -8,9 +8,9 @@ import {
 } from "../../../services/rubricService.ts";
 import { getSession } from "../../../utils/session.ts";
 
-export const handler: Handlers = {
+export const handler = {
   // GET /api/rubrics/:id - Obtener una rúbrica por ID
-  async GET(req, ctx) {
+  async GET(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -36,9 +36,10 @@ export const handler: Handlers = {
       const isOwner = rubric.createdBy === session.userId;
       const isAdmin = session.role === UserRole.ADMIN;
       const isProductOwner = session.role === UserRole.PRODUCT_OWNER;
+      const isScrumMaster = session.role === UserRole.SCRUM_MASTER;
 
-      // Si no es plantilla y no es propietario ni admin/product owner, denegar acceso
-      if (!rubric.isTemplate && !isOwner && !isAdmin && !isProductOwner) {
+      // Si no es plantilla y no es propietario ni profesor, denegar acceso
+      if (!rubric.isTemplate && !isOwner && !isAdmin && !isProductOwner && !isScrumMaster) {
         return new Response(JSON.stringify({ error: "No autorizado para ver esta rúbrica" }), {
           status: 403,
           headers: { "Content-Type": "application/json" },
@@ -57,7 +58,7 @@ export const handler: Handlers = {
   },
 
   // PUT /api/rubrics/:id - Actualizar una rúbrica
-  async PUT(req, ctx) {
+  async PUT(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
@@ -83,8 +84,9 @@ export const handler: Handlers = {
       const isOwner = rubric.createdBy === session.userId;
       const isAdmin = session.role === UserRole.ADMIN;
       const isProductOwner = session.role === UserRole.PRODUCT_OWNER;
+      const isScrumMaster = session.role === UserRole.SCRUM_MASTER;
 
-      if (!isOwner && !isAdmin && !isProductOwner) {
+      if (!isOwner && !isAdmin && !isProductOwner && !isScrumMaster) {
         return new Response(
           JSON.stringify({ error: "No autorizado para actualizar esta rúbrica" }),
           {
@@ -114,7 +116,7 @@ export const handler: Handlers = {
   },
 
   // DELETE /api/rubrics/:id - Eliminar una rúbrica
-  async DELETE(req, ctx) {
+  async DELETE(req: Request, ctx: FreshContext) {
     const session = await getSession(req);
 
     if (!session) {
