@@ -8,6 +8,9 @@ import { UserRole } from "../../models/user.ts";
 import { getUserStoryById } from "../../models/userStory.ts";
 // import { Head } from "$fresh/runtime.ts";
 import { getSession } from "../../utils/session.ts";
+// Temporalmente comentado hasta perfeccionar el gráfico de burndown
+// import BurndownChart from "../../islands/Metrics/BurndownChart.tsx";
+// import BurndownDebug from "../../islands/Metrics/BurndownDebug.tsx";
 
 // Definir un tipo para UserStory que no sea nulo
 type UserStory = NonNullable<Awaited<ReturnType<typeof getUserStoryById>>>;
@@ -172,7 +175,17 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
 
           {/* Historias de usuario */}
           <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Historias de Usuario</h2>
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-2xl font-bold text-gray-800">Historias de Usuario</h2>
+              {canManageSprints && userStories.length > 0 && (
+                <a
+                  href={`/sprints/${sprint.id}/add-user-stories`}
+                  class="inline-block px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-md"
+                >
+                  + Añadir más historias
+                </a>
+              )}
+            </div>
             {userStories.length === 0 ? (
               <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
                 <p class="text-gray-600">No hay historias de usuario asignadas a este sprint.</p>
@@ -274,15 +287,44 @@ export default function SprintDetailPage({ data }: PageProps<SprintDetailPageDat
             )}
           </div>
 
-          {/* Burndown Chart (Placeholder) */}
+          {/* Burndown Chart - Temporalmente oculto hasta perfeccionar */}
+          {/*
           <div class="mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Burndown Chart</h2>
-            <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
-              <p class="text-gray-600">Aquí se mostrará el Burndown Chart del sprint.</p>
-            </div>
+            <BurndownChart
+              sprintId={sprint.id}
+              refreshInterval={300000} // Actualizar cada 5 minutos
+              width={800}
+              height={400}
+            />
           </div>
 
-          {/* Métricas del Sprint (Placeholder) */}
+          <div class="mb-8">
+            <BurndownDebug sprintId={sprint.id} />
+          </div>
+          */}
+
+          {/* Placeholder para el Burndown Chart - Completamente oculto */}
+          {/*
+          <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Gráfico de Burndown</h2>
+            <div class="bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+              <div class="text-gray-500">
+                <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Temporalmente Deshabilitado</h3>
+                <p class="text-gray-600">
+                  El gráfico de burndown está temporalmente deshabilitado mientras se perfecciona.
+                  <br />
+                  Próximamente estará disponible con métricas mejoradas.
+                </p>
+              </div>
+            </div>
+          </div>
+          */}
+
+          {/* Métricas del Sprint */}
           <div class="mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Métricas del Sprint</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">

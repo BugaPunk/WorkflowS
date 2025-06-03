@@ -19,7 +19,7 @@ export async function createRubric(data: Omit<Rubric, keyof Model>): Promise<Rub
   await kv.set([...RUBRIC_COLLECTIONS.RUBRICS, rubric.id], rubric);
   
   // Si está asociada a un proyecto, crear referencia
-  if (rubric.projectId) {
+  if (rubric.projectId && typeof rubric.projectId === 'string') {
     await kv.set([...RUBRIC_COLLECTIONS.RUBRICS_BY_PROJECT, rubric.projectId, rubric.id], rubric.id);
   }
   
@@ -176,7 +176,7 @@ export async function deleteRubric(id: string): Promise<boolean> {
   await kv.delete([...RUBRIC_COLLECTIONS.RUBRICS, id]);
   
   // Eliminar referencias
-  if (rubric.projectId) {
+  if (rubric.projectId && typeof rubric.projectId === 'string') {
     await kv.delete([...RUBRIC_COLLECTIONS.RUBRICS_BY_PROJECT, rubric.projectId, id]);
   }
   

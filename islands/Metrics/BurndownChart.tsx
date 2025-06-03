@@ -23,18 +23,27 @@ export default function BurndownChart({
   const [data, setData] = useState<BurndownData[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [recalculating, setRecalculating] = useState<boolean>(false);
 
   // Función para cargar los datos
   const loadData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/sprints/${sprintId}/burndown`);
+      const response = await fetch(`/api/sprints/${sprintId}/burndown`, {
+        credentials: 'same-origin', // Incluir cookies de sesión
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
 
       if (!response.ok) {
-        throw new Error(`Error al cargar datos: ${response.status}`);
+        const errorData = await response.json();
+        console.error("Error de API:", errorData);
+        throw new Error(`Error al cargar datos: ${response.status} - ${errorData.error || 'Error desconocido'}`);
       }
 
       const burndownData = await response.json();
+      console.log("Datos de burndown recibidos:", burndownData);
       setData(burndownData);
       setError(null);
     } catch (err) {
@@ -42,6 +51,38 @@ export default function BurndownChart({
       setError("No se pudieron cargar los datos del gráfico de burndown");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Función para recalcular el burndown
+  const recalculateBurndown = async () => {
+    try {
+      setRecalculating(true);
+      const response = await fetch(`/api/sprints/${sprintId}/recalculate-burndown`, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error al recalcular burndown:", errorData);
+        throw new Error(`Error al recalcular: ${response.status} - ${errorData.error || 'Error desconocido'}`);
+      }
+
+      const result = await response.json();
+      console.log("Burndown recalculado:", result);
+
+      // Recargar los datos después de recalcular
+      await loadData();
+    } catch (err) {
+      console.error("Error al recalcular burndown:", err);
+      setError("No se pudo recalcular el gráfico de burndown");
+    } finally {
+      setRecalculating(false);
     }
   };
 
@@ -80,13 +121,51 @@ export default function BurndownChart({
     );
   }
 
-  // Si no hay datos, mostrar mensaje
+  // Si no hay datos, mostrar datos de ejemplo
   if (!data || data.length === 0) {
+    // Generar datos de ejemplo para demostración
+    const demoData: BurndownData[] = [];
+    const today = new Date();
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() - 10); // Sprint comenzó hace 10 días
+    
+    const totalPoints = 26; // Puntos totales de ejemplo
+    const sprintDuration = 14; // Duración del sprint en días
+    const idealBurndownPerDay = totalPoints / sprintDuration;
+    
+    // Generar datos para los últimos 10 días
+    for (let day = 0; day <= 10; day++) {
+      const currentDate = new Date(startDate);
+      currentDate.setDate(startDate.getDate() + day);
+      
+      // Calcular puntos restantes (con algo de variación aleatoria)
+      const idealRemaining = totalPoints - (day * idealBurndownPerDay);
+      const randomFactor = Math.random() * 0.2 - 0.1; // Entre -10% y +10%
+      const remaining = Math.max(0, idealRemaining * (1 + randomFactor));
+      
+      // Calcular puntos completados
+      const completed = totalPoints - remaining;
+      
+      demoData.push({
+        date: currentDate.toISOString().split('T')[0],
+        remaining: Math.round(remaining * 10) / 10,
+        ideal: Math.round(idealRemaining * 10) / 10,
+        completed: Math.round(completed * 10) / 10
+      });
+    }
+    
+    // Usar los datos de ejemplo
+    setData(demoData);
+    
+    // Mostrar mensaje de que son datos de ejemplo
     return (
       <div class="bg-white p-4 rounded-lg shadow">
-        <h3 class="text-lg font-semibold mb-4">Gráfico de Burndown</h3>
+        <h3 class="text-lg font-semibold mb-4">Gráfico de Burndown (Datos de ejemplo)</h3>
+        <div class="bg-yellow-50 border border-yellow-200 text-yellow-700 px-4 py-2 rounded mb-4">
+          <p>Mostrando datos de ejemplo. No hay datos reales disponibles para este sprint.</p>
+        </div>
         <div class="flex justify-center items-center" style={{ height: `${height}px` }}>
-          <div class="text-gray-500">No hay datos disponibles</div>
+          <div class="text-gray-500">Cargando datos de ejemplo...</div>
         </div>
       </div>
     );
@@ -259,15 +338,29 @@ export default function BurndownChart({
         </text>
       </svg>
 
-      {/* Botón de actualización */}
-      <div class="mt-2 text-right">
-        <button
-          onClick={loadData}
-          disabled={loading}
-          class="text-sm text-blue-500 hover:text-blue-700"
-        >
-          {loading ? "Actualizando..." : "Actualizar"}
-        </button>
+      {/* Botones de actualización y recálculo */}
+      <div class="mt-2 flex justify-between items-center">
+        <div class="text-xs text-gray-500">
+          {data && data.length > 0 && (
+            <span>Última actualización: {new Date().toLocaleTimeString()}</span>
+          )}
+        </div>
+        <div class="space-x-2">
+          <button
+            onClick={loadData}
+            disabled={loading || recalculating}
+            class="text-sm text-blue-500 hover:text-blue-700 disabled:text-gray-400"
+          >
+            {loading ? "Actualizando..." : "Actualizar"}
+          </button>
+          <button
+            onClick={recalculateBurndown}
+            disabled={loading || recalculating}
+            class="text-sm text-orange-500 hover:text-orange-700 disabled:text-gray-400 border border-orange-300 px-2 py-1 rounded"
+          >
+            {recalculating ? "Recalculando..." : "Recalcular"}
+          </button>
+        </div>
       </div>
     </div>
   );

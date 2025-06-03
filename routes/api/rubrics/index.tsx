@@ -106,12 +106,21 @@ export const handler = {
 
     try {
       const body = await req.json();
+      console.log("Datos recibidos:", JSON.stringify(body, null, 2));
+
+      // Asegurarse de que createdBy esté presente
+      if (!body.createdBy) {
+        body.createdBy = session.userId;
+      }
+      
+      // Convertir projectId null a undefined si es necesario
+      if (body.projectId === null) {
+        body.projectId = undefined;
+      }
 
       // Validar datos con el esquema
-      const validatedData = RubricSchema.parse({
-        ...body,
-        createdBy: session.userId,
-      });
+      const validatedData = RubricSchema.parse(body);
+      console.log("Datos validados:", JSON.stringify(validatedData, null, 2));
 
       // Crear la rúbrica
       const rubric = await createRubric(validatedData);
@@ -121,9 +130,13 @@ export const handler = {
         headers: { "Content-Type": "application/json" },
       });
     } catch (error) {
+      console.error("Error al crear rúbrica:", error);
+      
       // Determinar si es un error de validación o de otro tipo
-      if (error.errors) {
-        return new Response(JSON.stringify({ error: "Datos inválidos", details: error.errors }), {
+      if (error.errors || error.issues) {
+        const details = error.errors || error.issues;
+        console.error("Detalles del error de validación:", JSON.stringify(details, null, 2));
+        return new Response(JSON.stringify({ error: "Datos inválidos", details }), {
           status: 400,
           headers: { "Content-Type": "application/json" },
         });

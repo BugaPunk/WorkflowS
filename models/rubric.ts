@@ -31,7 +31,7 @@ export type RubricCriterion = z.infer<typeof RubricCriterionSchema>;
 export const RubricSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
   description: z.string().optional(),
-  projectId: z.string().optional(),
+  projectId: z.string().optional().nullable(),
   createdBy: z.string(),
   criteria: z.array(RubricCriterionSchema).min(1, "Debe haber al menos un criterio"),
   isTemplate: z.boolean().default(false),
@@ -74,6 +74,7 @@ export function createRubricWithDefaults(data: Partial<Omit<Rubric, keyof Model>
   const defaultData: Omit<Rubric, keyof Model> = {
     name: "Nueva Rúbrica",
     description: "",
+    projectId: undefined,
     createdBy: "",
     criteria: [defaultCriterion],
     isTemplate: false,

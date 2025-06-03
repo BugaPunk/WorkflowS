@@ -5,6 +5,7 @@ import type { Project } from "../../models/project.ts";
 import { getProjectById } from "../../models/project.ts";
 import type { User, UserRole } from "../../models/user.ts";
 import { getUserById } from "../../models/user.ts";
+import { getSprintById } from "../../models/sprint.ts";
 import {
   type UserStory,
   UserStoryPriority,
@@ -44,12 +45,21 @@ export const handler = {
     const project = await getProjectById(userStory.projectId);
 
     // Obtener el creador usando la función del modelo
-    const creator = await getUserById(userStory.createdBy);
+    let creator = null;
+    if (userStory.createdBy && typeof userStory.createdBy === 'string') {
+      creator = await getUserById(userStory.createdBy);
+    }
 
     // Obtener el usuario asignado si existe
     let assignedUser = null;
-    if (userStory.assignedTo) {
+    if (userStory.assignedTo && typeof userStory.assignedTo === 'string') {
       assignedUser = await getUserById(userStory.assignedTo);
+    }
+
+    // Obtener el sprint si existe
+    let sprint = null;
+    if (userStory.sprintId && typeof userStory.sprintId === 'string') {
+      sprint = await getSprintById(userStory.sprintId);
     }
 
     // Asegurarnos de que la sesión tenga el formato correcto para MainLayout
@@ -60,7 +70,7 @@ export const handler = {
       role: session.role as UserRole, // Aseguramos que el tipo sea UserRole
     };
 
-    return ctx.render({ session: sessionData, userStory, project, creator, assignedUser });
+    return ctx.render({ session: sessionData, userStory, project, creator, assignedUser, sprint });
   },
 };
 
@@ -75,10 +85,11 @@ interface UserStoryDetailProps {
   project: Project | null;
   creator: User | null;
   assignedUser: User | null;
+  sprint: any | null; // Agregamos el sprint
 }
 
 export default function UserStoryDetailPage({ data }: { data: UserStoryDetailProps }) {
-  const { session, userStory, project, creator, assignedUser } = data;
+  const { session, userStory, project, creator, assignedUser, sprint } = data;
 
   // Obtener el nombre de visualización de la prioridad
   const getPriorityDisplay = (priority: UserStoryPriority) => {
@@ -199,12 +210,22 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                 Volver
               </Button>
               {(session.role === "admin" || session.role === "product_owner") && (
-                <a
-                  href={`/user-stories/edit/${userStory.id}`}
-                  class="inline-block px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors"
-                >
-                  Editar
-                </a>
+                <>
+                  <a
+                    href={`/user-stories/edit/${userStory.id}`}
+                    class="inline-block px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors"
+                  >
+                    Editar
+                  </a>
+                  {!sprint && (
+                    <a
+                      href={`/user-stories/${userStory.id}/assign-sprint`}
+                      class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors ml-2"
+                    >
+                      Asignar a Sprint
+                    </a>
+                  )}
+                </>
               )}
             </div>
           </div>
@@ -264,9 +285,17 @@ export default function UserStoryDetailPage({ data }: { data: UserStoryDetailPro
                       <span class="font-medium text-gray-700">Puntos:</span>{" "}
                       {userStory.points || "No estimado"}
                     </li>
-                    {userStory.sprintId && (
+                    {sprint ? (
                       <li class="mb-2">
-                        <span class="font-medium text-gray-700">Sprint:</span> {userStory.sprintId}
+                        <span class="font-medium text-gray-700">Asignado a Sprint:</span>{" "}
+                        <a href={`/sprints/${sprint.id}`} class="text-blue-600 hover:underline">
+                          {sprint.name}
+                        </a>
+                      </li>
+                    ) : (
+                      <li class="mb-2">
+                        <span class="font-medium text-gray-700">Asignado a Sprint:</span>{" "}
+                        <span class="text-gray-500">No asignado a ningún sprint</span>
                       </li>
                     )}
                     <li class="mb-2">

@@ -9,6 +9,7 @@ import * as $admin_index from "./routes/admin/index.tsx";
 import * as $admin_users from "./routes/admin/users.tsx";
 import * as $api_admin_users from "./routes/api/admin/users.ts";
 import * as $api_admin_users_delete from "./routes/api/admin/users/delete.ts";
+import * as $api_auth_session from "./routes/api/auth/session.tsx";
 import * as $api_comments_taskId_ from "./routes/api/comments/[taskId].ts";
 import * as $api_conversations_id_messages from "./routes/api/conversations/[id]/messages.ts";
 import * as $api_conversations_index from "./routes/api/conversations/index.ts";
@@ -36,8 +37,10 @@ import * as $api_rubrics_id_duplicate from "./routes/api/rubrics/[id]/duplicate.
 import * as $api_rubrics_index from "./routes/api/rubrics/index.tsx";
 import * as $api_session from "./routes/api/session.ts";
 import * as $api_sprints_id_ from "./routes/api/sprints/[id].ts";
+import * as $api_sprints_id_burndown_debug from "./routes/api/sprints/[id]/burndown-debug.ts";
 import * as $api_sprints_id_burndown from "./routes/api/sprints/[id]/burndown.ts";
 import * as $api_sprints_id_metrics from "./routes/api/sprints/[id]/metrics.ts";
+import * as $api_sprints_id_recalculate_burndown from "./routes/api/sprints/[id]/recalculate-burndown.ts";
 import * as $api_sprints_id_user_stories from "./routes/api/sprints/[id]/user-stories.ts";
 import * as $api_sprints_id_user_stories_userStoryId_ from "./routes/api/sprints/[id]/user-stories/[userStoryId].ts";
 import * as $api_sprints_id_velocity from "./routes/api/sprints/[id]/velocity.ts";
@@ -92,6 +95,7 @@ import * as $tasks_id_ from "./routes/tasks/[id].tsx";
 import * as $test_sidebar from "./routes/test-sidebar.tsx";
 import * as $unauthorized from "./routes/unauthorized.tsx";
 import * as $user_stories_id_ from "./routes/user-stories/[id].tsx";
+import * as $user_stories_id_assign_sprint from "./routes/user-stories/[id]/assign-sprint.tsx";
 import * as $user_stories_id_tasks from "./routes/user-stories/[id]/tasks.tsx";
 import * as $user_stories_edit_id_ from "./routes/user-stories/edit/[id].tsx";
 import * as $user_stories_index from "./routes/user-stories/index.tsx";
@@ -134,6 +138,7 @@ import * as $HeaderNav from "./islands/HeaderNav.tsx";
 import * as $LoginForm from "./islands/LoginForm.tsx";
 import * as $LogoutButton from "./islands/LogoutButton.tsx";
 import * as $Metrics_BurndownChart from "./islands/Metrics/BurndownChart.tsx";
+import * as $Metrics_BurndownDebug from "./islands/Metrics/BurndownDebug.tsx";
 import * as $Metrics_ProjectHealthGauge from "./islands/Metrics/ProjectHealthGauge.tsx";
 import * as $Metrics_TeamVelocityChart from "./islands/Metrics/TeamVelocityChart.tsx";
 import * as $Metrics_WorkDistributionChart from "./islands/Metrics/WorkDistributionChart.tsx";
@@ -218,6 +223,7 @@ const manifest = {
     "./routes/admin/users.tsx": $admin_users,
     "./routes/api/admin/users.ts": $api_admin_users,
     "./routes/api/admin/users/delete.ts": $api_admin_users_delete,
+    "./routes/api/auth/session.tsx": $api_auth_session,
     "./routes/api/comments/[taskId].ts": $api_comments_taskId_,
     "./routes/api/conversations/[id]/messages.ts":
       $api_conversations_id_messages,
@@ -247,8 +253,12 @@ const manifest = {
     "./routes/api/rubrics/index.tsx": $api_rubrics_index,
     "./routes/api/session.ts": $api_session,
     "./routes/api/sprints/[id].ts": $api_sprints_id_,
+    "./routes/api/sprints/[id]/burndown-debug.ts":
+      $api_sprints_id_burndown_debug,
     "./routes/api/sprints/[id]/burndown.ts": $api_sprints_id_burndown,
     "./routes/api/sprints/[id]/metrics.ts": $api_sprints_id_metrics,
+    "./routes/api/sprints/[id]/recalculate-burndown.ts":
+      $api_sprints_id_recalculate_burndown,
     "./routes/api/sprints/[id]/user-stories.ts": $api_sprints_id_user_stories,
     "./routes/api/sprints/[id]/user-stories/[userStoryId].ts":
       $api_sprints_id_user_stories_userStoryId_,
@@ -305,6 +315,8 @@ const manifest = {
     "./routes/test-sidebar.tsx": $test_sidebar,
     "./routes/unauthorized.tsx": $unauthorized,
     "./routes/user-stories/[id].tsx": $user_stories_id_,
+    "./routes/user-stories/[id]/assign-sprint.tsx":
+      $user_stories_id_assign_sprint,
     "./routes/user-stories/[id]/tasks.tsx": $user_stories_id_tasks,
     "./routes/user-stories/edit/[id].tsx": $user_stories_edit_id_,
     "./routes/user-stories/index.tsx": $user_stories_index,
@@ -354,6 +366,7 @@ const manifest = {
     "./islands/LoginForm.tsx": $LoginForm,
     "./islands/LogoutButton.tsx": $LogoutButton,
     "./islands/Metrics/BurndownChart.tsx": $Metrics_BurndownChart,
+    "./islands/Metrics/BurndownDebug.tsx": $Metrics_BurndownDebug,
     "./islands/Metrics/ProjectHealthGauge.tsx": $Metrics_ProjectHealthGauge,
     "./islands/Metrics/TeamVelocityChart.tsx": $Metrics_TeamVelocityChart,
     "./islands/Metrics/WorkDistributionChart.tsx":

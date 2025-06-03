@@ -15,6 +15,15 @@ interface Error404PageData {
 
 export const handler: Handlers<Error404PageData> = {
   async GET(req, ctx) {
+    // Verificar si es una solicitud de API
+    const url = new URL(req.url);
+    if (url.pathname.startsWith('/api/')) {
+      return new Response(JSON.stringify({ error: "Endpoint no encontrado" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    
     const session = await getSession(req);
     // Convertir el tipo de session para que coincida con la interfaz Error404PageData
     const typedSession = session
@@ -27,6 +36,43 @@ export const handler: Handlers<Error404PageData> = {
       : undefined;
 
     return ctx.render({ session: typedSession });
+  },
+  
+  // Manejar otros métodos HTTP para rutas de API
+  async POST(req, _ctx) {
+    const url = new URL(req.url);
+    if (url.pathname.startsWith('/api/')) {
+      return new Response(JSON.stringify({ error: "Endpoint no encontrado" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    
+    return new Response(null, { status: 404 });
+  },
+  
+  async PUT(req, _ctx) {
+    const url = new URL(req.url);
+    if (url.pathname.startsWith('/api/')) {
+      return new Response(JSON.stringify({ error: "Endpoint no encontrado" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    
+    return new Response(null, { status: 404 });
+  },
+  
+  async DELETE(req, _ctx) {
+    const url = new URL(req.url);
+    if (url.pathname.startsWith('/api/')) {
+      return new Response(JSON.stringify({ error: "Endpoint no encontrado" }), {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    
+    return new Response(null, { status: 404 });
   },
 };
 

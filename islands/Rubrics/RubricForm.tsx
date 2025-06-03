@@ -286,16 +286,33 @@ export default function RubricForm({
       const url = rubricId ? `/api/rubrics/${rubricId}` : "/api/rubrics";
       const method = rubricId ? "PUT" : "POST";
 
+      // Obtener la sesión actual para asegurar que tenemos el userId
+      const sessionResponse = await fetch("/api/auth/session");
+      if (!sessionResponse.ok) {
+        throw new Error("No se pudo obtener la información de sesión");
+      }
+      
+      const sessionData = await sessionResponse.json();
+      
+      // Preparar los datos para enviar
+      const rubricToSend = {
+        ...rubric,
+        createdBy: sessionData.userId,
+        // Asegurarse de que projectId sea undefined en lugar de null si no está presente
+        projectId: rubric.projectId || undefined
+      };
+
       const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(rubric),
+        body: JSON.stringify(rubricToSend),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.error("Error response:", errorData);
         throw new Error(errorData.error || `Error al guardar la rúbrica: ${response.statusText}`);
       }
 

@@ -1,6 +1,6 @@
 import { getSprintById, Sprint, SprintStatus } from "@/models/sprint.ts";
 import { getUserStoriesBySprintId, UserStory, UserStoryStatus } from "@/models/userStory.ts";
-import { getUserStoryTasks as getTasksByUserStoryId, Task, TaskStatus } from "@/models/task.ts";
+import { getUserStoryTasks, Task, TaskStatus } from "@/models/task.ts";
 import {
   SprintMetric,
   SprintMetricData,
@@ -21,8 +21,23 @@ import {
 } from "@/models/projectMetric.ts";
 import { getProjectById } from "@/models/project.ts";
 
-// Calcular métricas de burndown para un sprint
+// Función para recalcular burndown (limpia métricas existentes)
+export async function recalculateBurndown(sprintId: string): Promise<SprintMetric[]> {
+  // Eliminar métricas existentes para este sprint
+  const existingMetrics = await getSprintMetrics(sprintId);
+  // Aquí deberías implementar la eliminación de métricas existentes
+  // Por ahora, simplemente calculamos nuevas métricas
+
+  return await calculateBurndownFresh(sprintId);
+}
+
+// Calcular métricas de burndown para un sprint (usa métricas existentes si están disponibles)
 export async function calculateBurndown(sprintId: string): Promise<SprintMetric[]> {
+  return await calculateBurndownFresh(sprintId);
+}
+
+// Función interna para calcular burndown desde cero
+async function calculateBurndownFresh(sprintId: string): Promise<SprintMetric[]> {
   // Obtener el sprint
   const sprint = await getSprintById(sprintId);
   if (!sprint) {
@@ -43,7 +58,7 @@ export async function calculateBurndown(sprintId: string): Promise<SprintMetric[
   // Obtener todas las tareas de las historias de usuario
   const allTasks: Task[] = [];
   for (const story of userStories) {
-    const tasks = await getTasksByUserStoryId(story.id);
+    const tasks = await getUserStoryTasks(story.id);
     allTasks.push(...tasks);
   }
 
@@ -67,7 +82,7 @@ export async function calculateBurndown(sprintId: string): Promise<SprintMetric[
   // Calcular métricas para cada día del sprint
   for (let day = 0; day <= sprintDurationDays; day++) {
     const currentDate = new Date(startDate + day * 24 * 60 * 60 * 1000);
-    const currentDateTimestamp = currentDate.setHours(0, 0, 0, 0);
+    const currentDateTimestamp = new Date(currentDate).setHours(0, 0, 0, 0);
 
     // Verificar si ya existe una métrica para este día
     const existingMetric = existingMetrics.find(
@@ -80,7 +95,7 @@ export async function calculateBurndown(sprintId: string): Promise<SprintMetric[
     }
 
     // Calcular puntos completados hasta este día
-    const completedPoints = calculateCompletedPointsUntilDate(userStories, allTasks, currentDate);
+    const completedPoints = calculateCompletedPointsUntilDate(userStories, allTasks, new Date(currentDateTimestamp));
 
     // Calcular puntos restantes
     const remainingPoints = totalPoints - completedPoints;
@@ -88,7 +103,7 @@ export async function calculateBurndown(sprintId: string): Promise<SprintMetric[
     // Calcular tareas completadas y restantes
     const tasksCompleted = allTasks.filter(
       (task) => task.status === TaskStatus.DONE &&
-      (task.updatedAt || task.createdAt) <= currentDate.getTime()
+      (task.updatedAt || task.createdAt) <= currentDateTimestamp
     ).length;
 
     const tasksRemaining = allTasks.length - tasksCompleted;
@@ -123,11 +138,13 @@ function calculateCompletedPointsUntilDate(
   tasks: Task[],
   date: Date
 ): number {
+  const dateTimestamp = date.getTime();
+
   // Filtrar historias de usuario completadas hasta la fecha
   const completedStories = userStories.filter(
     (story) =>
       story.status === UserStoryStatus.DONE &&
-      (story.updatedAt || story.createdAt) <= date.getTime()
+      (story.updatedAt || story.createdAt) <= dateTimestamp
   );
 
   // Calcular puntos de las historias completadas
@@ -135,7 +152,7 @@ function calculateCompletedPointsUntilDate(
 
   // Para historias no completadas, calcular proporción de tareas completadas
   const incompleteStories = userStories.filter(
-    (story) => !completedStories.includes(story)
+    (story) => story.status !== UserStoryStatus.DONE
   );
 
   let additionalPoints = 0;
@@ -144,22 +161,27 @@ function calculateCompletedPointsUntilDate(
     // Obtener tareas de esta historia
     const storyTasks = tasks.filter((task) => task.userStoryId === story.id);
 
-    if (storyTasks.length === 0) continue;
+    if (storyTasks.length === 0) {
+      // Si no hay tareas, no se puede calcular progreso parcial
+      continue;
+    }
 
-    // Calcular proporción de tareas completadas
+    // Calcular proporción de tareas completadas hasta la fecha
     const completedTasks = storyTasks.filter(
       (task) =>
         task.status === TaskStatus.DONE &&
-        (task.updatedAt || task.createdAt) <= date.getTime()
+        (task.updatedAt || task.createdAt) <= dateTimestamp
     );
 
     const completionRatio = completedTasks.length / storyTasks.length;
 
-    // Añadir puntos proporcionales
-    additionalPoints += (story.points || 0) * completionRatio;
+    // Añadir puntos proporcionales solo si hay progreso
+    if (completionRatio > 0) {
+      additionalPoints += (story.points || 0) * completionRatio;
+    }
   }
 
-  return completedPoints + additionalPoints;
+  return Math.round((completedPoints + additionalPoints) * 100) / 100; // Redondear a 2 decimales
 }
 
 // Calcular velocidad del sprint
@@ -206,7 +228,7 @@ export async function calculateUserContributions(
   // Obtener todas las tareas de las historias de usuario
   const allTasks: Task[] = [];
   for (const story of userStories) {
-    const tasks = await getTasksByUserStoryId(story.id);
+    const tasks = await getUserStoryTasks(story.id);
     allTasks.push(...tasks);
   }
 
