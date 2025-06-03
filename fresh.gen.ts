@@ -148,10 +148,10 @@ import * as $ProjectCard from "./islands/ProjectCard.tsx";
 import * as $ProjectModals_AssignProjectModal from "./islands/ProjectModals/AssignProjectModal.tsx";
 import * as $ProjectModals_CreateProjectModal from "./islands/ProjectModals/CreateProjectModal.tsx";
 import * as $ProjectModals_EditProjectModal from "./islands/ProjectModals/EditProjectModal.tsx";
+import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $ProjectsHeader from "./islands/ProjectsHeader.tsx";
 import * as $ProjectsList from "./islands/ProjectsList.tsx";
 import * as $ProjectsStatusBar from "./islands/ProjectsStatusBar.tsx";
-import * as $Projects_ProjectMembersList from "./islands/Projects/ProjectMembersList.tsx";
 import * as $RegisterForm from "./islands/RegisterForm.tsx";
 import * as $Reports_ReportGenerator from "./islands/Reports/ReportGenerator.tsx";
 import * as $Reports_ReportsList from "./islands/Reports/ReportsList.tsx";
@@ -372,10 +372,10 @@ const manifest = {
       $ProjectModals_CreateProjectModal,
     "./islands/ProjectModals/EditProjectModal.tsx":
       $ProjectModals_EditProjectModal,
+    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/ProjectsHeader.tsx": $ProjectsHeader,
     "./islands/ProjectsList.tsx": $ProjectsList,
     "./islands/ProjectsStatusBar.tsx": $ProjectsStatusBar,
-    "./islands/Projects/ProjectMembersList.tsx": $Projects_ProjectMembersList,
     "./islands/RegisterForm.tsx": $RegisterForm,
     "./islands/Reports/ReportGenerator.tsx": $Reports_ReportGenerator,
     "./islands/Reports/ReportsList.tsx": $Reports_ReportsList,
