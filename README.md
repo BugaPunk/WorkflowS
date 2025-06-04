@@ -1,6 +1,7 @@
 # WorkflowS - Plataforma de Gestión de Proyectos Scrum
 
 WorkflowS es una plataforma moderna de gestión de proyectos diseñada específicamente para equipos que utilizan la metodología Scrum. Nuestra plataforma facilita la colaboración, el seguimiento del progreso y la gestión eficiente de proyectos ágiles.
+Pro Ronald Choque
 
 ## Características Principales
 
