@@ -57,8 +57,17 @@ export default function Modal({
     };
   }, [show, closeable, onClose]);
 
-  // Manejar clic en el fondo para cerrar
-  const handleBackdropClick = (e: MouseEvent) => {
+  // Manejar clic o tecla en el fondo para cerrar
+  const handleBackdropInteraction = (e: MouseEvent | KeyboardEvent) => {
+    // Para eventos de teclado, solo procesar si es Enter o Space
+    if (e.type === "keydown") {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key !== "Enter" && keyEvent.key !== " ") {
+        return;
+      }
+      e.preventDefault(); // Prevenir scroll con Space
+    }
+
     if (closeable && e.target === e.currentTarget) {
       onClose();
     }
@@ -77,7 +86,8 @@ export default function Modal({
     <dialog
       ref={dialogRef}
       class="z-50 m-0 min-h-full min-w-full overflow-y-auto bg-transparent backdrop:bg-transparent"
-      onClick={handleBackdropClick}
+      onClick={handleBackdropInteraction}
+      onKeyDown={handleBackdropInteraction}
     >
       <div class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50">
         {/* Fondo oscuro con animación */}
@@ -86,6 +96,19 @@ export default function Modal({
             show ? "opacity-100" : "opacity-0"
           }`}
           onClick={closeable ? onClose : undefined}
+          onKeyDown={
+            closeable
+              ? (e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onClose();
+                  }
+                }
+              : undefined
+          }
+          tabIndex={closeable ? 0 : -1}
+          role={closeable ? "button" : undefined}
+          aria-label={closeable ? "Cerrar modal" : undefined}
         >
           <div class="absolute inset-0 bg-gray-500 opacity-75" />
         </div>

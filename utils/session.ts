@@ -12,7 +12,7 @@ export interface Session {
   expiresAt: number;
 }
 
-// Get session from cookie
+// Obtener sesión por cookie
 export async function getSession(req: Request): Promise<Session | null> {
   try {
     // Get session ID from cookie
@@ -50,7 +50,7 @@ export interface FreshContextWithSession extends FreshContext {
   session?: Session;
 }
 
-// Create a middleware to check if user is authenticated
+// Crear un middleware para verificar si el usuario está autenticado
 export function requireAuth(
   handler: (req: Request, ctx: FreshContextWithSession) => Response | Promise<Response>
 ) {
@@ -66,9 +66,8 @@ export function requireAuth(
       });
     }
 
-    // Add session to context
+    // Agregar la sesión al contexto
     ctx.session = session;
-
     return handler(req, ctx);
   };
 }
