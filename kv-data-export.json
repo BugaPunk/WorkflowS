@@ -1,0 +1,2654 @@
+{
+  "users": [
+    {
+      "key": [
+        "users",
+        "0924ff4a-f0ab-4481-addb-23a33d28d9e7"
+      ],
+      "value": {
+        "username": "prof.martinez",
+        "email": "martinez@universidad.edu",
+        "passwordHash": "00624b02e1f9b996a3278f559d5d55313552ad2c0bafc82adfd975c12df61eaf",
+        "firstName": "María",
+        "lastName": "Martínez",
+        "role": "admin",
+        "id": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "createdAt": 1748958531493,
+        "updatedAt": 1748958531493
+      }
+    },
+    {
+      "key": [
+        "users",
+        "0cf26068-d790-4777-b9ad-bee3a24208c3"
+      ],
+      "value": {
+        "username": "dev.gonzalez",
+        "email": "gonzalez@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "María",
+        "lastName": "González",
+        "role": "product_owner",
+        "id": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "createdAt": 1748958531502,
+        "updatedAt": 1749041172484
+      }
+    },
+    {
+      "key": [
+        "users",
+        "115e5248-f8b1-46eb-9da7-b58228352cbd"
+      ],
+      "value": {
+        "username": "dev.torres",
+        "email": "torres@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "Laura",
+        "lastName": "Torres",
+        "role": "scrum_master",
+        "id": "115e5248-f8b1-46eb-9da7-b58228352cbd",
+        "createdAt": 1748958531506,
+        "updatedAt": 1749041177132
+      }
+    },
+    {
+      "key": [
+        "users",
+        "14228f6e-b5b8-443d-80cc-1709557729eb"
+      ],
+      "value": {
+        "username": "dev.castro",
+        "email": "castro@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "Sofia",
+        "lastName": "Castro",
+        "role": "team_developer",
+        "id": "14228f6e-b5b8-443d-80cc-1709557729eb",
+        "createdAt": 1748958531509,
+        "updatedAt": 1748958531509
+      }
+    },
+    {
+      "key": [
+        "users",
+        "1c580dc2-f1f8-485a-80f5-46cdc605bedd"
+      ],
+      "value": {
+        "username": "sm.lopez",
+        "email": "lopez@universidad.edu",
+        "passwordHash": "3982ce84742602d61bc61f9ebde476d007cf6e5a7ca13201c8a1b5d843d38382",
+        "firstName": "Luis",
+        "lastName": "López",
+        "role": "scrum_master",
+        "id": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+        "createdAt": 1748958531498,
+        "updatedAt": 1748958531498
+      }
+    },
+    {
+      "key": [
+        "users",
+        "481db4fd-af03-4705-ac99-ce1f693cf750"
+      ],
+      "value": {
+        "username": "po.garcia",
+        "email": "garcia@universidad.edu",
+        "passwordHash": "cc0f25ce64c33587c9ef394fe47823c400605de89955c1e7d593c4b54e2ef632",
+        "firstName": "Carlos",
+        "lastName": "García",
+        "role": "product_owner",
+        "id": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "createdAt": 1748958531496,
+        "updatedAt": 1748958531496
+      }
+    },
+    {
+      "key": [
+        "users",
+        "7ce49763-7c6d-48a8-881e-6273892b093c"
+      ],
+      "value": {
+        "username": "dev.sanchez",
+        "email": "sanchez@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "Pedro",
+        "lastName": "Sánchez",
+        "role": "team_developer",
+        "id": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "createdAt": 1748958531504,
+        "updatedAt": 1748958531504
+      }
+    },
+    {
+      "key": [
+        "users",
+        "c6fb4fb9-3646-4791-b1da-c5cbff26bce5"
+      ],
+      "value": {
+        "username": "dev.perez",
+        "email": "perez@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "Juan",
+        "lastName": "Pérez",
+        "role": "team_developer",
+        "id": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "createdAt": 1748958531500,
+        "updatedAt": 1748958531500
+      }
+    },
+    {
+      "key": [
+        "users",
+        "c87de8a6-7f93-46c0-bd18-cf697e744594"
+      ],
+      "value": {
+        "username": "dev.morales",
+        "email": "morales@estudiante.edu",
+        "passwordHash": "87274af01876341455b32d805946f272871bb42effa6604dccf28bb027afa82b",
+        "firstName": "Diego",
+        "lastName": "Morales",
+        "role": "team_developer",
+        "id": "c87de8a6-7f93-46c0-bd18-cf697e744594",
+        "createdAt": 1748958531507,
+        "updatedAt": 1748958531507
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "key": [
+        "users",
+        "sessions",
+        "1119f5b2-77f4-43e5-b998-512038c55a7e"
+      ],
+      "value": {
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "username": "prof.martinez",
+        "email": "martinez@universidad.edu",
+        "role": "admin",
+        "createdAt": 1748958655698,
+        "expiresAt": 1749563455698
+      }
+    },
+    {
+      "key": [
+        "users",
+        "sessions",
+        "3a38f068-3595-4a07-864a-22366dd24af2"
+      ],
+      "value": {
+        "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "username": "dev.gonzalez",
+        "email": "gonzalez@estudiante.edu",
+        "role": "product_owner",
+        "createdAt": 1749042093270,
+        "expiresAt": 1749646893270
+      }
+    }
+  ],
+  "projects": [
+    {
+      "key": [
+        "projects",
+        "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"
+      ],
+      "value": {
+        "name": "Sistema de Gestión Académica",
+        "description": "Desarrollo de un sistema web para gestionar estudiantes, cursos y calificaciones de la universidad.",
+        "status": "in_progress",
+        "startDate": 1746366531511,
+        "endDate": 1754142531511,
+        "createdBy": "admin",
+        "id": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdAt": 1748958531511,
+        "updatedAt": 1748958531511,
+        "members": [
+          {
+            "userId": "481db4fd-af03-4705-ac99-ce1f693cf750",
+            "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+            "role": "product_owner",
+            "id": "538b7333-d8c1-4ef5-91e8-9348533ff63e",
+            "createdAt": 1748958531512,
+            "updatedAt": 1748958531512
+          },
+          {
+            "userId": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+            "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+            "role": "scrum_master",
+            "id": "db17984b-f96f-40a3-9810-319e4fa89896",
+            "createdAt": 1748958531514,
+            "updatedAt": 1748958531514
+          },
+          {
+            "userId": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+            "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+            "role": "team_member",
+            "id": "03170c97-8d13-4aff-9420-772c165a0fd9",
+            "createdAt": 1748958531517,
+            "updatedAt": 1748958531517
+          },
+          {
+            "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+            "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+            "role": "team_member",
+            "id": "7ef2903a-16bc-44d0-99c7-5e2e3aa4e17c",
+            "createdAt": 1748958531520,
+            "updatedAt": 1748958531520
+          },
+          {
+            "userId": "7ce49763-7c6d-48a8-881e-6273892b093c",
+            "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+            "role": "team_member",
+            "id": "c3e3970b-fdc4-46fb-b9d7-25653356de96",
+            "createdAt": 1748958531523,
+            "updatedAt": 1748958531523
+          }
+        ]
+      }
+    },
+    {
+      "key": [
+        "projects",
+        "4c7ad291-8c1f-48c3-b810-0205c7c28709"
+      ],
+      "value": {
+        "name": "Proyecto vacio",
+        "description": "vacio",
+        "status": "planning",
+        "startDate": 1749081600000,
+        "endDate": 1749168000000,
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "createdAt": 1749041146976,
+        "updatedAt": 1749041146976,
+        "members": [
+          {
+            "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+            "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+            "role": "product_owner",
+            "id": "2f3c501b-2d13-40ad-88e0-d0c82ef0b84c",
+            "createdAt": 1749041172477,
+            "updatedAt": 1749041172477
+          },
+          {
+            "userId": "115e5248-f8b1-46eb-9da7-b58228352cbd",
+            "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+            "role": "scrum_master",
+            "id": "5086f2e1-6be3-415d-9aad-2b62ab510e6a",
+            "createdAt": 1749041177125,
+            "updatedAt": 1749041177125
+          },
+          {
+            "userId": "14228f6e-b5b8-443d-80cc-1709557729eb",
+            "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+            "role": "team_member",
+            "id": "680e06e2-059d-4e59-bd27-8b2192d93bd4",
+            "createdAt": 1749041181002,
+            "updatedAt": 1749041181002
+          }
+        ]
+      }
+    }
+  ],
+  "projectMembers": [
+    {
+      "key": [
+        "project_members",
+        "03170c97-8d13-4aff-9420-772c165a0fd9"
+      ],
+      "value": {
+        "userId": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "role": "team_member",
+        "id": "03170c97-8d13-4aff-9420-772c165a0fd9",
+        "createdAt": 1748958531517,
+        "updatedAt": 1748958531517
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "2f3c501b-2d13-40ad-88e0-d0c82ef0b84c"
+      ],
+      "value": {
+        "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "role": "product_owner",
+        "id": "2f3c501b-2d13-40ad-88e0-d0c82ef0b84c",
+        "createdAt": 1749041172477,
+        "updatedAt": 1749041172477
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "5086f2e1-6be3-415d-9aad-2b62ab510e6a"
+      ],
+      "value": {
+        "userId": "115e5248-f8b1-46eb-9da7-b58228352cbd",
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "role": "scrum_master",
+        "id": "5086f2e1-6be3-415d-9aad-2b62ab510e6a",
+        "createdAt": 1749041177125,
+        "updatedAt": 1749041177125
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "538b7333-d8c1-4ef5-91e8-9348533ff63e"
+      ],
+      "value": {
+        "userId": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "role": "product_owner",
+        "id": "538b7333-d8c1-4ef5-91e8-9348533ff63e",
+        "createdAt": 1748958531512,
+        "updatedAt": 1748958531512
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "680e06e2-059d-4e59-bd27-8b2192d93bd4"
+      ],
+      "value": {
+        "userId": "14228f6e-b5b8-443d-80cc-1709557729eb",
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "role": "team_member",
+        "id": "680e06e2-059d-4e59-bd27-8b2192d93bd4",
+        "createdAt": 1749041181002,
+        "updatedAt": 1749041181002
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "7ef2903a-16bc-44d0-99c7-5e2e3aa4e17c"
+      ],
+      "value": {
+        "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "role": "team_member",
+        "id": "7ef2903a-16bc-44d0-99c7-5e2e3aa4e17c",
+        "createdAt": 1748958531520,
+        "updatedAt": 1748958531520
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "c3e3970b-fdc4-46fb-b9d7-25653356de96"
+      ],
+      "value": {
+        "userId": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "role": "team_member",
+        "id": "c3e3970b-fdc4-46fb-b9d7-25653356de96",
+        "createdAt": 1748958531523,
+        "updatedAt": 1748958531523
+      }
+    },
+    {
+      "key": [
+        "project_members",
+        "db17984b-f96f-40a3-9810-319e4fa89896"
+      ],
+      "value": {
+        "userId": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "role": "scrum_master",
+        "id": "db17984b-f96f-40a3-9810-319e4fa89896",
+        "createdAt": 1748958531514,
+        "updatedAt": 1748958531514
+      }
+    }
+  ],
+  "userStories": [
+    {
+      "key": [
+        "userStories",
+        "138fd5ee-5cb5-4396-b0fa-4406d6703a36"
+      ],
+      "value": {
+        "title": "Autenticación de usuarios",
+        "description": "Como usuario registrado, quiero poder iniciar sesión para acceder a mi cuenta.",
+        "acceptanceCriteria": "- El usuario puede iniciar sesión con email/contraseña\n- Se mantiene la sesión activa\n- Opción de cerrar sesión",
+        "priority": "high",
+        "status": "done",
+        "points": 5,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "138fd5ee-5cb5-4396-b0fa-4406d6703a36",
+        "createdAt": 1748958531527,
+        "updatedAt": 1749040764336,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "1ac5a12c-6281-414f-8eda-e3541e58097d"
+      ],
+      "value": {
+        "title": "Diseñar dashboard principal",
+        "description": "Como usuario, quiero ver un dashboard con información relevante al iniciar sesión",
+        "acceptanceCriteria": "- Layout responsivo\n- Widgets informativos\n- Navegación principal\n- Personalización básica",
+        "priority": "medium",
+        "status": "planned",
+        "points": 13,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "1ac5a12c-6281-414f-8eda-e3541e58097d",
+        "createdAt": 1748961957570,
+        "updatedAt": 1749040764339,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "2a824a10-eadc-429d-9ba8-33cf419dc3cc"
+      ],
+      "value": {
+        "title": "Registro de usuarios",
+        "description": "Como usuario nuevo, quiero poder registrarme en el sistema para acceder a las funcionalidades.",
+        "acceptanceCriteria": "- El usuario puede crear una cuenta con email y contraseña\n- Se valida que el email sea único\n- Se envía confirmación por email",
+        "priority": "high",
+        "status": "in_progress",
+        "points": 8,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "2a824a10-eadc-429d-9ba8-33cf419dc3cc",
+        "createdAt": 1748958531526,
+        "updatedAt": 1749040764341
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "305b9ae5-941e-40fc-8cd4-30368e486a1d"
+      ],
+      "value": {
+        "title": "Crear registro de nuevos usuarios",
+        "description": "Como administrador, quiero poder registrar nuevos usuarios en el sistema",
+        "acceptanceCriteria": "- Formulario de registro\n- Validación de datos\n- Asignación de roles\n- Confirmación por email",
+        "priority": "high",
+        "status": "done",
+        "points": 5,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "305b9ae5-941e-40fc-8cd4-30368e486a1d",
+        "createdAt": 1748961957568,
+        "updatedAt": 1749040764342,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "58a399da-24be-4b61-8bae-6d8825d0eefb"
+      ],
+      "value": {
+        "title": "Implementar gestión de perfiles",
+        "description": "Como usuario, quiero poder ver y editar mi perfil personal",
+        "acceptanceCriteria": "- Vista de perfil\n- Edición de datos personales\n- Cambio de contraseña\n- Subida de foto de perfil",
+        "priority": "medium",
+        "status": "in_progress",
+        "points": 8,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "58a399da-24be-4b61-8bae-6d8825d0eefb",
+        "createdAt": 1748961957572,
+        "updatedAt": 1749040764344,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "7131ec42-bf11-4efd-800d-6f3be12a24fa"
+      ],
+      "value": {
+        "title": "Dashboard principal",
+        "description": "Como usuario autenticado, quiero ver un dashboard con información relevante.",
+        "acceptanceCriteria": "- Muestra resumen de actividades\n- Enlaces rápidos a funciones principales\n- Información personalizada por rol",
+        "priority": "medium",
+        "status": "in_progress",
+        "points": 13,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "7131ec42-bf11-4efd-800d-6f3be12a24fa",
+        "createdAt": 1748958531528,
+        "updatedAt": 1749040764345,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "c5df51b3-7dd6-4b1e-a946-ce7bb237c365"
+      ],
+      "value": {
+        "title": "Implementar sistema de autenticación",
+        "description": "Como usuario, quiero poder iniciar sesión en el sistema para acceder a mis datos académicos",
+        "acceptanceCriteria": "- Formulario de login con email y contraseña\n- Validación de credenciales\n- Manejo de errores\n- Redirección después del login",
+        "priority": "high",
+        "status": "in_progress",
+        "points": 8,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+        "createdAt": 1748961957563,
+        "updatedAt": 1749040764347,
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      }
+    },
+    {
+      "key": [
+        "userStories",
+        "f8e5cef0-d455-470d-93a3-b8ba0a73223e"
+      ],
+      "value": {
+        "title": "Diseño de db",
+        "description": "diseño db",
+        "acceptanceCriteria": "sql para postgres",
+        "priority": "medium",
+        "status": "done",
+        "points": 1,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "f8e5cef0-d455-470d-93a3-b8ba0a73223e",
+        "createdAt": 1749041257704,
+        "updatedAt": 1749042740400,
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "key": [
+        "tasks",
+        "17ad78f0-8dd0-495a-bc2c-9d4c264aead9"
+      ],
+      "value": {
+        "title": "Implementación - Dashboard principal",
+        "description": "Desarrollar Dashboard principal",
+        "userStoryId": "7131ec42-bf11-4efd-800d-6f3be12a24fa",
+        "status": "in_progress",
+        "assignedTo": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "estimatedHours": 8,
+        "spentHours": 5,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "17ad78f0-8dd0-495a-bc2c-9d4c264aead9",
+        "createdAt": 1748958531532,
+        "updatedAt": 1748958531532
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "3582b4c8-ddc3-449d-9cf5-ee228efcaa89"
+      ],
+      "value": {
+        "title": "Implementar navegación principal",
+        "description": "Crear menú de navegación y rutas",
+        "userStoryId": "1ac5a12c-6281-414f-8eda-e3541e58097d",
+        "status": "todo",
+        "assignedTo": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "estimatedHours": 4,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "3582b4c8-ddc3-449d-9cf5-ee228efcaa89",
+        "createdAt": 1748961957584,
+        "updatedAt": 1749041054351
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "3fc38e12-1e4c-43f7-a5a4-243d995a20ea"
+      ],
+      "value": {
+        "title": "Diseño - Autenticación de usuarios",
+        "description": "Crear diseño para Autenticación de usuarios",
+        "userStoryId": "138fd5ee-5cb5-4396-b0fa-4406d6703a36",
+        "status": "done",
+        "assignedTo": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "estimatedHours": 4,
+        "spentHours": 3,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "3fc38e12-1e4c-43f7-a5a4-243d995a20ea",
+        "createdAt": 1748958531530,
+        "updatedAt": 1748958531530
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "430ef4f9-a453-436d-8518-bdaaa2def98b"
+      ],
+      "value": {
+        "title": "Implementar validación de credenciales",
+        "description": "Agregar lógica de validación en el backend",
+        "userStoryId": "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+        "status": "done",
+        "assignedTo": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+        "estimatedHours": 6,
+        "spentHours": 5,
+        "isDeliverable": false,
+        "id": "430ef4f9-a453-436d-8518-bdaaa2def98b",
+        "createdAt": 1748961957575,
+        "updatedAt": 1749041054352
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "487c32d6-6b44-4e73-8dac-c4dc5549dcec"
+      ],
+      "value": {
+        "title": "Diseño - Registro de usuarios",
+        "description": "Crear diseño para Registro de usuarios",
+        "userStoryId": "2a824a10-eadc-429d-9ba8-33cf419dc3cc",
+        "status": "done",
+        "assignedTo": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "estimatedHours": 4,
+        "spentHours": 3,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "487c32d6-6b44-4e73-8dac-c4dc5549dcec",
+        "createdAt": 1748958531529,
+        "updatedAt": 1748958531529
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "68907342-2356-45ea-8721-6009c1f01d9f"
+      ],
+      "value": {
+        "title": "Implementación - Autenticación de usuarios",
+        "description": "Desarrollar Autenticación de usuarios",
+        "userStoryId": "138fd5ee-5cb5-4396-b0fa-4406d6703a36",
+        "status": "done",
+        "assignedTo": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "estimatedHours": 8,
+        "spentHours": 5,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "68907342-2356-45ea-8721-6009c1f01d9f",
+        "createdAt": 1748958531531,
+        "updatedAt": 1749041054346
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "7c2490a5-057a-446a-a809-a4d68e427d16"
+      ],
+      "value": {
+        "title": "Diseñar formulario de login",
+        "description": "Crear el diseño del formulario de inicio de sesión",
+        "userStoryId": "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+        "status": "done",
+        "assignedTo": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "estimatedHours": 4,
+        "spentHours": 3,
+        "isDeliverable": false,
+        "id": "7c2490a5-057a-446a-a809-a4d68e427d16",
+        "createdAt": 1748961957574,
+        "updatedAt": 1749041054350
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "8570e12f-7a15-422c-b4e4-a100032d62f4"
+      ],
+      "value": {
+        "title": "Desarrollar widgets informativos",
+        "description": "Crear componentes para mostrar información",
+        "userStoryId": "1ac5a12c-6281-414f-8eda-e3541e58097d",
+        "status": "todo",
+        "assignedTo": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "estimatedHours": 10,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "8570e12f-7a15-422c-b4e4-a100032d62f4",
+        "createdAt": 1748961957583,
+        "updatedAt": 1749041054360
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "86276808-daf6-41c4-bec0-60f8ab378ab8"
+      ],
+      "value": {
+        "title": "Diseñar formulario de registro",
+        "description": "Crear interfaz para registro de usuarios",
+        "userStoryId": "305b9ae5-941e-40fc-8cd4-30368e486a1d",
+        "status": "done",
+        "assignedTo": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "estimatedHours": 3,
+        "spentHours": 2,
+        "isDeliverable": false,
+        "id": "86276808-daf6-41c4-bec0-60f8ab378ab8",
+        "createdAt": 1748961957577,
+        "updatedAt": 1749041054362
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "8cce9635-59bb-45e9-8c7a-56cdcb177b3d"
+      ],
+      "value": {
+        "title": "Agregar cambio de contraseña",
+        "description": "Funcionalidad para cambiar contraseña",
+        "userStoryId": "58a399da-24be-4b61-8bae-6d8825d0eefb",
+        "status": "todo",
+        "assignedTo": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "estimatedHours": 4,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "8cce9635-59bb-45e9-8c7a-56cdcb177b3d",
+        "createdAt": 1748961957586,
+        "updatedAt": 1749041054358
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "989c8d50-9a71-4383-9e2f-3480cc3b472a"
+      ],
+      "value": {
+        "title": "Crear wireframes del dashboard",
+        "description": "Diseñar la estructura y layout del dashboard",
+        "userStoryId": "1ac5a12c-6281-414f-8eda-e3541e58097d",
+        "status": "todo",
+        "assignedTo": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "estimatedHours": 6,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "989c8d50-9a71-4383-9e2f-3480cc3b472a",
+        "createdAt": 1748961957582,
+        "updatedAt": 1749041054348
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "a2c3a9b3-910e-46f8-a850-02c4973292cf"
+      ],
+      "value": {
+        "title": "Diseño - Dashboard principal",
+        "description": "Crear diseño para Dashboard principal",
+        "userStoryId": "7131ec42-bf11-4efd-800d-6f3be12a24fa",
+        "status": "done",
+        "assignedTo": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "estimatedHours": 4,
+        "spentHours": 3,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "a2c3a9b3-910e-46f8-a850-02c4973292cf",
+        "createdAt": 1748958531531,
+        "updatedAt": 1748958531531
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "a9ba82b6-8bf2-4111-a091-bc42f9c91e36"
+      ],
+      "value": {
+        "title": "Implementación - Registro de usuarios",
+        "description": "Desarrollar Registro de usuarios",
+        "userStoryId": "2a824a10-eadc-429d-9ba8-33cf419dc3cc",
+        "status": "in_progress",
+        "assignedTo": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "estimatedHours": 8,
+        "spentHours": 5,
+        "createdBy": "admin",
+        "isDeliverable": false,
+        "id": "a9ba82b6-8bf2-4111-a091-bc42f9c91e36",
+        "createdAt": 1748958531530,
+        "updatedAt": 1748958531530
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "ae0bb8d8-e072-4da7-92a0-254d5109b5d0"
+      ],
+      "value": {
+        "title": "Agregar manejo de errores",
+        "description": "Implementar mensajes de error y casos edge",
+        "userStoryId": "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+        "status": "in_progress",
+        "assignedTo": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+        "estimatedHours": 3,
+        "spentHours": 1,
+        "isDeliverable": false,
+        "id": "ae0bb8d8-e072-4da7-92a0-254d5109b5d0",
+        "createdAt": 1748961957576,
+        "updatedAt": 1749041054355
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "b53a367f-0732-44ea-90d2-5c18e19936de"
+      ],
+      "value": {
+        "title": "Implementar edición de datos",
+        "description": "Permitir editar información personal",
+        "userStoryId": "58a399da-24be-4b61-8bae-6d8825d0eefb",
+        "status": "in_progress",
+        "assignedTo": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "estimatedHours": 6,
+        "spentHours": 2,
+        "isDeliverable": false,
+        "id": "b53a367f-0732-44ea-90d2-5c18e19936de",
+        "createdAt": 1748961957585,
+        "updatedAt": 1749041054357
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "b6630f52-6f38-44e6-af5b-f035cd359793"
+      ],
+      "value": {
+        "title": "Crear vista de perfil",
+        "description": "Mostrar información del usuario",
+        "userStoryId": "58a399da-24be-4b61-8bae-6d8825d0eefb",
+        "status": "done",
+        "assignedTo": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "estimatedHours": 4,
+        "spentHours": 3,
+        "isDeliverable": false,
+        "id": "b6630f52-6f38-44e6-af5b-f035cd359793",
+        "createdAt": 1748961957585,
+        "updatedAt": 1749041054356
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "b6699c57-28fa-4a9d-9a26-4cc7e997725c"
+      ],
+      "value": {
+        "title": "Implementar subida de foto",
+        "description": "Permitir subir y cambiar foto de perfil",
+        "userStoryId": "58a399da-24be-4b61-8bae-6d8825d0eefb",
+        "status": "todo",
+        "assignedTo": "481db4fd-af03-4705-ac99-ce1f693cf750",
+        "estimatedHours": 5,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "b6699c57-28fa-4a9d-9a26-4cc7e997725c",
+        "createdAt": 1748961957586,
+        "updatedAt": 1749041054359
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "c49b78e9-abe8-40d3-a12e-d6d265afa537"
+      ],
+      "value": {
+        "title": "Implementar redirección post-login",
+        "description": "Configurar redirección según el rol del usuario",
+        "userStoryId": "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+        "status": "todo",
+        "assignedTo": "7ce49763-7c6d-48a8-881e-6273892b093c",
+        "estimatedHours": 2,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "c49b78e9-abe8-40d3-a12e-d6d265afa537",
+        "createdAt": 1748961957576,
+        "updatedAt": 1749041054360
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "e224197a-261d-4797-86a7-af9b876632e5"
+      ],
+      "value": {
+        "title": "Implementar validación de datos",
+        "description": "Validar email, contraseña y datos requeridos",
+        "userStoryId": "305b9ae5-941e-40fc-8cd4-30368e486a1d",
+        "status": "done",
+        "assignedTo": "1c580dc2-f1f8-485a-80f5-46cdc605bedd",
+        "estimatedHours": 4,
+        "spentHours": 4,
+        "isDeliverable": false,
+        "id": "e224197a-261d-4797-86a7-af9b876632e5",
+        "createdAt": 1748961957580,
+        "updatedAt": 1749041054353
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "e4c7ba4d-ebc7-4c99-bb2a-95fb34f0fd9b"
+      ],
+      "value": {
+        "title": "Implementar layout responsivo",
+        "description": "Crear estructura HTML/CSS responsiva",
+        "userStoryId": "1ac5a12c-6281-414f-8eda-e3541e58097d",
+        "status": "todo",
+        "assignedTo": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "estimatedHours": 8,
+        "spentHours": 0,
+        "isDeliverable": false,
+        "id": "e4c7ba4d-ebc7-4c99-bb2a-95fb34f0fd9b",
+        "createdAt": 1748961957582,
+        "updatedAt": 1749041054349
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "ef3b75cd-4837-4671-badc-2c87219baccb"
+      ],
+      "value": {
+        "title": "diseño tablas",
+        "userStoryId": "f8e5cef0-d455-470d-93a3-b8ba0a73223e",
+        "status": "done",
+        "assignedTo": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "estimatedHours": 1,
+        "spentHours": 1,
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "isDeliverable": false,
+        "id": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "createdAt": 1749041668229,
+        "updatedAt": 1749042143319
+      }
+    },
+    {
+      "key": [
+        "tasks",
+        "f82f771c-d609-481a-90e4-036faf251061"
+      ],
+      "value": {
+        "title": "Configurar confirmación por email",
+        "description": "Enviar email de confirmación al registrarse",
+        "userStoryId": "305b9ae5-941e-40fc-8cd4-30368e486a1d",
+        "status": "done",
+        "assignedTo": "c6fb4fb9-3646-4791-b1da-c5cbff26bce5",
+        "estimatedHours": 5,
+        "spentHours": 6,
+        "isDeliverable": false,
+        "id": "f82f771c-d609-481a-90e4-036faf251061",
+        "createdAt": 1748961957581,
+        "updatedAt": 1749041054361
+      }
+    }
+  ],
+  "sprints": [
+    {
+      "key": [
+        "sprints",
+        "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"
+      ],
+      "value": {
+        "name": "Sprint 1 - Fundamentos",
+        "goal": "Implementar funcionalidades básicas de autenticación y registro",
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "status": "active",
+        "startDate": 1746366531511,
+        "endDate": 1750168131511,
+        "createdBy": "admin",
+        "id": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "createdAt": 1748958531528,
+        "updatedAt": 1748961957573,
+        "userStoryIds": [
+          "7131ec42-bf11-4efd-800d-6f3be12a24fa",
+          "138fd5ee-5cb5-4396-b0fa-4406d6703a36",
+          "c5df51b3-7dd6-4b1e-a946-ce7bb237c365",
+          "305b9ae5-941e-40fc-8cd4-30368e486a1d",
+          "1ac5a12c-6281-414f-8eda-e3541e58097d",
+          "58a399da-24be-4b61-8bae-6d8825d0eefb"
+        ]
+      }
+    },
+    {
+      "key": [
+        "sprints",
+        "e5f01cd7-9324-43df-8e4d-e3cf2b644543"
+      ],
+      "value": {
+        "name": "Sprint 1",
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "status": "active",
+        "startDate": 1748995200000,
+        "endDate": 1749340800000,
+        "createdBy": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "id": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "createdAt": 1749041212051,
+        "updatedAt": 1749041270653,
+        "userStoryIds": [
+          "f8e5cef0-d455-470d-93a3-b8ba0a73223e"
+        ]
+      }
+    }
+  ],
+  "deliverables": [],
+  "rubrics": [
+    {
+      "key": [
+        "rubrics",
+        "61c4e5c6-474f-4136-8302-587e7da9206b"
+      ],
+      "value": {
+        "name": "Rúbrica de Presentación de Proyecto",
+        "description": "Para evaluar presentaciones orales de proyectos",
+        "createdBy": "admin",
+        "criteria": [
+          {
+            "id": "9eb45213-e68d-4837-ab38-90cb136e578f",
+            "name": "Contenido",
+            "description": "La presentación cubre todos los aspectos importantes del proyecto",
+            "maxPoints": 30,
+            "levels": [
+              {
+                "id": "fdc1420f-6481-41ea-9f57-38156a4a94e8",
+                "description": "Excelente: Contenido completo y bien estructurado",
+                "pointValue": 30
+              },
+              {
+                "id": "3b0f6548-cc87-4dfd-b0c7-60c920cb96e3",
+                "description": "Bueno: Contenido adecuado con buena estructura",
+                "pointValue": 24
+              },
+              {
+                "id": "e80f3b74-7175-48fc-99e1-5e1628fcf304",
+                "description": "Regular: Contenido básico, estructura aceptable",
+                "pointValue": 18
+              },
+              {
+                "id": "ea8edd40-d7b0-4d6c-beef-7ad9b3ee9365",
+                "description": "Insuficiente: Contenido incompleto o mal estructurado",
+                "pointValue": 6
+              }
+            ]
+          },
+          {
+            "id": "a4593ae9-d357-4ce3-94c5-37e684197497",
+            "name": "Claridad de Comunicación",
+            "description": "Los presentadores se expresan de manera clara y comprensible",
+            "maxPoints": 25,
+            "levels": [
+              {
+                "id": "756e1dbe-753b-4dfa-bd66-d634d3c79fa0",
+                "description": "Excelente: Comunicación muy clara y fluida",
+                "pointValue": 25
+              },
+              {
+                "id": "76952ebb-736f-4ea7-ad46-7efaabb2e276",
+                "description": "Bueno: Comunicación clara y comprensible",
+                "pointValue": 20
+              },
+              {
+                "id": "8cced4bc-046f-4a8f-9e75-ed7ed8b29bba",
+                "description": "Regular: Comunicación aceptable",
+                "pointValue": 15
+              },
+              {
+                "id": "b3d72b9a-08d2-4a00-abe2-2a669766ea06",
+                "description": "Insuficiente: Comunicación confusa o difícil de seguir",
+                "pointValue": 5
+              }
+            ]
+          },
+          {
+            "id": "0195cc19-0d0c-45c6-8037-fb8ce9b9f9e9",
+            "name": "Uso del Tiempo",
+            "description": "La presentación respeta el tiempo asignado",
+            "maxPoints": 15,
+            "levels": [
+              {
+                "id": "13c838bd-9b7d-49d3-9d49-5b8f837f2a4a",
+                "description": "Excelente: Uso perfecto del tiempo asignado",
+                "pointValue": 15
+              },
+              {
+                "id": "52aade92-4b7c-48b9-aedb-0101f3873ffd",
+                "description": "Bueno: Uso adecuado del tiempo",
+                "pointValue": 12
+              },
+              {
+                "id": "aa09ae02-dc1b-4e85-93e1-c061eecdfe0b",
+                "description": "Regular: Ligeras desviaciones del tiempo",
+                "pointValue": 9
+              },
+              {
+                "id": "3e3c4fae-73c8-40f1-ae2d-c325edaabf16",
+                "description": "Insuficiente: Mal uso del tiempo (muy corto o muy largo)",
+                "pointValue": 3
+              }
+            ]
+          },
+          {
+            "id": "12ded669-d2eb-4186-9487-b9382a3089ca",
+            "name": "Manejo de Preguntas",
+            "description": "Los presentadores responden adecuadamente a las preguntas",
+            "maxPoints": 20,
+            "levels": [
+              {
+                "id": "3fa10b80-70d6-4806-b5fe-c64b80d6e5a1",
+                "description": "Excelente: Respuestas completas y precisas",
+                "pointValue": 20
+              },
+              {
+                "id": "cba882ac-b6bc-4b29-986b-a9c79c01d822",
+                "description": "Bueno: Respuestas adecuadas y claras",
+                "pointValue": 16
+              },
+              {
+                "id": "f51c76c7-5752-44ce-a36f-cebd814e8ff1",
+                "description": "Regular: Respuestas básicas",
+                "pointValue": 12
+              },
+              {
+                "id": "212492ad-1cde-4f15-b0f3-f0b412ac75cf",
+                "description": "Insuficiente: Dificultad para responder preguntas",
+                "pointValue": 4
+              }
+            ]
+          },
+          {
+            "id": "7b67103c-80c1-4523-90e0-7b5148982fd8",
+            "name": "Material Visual",
+            "description": "Las diapositivas y material visual apoyan efectivamente la presentación",
+            "maxPoints": 10,
+            "levels": [
+              {
+                "id": "42601f0c-463f-40a1-bfab-9736fee5bb2e",
+                "description": "Excelente: Material visual muy efectivo y profesional",
+                "pointValue": 10
+              },
+              {
+                "id": "9f23fc9e-e795-42d0-8abf-73aafa2a6177",
+                "description": "Bueno: Material visual claro y útil",
+                "pointValue": 8
+              },
+              {
+                "id": "819a4b57-01a4-48a6-bcd7-ff2d38decc78",
+                "description": "Regular: Material visual básico",
+                "pointValue": 6
+              },
+              {
+                "id": "7cce7b0c-2292-489b-b815-9d751e29d81f",
+                "description": "Insuficiente: Material visual confuso o inadecuado",
+                "pointValue": 2
+              }
+            ]
+          }
+        ],
+        "isTemplate": true,
+        "status": "active",
+        "id": "61c4e5c6-474f-4136-8302-587e7da9206b",
+        "createdAt": 1748958531720,
+        "updatedAt": 1748958531720
+      }
+    },
+    {
+      "key": [
+        "rubrics",
+        "b5054f13-05be-4521-842d-3ffb49111506"
+      ],
+      "value": {
+        "name": "Rúbrica General de Desarrollo de Software",
+        "description": "Plantilla estándar para evaluar entregables de desarrollo de software",
+        "createdBy": "admin",
+        "criteria": [
+          {
+            "id": "96693e4f-f273-4f95-9ec4-7aef6b43e71b",
+            "name": "Funcionalidad",
+            "description": "El software cumple con los requisitos funcionales especificados",
+            "maxPoints": 25,
+            "levels": [
+              {
+                "id": "717373d7-cbd6-4b8f-8612-3be56ce3740c",
+                "description": "Excelente: Cumple completamente con todos los requisitos",
+                "pointValue": 25
+              },
+              {
+                "id": "9615f393-0318-4611-b9ff-b9b56ced6833",
+                "description": "Bueno: Cumple con la mayoría de requisitos",
+                "pointValue": 20
+              },
+              {
+                "id": "7f98a2f2-20a6-4f33-b18c-4c67c1dba1e2",
+                "description": "Regular: Cumple parcialmente con los requisitos",
+                "pointValue": 15
+              },
+              {
+                "id": "c073d20a-557b-4a73-a7dc-7ac99f9c62cc",
+                "description": "Insuficiente: No cumple con los requisitos básicos",
+                "pointValue": 5
+              }
+            ]
+          },
+          {
+            "id": "19b7ec57-4cde-4d11-9a89-7433b3fdbbeb",
+            "name": "Calidad del Código",
+            "description": "El código es limpio, bien estructurado y documentado",
+            "maxPoints": 20,
+            "levels": [
+              {
+                "id": "6705dcca-b777-46f4-8d1f-0547ccd9ac95",
+                "description": "Excelente: Código muy limpio y bien documentado",
+                "pointValue": 20
+              },
+              {
+                "id": "352bb6bf-de5d-4cb9-9219-b5c897dd66fc",
+                "description": "Bueno: Código limpio con documentación adecuada",
+                "pointValue": 16
+              },
+              {
+                "id": "f46bb066-3921-4528-92d5-c9d6660cd792",
+                "description": "Regular: Código aceptable con poca documentación",
+                "pointValue": 12
+              },
+              {
+                "id": "64bbca0d-8fe4-430e-a832-a7133f242fec",
+                "description": "Insuficiente: Código difícil de leer y sin documentación",
+                "pointValue": 4
+              }
+            ]
+          },
+          {
+            "id": "b6194ebd-4174-4564-ab5f-dc4120aefd0d",
+            "name": "Interfaz de Usuario",
+            "description": "La interfaz es intuitiva, atractiva y fácil de usar",
+            "maxPoints": 20,
+            "levels": [
+              {
+                "id": "02b6fdfd-c60d-47af-86c1-334c2d78146b",
+                "description": "Excelente: Interfaz muy intuitiva y atractiva",
+                "pointValue": 20
+              },
+              {
+                "id": "1e3cbe5a-59da-4545-bc9b-51ed1d9b2adf",
+                "description": "Bueno: Interfaz clara y funcional",
+                "pointValue": 16
+              },
+              {
+                "id": "16ec9c8c-6b2f-4ada-a23e-a9fe1028c5a8",
+                "description": "Regular: Interfaz básica pero usable",
+                "pointValue": 12
+              },
+              {
+                "id": "bfbd7baf-f508-4678-8b25-192eb58f35da",
+                "description": "Insuficiente: Interfaz confusa o difícil de usar",
+                "pointValue": 4
+              }
+            ]
+          },
+          {
+            "id": "5bdd96bd-defe-47fe-82ef-2441a40dd84d",
+            "name": "Pruebas y Validación",
+            "description": "El software ha sido probado adecuadamente",
+            "maxPoints": 15,
+            "levels": [
+              {
+                "id": "f6bd52d9-33a5-4909-9925-320fbca45ba9",
+                "description": "Excelente: Pruebas exhaustivas y bien documentadas",
+                "pointValue": 15
+              },
+              {
+                "id": "b5c1122e-f9ba-4af0-93f8-dd58e8c4d60a",
+                "description": "Bueno: Pruebas adecuadas de funcionalidades principales",
+                "pointValue": 12
+              },
+              {
+                "id": "2e1aee85-4eae-4daa-ae4e-217b96879a52",
+                "description": "Regular: Pruebas básicas realizadas",
+                "pointValue": 9
+              },
+              {
+                "id": "520d7ef7-2c52-4b94-887d-ed4c2f02c37d",
+                "description": "Insuficiente: Pocas o ninguna prueba realizada",
+                "pointValue": 3
+              }
+            ]
+          },
+          {
+            "id": "bfd24524-e7db-459d-bf8c-4cb2bc5adad1",
+            "name": "Documentación",
+            "description": "La documentación del proyecto es completa y clara",
+            "maxPoints": 20,
+            "levels": [
+              {
+                "id": "f0d7a7f7-f8c1-49bf-b610-c52f0258e11f",
+                "description": "Excelente: Documentación completa y muy clara",
+                "pointValue": 20
+              },
+              {
+                "id": "8a1438e7-0a51-4326-8a8f-75dfc490f7d3",
+                "description": "Bueno: Documentación adecuada y clara",
+                "pointValue": 16
+              },
+              {
+                "id": "77b62637-9fb0-4b76-906a-fcebf954b1df",
+                "description": "Regular: Documentación básica",
+                "pointValue": 12
+              },
+              {
+                "id": "57534774-3520-4cce-9808-d230715ed838",
+                "description": "Insuficiente: Documentación incompleta o confusa",
+                "pointValue": 4
+              }
+            ]
+          }
+        ],
+        "isTemplate": true,
+        "status": "active",
+        "id": "b5054f13-05be-4521-842d-3ffb49111506",
+        "createdAt": 1748958531716,
+        "updatedAt": 1748958531716
+      }
+    },
+    {
+      "key": [
+        "rubrics",
+        "d3886872-c06f-4b78-8f60-afd30a9c6a6c"
+      ],
+      "value": {
+        "name": "Nueva Rúbrica",
+        "description": "",
+        "criteria": [
+          {
+            "id": "93e28304-d0c9-4fc8-818d-854f4b1a8d20",
+            "name": "Criterio de ejemplo",
+            "description": "Descripción del criterio",
+            "maxPoints": 10,
+            "levels": [
+              {
+                "id": "4adcd236-20a6-4f70-ba52-5f79473aec03",
+                "description": "Excelente",
+                "pointValue": 10
+              },
+              {
+                "id": "f6e7d8f8-c36f-4b2a-90a9-571bc25aec0f",
+                "description": "Bueno",
+                "pointValue": 7
+              },
+              {
+                "id": "86eb041e-c9a0-4501-9594-b6a52897ae08",
+                "description": "Regular",
+                "pointValue": 4
+              },
+              {
+                "id": "f966d67c-725c-41f9-89d5-b604c7d545df",
+                "description": "Insuficiente",
+                "pointValue": 1
+              }
+            ]
+          }
+        ],
+        "isTemplate": false,
+        "status": "active",
+        "id": "d3886872-c06f-4b78-8f60-afd30a9c6a6c",
+        "createdAt": 1749063400294,
+        "updatedAt": 1749063432859
+      }
+    }
+  ],
+  "evaluations": [],
+  "reports": [],
+  "sprintUserStories": [],
+  "taskHistory": [
+    {
+      "key": [
+        "task_history",
+        "02b2ce76-8b7b-486d-bc45-ba9b6ddecd8e"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "todo",
+        "newValue": "review",
+        "id": "02b2ce76-8b7b-486d-bc45-ba9b6ddecd8e",
+        "createdAt": 1749041689147,
+        "updatedAt": 1749041689147
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "0cf64e6e-38e4-4a62-b1d1-53179d0c3c77"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0cf26068-d790-4777-b9ad-bee3a24208c3",
+        "field": "spentHours",
+        "oldValue": "0",
+        "newValue": "1",
+        "id": "0cf64e6e-38e4-4a62-b1d1-53179d0c3c77",
+        "createdAt": 1749042143315,
+        "updatedAt": 1749042143315
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "2b480643-e3b7-4491-afc6-bc356d7d28be"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "done",
+        "newValue": "todo",
+        "id": "2b480643-e3b7-4491-afc6-bc356d7d28be",
+        "createdAt": 1749041821650,
+        "updatedAt": 1749041821650
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "3ab48bd5-03db-4528-bc64-b7d05ab24ca2"
+      ],
+      "value": {
+        "taskId": "68907342-2356-45ea-8721-6009c1f01d9f",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "in_progress",
+        "newValue": "done",
+        "id": "3ab48bd5-03db-4528-bc64-b7d05ab24ca2",
+        "createdAt": 1748960801144,
+        "updatedAt": 1748960801144
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "3e267d6e-6a08-4cc9-bc85-ebbb75feaefe"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "todo",
+        "newValue": "done",
+        "id": "3e267d6e-6a08-4cc9-bc85-ebbb75feaefe",
+        "createdAt": 1749041718767,
+        "updatedAt": 1749041718767
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "3e7261aa-a717-4ac4-b741-cbbe1eb2c721"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "done",
+        "newValue": "in_progress",
+        "id": "3e7261aa-a717-4ac4-b741-cbbe1eb2c721",
+        "createdAt": 1749041852755,
+        "updatedAt": 1749041852755
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "591c4ba4-84e0-4272-9683-422cc002026e"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "review",
+        "newValue": "in_progress",
+        "id": "591c4ba4-84e0-4272-9683-422cc002026e",
+        "createdAt": 1749041692619,
+        "updatedAt": 1749041692619
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "7c04f7f6-3cdc-41dc-870b-b7444fa9cbcb"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "in_progress",
+        "newValue": "done",
+        "id": "7c04f7f6-3cdc-41dc-870b-b7444fa9cbcb",
+        "createdAt": 1749042010028,
+        "updatedAt": 1749042010028
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "8d25a340-e73a-4b71-8cba-582cf8a00f04"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "done",
+        "newValue": "todo",
+        "id": "8d25a340-e73a-4b71-8cba-582cf8a00f04",
+        "createdAt": 1749041735833,
+        "updatedAt": 1749041735833
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "afc70ab2-d681-45c7-98d4-ddf2d496094a"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "in_progress",
+        "newValue": "todo",
+        "id": "afc70ab2-d681-45c7-98d4-ddf2d496094a",
+        "createdAt": 1749041687561,
+        "updatedAt": 1749041687561
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "b2c1ef9d-c4d5-4002-b2c1-945c1501e94b"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "todo",
+        "newValue": "done",
+        "id": "b2c1ef9d-c4d5-4002-b2c1-945c1501e94b",
+        "createdAt": 1749041842758,
+        "updatedAt": 1749041842758
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "bda475ae-2d73-4085-b0bd-bc0620ef2e54"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "done",
+        "newValue": "todo",
+        "id": "bda475ae-2d73-4085-b0bd-bc0620ef2e54",
+        "createdAt": 1749041695269,
+        "updatedAt": 1749041695269
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "c4fdf8a4-ab59-4707-a990-6dfa3368f663"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "todo",
+        "newValue": "done",
+        "id": "c4fdf8a4-ab59-4707-a990-6dfa3368f663",
+        "createdAt": 1749041748546,
+        "updatedAt": 1749041748546
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "c7bc3f88-ad1f-4e6c-85c7-34a7858105b8"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "todo",
+        "newValue": "in_progress",
+        "id": "c7bc3f88-ad1f-4e6c-85c7-34a7858105b8",
+        "createdAt": 1749041685735,
+        "updatedAt": 1749041685735
+      }
+    },
+    {
+      "key": [
+        "task_history",
+        "e142fb8d-a28e-43d4-9519-a60bc862b4d7"
+      ],
+      "value": {
+        "taskId": "ef3b75cd-4837-4671-badc-2c87219baccb",
+        "userId": "0924ff4a-f0ab-4481-addb-23a33d28d9e7",
+        "field": "status",
+        "oldValue": "in_progress",
+        "newValue": "done",
+        "id": "e142fb8d-a28e-43d4-9519-a60bc862b4d7",
+        "createdAt": 1749041693508,
+        "updatedAt": 1749041693508
+      }
+    }
+  ],
+  "comments": [],
+  "metrics": [
+    {
+      "key": [
+        "sprint_metrics",
+        "04da344f-2a7a-4ec1-99f9-62f6c7a691e3"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748232000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 26,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "04da344f-2a7a-4ec1-99f9-62f6c7a691e3",
+        "createdAt": 1748962200680,
+        "updatedAt": 1748962200680
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "05c3f934-58d2-419a-8182-b52da65f581f"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748577600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 21.27272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "05c3f934-58d2-419a-8182-b52da65f581f",
+        "createdAt": 1748962200692,
+        "updatedAt": 1748962200692
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "0794efcb-4c37-456f-b61a-9253387d078f"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746936000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 43.72727272727273,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "0794efcb-4c37-456f-b61a-9253387d078f",
+        "createdAt": 1748962200633,
+        "updatedAt": 1748962200633
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "09cb7122-472d-449a-84c8-c6061cce67d6"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747022400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 42.54545454545455,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "09cb7122-472d-449a-84c8-c6061cce67d6",
+        "createdAt": 1748962200637,
+        "updatedAt": 1748962200637
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "0ae85d93-50e7-43b9-84c8-f2a03b7c4f25"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749700800000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 5.9090909090909065,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "0ae85d93-50e7-43b9-84c8-f2a03b7c4f25",
+        "createdAt": 1748962200726,
+        "updatedAt": 1748962200726
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "18902888-57a2-455d-925b-6c98200c5973"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748059200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 28.363636363636363,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "18902888-57a2-455d-925b-6c98200c5973",
+        "createdAt": 1748962200675,
+        "updatedAt": 1748962200675
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "1ce4add5-c1fc-4200-9155-4b1aba869900"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746504000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 49.63636363636363,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "1ce4add5-c1fc-4200-9155-4b1aba869900",
+        "createdAt": 1748962200617,
+        "updatedAt": 1748962200617
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "243badb7-d449-4220-9334-98cb805dcc1b"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748145600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 27.18181818181818,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "243badb7-d449-4220-9334-98cb805dcc1b",
+        "createdAt": 1748962200677,
+        "updatedAt": 1748962200677
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "24b310eb-f9c4-4198-a861-214facfdb1f4"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747454400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 36.63636363636363,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "24b310eb-f9c4-4198-a861-214facfdb1f4",
+        "createdAt": 1748962200653,
+        "updatedAt": 1748962200653
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "2f48f897-96c6-4faf-9aff-479cd2347c05"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749873600000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 3.5454545454545396,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "2f48f897-96c6-4faf-9aff-479cd2347c05",
+        "createdAt": 1748962200730,
+        "updatedAt": 1748962200730
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "377b7290-5a98-4db6-98b5-1e5e98e114f2"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749182400000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 13,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "377b7290-5a98-4db6-98b5-1e5e98e114f2",
+        "createdAt": 1748962200713,
+        "updatedAt": 1748962200713
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "37932c7c-26fc-4290-927c-fb0ce9f243cf"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1750132800000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 0,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "37932c7c-26fc-4290-927c-fb0ce9f243cf",
+        "createdAt": 1748962200738,
+        "updatedAt": 1748962200738
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "3aac7fc8-c5ca-49c3-9699-18d97b0e6431"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746763200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 46.09090909090909,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "3aac7fc8-c5ca-49c3-9699-18d97b0e6431",
+        "createdAt": 1748962200628,
+        "updatedAt": 1748962200628
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "3d7a0463-ccbe-481f-b768-2e3376230e8a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747800000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 31.909090909090907,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "3d7a0463-ccbe-481f-b768-2e3376230e8a",
+        "createdAt": 1748962200666,
+        "updatedAt": 1748962200666
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "4e842e59-a138-4c7a-b718-8214add4fb36"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748750400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 18.909090909090907,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "4e842e59-a138-4c7a-b718-8214add4fb36",
+        "createdAt": 1748962200698,
+        "updatedAt": 1748962200698
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "58173310-87d4-4d16-8543-2e911a355597"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747281600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 39,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "58173310-87d4-4d16-8543-2e911a355597",
+        "createdAt": 1748962200648,
+        "updatedAt": 1748962200648
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "597032c1-ee0f-4354-8f4a-a2815a410685"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746417600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 50.81818181818182,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "597032c1-ee0f-4354-8f4a-a2815a410685",
+        "createdAt": 1748962200613,
+        "updatedAt": 1748962200613
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "5f53fc8c-c5f4-47ff-abb2-c70d0f02cd21"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746331200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 52,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "5f53fc8c-c5f4-47ff-abb2-c70d0f02cd21",
+        "createdAt": 1748962200607,
+        "updatedAt": 1748962200607
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "60acc9b5-b795-4851-a44a-316889e417e7"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748923200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 16.545454545454547,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "60acc9b5-b795-4851-a44a-316889e417e7",
+        "createdAt": 1748962200704,
+        "updatedAt": 1748962200704
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "6b4659d5-f173-4787-a50d-b77bc4696495"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749960000000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 2.3636363636363598,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "6b4659d5-f173-4787-a50d-b77bc4696495",
+        "createdAt": 1748962200733,
+        "updatedAt": 1748962200733
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "6c4f2c17-142b-4a96-b615-6b055f51802a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749787200000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 4.727272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "6c4f2c17-142b-4a96-b615-6b055f51802a",
+        "createdAt": 1748962200728,
+        "updatedAt": 1748962200728
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "6f0538be-661d-4b9f-b8bb-927c046fe782"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748664000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 20.09090909090909,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "6f0538be-661d-4b9f-b8bb-927c046fe782",
+        "createdAt": 1748962200695,
+        "updatedAt": 1748962200695
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "73ef147d-6ddb-47ca-a979-14ae1665bd77"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749009600000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 15.36363636363636,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "73ef147d-6ddb-47ca-a979-14ae1665bd77",
+        "createdAt": 1748962200708,
+        "updatedAt": 1748962200708
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "7cc1165c-e272-45da-acdd-f24bd4dc19b0"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747886400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 30.727272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "7cc1165c-e272-45da-acdd-f24bd4dc19b0",
+        "createdAt": 1748962200669,
+        "updatedAt": 1748962200669
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "8529ad5e-e96f-48fe-b229-faf2efefdeec"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749528000000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 8.272727272727273,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "8529ad5e-e96f-48fe-b229-faf2efefdeec",
+        "createdAt": 1748962200721,
+        "updatedAt": 1748962200721
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "8574958d-de62-4856-a465-1392447d1a5f"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746590400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 48.45454545454545,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "8574958d-de62-4856-a465-1392447d1a5f",
+        "createdAt": 1748962200621,
+        "updatedAt": 1748962200621
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "8a5acbf5-9a5e-44d3-98d7-42888282979f"
+      ],
+      "value": {
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "date": 1749096000000,
+        "totalPoints": 5,
+        "completedPoints": 5,
+        "remainingPoints": 0,
+        "tasksCompleted": 1,
+        "tasksRemaining": 0,
+        "idealBurndown": 2.5,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "id": "8a5acbf5-9a5e-44d3-98d7-42888282979f",
+        "createdAt": 1749042618998,
+        "updatedAt": 1749042618998
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "8d6eaa32-a511-48b0-9a50-a7fb5e57124a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1750046400000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 1.1818181818181799,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "8d6eaa32-a511-48b0-9a50-a7fb5e57124a",
+        "createdAt": 1748962200736,
+        "updatedAt": 1748962200736
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "8f0ead15-5b19-4bb5-be2e-bdb5f3887233"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747713600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 33.09090909090909,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "8f0ead15-5b19-4bb5-be2e-bdb5f3887233",
+        "createdAt": 1748962200663,
+        "updatedAt": 1748962200663
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "9b5d57ee-95c5-427a-b11e-00557fc3ac4d"
+      ],
+      "value": {
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "date": 1748923200000,
+        "totalPoints": 5,
+        "completedPoints": 0,
+        "remainingPoints": 5,
+        "tasksCompleted": 0,
+        "tasksRemaining": 1,
+        "idealBurndown": 5,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "id": "9b5d57ee-95c5-427a-b11e-00557fc3ac4d",
+        "createdAt": 1749042618994,
+        "updatedAt": 1749042618994
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "9d1875d3-dd99-4185-87b8-f2f7883c01d8"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747368000000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 37.81818181818181,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "9d1875d3-dd99-4185-87b8-f2f7883c01d8",
+        "createdAt": 1748962200651,
+        "updatedAt": 1748962200651
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "9d5f508e-ead4-4ef8-9c79-4fcdd966f370"
+      ],
+      "value": {
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "date": 1749268800000,
+        "totalPoints": 5,
+        "completedPoints": 5,
+        "remainingPoints": 0,
+        "tasksCompleted": 1,
+        "tasksRemaining": 0,
+        "idealBurndown": 0,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "id": "9d5f508e-ead4-4ef8-9c79-4fcdd966f370",
+        "createdAt": 1749042619002,
+        "updatedAt": 1749042619002
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "a1dfe4ca-6cbe-487d-ab2f-dfa583181e1a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746676800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 47.27272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "a1dfe4ca-6cbe-487d-ab2f-dfa583181e1a",
+        "createdAt": 1748962200625,
+        "updatedAt": 1748962200625
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "a229a827-6a93-4662-b099-68de4b2824a2"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748318400000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 24.818181818181817,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "a229a827-6a93-4662-b099-68de4b2824a2",
+        "createdAt": 1748962200682,
+        "updatedAt": 1748962200682
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "a53b3bea-9402-47c4-992d-60cce345d305"
+      ],
+      "value": {
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "date": 1749009600000,
+        "totalPoints": 5,
+        "completedPoints": 0,
+        "remainingPoints": 5,
+        "tasksCompleted": 0,
+        "tasksRemaining": 1,
+        "idealBurndown": 3.75,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "id": "a53b3bea-9402-47c4-992d-60cce345d305",
+        "createdAt": 1749042618996,
+        "updatedAt": 1749042618996
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "a9bfee6e-faa0-441f-b132-df8d61121ab7"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749355200000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 10.636363636363633,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "a9bfee6e-faa0-441f-b132-df8d61121ab7",
+        "createdAt": 1748962200717,
+        "updatedAt": 1748962200717
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "aecdd1c2-087b-4b32-89f0-e89de140741a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748836800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 17.727272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "aecdd1c2-087b-4b32-89f0-e89de140741a",
+        "createdAt": 1748962200700,
+        "updatedAt": 1748962200700
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "b20118e0-9b50-4dcf-9502-2b0c360b9c25"
+      ],
+      "value": {
+        "sprintId": "e5f01cd7-9324-43df-8e4d-e3cf2b644543",
+        "date": 1749182400000,
+        "totalPoints": 5,
+        "completedPoints": 5,
+        "remainingPoints": 0,
+        "tasksCompleted": 1,
+        "tasksRemaining": 0,
+        "idealBurndown": 1.25,
+        "projectId": "4c7ad291-8c1f-48c3-b810-0205c7c28709",
+        "id": "b20118e0-9b50-4dcf-9502-2b0c360b9c25",
+        "createdAt": 1749042619000,
+        "updatedAt": 1749042619000
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "b74670cd-4a6d-4676-b67d-ce8fd74be9bb"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748404800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 23.636363636363633,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "b74670cd-4a6d-4676-b67d-ce8fd74be9bb",
+        "createdAt": 1748962200686,
+        "updatedAt": 1748962200686
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "b92fb7e6-3073-4083-8201-2bb4bab437f9"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747108800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 41.36363636363636,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "b92fb7e6-3073-4083-8201-2bb4bab437f9",
+        "createdAt": 1748962200640,
+        "updatedAt": 1748962200640
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "c39d8eec-8017-4d55-8958-6b58e539cf1a"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747540800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 35.45454545454545,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "c39d8eec-8017-4d55-8958-6b58e539cf1a",
+        "createdAt": 1748962200656,
+        "updatedAt": 1748962200656
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "c8853862-de9e-4681-a970-82ae5f6238db"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1746849600000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 44.90909090909091,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "c8853862-de9e-4681-a970-82ae5f6238db",
+        "createdAt": 1748962200631,
+        "updatedAt": 1748962200631
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "c91c8e03-cf41-4419-a28f-ef3844b54442"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749268800000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 11.818181818181813,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "c91c8e03-cf41-4419-a28f-ef3844b54442",
+        "createdAt": 1748962200715,
+        "updatedAt": 1748962200715
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "d9a003cd-3ae3-446c-bf83-270a83b93d85"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749614400000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 7.090909090909086,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "d9a003cd-3ae3-446c-bf83-270a83b93d85",
+        "createdAt": 1748962200723,
+        "updatedAt": 1748962200723
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "dbb02373-5c7b-4c16-806f-bb5ed084debe"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749096000000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 14.18181818181818,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "dbb02373-5c7b-4c16-806f-bb5ed084debe",
+        "createdAt": 1748962200711,
+        "updatedAt": 1748962200711
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "ea555858-0072-40c4-a6c3-1d2c53f66558"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1749441600000,
+        "totalPoints": 52,
+        "completedPoints": 22.5,
+        "remainingPoints": 29.5,
+        "tasksCompleted": 9,
+        "tasksRemaining": 10,
+        "idealBurndown": 9.454545454545453,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "ea555858-0072-40c4-a6c3-1d2c53f66558",
+        "createdAt": 1748962200719,
+        "updatedAt": 1748962200719
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "eb62a6e4-dc9f-4c05-8310-4ab7a032902d"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747195200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 40.18181818181818,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "eb62a6e4-dc9f-4c05-8310-4ab7a032902d",
+        "createdAt": 1748962200645,
+        "updatedAt": 1748962200645
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "ed75bd99-e705-4f56-97d2-250fe0cdaa11"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747972800000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 29.545454545454543,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "ed75bd99-e705-4f56-97d2-250fe0cdaa11",
+        "createdAt": 1748962200672,
+        "updatedAt": 1748962200672
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "ef324a6e-fd3c-489b-9259-cee10a2ea1a0"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1748491200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 22.454545454545453,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "ef324a6e-fd3c-489b-9259-cee10a2ea1a0",
+        "createdAt": 1748962200689,
+        "updatedAt": 1748962200689
+      }
+    },
+    {
+      "key": [
+        "sprint_metrics",
+        "fa90dab9-27a8-4235-bb79-51b5fab05c44"
+      ],
+      "value": {
+        "sprintId": "ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5",
+        "date": 1747627200000,
+        "totalPoints": 52,
+        "completedPoints": 0,
+        "remainingPoints": 52,
+        "tasksCompleted": 0,
+        "tasksRemaining": 19,
+        "idealBurndown": 34.27272727272727,
+        "projectId": "4c707aaa-1f3e-44a6-97eb-27eb52b5eac8",
+        "id": "fa90dab9-27a8-4235-bb79-51b5fab05c44",
+        "createdAt": 1748962200660,
+        "updatedAt": 1748962200660
+      }
+    }
+  ]
+}

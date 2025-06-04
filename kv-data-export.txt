@@ -1,0 +1,870 @@
+=== Datos almacenados en Deno KV ===
+
+=== USUARIOS ===
+Usuario 1:
+  ID: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Nombre de usuario: prof.martinez
+  Correo: martinez@universidad.edu
+  Rol: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 2:
+  ID: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Nombre de usuario: dev.gonzalez
+  Correo: gonzalez@estudiante.edu
+  Rol: product_owner
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 3:
+  ID: 115e5248-f8b1-46eb-9da7-b58228352cbd
+  Nombre de usuario: dev.torres
+  Correo: torres@estudiante.edu
+  Rol: scrum_master
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 4:
+  ID: 14228f6e-b5b8-443d-80cc-1709557729eb
+  Nombre de usuario: dev.castro
+  Correo: castro@estudiante.edu
+  Rol: team_developer
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 5:
+  ID: 1c580dc2-f1f8-485a-80f5-46cdc605bedd
+  Nombre de usuario: sm.lopez
+  Correo: lopez@universidad.edu
+  Rol: scrum_master
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 6:
+  ID: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Nombre de usuario: po.garcia
+  Correo: garcia@universidad.edu
+  Rol: product_owner
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 7:
+  ID: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Nombre de usuario: dev.sanchez
+  Correo: sanchez@estudiante.edu
+  Rol: team_developer
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 8:
+  ID: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Nombre de usuario: dev.perez
+  Correo: perez@estudiante.edu
+  Rol: team_developer
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Usuario 9:
+  ID: c87de8a6-7f93-46c0-bd18-cf697e744594
+  Nombre de usuario: dev.morales
+  Correo: morales@estudiante.edu
+  Rol: team_developer
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+=== SESIONES ===
+Sesión 1:
+  ID: 1119f5b2-77f4-43e5-b998-512038c55a7e
+  Usuario ID: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Nombre de usuario: prof.martinez
+  Correo: martinez@universidad.edu
+  Rol: admin
+  Creada: 3/6/2025, 9:50:55 a. m.
+  Expira: 10/6/2025, 9:50:55 a. m.
+
+Sesión 2:
+  ID: 3a38f068-3595-4a07-864a-22366dd24af2
+  Usuario ID: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Nombre de usuario: dev.gonzalez
+  Correo: gonzalez@estudiante.edu
+  Rol: product_owner
+  Creada: 4/6/2025, 9:01:33 a. m.
+  Expira: 11/6/2025, 9:01:33 a. m.
+
+=== PROYECTOS ===
+Proyecto 1:
+  ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Nombre: Sistema de Gestión Académica
+  Descripción: Desarrollo de un sistema web para gestionar estudiantes, cursos y calificaciones de la universidad.
+  Estado: in_progress
+  Creado por: admin
+  Fecha inicio: 4/5/2025, 9:48:51 a. m.
+  Fecha fin: 2/8/2025, 9:48:51 a. m.
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Proyecto 2:
+  ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Nombre: Proyecto vacio
+  Descripción: vacio
+  Estado: planning
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Fecha inicio: 4/6/2025, 8:00:00 p. m.
+  Fecha fin: 5/6/2025, 8:00:00 p. m.
+  Creado: 4/6/2025, 8:45:46 a. m.
+
+=== MIEMBROS DE PROYECTOS ===
+Miembro 1:
+  ID: 03170c97-8d13-4aff-9420-772c165a0fd9
+  Usuario ID: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Rol: team_member
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Miembro 2:
+  ID: 2f3c501b-2d13-40ad-88e0-d0c82ef0b84c
+  Usuario ID: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Proyecto ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Rol: product_owner
+  Creado: 4/6/2025, 8:46:12 a. m.
+
+Miembro 3:
+  ID: 5086f2e1-6be3-415d-9aad-2b62ab510e6a
+  Usuario ID: 115e5248-f8b1-46eb-9da7-b58228352cbd
+  Proyecto ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Rol: scrum_master
+  Creado: 4/6/2025, 8:46:17 a. m.
+
+Miembro 4:
+  ID: 538b7333-d8c1-4ef5-91e8-9348533ff63e
+  Usuario ID: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Rol: product_owner
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Miembro 5:
+  ID: 680e06e2-059d-4e59-bd27-8b2192d93bd4
+  Usuario ID: 14228f6e-b5b8-443d-80cc-1709557729eb
+  Proyecto ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Rol: team_member
+  Creado: 4/6/2025, 8:46:21 a. m.
+
+Miembro 6:
+  ID: 7ef2903a-16bc-44d0-99c7-5e2e3aa4e17c
+  Usuario ID: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Rol: team_member
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Miembro 7:
+  ID: c3e3970b-fdc4-46fb-b9d7-25653356de96
+  Usuario ID: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Rol: team_member
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Miembro 8:
+  ID: db17984b-f96f-40a3-9810-319e4fa89896
+  Usuario ID: 1c580dc2-f1f8-485a-80f5-46cdc605bedd
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Rol: scrum_master
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+=== HISTORIAS DE USUARIO ===
+Historia de Usuario 1:
+  ID: 138fd5ee-5cb5-4396-b0fa-4406d6703a36
+  Título: Autenticación de usuarios
+  Descripción: Como usuario registrado, quiero poder iniciar sesi...
+  Prioridad: high
+  Estado: done
+  Puntos: 5
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Historia de Usuario 2:
+  ID: 1ac5a12c-6281-414f-8eda-e3541e58097d
+  Título: Diseñar dashboard principal
+  Descripción: Como usuario, quiero ver un dashboard con informac...
+  Prioridad: medium
+  Estado: planned
+  Puntos: 13
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Historia de Usuario 3:
+  ID: 2a824a10-eadc-429d-9ba8-33cf419dc3cc
+  Título: Registro de usuarios
+  Descripción: Como usuario nuevo, quiero poder registrarme en el...
+  Prioridad: high
+  Estado: in_progress
+  Puntos: 8
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Historia de Usuario 4:
+  ID: 305b9ae5-941e-40fc-8cd4-30368e486a1d
+  Título: Crear registro de nuevos usuarios
+  Descripción: Como administrador, quiero poder registrar nuevos ...
+  Prioridad: high
+  Estado: done
+  Puntos: 5
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Historia de Usuario 5:
+  ID: 58a399da-24be-4b61-8bae-6d8825d0eefb
+  Título: Implementar gestión de perfiles
+  Descripción: Como usuario, quiero poder ver y editar mi perfil ...
+  Prioridad: medium
+  Estado: in_progress
+  Puntos: 8
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Historia de Usuario 6:
+  ID: 7131ec42-bf11-4efd-800d-6f3be12a24fa
+  Título: Dashboard principal
+  Descripción: Como usuario autenticado, quiero ver un dashboard ...
+  Prioridad: medium
+  Estado: in_progress
+  Puntos: 13
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Historia de Usuario 7:
+  ID: c5df51b3-7dd6-4b1e-a946-ce7bb237c365
+  Título: Implementar sistema de autenticación
+  Descripción: Como usuario, quiero poder iniciar sesión en el si...
+  Prioridad: high
+  Estado: in_progress
+  Puntos: 8
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Historia de Usuario 8:
+  ID: f8e5cef0-d455-470d-93a3-b8ba0a73223e
+  Título: Diseño de db
+  Descripción: diseño db
+  Prioridad: medium
+  Estado: done
+  Puntos: 1
+  Proyecto ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 4/6/2025, 8:47:37 a. m.
+
+=== TAREAS ===
+Tarea 1:
+  ID: 17ad78f0-8dd0-495a-bc2c-9d4c264aead9
+  Título: Implementación - Dashboard principal
+  Descripción: Desarrollar Dashboard principal
+  Estado: in_progress
+  Historia de Usuario ID: 7131ec42-bf11-4efd-800d-6f3be12a24fa
+  Asignado a: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Horas estimadas: 8
+  Horas gastadas: 5
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 2:
+  ID: 3582b4c8-ddc3-449d-9cf5-ee228efcaa89
+  Título: Implementar navegación principal
+  Descripción: Crear menú de navegación y rutas
+  Estado: todo
+  Historia de Usuario ID: 1ac5a12c-6281-414f-8eda-e3541e58097d
+  Asignado a: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Horas estimadas: 4
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 3:
+  ID: 3fc38e12-1e4c-43f7-a5a4-243d995a20ea
+  Título: Diseño - Autenticación de usuarios
+  Descripción: Crear diseño para Autenticación de usuarios
+  Estado: done
+  Historia de Usuario ID: 138fd5ee-5cb5-4396-b0fa-4406d6703a36
+  Asignado a: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Horas estimadas: 4
+  Horas gastadas: 3
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 4:
+  ID: 430ef4f9-a453-436d-8518-bdaaa2def98b
+  Título: Implementar validación de credenciales
+  Descripción: Agregar lógica de validación en el backend
+  Estado: done
+  Historia de Usuario ID: c5df51b3-7dd6-4b1e-a946-ce7bb237c365
+  Asignado a: 1c580dc2-f1f8-485a-80f5-46cdc605bedd
+  Horas estimadas: 6
+  Horas gastadas: 5
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 5:
+  ID: 487c32d6-6b44-4e73-8dac-c4dc5549dcec
+  Título: Diseño - Registro de usuarios
+  Descripción: Crear diseño para Registro de usuarios
+  Estado: done
+  Historia de Usuario ID: 2a824a10-eadc-429d-9ba8-33cf419dc3cc
+  Asignado a: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Horas estimadas: 4
+  Horas gastadas: 3
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 6:
+  ID: 68907342-2356-45ea-8721-6009c1f01d9f
+  Título: Implementación - Autenticación de usuarios
+  Descripción: Desarrollar Autenticación de usuarios
+  Estado: done
+  Historia de Usuario ID: 138fd5ee-5cb5-4396-b0fa-4406d6703a36
+  Asignado a: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Horas estimadas: 8
+  Horas gastadas: 5
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 7:
+  ID: 7c2490a5-057a-446a-a809-a4d68e427d16
+  Título: Diseñar formulario de login
+  Descripción: Crear el diseño del formulario de inicio de sesión
+  Estado: done
+  Historia de Usuario ID: c5df51b3-7dd6-4b1e-a946-ce7bb237c365
+  Asignado a: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Horas estimadas: 4
+  Horas gastadas: 3
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 8:
+  ID: 8570e12f-7a15-422c-b4e4-a100032d62f4
+  Título: Desarrollar widgets informativos
+  Descripción: Crear componentes para mostrar información
+  Estado: todo
+  Historia de Usuario ID: 1ac5a12c-6281-414f-8eda-e3541e58097d
+  Asignado a: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Horas estimadas: 10
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 9:
+  ID: 86276808-daf6-41c4-bec0-60f8ab378ab8
+  Título: Diseñar formulario de registro
+  Descripción: Crear interfaz para registro de usuarios
+  Estado: done
+  Historia de Usuario ID: 305b9ae5-941e-40fc-8cd4-30368e486a1d
+  Asignado a: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Horas estimadas: 3
+  Horas gastadas: 2
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 10:
+  ID: 8cce9635-59bb-45e9-8c7a-56cdcb177b3d
+  Título: Agregar cambio de contraseña
+  Descripción: Funcionalidad para cambiar contraseña
+  Estado: todo
+  Historia de Usuario ID: 58a399da-24be-4b61-8bae-6d8825d0eefb
+  Asignado a: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Horas estimadas: 4
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 11:
+  ID: 989c8d50-9a71-4383-9e2f-3480cc3b472a
+  Título: Crear wireframes del dashboard
+  Descripción: Diseñar la estructura y layout del dashboard
+  Estado: todo
+  Historia de Usuario ID: 1ac5a12c-6281-414f-8eda-e3541e58097d
+  Asignado a: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Horas estimadas: 6
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 12:
+  ID: a2c3a9b3-910e-46f8-a850-02c4973292cf
+  Título: Diseño - Dashboard principal
+  Descripción: Crear diseño para Dashboard principal
+  Estado: done
+  Historia de Usuario ID: 7131ec42-bf11-4efd-800d-6f3be12a24fa
+  Asignado a: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Horas estimadas: 4
+  Horas gastadas: 3
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 13:
+  ID: a9ba82b6-8bf2-4111-a091-bc42f9c91e36
+  Título: Implementación - Registro de usuarios
+  Descripción: Desarrollar Registro de usuarios
+  Estado: in_progress
+  Historia de Usuario ID: 2a824a10-eadc-429d-9ba8-33cf419dc3cc
+  Asignado a: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Horas estimadas: 8
+  Horas gastadas: 5
+  Es entregable: No
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Tarea 14:
+  ID: ae0bb8d8-e072-4da7-92a0-254d5109b5d0
+  Título: Agregar manejo de errores
+  Descripción: Implementar mensajes de error y casos edge
+  Estado: in_progress
+  Historia de Usuario ID: c5df51b3-7dd6-4b1e-a946-ce7bb237c365
+  Asignado a: 1c580dc2-f1f8-485a-80f5-46cdc605bedd
+  Horas estimadas: 3
+  Horas gastadas: 1
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 15:
+  ID: b53a367f-0732-44ea-90d2-5c18e19936de
+  Título: Implementar edición de datos
+  Descripción: Permitir editar información personal
+  Estado: in_progress
+  Historia de Usuario ID: 58a399da-24be-4b61-8bae-6d8825d0eefb
+  Asignado a: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Horas estimadas: 6
+  Horas gastadas: 2
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 16:
+  ID: b6630f52-6f38-44e6-af5b-f035cd359793
+  Título: Crear vista de perfil
+  Descripción: Mostrar información del usuario
+  Estado: done
+  Historia de Usuario ID: 58a399da-24be-4b61-8bae-6d8825d0eefb
+  Asignado a: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Horas estimadas: 4
+  Horas gastadas: 3
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 17:
+  ID: b6699c57-28fa-4a9d-9a26-4cc7e997725c
+  Título: Implementar subida de foto
+  Descripción: Permitir subir y cambiar foto de perfil
+  Estado: todo
+  Historia de Usuario ID: 58a399da-24be-4b61-8bae-6d8825d0eefb
+  Asignado a: 481db4fd-af03-4705-ac99-ce1f693cf750
+  Horas estimadas: 5
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 18:
+  ID: c49b78e9-abe8-40d3-a12e-d6d265afa537
+  Título: Implementar redirección post-login
+  Descripción: Configurar redirección según el rol del usuario
+  Estado: todo
+  Historia de Usuario ID: c5df51b3-7dd6-4b1e-a946-ce7bb237c365
+  Asignado a: 7ce49763-7c6d-48a8-881e-6273892b093c
+  Horas estimadas: 2
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 19:
+  ID: e224197a-261d-4797-86a7-af9b876632e5
+  Título: Implementar validación de datos
+  Descripción: Validar email, contraseña y datos requeridos
+  Estado: done
+  Historia de Usuario ID: 305b9ae5-941e-40fc-8cd4-30368e486a1d
+  Asignado a: 1c580dc2-f1f8-485a-80f5-46cdc605bedd
+  Horas estimadas: 4
+  Horas gastadas: 4
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 20:
+  ID: e4c7ba4d-ebc7-4c99-bb2a-95fb34f0fd9b
+  Título: Implementar layout responsivo
+  Descripción: Crear estructura HTML/CSS responsiva
+  Estado: todo
+  Historia de Usuario ID: 1ac5a12c-6281-414f-8eda-e3541e58097d
+  Asignado a: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Horas estimadas: 8
+  Horas gastadas: 0
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+Tarea 21:
+  ID: ef3b75cd-4837-4671-badc-2c87219baccb
+  Título: diseño tablas
+  Descripción: undefined
+  Estado: done
+  Historia de Usuario ID: f8e5cef0-d455-470d-93a3-b8ba0a73223e
+  Asignado a: 0cf26068-d790-4777-b9ad-bee3a24208c3
+  Horas estimadas: 1
+  Horas gastadas: 1
+  Es entregable: No
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 4/6/2025, 8:54:28 a. m.
+
+Tarea 22:
+  ID: f82f771c-d609-481a-90e4-036faf251061
+  Título: Configurar confirmación por email
+  Descripción: Enviar email de confirmación al registrarse
+  Estado: done
+  Historia de Usuario ID: 305b9ae5-941e-40fc-8cd4-30368e486a1d
+  Asignado a: c6fb4fb9-3646-4791-b1da-c5cbff26bce5
+  Horas estimadas: 5
+  Horas gastadas: 6
+  Es entregable: No
+  Creado por: undefined
+  Creado: 3/6/2025, 10:45:57 a. m.
+
+=== SPRINTS ===
+Sprint 1:
+  ID: ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5
+  Nombre: Sprint 1 - Fundamentos
+  Objetivo: Implementar funcionalidades básicas de autenticaci...
+  Estado: active
+  Proyecto ID: 4c707aaa-1f3e-44a6-97eb-27eb52b5eac8
+  Fecha inicio: 4/5/2025, 9:48:51 a. m.
+  Fecha fin: 17/6/2025, 9:48:51 a. m.
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Sprint 2:
+  ID: e5f01cd7-9324-43df-8e4d-e3cf2b644543
+  Nombre: Sprint 1
+  Objetivo: undefined
+  Estado: active
+  Proyecto ID: 4c7ad291-8c1f-48c3-b810-0205c7c28709
+  Fecha inicio: 3/6/2025, 8:00:00 p. m.
+  Fecha fin: 7/6/2025, 8:00:00 p. m.
+  Creado por: 0924ff4a-f0ab-4481-addb-23a33d28d9e7
+  Creado: 4/6/2025, 8:46:52 a. m.
+
+=== ENTREGABLES ===
+No hay entregables registrados.
+
+=== RÚBRICAS ===
+Rúbrica 1:
+  ID: 61c4e5c6-474f-4136-8302-587e7da9206b
+  Título: undefined
+  Descripción: Para evaluar presentaciones orales de proyectos
+  Estado: active
+  Es plantilla: Sí
+  Proyecto ID: N/A
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+Rúbrica 2:
+  ID: b5054f13-05be-4521-842d-3ffb49111506
+  Título: undefined
+  Descripción: Plantilla estándar para evaluar entregables de des...
+  Estado: active
+  Es plantilla: Sí
+  Proyecto ID: N/A
+  Creado por: admin
+  Creado: 3/6/2025, 9:48:51 a. m.
+
+=== EVALUACIONES ===
+No hay evaluaciones registradas.
+
+=== REPORTES ===
+No hay reportes registrados.
+
+=== TODAS LAS CLAVES ===
+Listando todas las claves en la base de datos...
+Clave 1: ["project_members","03170c97-8d13-4aff-9420-772c165a0fd9"]
+Clave 2: ["project_members","2f3c501b-2d13-40ad-88e0-d0c82ef0b84c"]
+Clave 3: ["project_members","5086f2e1-6be3-415d-9aad-2b62ab510e6a"]
+Clave 4: ["project_members","538b7333-d8c1-4ef5-91e8-9348533ff63e"]
+Clave 5: ["project_members","680e06e2-059d-4e59-bd27-8b2192d93bd4"]
+Clave 6: ["project_members","7ef2903a-16bc-44d0-99c7-5e2e3aa4e17c"]
+Clave 7: ["project_members","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","0cf26068-d790-4777-b9ad-bee3a24208c3"]
+Clave 8: ["project_members","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","1c580dc2-f1f8-485a-80f5-46cdc605bedd"]
+Clave 9: ["project_members","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","481db4fd-af03-4705-ac99-ce1f693cf750"]
+Clave 10: ["project_members","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","7ce49763-7c6d-48a8-881e-6273892b093c"]
+Clave 11: ["project_members","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","c6fb4fb9-3646-4791-b1da-c5cbff26bce5"]
+Clave 12: ["project_members","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","0cf26068-d790-4777-b9ad-bee3a24208c3"]
+Clave 13: ["project_members","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","115e5248-f8b1-46eb-9da7-b58228352cbd"]
+Clave 14: ["project_members","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","14228f6e-b5b8-443d-80cc-1709557729eb"]
+Clave 15: ["project_members","by_user","0cf26068-d790-4777-b9ad-bee3a24208c3","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 16: ["project_members","by_user","0cf26068-d790-4777-b9ad-bee3a24208c3","4c7ad291-8c1f-48c3-b810-0205c7c28709"]
+Clave 17: ["project_members","by_user","115e5248-f8b1-46eb-9da7-b58228352cbd","4c7ad291-8c1f-48c3-b810-0205c7c28709"]
+Clave 18: ["project_members","by_user","14228f6e-b5b8-443d-80cc-1709557729eb","4c7ad291-8c1f-48c3-b810-0205c7c28709"]
+Clave 19: ["project_members","by_user","1c580dc2-f1f8-485a-80f5-46cdc605bedd","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 20: ["project_members","by_user","481db4fd-af03-4705-ac99-ce1f693cf750","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 21: ["project_members","by_user","7ce49763-7c6d-48a8-881e-6273892b093c","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 22: ["project_members","by_user","c6fb4fb9-3646-4791-b1da-c5cbff26bce5","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 23: ["project_members","c3e3970b-fdc4-46fb-b9d7-25653356de96"]
+Clave 24: ["project_members","db17984b-f96f-40a3-9810-319e4fa89896"]
+Clave 25: ["projects","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8"]
+Clave 26: ["projects","4c7ad291-8c1f-48c3-b810-0205c7c28709"]
+Clave 27: ["rubric_templates","61c4e5c6-474f-4136-8302-587e7da9206b"]
+Clave 28: ["rubric_templates","b5054f13-05be-4521-842d-3ffb49111506"]
+Clave 29: ["rubrics","61c4e5c6-474f-4136-8302-587e7da9206b"]
+Clave 30: ["rubrics","b5054f13-05be-4521-842d-3ffb49111506"]
+Clave 31: ["rubrics_by_user","admin","61c4e5c6-474f-4136-8302-587e7da9206b"]
+Clave 32: ["rubrics_by_user","admin","b5054f13-05be-4521-842d-3ffb49111506"]
+Clave 33: ["sprint_metrics","04da344f-2a7a-4ec1-99f9-62f6c7a691e3"]
+Clave 34: ["sprint_metrics","05c3f934-58d2-419a-8182-b52da65f581f"]
+Clave 35: ["sprint_metrics","0794efcb-4c37-456f-b61a-9253387d078f"]
+Clave 36: ["sprint_metrics","09cb7122-472d-449a-84c8-c6061cce67d6"]
+Clave 37: ["sprint_metrics","0ae85d93-50e7-43b9-84c8-f2a03b7c4f25"]
+Clave 38: ["sprint_metrics","18902888-57a2-455d-925b-6c98200c5973"]
+Clave 39: ["sprint_metrics","1ce4add5-c1fc-4200-9155-4b1aba869900"]
+Clave 40: ["sprint_metrics","243badb7-d449-4220-9334-98cb805dcc1b"]
+Clave 41: ["sprint_metrics","24b310eb-f9c4-4198-a861-214facfdb1f4"]
+Clave 42: ["sprint_metrics","2f48f897-96c6-4faf-9aff-479cd2347c05"]
+Clave 43: ["sprint_metrics","377b7290-5a98-4db6-98b5-1e5e98e114f2"]
+Clave 44: ["sprint_metrics","37932c7c-26fc-4290-927c-fb0ce9f243cf"]
+Clave 45: ["sprint_metrics","3aac7fc8-c5ca-49c3-9699-18d97b0e6431"]
+Clave 46: ["sprint_metrics","3d7a0463-ccbe-481f-b768-2e3376230e8a"]
+Clave 47: ["sprint_metrics","4e842e59-a138-4c7a-b718-8214add4fb36"]
+Clave 48: ["sprint_metrics","58173310-87d4-4d16-8543-2e911a355597"]
+Clave 49: ["sprint_metrics","597032c1-ee0f-4354-8f4a-a2815a410685"]
+Clave 50: ["sprint_metrics","5f53fc8c-c5f4-47ff-abb2-c70d0f02cd21"]
+Clave 51: ["sprint_metrics","60acc9b5-b795-4851-a44a-316889e417e7"]
+Clave 52: ["sprint_metrics","6b4659d5-f173-4787-a50d-b77bc4696495"]
+Clave 53: ["sprint_metrics","6c4f2c17-142b-4a96-b615-6b055f51802a"]
+Clave 54: ["sprint_metrics","6f0538be-661d-4b9f-b8bb-927c046fe782"]
+Clave 55: ["sprint_metrics","73ef147d-6ddb-47ca-a979-14ae1665bd77"]
+Clave 56: ["sprint_metrics","7cc1165c-e272-45da-acdd-f24bd4dc19b0"]
+Clave 57: ["sprint_metrics","8529ad5e-e96f-48fe-b229-faf2efefdeec"]
+Clave 58: ["sprint_metrics","8574958d-de62-4856-a465-1392447d1a5f"]
+Clave 59: ["sprint_metrics","8a5acbf5-9a5e-44d3-98d7-42888282979f"]
+Clave 60: ["sprint_metrics","8d6eaa32-a511-48b0-9a50-a7fb5e57124a"]
+Clave 61: ["sprint_metrics","8f0ead15-5b19-4bb5-be2e-bdb5f3887233"]
+Clave 62: ["sprint_metrics","9b5d57ee-95c5-427a-b11e-00557fc3ac4d"]
+Clave 63: ["sprint_metrics","9d1875d3-dd99-4185-87b8-f2f7883c01d8"]
+Clave 64: ["sprint_metrics","9d5f508e-ead4-4ef8-9c79-4fcdd966f370"]
+Clave 65: ["sprint_metrics","a1dfe4ca-6cbe-487d-ab2f-dfa583181e1a"]
+Clave 66: ["sprint_metrics","a229a827-6a93-4662-b099-68de4b2824a2"]
+Clave 67: ["sprint_metrics","a53b3bea-9402-47c4-992d-60cce345d305"]
+Clave 68: ["sprint_metrics","a9bfee6e-faa0-441f-b132-df8d61121ab7"]
+Clave 69: ["sprint_metrics","aecdd1c2-087b-4b32-89f0-e89de140741a"]
+Clave 70: ["sprint_metrics","b20118e0-9b50-4dcf-9502-2b0c360b9c25"]
+Clave 71: ["sprint_metrics","b74670cd-4a6d-4676-b67d-ce8fd74be9bb"]
+Clave 72: ["sprint_metrics","b92fb7e6-3073-4083-8201-2bb4bab437f9"]
+Clave 73: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","04da344f-2a7a-4ec1-99f9-62f6c7a691e3"]
+Clave 74: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","05c3f934-58d2-419a-8182-b52da65f581f"]
+Clave 75: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","0794efcb-4c37-456f-b61a-9253387d078f"]
+Clave 76: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","09cb7122-472d-449a-84c8-c6061cce67d6"]
+Clave 77: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","0ae85d93-50e7-43b9-84c8-f2a03b7c4f25"]
+Clave 78: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","18902888-57a2-455d-925b-6c98200c5973"]
+Clave 79: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","1ce4add5-c1fc-4200-9155-4b1aba869900"]
+Clave 80: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","243badb7-d449-4220-9334-98cb805dcc1b"]
+Clave 81: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","24b310eb-f9c4-4198-a861-214facfdb1f4"]
+Clave 82: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","2f48f897-96c6-4faf-9aff-479cd2347c05"]
+Clave 83: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","377b7290-5a98-4db6-98b5-1e5e98e114f2"]
+Clave 84: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","37932c7c-26fc-4290-927c-fb0ce9f243cf"]
+Clave 85: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","3aac7fc8-c5ca-49c3-9699-18d97b0e6431"]
+Clave 86: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","3d7a0463-ccbe-481f-b768-2e3376230e8a"]
+Clave 87: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","4e842e59-a138-4c7a-b718-8214add4fb36"]
+Clave 88: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","58173310-87d4-4d16-8543-2e911a355597"]
+Clave 89: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","597032c1-ee0f-4354-8f4a-a2815a410685"]
+Clave 90: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","5f53fc8c-c5f4-47ff-abb2-c70d0f02cd21"]
+Clave 91: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","60acc9b5-b795-4851-a44a-316889e417e7"]
+Clave 92: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","6b4659d5-f173-4787-a50d-b77bc4696495"]
+Clave 93: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","6c4f2c17-142b-4a96-b615-6b055f51802a"]
+Clave 94: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","6f0538be-661d-4b9f-b8bb-927c046fe782"]
+Clave 95: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","73ef147d-6ddb-47ca-a979-14ae1665bd77"]
+Clave 96: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","7cc1165c-e272-45da-acdd-f24bd4dc19b0"]
+Clave 97: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","8529ad5e-e96f-48fe-b229-faf2efefdeec"]
+Clave 98: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","8574958d-de62-4856-a465-1392447d1a5f"]
+Clave 99: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","8d6eaa32-a511-48b0-9a50-a7fb5e57124a"]
+Clave 100: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","8f0ead15-5b19-4bb5-be2e-bdb5f3887233"]
+Clave 101: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","9d1875d3-dd99-4185-87b8-f2f7883c01d8"]
+Clave 102: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","a1dfe4ca-6cbe-487d-ab2f-dfa583181e1a"]
+Clave 103: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","a229a827-6a93-4662-b099-68de4b2824a2"]
+Clave 104: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","a9bfee6e-faa0-441f-b132-df8d61121ab7"]
+Clave 105: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","aecdd1c2-087b-4b32-89f0-e89de140741a"]
+Clave 106: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","b74670cd-4a6d-4676-b67d-ce8fd74be9bb"]
+Clave 107: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","b92fb7e6-3073-4083-8201-2bb4bab437f9"]
+Clave 108: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","c39d8eec-8017-4d55-8958-6b58e539cf1a"]
+Clave 109: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","c8853862-de9e-4681-a970-82ae5f6238db"]
+Clave 110: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","c91c8e03-cf41-4419-a28f-ef3844b54442"]
+Clave 111: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","d9a003cd-3ae3-446c-bf83-270a83b93d85"]
+Clave 112: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","dbb02373-5c7b-4c16-806f-bb5ed084debe"]
+Clave 113: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","ea555858-0072-40c4-a6c3-1d2c53f66558"]
+Clave 114: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","eb62a6e4-dc9f-4c05-8310-4ab7a032902d"]
+Clave 115: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","ed75bd99-e705-4f56-97d2-250fe0cdaa11"]
+Clave 116: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","ef324a6e-fd3c-489b-9259-cee10a2ea1a0"]
+Clave 117: ["sprint_metrics","by_project","4c707aaa-1f3e-44a6-97eb-27eb52b5eac8","fa90dab9-27a8-4235-bb79-51b5fab05c44"]
+Clave 118: ["sprint_metrics","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","8a5acbf5-9a5e-44d3-98d7-42888282979f"]
+Clave 119: ["sprint_metrics","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","9b5d57ee-95c5-427a-b11e-00557fc3ac4d"]
+Clave 120: ["sprint_metrics","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","9d5f508e-ead4-4ef8-9c79-4fcdd966f370"]
+Clave 121: ["sprint_metrics","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","a53b3bea-9402-47c4-992d-60cce345d305"]
+Clave 122: ["sprint_metrics","by_project","4c7ad291-8c1f-48c3-b810-0205c7c28709","b20118e0-9b50-4dcf-9502-2b0c360b9c25"]
+Clave 123: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746331200000"]
+Clave 124: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746417600000"]
+Clave 125: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746504000000"]
+Clave 126: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746590400000"]
+Clave 127: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746676800000"]
+Clave 128: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746763200000"]
+Clave 129: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746849600000"]
+Clave 130: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1746936000000"]
+Clave 131: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747022400000"]
+Clave 132: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747108800000"]
+Clave 133: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747195200000"]
+Clave 134: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747281600000"]
+Clave 135: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747368000000"]
+Clave 136: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747454400000"]
+Clave 137: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747540800000"]
+Clave 138: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747627200000"]
+Clave 139: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747713600000"]
+Clave 140: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747800000000"]
+Clave 141: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747886400000"]
+Clave 142: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1747972800000"]
+Clave 143: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748059200000"]
+Clave 144: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748145600000"]
+Clave 145: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748232000000"]
+Clave 146: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748318400000"]
+Clave 147: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748404800000"]
+Clave 148: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748491200000"]
+Clave 149: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748577600000"]
+Clave 150: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748664000000"]
+Clave 151: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748750400000"]
+Clave 152: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748836800000"]
+Clave 153: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1748923200000"]
+Clave 154: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749009600000"]
+Clave 155: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749096000000"]
+Clave 156: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749182400000"]
+Clave 157: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749268800000"]
+Clave 158: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749355200000"]
+Clave 159: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749441600000"]
+Clave 160: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749528000000"]
+Clave 161: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749614400000"]
+Clave 162: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749700800000"]
+Clave 163: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749787200000"]
+Clave 164: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749873600000"]
+Clave 165: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1749960000000"]
+Clave 166: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1750046400000"]
+Clave 167: ["sprint_metrics","by_sprint","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5","1750132800000"]
+Clave 168: ["sprint_metrics","by_sprint","e5f01cd7-9324-43df-8e4d-e3cf2b644543","1748923200000"]
+Clave 169: ["sprint_metrics","by_sprint","e5f01cd7-9324-43df-8e4d-e3cf2b644543","1749009600000"]
+Clave 170: ["sprint_metrics","by_sprint","e5f01cd7-9324-43df-8e4d-e3cf2b644543","1749096000000"]
+Clave 171: ["sprint_metrics","by_sprint","e5f01cd7-9324-43df-8e4d-e3cf2b644543","1749182400000"]
+Clave 172: ["sprint_metrics","by_sprint","e5f01cd7-9324-43df-8e4d-e3cf2b644543","1749268800000"]
+Clave 173: ["sprint_metrics","c39d8eec-8017-4d55-8958-6b58e539cf1a"]
+Clave 174: ["sprint_metrics","c8853862-de9e-4681-a970-82ae5f6238db"]
+Clave 175: ["sprint_metrics","c91c8e03-cf41-4419-a28f-ef3844b54442"]
+Clave 176: ["sprint_metrics","d9a003cd-3ae3-446c-bf83-270a83b93d85"]
+Clave 177: ["sprint_metrics","dbb02373-5c7b-4c16-806f-bb5ed084debe"]
+Clave 178: ["sprint_metrics","ea555858-0072-40c4-a6c3-1d2c53f66558"]
+Clave 179: ["sprint_metrics","eb62a6e4-dc9f-4c05-8310-4ab7a032902d"]
+Clave 180: ["sprint_metrics","ed75bd99-e705-4f56-97d2-250fe0cdaa11"]
+Clave 181: ["sprint_metrics","ef324a6e-fd3c-489b-9259-cee10a2ea1a0"]
+Clave 182: ["sprint_metrics","fa90dab9-27a8-4235-bb79-51b5fab05c44"]
+Clave 183: ["sprints","ad3f8762-8fc0-4bf6-8a5c-3635bec7acf5"]
+Clave 184: ["sprints","e5f01cd7-9324-43df-8e4d-e3cf2b644543"]
+Clave 185: ["task_history","02b2ce76-8b7b-486d-bc45-ba9b6ddecd8e"]
+Clave 186: ["task_history","0cf64e6e-38e4-4a62-b1d1-53179d0c3c77"]
+Clave 187: ["task_history","2b480643-e3b7-4491-afc6-bc356d7d28be"]
+Clave 188: ["task_history","3ab48bd5-03db-4528-bc64-b7d05ab24ca2"]
+Clave 189: ["task_history","3e267d6e-6a08-4cc9-bc85-ebbb75feaefe"]
+Clave 190: ["task_history","3e7261aa-a717-4ac4-b741-cbbe1eb2c721"]
+Clave 191: ["task_history","591c4ba4-84e0-4272-9683-422cc002026e"]
+Clave 192: ["task_history","7c04f7f6-3cdc-41dc-870b-b7444fa9cbcb"]
+Clave 193: ["task_history","8d25a340-e73a-4b71-8cba-582cf8a00f04"]
+Clave 194: ["task_history","afc70ab2-d681-45c7-98d4-ddf2d496094a"]
+Clave 195: ["task_history","b2c1ef9d-c4d5-4002-b2c1-945c1501e94b"]
+Clave 196: ["task_history","bda475ae-2d73-4085-b0bd-bc0620ef2e54"]
+Clave 197: ["task_history","by_task","68907342-2356-45ea-8721-6009c1f01d9f","3ab48bd5-03db-4528-bc64-b7d05ab24ca2"]
+Clave 198: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","02b2ce76-8b7b-486d-bc45-ba9b6ddecd8e"]
+Clave 199: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","0cf64e6e-38e4-4a62-b1d1-53179d0c3c77"]
+Clave 200: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","2b480643-e3b7-4491-afc6-bc356d7d28be"]
+Clave 201: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","3e267d6e-6a08-4cc9-bc85-ebbb75feaefe"]
+Clave 202: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","3e7261aa-a717-4ac4-b741-cbbe1eb2c721"]
+Clave 203: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","591c4ba4-84e0-4272-9683-422cc002026e"]
+Clave 204: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","7c04f7f6-3cdc-41dc-870b-b7444fa9cbcb"]
+Clave 205: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","8d25a340-e73a-4b71-8cba-582cf8a00f04"]
+Clave 206: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","afc70ab2-d681-45c7-98d4-ddf2d496094a"]
+Clave 207: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","b2c1ef9d-c4d5-4002-b2c1-945c1501e94b"]
+Clave 208: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","bda475ae-2d73-4085-b0bd-bc0620ef2e54"]
+Clave 209: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","c4fdf8a4-ab59-4707-a990-6dfa3368f663"]
+Clave 210: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","c7bc3f88-ad1f-4e6c-85c7-34a7858105b8"]
+Clave 211: ["task_history","by_task","ef3b75cd-4837-4671-badc-2c87219baccb","e142fb8d-a28e-43d4-9519-a60bc862b4d7"]
+Clave 212: ["task_history","c4fdf8a4-ab59-4707-a990-6dfa3368f663"]
+Clave 213: ["task_history","c7bc3f88-ad1f-4e6c-85c7-34a7858105b8"]
+Clave 214: ["task_history","e142fb8d-a28e-43d4-9519-a60bc862b4d7"]
+Clave 215: ["tasks","17ad78f0-8dd0-495a-bc2c-9d4c264aead9"]
+Clave 216: ["tasks","3582b4c8-ddc3-449d-9cf5-ee228efcaa89"]
+Clave 217: ["tasks","3fc38e12-1e4c-43f7-a5a4-243d995a20ea"]
+Clave 218: ["tasks","430ef4f9-a453-436d-8518-bdaaa2def98b"]
+Clave 219: ["tasks","487c32d6-6b44-4e73-8dac-c4dc5549dcec"]
+Clave 220: ["tasks","68907342-2356-45ea-8721-6009c1f01d9f"]
+Clave 221: ["tasks","7c2490a5-057a-446a-a809-a4d68e427d16"]
+Clave 222: ["tasks","8570e12f-7a15-422c-b4e4-a100032d62f4"]
+Clave 223: ["tasks","86276808-daf6-41c4-bec0-60f8ab378ab8"]
+Clave 224: ["tasks","8cce9635-59bb-45e9-8c7a-56cdcb177b3d"]
+Clave 225: ["tasks","989c8d50-9a71-4383-9e2f-3480cc3b472a"]
+Clave 226: ["tasks","a2c3a9b3-910e-46f8-a850-02c4973292cf"]
+Clave 227: ["tasks","a9ba82b6-8bf2-4111-a091-bc42f9c91e36"]
+Clave 228: ["tasks","ae0bb8d8-e072-4da7-92a0-254d5109b5d0"]
+Clave 229: ["tasks","b53a367f-0732-44ea-90d2-5c18e19936de"]
+Clave 230: ["tasks","b6630f52-6f38-44e6-af5b-f035cd359793"]
+Clave 231: ["tasks","b6699c57-28fa-4a9d-9a26-4cc7e997725c"]
+Clave 232: ["tasks","c49b78e9-abe8-40d3-a12e-d6d265afa537"]
+Clave 233: ["tasks","e224197a-261d-4797-86a7-af9b876632e5"]
+Clave 234: ["tasks","e4c7ba4d-ebc7-4c99-bb2a-95fb34f0fd9b"]
+Clave 235: ["tasks","ef3b75cd-4837-4671-badc-2c87219baccb"]
+Clave 236: ["tasks","f82f771c-d609-481a-90e4-036faf251061"]
+Clave 237: ["userStories","138fd5ee-5cb5-4396-b0fa-4406d6703a36"]
+Clave 238: ["userStories","1ac5a12c-6281-414f-8eda-e3541e58097d"]
+Clave 239: ["userStories","2a824a10-eadc-429d-9ba8-33cf419dc3cc"]
+Clave 240: ["userStories","305b9ae5-941e-40fc-8cd4-30368e486a1d"]
+Clave 241: ["userStories","58a399da-24be-4b61-8bae-6d8825d0eefb"]
+Clave 242: ["userStories","7131ec42-bf11-4efd-800d-6f3be12a24fa"]
+Clave 243: ["userStories","c5df51b3-7dd6-4b1e-a946-ce7bb237c365"]
+Clave 244: ["userStories","f8e5cef0-d455-470d-93a3-b8ba0a73223e"]
+Clave 245: ["users","0924ff4a-f0ab-4481-addb-23a33d28d9e7"]
+Clave 246: ["users","0cf26068-d790-4777-b9ad-bee3a24208c3"]
+Clave 247: ["users","115e5248-f8b1-46eb-9da7-b58228352cbd"]
+Clave 248: ["users","14228f6e-b5b8-443d-80cc-1709557729eb"]
+Clave 249: ["users","1c580dc2-f1f8-485a-80f5-46cdc605bedd"]
+Clave 250: ["users","481db4fd-af03-4705-ac99-ce1f693cf750"]
+Clave 251: ["users","7ce49763-7c6d-48a8-881e-6273892b093c"]
+Clave 252: ["users","by_email","castro@estudiante.edu"]
+Clave 253: ["users","by_email","garcia@universidad.edu"]
+Clave 254: ["users","by_email","gonzalez@estudiante.edu"]
+Clave 255: ["users","by_email","lopez@universidad.edu"]
+Clave 256: ["users","by_email","martinez@universidad.edu"]
+Clave 257: ["users","by_email","morales@estudiante.edu"]
+Clave 258: ["users","by_email","perez@estudiante.edu"]
+Clave 259: ["users","by_email","sanchez@estudiante.edu"]
+Clave 260: ["users","by_email","torres@estudiante.edu"]
+Clave 261: ["users","by_username","dev.castro"]
+Clave 262: ["users","by_username","dev.gonzalez"]
+Clave 263: ["users","by_username","dev.morales"]
+Clave 264: ["users","by_username","dev.perez"]
+Clave 265: ["users","by_username","dev.sanchez"]
+Clave 266: ["users","by_username","dev.torres"]
+Clave 267: ["users","by_username","po.garcia"]
+Clave 268: ["users","by_username","prof.martinez"]
+Clave 269: ["users","by_username","sm.lopez"]
+Clave 270: ["users","c6fb4fb9-3646-4791-b1da-c5cbff26bce5"]
+Clave 271: ["users","c87de8a6-7f93-46c0-bd18-cf697e744594"]
+Clave 272: ["users","sessions","1119f5b2-77f4-43e5-b998-512038c55a7e"]
+Clave 273: ["users","sessions","3a38f068-3595-4a07-864a-22366dd24af2"]
+
+Total de claves en la base de datos: 273
+
