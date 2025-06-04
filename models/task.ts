@@ -209,6 +209,17 @@ export async function updateTask(
     }
   }
 
+  // Si se cambió el estado de la tarea, actualizar el estado de la historia de usuario
+  if (updateData.status && updateData.status !== currentTask.status) {
+    try {
+      const { onTaskStatusChanged } = await import("../services/userStoryStatusService.ts");
+      await onTaskStatusChanged(id);
+    } catch (error) {
+      console.error("Error actualizando estado de historia de usuario:", error);
+      // No fallar la actualización de la tarea por este error
+    }
+  }
+
   return updatedTask;
 }
 
