@@ -29,7 +29,7 @@ export default function RubricDetails({ rubricId, onEdit, onBack }: RubricDetail
         const data = await response.json();
         setRubric(data);
       } catch (err) {
-        setError(err.message || "Error al cargar la rúbrica");
+        setError(err instanceof Error ? err.message : "Error al cargar la rúbrica");
         console.error(err);
       } finally {
         setLoading(false);

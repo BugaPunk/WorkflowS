@@ -3,7 +3,7 @@ import type { JSX } from "preact";
 
 // Omit 'size' from HTMLAttributes to avoid conflict
 interface ButtonProps extends Omit<JSX.HTMLAttributes<HTMLButtonElement>, "size"> {
-  variant?: "default" | "primary" | "ghost";
+  variant?: "default" | "primary" | "secondary" | "danger" | "ghost";
   class?: string;
   size?: "default" | "sm" | "lg" | "icon";
 }
@@ -20,6 +20,8 @@ export function Button({
   const variantClasses = {
     default: "text-black border border-gray-400",
     primary: "bg-blue-600 text-white hover:bg-blue-700",
+    secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+    danger: "bg-red-600 text-white hover:bg-red-700",
     ghost: "border border-gray-400 text-black hover:bg-gray-100 hover:text-gray-900",
   };
 

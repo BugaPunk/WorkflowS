@@ -1,5 +1,6 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { UserRole } from "../../models/user.ts";
+import type { Rubric } from "../../models/rubric.ts";
 import DeleteRubricModal from "./DeleteRubricModal.tsx";
 import RubricDetails from "./RubricDetails.tsx";
 
@@ -15,6 +16,28 @@ interface RubricDetailsPageProps {
 
 export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPageProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [rubric, setRubric] = useState<Rubric | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Cargar la rúbrica
+  useEffect(() => {
+    const fetchRubric = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/rubrics/${rubricId}`);
+        if (response.ok) {
+          const rubricData = await response.json();
+          setRubric(rubricData);
+        }
+      } catch (error) {
+        console.error("Error al cargar la rúbrica:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRubric();
+  }, [rubricId]);
 
   // Determinar si el usuario puede editar rúbricas
   const canEditRubrics =
@@ -42,6 +65,22 @@ export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPa
   const handleBack = () => {
     window.location.href = "/rubrics";
   };
+
+  if (loading) {
+    return (
+      <div class="flex justify-center items-center py-8">
+        <div class="text-gray-500">Cargando rúbrica...</div>
+      </div>
+    );
+  }
+
+  if (!rubric) {
+    return (
+      <div class="flex justify-center items-center py-8">
+        <div class="text-red-500">Error: No se pudo cargar la rúbrica</div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -72,9 +111,9 @@ export default function RubricDetailsPage({ session, rubricId }: RubricDetailsPa
         onBack={handleBack}
       />
 
-      {showDeleteModal && (
+      {showDeleteModal && rubric && (
         <DeleteRubricModal
-          rubric={{ id: rubricId } as any} // Solo necesitamos el ID para eliminar
+          rubric={rubric}
           onDelete={handleDeleteComplete}
           onCancel={() => setShowDeleteModal(false)}
         />

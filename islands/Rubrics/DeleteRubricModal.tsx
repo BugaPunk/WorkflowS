@@ -29,7 +29,7 @@ export default function DeleteRubricModal({ rubric, onDelete, onCancel }: Delete
 
       onDelete();
     } catch (err) {
-      setError(err.message || "Error al eliminar la rúbrica");
+      setError(err instanceof Error ? err.message : "Error al eliminar la rúbrica");
       console.error(err);
     } finally {
       setLoading(false);
@@ -37,8 +37,10 @@ export default function DeleteRubricModal({ rubric, onDelete, onCancel }: Delete
   };
 
   return (
-    <Modal title="Eliminar Rúbrica" onClose={onCancel}>
+    <Modal show={true} onClose={onCancel}>
       <div class="p-6">
+        <h3 class="text-lg font-medium text-gray-900 mb-4">Eliminar Rúbrica</h3>
+
         <p class="text-gray-700 mb-4">
           ¿Estás seguro de que deseas eliminar la rúbrica <strong>"{rubric.name}"</strong>?
         </p>
