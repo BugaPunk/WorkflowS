@@ -10,8 +10,10 @@ This script populates your Deno KV database with sample data for development and
 *   A project ("E-commerce Platform Revamp")
 *   Multiple sprints within the project (with past, active, and planned statuses)
 *   User stories assigned to these sprints, with varying points, statuses, and tasks
-*   Tasks assigned to user stories and users
+*   Tasks assigned to user stories and users, with some tasks designated as **Deliverables**
 *   User stories in the project backlog
+*   Sample **Rubrics** (template and project-specific examples)
+*   Sample **Evaluations** linking deliverables, rubrics, and users
 
 **Important Notes:**
 
