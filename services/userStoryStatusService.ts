@@ -18,14 +18,6 @@ export async function updateUserStoryStatusBasedOnTasks(userStoryId: string) {
     // Obtener todas las tareas de la historia de usuario
     const tasks = await getUserStoryTasks(userStoryId);
     
-    if (tasks.length === 0) {
-      // Si no hay tareas, mantener en backlog
-      if (userStory.status !== UserStoryStatus.BACKLOG) {
-        return await updateUserStory(userStoryId, { status: UserStoryStatus.BACKLOG });
-      }
-      return userStory;
-    }
-
     // Analizar el estado de las tareas
     const tasksByStatus = tasks.reduce((acc, task) => {
       acc[task.status] = (acc[task.status] || 0) + 1;
@@ -41,18 +33,33 @@ export async function updateUserStoryStatusBasedOnTasks(userStoryId: string) {
     // Determinar el nuevo estado basándose en las tareas
     let newStatus: UserStoryStatus;
 
-    if (completedTasks === totalTasks) {
-      // Todas las tareas están completadas
-      newStatus = UserStoryStatus.DONE;
-    } else if (inProgressTasks > 0 || completedTasks > 0) {
-      // Hay tareas en progreso o algunas completadas
-      newStatus = UserStoryStatus.IN_PROGRESS;
-    } else if (todoTasks === totalTasks) {
-      // Todas las tareas están por hacer
-      newStatus = UserStoryStatus.PLANNED;
-    } else {
-      // Estado por defecto
-      newStatus = UserStoryStatus.BACKLOG;
+    if (!userStory.sprintId) { // Not in a sprint
+      if (tasks.length === 0) {
+        newStatus = UserStoryStatus.BACKLOG;
+      } else if (completedTasks === totalTasks) {
+        newStatus = UserStoryStatus.DONE;
+      } else if (inProgressTasks > 0 || completedTasks > 0) { // Any task started or done
+        newStatus = UserStoryStatus.IN_PROGRESS;
+      } else { // Has tasks, but all are TODO (or other non-started/non-completed states like BLOCKED etc if those existed)
+        newStatus = UserStoryStatus.BACKLOG;
+      }
+    } else { // In a sprint
+      if (tasks.length === 0) {
+        // If in a sprint with no tasks:
+        // If its current status is BACKLOG (e.g. just added to sprint from product backlog), make it PLANNED.
+        // Otherwise, maintain its current status (could be PLANNED already, or IN_PROGRESS from before tasks were removed, etc.)
+        newStatus = (userStory.status === UserStoryStatus.BACKLOG) ? UserStoryStatus.PLANNED : userStory.status;
+      } else if (completedTasks === totalTasks) {
+        newStatus = UserStoryStatus.DONE;
+      } else if (inProgressTasks > 0 || completedTasks > 0) {
+        newStatus = UserStoryStatus.IN_PROGRESS;
+      } else if (todoTasks === totalTasks) { // All tasks are TODO, and it's in a sprint
+        newStatus = UserStoryStatus.PLANNED;
+      } else {
+        // This case implies a mix of non-TODO tasks that aren't IN_PROGRESS or DONE (e.g. custom statuses not accounted for).
+        // Maintaining current status is a safe fallback.
+        newStatus = userStory.status;
+      }
     }
 
     // Actualizar solo si el estado ha cambiado

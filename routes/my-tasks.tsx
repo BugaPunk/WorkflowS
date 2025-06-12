@@ -4,7 +4,7 @@ import { MainLayout } from "../layouts/MainLayout.tsx";
 import { getProjectById } from "../models/project.ts";
 import type { Project } from "../models/project.ts";
 import { getUserTasks } from "../models/task.ts";
-import { getUserById } from "../models/user.ts";
+import { getUserById, UserRole } from "../models/user.ts"; // Added UserRole
 import { getUserStoryById } from "../models/userStory.ts";
 import type { UserStory } from "../models/userStory.ts";
 import { getSession } from "../utils/session.ts";
@@ -30,6 +30,14 @@ export const handler: Handlers<MyTasksPageData | null> = {
       return new Response("", {
         status: 302,
         headers: { Location: "/login" },
+      });
+    }
+
+    // Redirect Admin users
+    if (session.role === UserRole.ADMIN) {
+      return new Response("", {
+        status: 302, // Found (Redirect)
+        headers: { Location: "/welcome" },
       });
     }
 

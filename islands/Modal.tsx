@@ -59,15 +59,31 @@ export default function Modal({
 
   // Manejar clic o tecla en el fondo para cerrar
   const handleBackdropInteraction = (e: MouseEvent | KeyboardEvent) => {
-    // Para eventos de teclado, solo procesar si es Enter o Space
     if (e.type === "keydown") {
       const keyEvent = e as KeyboardEvent;
-      if (keyEvent.key !== "Enter" && keyEvent.key !== " ") {
+      if (keyEvent.key === " ") {
+        // Only prevent default for Space if the dialog element itself is the direct target
+        if (e.target === e.currentTarget) {
+          keyEvent.preventDefault(); // Prevents page scroll if dialog backdrop is focused
+        }
+        // If target is an input, space is allowed to be typed.
+        // The closing logic below might still trigger if space on backdrop should close.
+      } else if (keyEvent.key === "Enter") {
+        // If Enter is on the dialog itself AND it's meant to close it via backdrop interaction:
+        if (e.target === e.currentTarget) {
+          // Prevent default to avoid any other action if dialog is focused.
+          // The onClose() call below handles closing if 'closeable'.
+          keyEvent.preventDefault();
+        }
+        // If Enter is on an input/button within the modal, allow default behavior (e.g., form submit).
+      } else {
+        // For any other key, this specific handler does nothing further.
         return;
       }
-      e.preventDefault(); // Prevenir scroll con Space
     }
 
+    // Common logic for both click and Enter/Space (if not defaultPrevented on an inner element and target is dialog)
+    // on the dialog backdrop.
     if (closeable && e.target === e.currentTarget) {
       onClose();
     }

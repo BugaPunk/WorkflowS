@@ -106,12 +106,19 @@ export default function NavMain({ userRole }: NavMainProps = {}): JSX.Element {
       ]
     : [];
 
+  const filteredMainNavItems = mainNavItems.filter(item => {
+    if (item.href === "/my-tasks") {
+      return userRole !== UserRole.ADMIN;
+    }
+    return true;
+  });
+
   return (
     <>
       <SidebarGroup class="px-2 py-0">
         <SidebarGroupLabel>Plataforma</SidebarGroupLabel>
         <SidebarMenu>
-          {mainNavItems.map((item) => (
+          {filteredMainNavItems.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton isActive={isItemActive(item.href)}>
                 <a href={item.href} class="flex items-center w-full">
