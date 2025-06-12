@@ -1,5 +1,5 @@
-import { getSprintById, Sprint, SprintStatus } from "@/models/sprint.ts";
-import { getUserStoriesBySprintId, UserStory, UserStoryStatus } from "@/models/userStory.ts";
+import { getSprintById, Sprint, SprintStatus, getProjectSprints } from "@/models/sprint.ts";
+import { getUserStoriesBySprintId, UserStory, UserStoryStatus, getProjectUserStories } from "@/models/userStory.ts";
 import { getUserStoryTasks, Task, TaskStatus } from "@/models/task.ts";
 import {
   SprintMetric,
@@ -486,16 +486,3 @@ function calculateHealthScore(
   return Math.min(100, Math.max(0, healthScore));
 }
 
-// Función auxiliar para obtener historias de usuario por proyecto
-// Esta función debe implementarse en el modelo de historias de usuario
-async function getUserStoriesByProjectId(_projectId: string): Promise<UserStory[]> {
-  // Implementación temporal
-  return await Promise.resolve([]);
-}
-
-// Función auxiliar para obtener sprints de un proyecto
-// Esta función debe implementarse en el modelo de sprint
-async function getProjectSprints(_projectId: string): Promise<Sprint[]> {
-  // Implementación temporal
-  return await Promise.resolve([]);
-}

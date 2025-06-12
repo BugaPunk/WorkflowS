@@ -1,5 +1,6 @@
 import { type Model, createModel, generateId, getKv } from "@/utils/db.ts";
 import { z } from "zod";
+import { getUserStoryById, updateUserStory } from "../models/userStory.ts";
 
 // Colecciones para sprints
 export const SPRINT_COLLECTIONS = {
@@ -145,6 +146,20 @@ export async function addUserStoryToSprint(
   // Guardar el sprint actualizado
   await kv.set(key, updatedSprint);
 
+  // Actualizar la historia de usuario con el sprintId
+  try {
+    const userStory = await getUserStoryById(userStoryId);
+    if (userStory) {
+      await updateUserStory(userStoryId, { sprintId: sprintId });
+    }
+  } catch (error) {
+    // Manejar el error (opcional, dependiendo de los requisitos)
+    // Por ejemplo, registrar el error o lanzar una excepción personalizada
+    console.error(`Error updating user story ${userStoryId} with sprintId ${sprintId}:`, error);
+    // A pesar del error al actualizar la historia de usuario, el sprint se actualizó correctamente.
+    // Se podría considerar una lógica de compensación aquí si la actualización de la historia es crítica.
+  }
+
   return updatedSprint;
 }
 
@@ -171,6 +186,24 @@ export async function removeUserStoryFromSprint(
 
   // Guardar el sprint actualizado
   await kv.set(key, updatedSprint);
+
+  // Actualizar la historia de usuario para eliminar el sprintId
+  try {
+    const userStory = await getUserStoryById(userStoryId);
+    if (userStory) {
+      // Solo actualiza si la historia de usuario todavía está asociada con este sprint
+      // Esto evita el caso en que la historia ya haya sido movida a otro sprint
+      // o si el sprintId ya fue limpiado por otro proceso.
+      if (userStory.sprintId === sprintId) {
+        await updateUserStory(userStoryId, { sprintId: undefined });
+      }
+    }
+  } catch (error) {
+    // Manejar el error (opcional, dependiendo de los requisitos)
+    // Por ejemplo, registrar el error o lanzar una excepción personalizada
+    console.error(`Error updating user story ${userStoryId} after removing from sprint ${sprintId}:`, error);
+    // A pesar del error al actualizar la historia de usuario, el sprint se actualizó correctamente.
+  }
 
   return updatedSprint;
 }

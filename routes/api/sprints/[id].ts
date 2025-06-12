@@ -1,6 +1,7 @@
 import type { FreshContext } from "$fresh/server.ts";
 import { deleteSprint, getSprintById, updateSprint } from "../../../models/sprint.ts";
 import { UserRole } from "../../../models/user.ts";
+import { getUserStoryById, updateUserStory } from "../../../models/userStory.ts";
 import { Status, errorResponse, successResponse } from "../../../utils/api.ts";
 import { getKv } from "../../../utils/db.ts";
 import { getSession } from "../../../utils/session.ts";
@@ -79,6 +80,36 @@ export const handler = {
       if (!sprint) {
         return errorResponse("Sprint no encontrado", Status.NotFound);
       }
+
+      // --- Desvincular User Stories del Sprint ---
+      if (sprint.userStoryIds && sprint.userStoryIds.length > 0) {
+        console.log(`Desvinculando ${sprint.userStoryIds.length} historias de usuario del sprint ${id}`);
+        try {
+          for (const userStoryId of sprint.userStoryIds) {
+            try {
+              const userStory = await getUserStoryById(userStoryId);
+              if (userStory) {
+                // Solo actualizar si la historia realmente pertenece a este sprint
+                if (userStory.sprintId === id) {
+                  await updateUserStory(userStoryId, { sprintId: undefined });
+                  console.log(`User story ${userStoryId} desvinculada del sprint ${id}`);
+                } else {
+                  console.warn(`User story ${userStoryId} listada en sprint ${id}, pero su sprintId es ${userStory.sprintId}. No se actualiza.`);
+                }
+              } else {
+                console.warn(`User story ${userStoryId} listada en sprint ${id} no encontrada.`);
+              }
+            } catch (usError) {
+              console.error(`Error al actualizar user story ${userStoryId} durante la eliminación del sprint ${id}:`, usError);
+              // Continuar con las demás historias de usuario
+            }
+          }
+        } catch (loopError) {
+          console.error(`Error en el bucle de desvinculación de historias para el sprint ${id}:`, loopError);
+          // Continuar con la eliminación del sprint de todas formas, pero registrar el problema.
+        }
+      }
+      // --- Fin Desvincular User Stories ---
 
       await deleteSprint(id);
 
