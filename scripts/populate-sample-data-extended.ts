@@ -288,7 +288,7 @@ async function seedDatabase() {
                 projectId: project.id,
                 assignedTo: taskData.assignedToRef ? createdUsers[taskData.assignedToRef]?.id : undefined,
                 createdBy: taskCreator.id,
-                deliverableType: taskData.deliverableType,
+                // deliverableType: taskData.deliverableType, // Removed: Assuming this is not part of DeliverableData schema
                 submissionInstructions: taskData.submissionInstructions,
                 dueDate: taskData.dueDate,
                 submittedAt: taskData.submittedAt,
@@ -338,7 +338,8 @@ async function seedDatabase() {
                 title: taskData.title, description: taskData.description || "", status: taskData.status,
                 userStoryId: userStory.id, projectId: project.id,
                 assignedTo: taskData.assignedToRef ? createdUsers[taskData.assignedToRef]?.id : undefined,
-                createdBy: taskCreator.id, deliverableType: taskData.deliverableType,
+                createdBy: taskCreator.id,
+                // deliverableType: taskData.deliverableType, // Removed: Assuming this is not part of DeliverableData schema
                 submissionInstructions: taskData.submissionInstructions, dueDate: taskData.dueDate,
               };
               const newDeliverable = createDeliverable(deliverableData);
