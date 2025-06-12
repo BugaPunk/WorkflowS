@@ -1,14 +1,14 @@
 // deno-lint-ignore-file no-explicit-any
 // Imports
-import { createUser, User, UserRole } from "../models/user.ts";
-import { createProject, Project } from "../models/project.ts";
-import { createSprint, Sprint, SprintStatus, addUserStoryToSprint } from "../models/sprint.ts";
-import { createUserStory, UserStory, UserStoryStatus, UserStoryPriority, updateUserStory } from "../models/userStory.ts";
-import { createTask, Task, TaskStatus } from "../models/task.ts";
-import { updateUserStoryStatusBasedOnTasks } from "../services/userStoryStatusService.ts";
-import { getKv } from "../utils/db.ts"; // Added for direct KV access
-import { createRubricWithDefaults, Rubric, RubricCriterion, RubricLevel, RubricStatus } from "../models/rubric.ts";
-import { createDeliverable, Deliverable, Attachment } from "../models/deliverable.ts"; // Added Attachment
+import type { createUser, User, UserRole } from "../models/user.ts";
+import type  { createProject, Project } from "../models/project.ts";
+import type { createSprint, Sprint, SprintStatus, addUserStoryToSprint } from "../models/sprint.ts";
+import type { createUserStory, UserStory, UserStoryStatus, UserStoryPriority, updateUserStory } from "../models/userStory.ts";
+import type { createTask, Task, TaskStatus } from "../models/task.ts";
+import type { updateUserStoryStatusBasedOnTasks } from "../services/userStoryStatusService.ts";
+import type { getKv } from "../utils/db.ts"; // Added for direct KV access
+import type { createRubricWithDefaults, Rubric, RubricCriterion, RubricLevel, RubricStatus } from "../models/rubric.ts";
+import type { createDeliverable, Deliverable, Attachment } from "../models/deliverable.ts"; // Added Attachment
 import { createEvaluationWithDefaults, Evaluation, EvaluationStatus } from "../models/evaluation.ts";
 
 // --- Helper Functions ---

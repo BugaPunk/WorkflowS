@@ -63,7 +63,6 @@ import * as $evaluations_index from "./routes/evaluations/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
 import * as $logout from "./routes/logout.ts";
-import * as $mockups_metrics from "./routes/mockups/metrics.tsx";
 import * as $my_evaluations_index from "./routes/my-evaluations/index.tsx";
 import * as $my_tasks from "./routes/my-tasks.tsx";
 import * as $projects_id_ from "./routes/projects/[id].tsx";
@@ -283,7 +282,6 @@ const manifest = {
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
     "./routes/logout.ts": $logout,
-    "./routes/mockups/metrics.tsx": $mockups_metrics,
     "./routes/my-evaluations/index.tsx": $my_evaluations_index,
     "./routes/my-tasks.tsx": $my_tasks,
     "./routes/projects/[id].tsx": $projects_id_,
