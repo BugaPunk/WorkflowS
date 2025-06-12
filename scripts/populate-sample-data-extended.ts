@@ -3,7 +3,7 @@
 import { createUser, User, UserRole } from "../models/user.ts";
 import { createProject, Project } from "../models/project.ts";
 import { createSprint, Sprint, SprintStatus, addUserStoryToSprint } from "../models/sprint.ts";
-import { createUserStory, UserStory, UserStoryStatus, UserStoryPriority } from "../models/userStory.ts";
+import { createUserStory, UserStory, UserStoryStatus, UserStoryPriority, updateUserStory } from "../models/userStory.ts";
 import { createTask, Task, TaskStatus } from "../models/task.ts";
 import { updateUserStoryStatusBasedOnTasks } from "../services/userStoryStatusService.ts";
 
